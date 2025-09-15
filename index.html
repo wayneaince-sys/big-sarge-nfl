@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Big Sarge NFL 2025 Game Center</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&display=swap');
         
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Russo One', Arial, sans-serif;
             background: linear-gradient(135deg, #0a0e27 0%, #1a237e 50%, #0a0e27 100%);
             color: white;
             min-height: 100vh;
@@ -21,47 +21,65 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a237e 50%, #0a0e27 100%);
+            background: radial-gradient(circle at center, #1a237e 0%, #0a0e27 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            animation: fadeOut 1s ease-out 3s forwards;
+            animation: fadeOut 0.5s ease-out 3s forwards;
         }
         
         @keyframes fadeOut {
-            to { opacity: 0; visibility: hidden; }
+            to { opacity: 0; visibility: hidden; pointer-events: none; }
+        }
+        
+        .field-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10%,
+                rgba(255,255,255,0.1) 10%,
+                rgba(255,255,255,0.1) 10.5%
+            );
         }
         
         .football {
-            width: 120px;
-            height: 80px;
-            background: #8B4513;
+            width: 150px;
+            height: 100px;
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #8B4513 100%);
             border-radius: 50%;
             position: relative;
             animation: spin 2s linear infinite;
-            box-shadow: 0 0 30px rgba(139, 69, 19, 0.5);
+            box-shadow: 
+                0 0 60px rgba(255, 200, 100, 0.6),
+                inset -10px -10px 20px rgba(0,0,0,0.4);
         }
         
         .football::before {
             content: '';
             position: absolute;
             width: 100%;
-            height: 2px;
+            height: 3px;
             background: white;
             top: 50%;
             left: 0;
+            transform: translateY(-50%);
         }
         
         .football::after {
             content: '';
             position: absolute;
-            width: 2px;
+            width: 3px;
             height: 60%;
             background: white;
             top: 20%;
             left: 50%;
+            transform: translateX(-50%);
         }
         
         @keyframes spin {
@@ -71,75 +89,175 @@
         
         .splash h1 {
             font-family: 'Bebas Neue', cursive;
-            font-size: 5rem;
+            font-size: 6rem;
             margin: 30px 0 10px;
-            text-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+            color: #FFFFFF;
+            text-shadow: 
+                0 0 10px #FFD700,
+                0 0 20px #FFD700,
+                0 0 30px #FFD700,
+                0 0 40px #FFA500,
+                3px 3px 6px rgba(0,0,0,0.9);
+            letter-spacing: 0.15em;
+        }
+        
+        .splash p {
+            font-size: 2rem;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 0.1em;
         }
         
         .main {
             padding: 20px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 3.5s forwards;
+            display: none;
+        }
+        
+        .main.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
         }
         
         @keyframes fadeIn {
+            from { opacity: 0; }
             to { opacity: 1; }
         }
         
         .header {
             text-align: center;
-            padding: 30px 0;
-            background: rgba(0,0,0,0.5);
-            border-radius: 15px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(30,30,60,0.8) 100%);
+            border-radius: 20px;
             margin-bottom: 30px;
+            border: 2px solid rgba(255,215,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         
         .title {
             font-family: 'Bebas Neue', cursive;
-            font-size: 4rem;
-            background: linear-gradient(90deg, #3b82f6, #9333ea);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 5rem;
+            margin: 0;
+            color: #FFFFFF;
+            text-shadow: 
+                0 0 20px #3b82f6,
+                0 0 40px #3b82f6,
+                3px 3px 6px rgba(0,0,0,0.9);
+            letter-spacing: 0.15em;
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            color: #FFD700;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 0.1em;
         }
         
         .accuracy {
-            background: rgba(34, 197, 94, 0.2);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(34, 197, 94, 0.1) 100%);
             border: 2px solid #22c55e;
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 15px;
+            padding: 20px;
             margin: 20px auto;
-            max-width: 500px;
+            max-width: 600px;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+        }
+        
+        .accuracy h3 {
+            margin: 0 0 10px 0;
+            color: #22c55e;
+            font-size: 1.3rem;
+        }
+        
+        .accuracy-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+        }
+        
+        .week-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .week-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border: 2px solid transparent;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-family: 'Russo One', Arial;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        .week-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        .week-btn.active {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            border-color: #FFD700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
         
         .game-grid {
             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 20px;
             margin-top: 30px;
         }
         
+        .week-content {
+            display: none;
+        }
+        
+        .week-content.active {
+            display: block;
+        }
+        
         .game-card {
-            background: rgba(0,0,0,0.6);
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(30,30,60,0.7) 100%);
             border: 2px solid #444;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 20px;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         
         .game-card:hover {
-            transform: scale(1.02);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
         
         .game-card.correct {
             border-color: #22c55e;
-            background: rgba(34, 197, 94, 0.1);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.05) 100%);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
         }
         
         .game-card.incorrect {
             border-color: #ef4444;
-            background: rgba(239, 68, 68, 0.1);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.05) 100%);
+        }
+        
+        .game-type {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #FFD700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
         
         .teams {
@@ -151,21 +269,48 @@
         
         .team {
             text-align: center;
+            flex: 1;
+        }
+        
+        .team-abbr {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
         .team-name {
-            font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 5px;
+        }
+        
+        .vs {
+            font-size: 1.5rem;
+            color: #666;
+            padding: 0 20px;
         }
         
         .score {
-            background: #fbbf24;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
             color: black;
-            padding: 5px 15px;
-            border-radius: 5px;
+            padding: 8px 15px;
+            border-radius: 8px;
             font-weight: bold;
             margin: 10px 0;
             text-align: center;
+            font-size: 1.1rem;
+            box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
+        }
+        
+        .time {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            padding: 8px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+            border: 1px solid #3b82f6;
         }
         
         .prediction {
@@ -173,104 +318,952 @@
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px solid #444;
+            color: #FFFFFF;
+        }
+        
+        .result-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .result-badge.correct {
+            background: #22c55e;
+            color: white;
+        }
+        
+        .result-badge.incorrect {
+            background: #ef4444;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <!-- Splash Screen with Spinning Football -->
-    <div class="splash">
+    <!-- Splash Screen -->
+    <div class="splash" id="splash">
+        <div class="field-lines"></div>
         <div class="football"></div>
         <h1>BIG SARGE</h1>
-        <p style="font-size: 1.5rem; color: #fbbf24;">GAME DAY CENTER 2025</p>
+        <p>GAME DAY CENTER 2025</p>
     </div>
 
     <!-- Main Content -->
-    <div class="main">
+    <div class="main" id="main">
         <div class="header">
             <h1 class="title">🏈 BIG SARGE NFL 2025</h1>
-            <p style="font-size: 1.5rem; color: #fbbf24;">Advanced Predictions & Live Results</p>
+            <p class="subtitle">ADVANCED PREDICTIONS & LIVE RESULTS</p>
             
             <div class="accuracy">
-                <h3>Overall Prediction Accuracy</h3>
-                <p style="font-size: 2rem; margin: 10px 0;">70.0%</p>
-                <p>21 Correct • 9 Incorrect • 30 Total Games</p>
+                <h3>OVERALL PREDICTION ACCURACY</h3>
+                <div class="accuracy-number">70.0%</div>
+                <p style="font-size: 1.1rem;">21 Correct • 9 Incorrect • 30 Total Games</p>
             </div>
         </div>
 
-        <div class="game-grid">
-            <!-- Week 2 Sample Games -->
-            <div class="game-card correct">
-                <div class="teams">
-                    <div class="team">
-                        <div class="team-name">WAS</div>
-                        <div>Commanders</div>
+        <!-- Week Selector -->
+        <div class="week-selector">
+            <button class="week-btn active" onclick="showWeek(1)">WEEK 1</button>
+            <button class="week-btn" onclick="showWeek(2)">WEEK 2</button>
+            <button class="week-btn" onclick="showWeek(3)">WEEK 3</button>
+        </div>
+
+        <!-- Week 1 Games -->
+        <div id="week1" class="week-content active">
+            <h2 style="text-align: center; color: #FFD700; font-size: 2rem; margin: 30px 0;">WEEK 1 RESULTS</h2>
+            <div class="game-grid">
+                <div class="game-card correct">
+                    <div class="game-type">Thursday Night Football</div>
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">DAL</div>
+                            <div class="team-name">Cowboys</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">PHI</div>
+                            <div class="team-name">Eagles</div>
+                        </div>
                     </div>
-                    <div>@</div>
-                    <div class="team">
-                        <div class="team-name">GB</div>
-                        <div>Packers</div>
+                    <div class="score">FINAL: 20-24</div>
+                    <div class="prediction">
+                        Big Sarge: Eagles <span class="result-badge correct">✓ CORRECT</span>
                     </div>
                 </div>
-                <div class="score">FINAL: 18-27</div>
-                <div class="prediction">
-                    ✓ CORRECT - Predicted: Packers (62% confidence)
+
+                <div class="game-card incorrect">
+                    <div class="game-type">International - Brazil</div>
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">KC</div>
+                            <div class="team-name">Chiefs</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">LAC</div>
+                            <div class="team-name">Chargers</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 21-27</div>
+                    <div class="prediction">
+                        Big Sarge: Chiefs <span class="result-badge incorrect">✗ WRONG</span>
+                    </div>
+                </div>
+
+                <div class="game-card incorrect">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">LV</div>
+                            <div class="team-name">Raiders</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">NE</div>
+                            <div class="team-name">Patriots</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 34-14</div>
+                    <div class="prediction">
+                        Big Sarge: Patriots <span class="result-badge incorrect">✗ WRONG</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">PIT</div>
+                            <div class="team-name">Steelers</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">NYJ</div>
+                            <div class="team-name">Jets</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 24-21</div>
+                    <div class="prediction">
+                        Big Sarge: Steelers <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">MIA</div>
+                            <div class="team-name">Dolphins</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">IND</div>
+                            <div class="team-name">Colts</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 8-33</div>
+                    <div class="prediction">
+                        Big Sarge: Colts <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card incorrect">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">ARI</div>
+                            <div class="team-name">Cardinals</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">NO</div>
+                            <div class="team-name">Saints</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 24-21</div>
+                    <div class="prediction">
+                        Big Sarge: Saints <span class="result-badge incorrect">✗ WRONG</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">NYG</div>
+                            <div class="team-name">Giants</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">WAS</div>
+                            <div class="team-name">Commanders</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 17-20</div>
+                    <div class="prediction">
+                        Big Sarge: Commanders <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">CAR</div>
+                            <div class="team-name">Panthers</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">JAX</div>
+                            <div class="team-name">Jaguars</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 17-20</div>
+                    <div class="prediction">
+                        Big Sarge: Jaguars <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">CIN</div>
+                            <div class="team-name">Bengals</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">CLE</div>
+                            <div class="team-name">Browns</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 17-16</div>
+                    <div class="prediction">
+                        Big Sarge: Bengals <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">TB</div>
+                            <div class="team-name">Buccaneers</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">ATL</div>
+                            <div class="team-name">Falcons</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 23-20</div>
+                    <div class="prediction">
+                        Big Sarge: Buccaneers <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">TEN</div>
+                            <div class="team-name">Titans</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">DEN</div>
+                            <div class="team-name">Broncos</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 14-20</div>
+                    <div class="prediction">
+                        Big Sarge: Broncos <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">SF</div>
+                            <div class="team-name">49ers</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">SEA</div>
+                            <div class="team-name">Seahawks</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 23-17</div>
+                    <div class="prediction">
+                        Big Sarge: 49ers <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">DET</div>
+                            <div class="team-name">Lions</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">GB</div>
+                            <div class="team-name">Packers</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 13-27</div>
+                    <div class="prediction">
+                        Big Sarge: Packers <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">HOU</div>
+                            <div class="team-name">Texans</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">LAR</div>
+                            <div class="team-name">Rams</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 20-27</div>
+                    <div class="prediction">
+                        Big Sarge: Rams <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">BAL</div>
+                            <div class="team-name">Ravens</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">BUF</div>
+                            <div class="team-name">Bills</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 40-41</div>
+                    <div class="prediction">
+                        Big Sarge: Bills <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card incorrect">
+                    <div class="game-type">Monday Night Football</div>
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">MIN</div>
+                            <div class="team-name">Vikings</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">CHI</div>
+                            <div class="team-name">Bears</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 27-24</div>
+                    <div class="prediction">
+                        Big Sarge: Bears <span class="result-badge incorrect">✗ WRONG</span>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="game-card correct">
-                <div class="teams">
-                    <div class="team">
-                        <div class="team-name">PHI</div>
-                        <div>Eagles</div>
+        <!-- Week 2 Games -->
+        <div id="week2" class="week-content">
+            <h2 style="text-align: center; color: #FFD700; font-size: 2rem; margin: 30px 0;">WEEK 2 RESULTS & PREDICTIONS</h2>
+            <div class="game-grid">
+                <div class="game-card correct">
+                    <div class="game-type">Thursday Night Football</div>
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">WAS</div>
+                            <div class="team-name">Commanders</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">GB</div>
+                            <div class="team-name">Packers</div>
+                        </div>
                     </div>
-                    <div>@</div>
-                    <div class="team">
-                        <div class="team-name">KC</div>
-                        <div>Chiefs</div>
+                    <div class="score">FINAL: 18-27</div>
+                    <div class="prediction">
+                        Big Sarge: Packers <span class="result-badge correct">✓ CORRECT</span>
                     </div>
                 </div>
-                <div class="score">FINAL: 20-17</div>
-                <div class="prediction">
-                    ✓ CORRECT - Predicted: Eagles (52% confidence)
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">JAX</div>
+                            <div class="team-name">Jaguars</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">CIN</div>
+                            <div class="team-name">Bengals</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: WIN CIN</div>
+                    <div class="prediction">
+                        Big Sarge: Bengals <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">NYG</div>
+                            <div class="team-name">Giants</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">DAL</div>
+                            <div class="team-name">Cowboys</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 37-40 (OT)</div>
+                    <div class="prediction">
+                        Big Sarge: Cowboys <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">CHI</div>
+                            <div class="team-name">Bears</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">DET</div>
+                            <div class="team-name">Lions</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 21-52</div>
+                    <div class="prediction">
+                        Big Sarge: Lions <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">LAR</div>
+                            <div class="team-name">Rams</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">TEN</div>
+                            <div class="team-name">Titans</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 33-19</div>
+                    <div class="prediction">
+                        Big Sarge: Rams <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card incorrect">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">NE</div>
+                            <div class="team-name">Patriots</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">MIA</div>
+                            <div class="team-name">Dolphins</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 33-27</div>
+                    <div class="prediction">
+                        Big Sarge: Dolphins <span class="result-badge incorrect">✗ WRONG</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">SF</div>
+                            <div class="team-name">49ers</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">NO</div>
+                            <div class="team-name">Saints</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 26-21</div>
+                    <div class="prediction">
+                        Big Sarge: 49ers <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">BUF</div>
+                            <div class="team-name">Bills</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">NYJ</div>
+                            <div class="team-name">Jets</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 30-10</div>
+                    <div class="prediction">
+                        Big Sarge: Bills <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card incorrect">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">SEA</div>
+                            <div class="team-name">Seahawks</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">PIT</div>
+                            <div class="team-name">Steelers</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 31-17</div>
+                    <div class="prediction">
+                        Big Sarge: Steelers <span class="result-badge incorrect">✗ WRONG</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">CLE</div>
+                            <div class="team-name">Browns</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">BAL</div>
+                            <div class="team-name">Ravens</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 17-41</div>
+                    <div class="prediction">
+                        Big Sarge: Ravens <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">DEN</div>
+                            <div class="team-name">Broncos</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">IND</div>
+                            <div class="team-name">Colts</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 28-29</div>
+                    <div class="prediction">
+                        Big Sarge: Colts <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">CAR</div>
+                            <div class="team-name">Panthers</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">ARI</div>
+                            <div class="team-name">Cardinals</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 22-27</div>
+                    <div class="prediction">
+                        Big Sarge: Cardinals <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card correct">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">PHI</div>
+                            <div class="team-name">Eagles</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">KC</div>
+                            <div class="team-name">Chiefs</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 20-17</div>
+                    <div class="prediction">
+                        Big Sarge: Eagles <span class="result-badge correct">✓ CORRECT</span>
+                    </div>
+                </div>
+
+                <div class="game-card incorrect">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">ATL</div>
+                            <div class="team-name">Falcons</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">MIN</div>
+                            <div class="team-name">Vikings</div>
+                        </div>
+                    </div>
+                    <div class="score">FINAL: 22-6</div>
+                    <div class="prediction">
+                        Big Sarge: Vikings <span class="result-badge incorrect">✗ WRONG</span>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-type">Monday Night Football</div>
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">TB</div>
+                            <div class="team-name">Buccaneers</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">HOU</div>
+                            <div class="team-name">Texans</div>
+                        </div>
+                    </div>
+                    <div class="time">Monday 7:00 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Texans (54%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-type">Monday Night Football</div>
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">LV</div>
+                            <div class="team-name">Raiders</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">LAC</div>
+                            <div class="team-name">Chargers</div>
+                        </div>
+                    </div>
+                    <div class="time">Monday 10:00 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Chargers (61%)
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="game-card incorrect">
-                <div class="teams">
-                    <div class="team">
-                        <div class="team-name">SEA</div>
-                        <div>Seahawks</div>
+        <!-- Week 3 Games -->
+        <div id="week3" class="week-content">
+            <h2 style="text-align: center; color: #FFD700; font-size: 2rem; margin: 30px 0;">WEEK 3 PREDICTIONS</h2>
+            <div class="game-grid">
+                <div class="game-card">
+                    <div class="game-type">Thursday Night Football</div>
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">MIA</div>
+                            <div class="team-name">Dolphins</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">BUF</div>
+                            <div class="team-name">Bills</div>
+                        </div>
                     </div>
-                    <div>@</div>
-                    <div class="team">
-                        <div class="team-name">PIT</div>
-                        <div>Steelers</div>
+                    <div class="time">Thursday 8:15 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Bills (71%)
                     </div>
                 </div>
-                <div class="score">FINAL: 31-17</div>
-                <div class="prediction">
-                    ✗ INCORRECT - Predicted: Steelers (55% confidence)
-                </div>
-            </div>
 
-            <div class="game-card">
-                <div class="teams">
-                    <div class="team">
-                        <div class="team-name">MIA</div>
-                        <div>Dolphins</div>
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">NYG</div>
+                            <div class="team-name">Giants</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">NE</div>
+                            <div class="team-name">Patriots</div>
+                        </div>
                     </div>
-                    <div>@</div>
-                    <div class="team">
-                        <div class="team-name">BUF</div>
-                        <div>Bills</div>
+                    <div class="time">Sunday 1:00 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Patriots (53%)
                     </div>
                 </div>
-                <div class="score">Week 3: Thursday 8:15 PM</div>
-                <div class="prediction">
-                    Prediction: Bills (65% confidence)
+
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">TEN</div>
+                            <div class="team-name">Titans</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">CLE</div>
+                            <div class="team-name">Browns</div>
+                        </div>
+                    </div>
+                    <div class="time">Sunday 1:00 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Browns (55%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">GB</div>
+                            <div class="team-name">Packers</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">NO</div>
+                            <div class="team-name">Saints</div>
+                        </div>
+                    </div>
+                    <div class="time">Sunday 1:00 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Packers (60%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">NYJ</div>
+                            <div class="team-name">Jets</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">DEN</div>
+                            <div class="team-name">Broncos</div>
+                        </div>
+                    </div>
+                    <div class="time">Sunday 1:00 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Broncos (54%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">MIN</div>
+                            <div class="team-name">Vikings</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">HOU</div>
+                            <div class="team-name">Texans</div>
+                        </div>
+                    </div>
+                    <div class="time">Sunday 1:00 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Texans (56%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">ATL</div>
+                            <div class="team-name">Falcons</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">IND</div>
+                            <div class="team-name">Colts</div>
+                        </div>
+                    </div>
+                    <div class="time">Sunday 1:00 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Falcons (54%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">WAS</div>
+                            <div class="team-name">Commanders</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">CIN</div>
+                            <div class="team-name">Bengals</div>
+                        </div>
+                    </div>
+                    <div class="time">Sunday 1:00 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Bengals (62%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">CAR</div>
+                            <div class="team-name">Panthers</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">LV</div>
+                            <div class="team-name">Raiders</div>
+                        </div>
+                    </div>
+                    <div class="time">Sunday 4:05 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Raiders (56%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">PIT</div>
+                            <div class="team-name">Steelers</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">SEA</div>
+                            <div class="team-name">Seahawks</div>
+                        </div>
+                    </div>
+                    <div class="time">Sunday 4:25 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Seahawks (52%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">DET</div>
+                            <div class="team-name">Lions</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">LAR</div>
+                            <div class="team-name">Rams</div>
+                        </div>
+                    </div>
+                    <div class="time">Sunday 4:25 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Rams (52%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">ARI</div>
+                            <div class="team-name">Cardinals</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">SF</div>
+                            <div class="team-name">49ers</div>
+                        </div>
+                    </div>
+                    <div class="time">Sunday 4:25 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: 49ers (65%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">DAL</div>
+                            <div class="team-name">Cowboys</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">CHI</div>
+                            <div class="team-name">Bears</div>
+                        </div>
+                    </div>
+                    <div class="time">Sunday 4:25 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Cowboys (60%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">KC</div>
+                            <div class="team-name">Chiefs</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">NYG</div>
+                            <div class="team-name">Giants</div>
+                        </div>
+                    </div>
+                    <div class="time">Sunday 8:20 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Chiefs (68%)
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-type">Monday Night Football</div>
+                    <div class="teams">
+                        <div class="team">
+                            <div class="team-abbr">PHI</div>
+                            <div class="team-name">Eagles</div>
+                        </div>
+                        <div class="vs">@</div>
+                        <div class="team">
+                            <div class="team-abbr">BAL</div>
+                            <div class="team-name">Ravens</div>
+                        </div>
+                    </div>
+                    <div class="time">Monday 8:15 PM</div>
+                    <div class="prediction">
+                        Big Sarge Prediction: Ravens (52%)
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Show main content after splash screen
+        setTimeout(function() {
+            document.getElementById('main').classList.add('show');
+        }, 3500);
+
+        // Week selector function
+        function showWeek(weekNumber) {
+            // Hide all weeks
+            document.querySelectorAll('.week-content').forEach(function(week) {
+                week.classList.remove('active');
+            });
+            
+            // Show selected week
+            document.getElementById('week' + weekNumber).classList.add('active');
+            
+            // Update button states
+            document.querySelectorAll('.week-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
