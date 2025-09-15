@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Sarge Game Day Center 2026</title>
+    <title>Big Sarge Game Day Center 2025</title>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -18,6 +18,22 @@
             color: #3b82f6;
             text-decoration: underline;
         }
+        .correct-prediction {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1));
+            border-color: #22c55e !important;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4) !important;
+        }
+        .incorrect-prediction {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+            border-color: #ef4444 !important;
+        }
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 10px rgba(34, 197, 94, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(34, 197, 94, 0.6); }
+        }
+        .correct-prediction {
+            animation: pulse-green 2s infinite;
+        }
     </style>
 </head>
 <body>
@@ -27,120 +43,98 @@
         const { useState } = React;
 
         function BigSargeGameCenter() {
-            const [selectedWeek, setSelectedWeek] = useState(1);
+            const [selectedWeek, setSelectedWeek] = useState(2);
 
-            // Prediction tracking - Week 1 results
-            const predictionRecord = {
-                correct: 11,
-                incorrect: 5,
-                total: 16,
-                percentage: 68.8
-            };
-
+            // Updated records based on actual Week 1 results
             const teams = {
-                'KC': { name: 'Kansas City Chiefs', rating: 95, record: '0-1', url: 'https://www.nfl.com/teams/kansas-city-chiefs/' },
-                'BUF': { name: 'Buffalo Bills', rating: 92, record: '1-0', url: 'https://www.nfl.com/teams/buffalo-bills/' },
-                'SF': { name: 'San Francisco 49ers', rating: 93, record: '1-0', url: 'https://www.nfl.com/teams/san-francisco-49ers/' },
-                'BAL': { name: 'Baltimore Ravens', rating: 90, record: '0-1', url: 'https://www.nfl.com/teams/baltimore-ravens/' },
-                'PHI': { name: 'Philadelphia Eagles', rating: 89, record: '1-0', url: 'https://www.nfl.com/teams/philadelphia-eagles/' },
-                'DET': { name: 'Detroit Lions', rating: 88, record: '0-1', url: 'https://www.nfl.com/teams/detroit-lions/' },
-                'DAL': { name: 'Dallas Cowboys', rating: 87, record: '0-1', url: 'https://www.nfl.com/teams/dallas-cowboys/' },
-                'CIN': { name: 'Cincinnati Bengals', rating: 86, record: '1-0', url: 'https://www.nfl.com/teams/cincinnati-bengals/' },
-                'GB': { name: 'Green Bay Packers', rating: 86, record: '1-0', url: 'https://www.nfl.com/teams/green-bay-packers/' },
-                'MIA': { name: 'Miami Dolphins', rating: 85, record: '0-1', url: 'https://www.nfl.com/teams/miami-dolphins/' },
+                'KC': { name: 'Kansas City Chiefs', rating: 95, record: '0-2', url: 'https://www.nfl.com/teams/kansas-city-chiefs/' },
+                'BUF': { name: 'Buffalo Bills', rating: 92, record: '2-0', url: 'https://www.nfl.com/teams/buffalo-bills/' },
+                'SF': { name: 'San Francisco 49ers', rating: 93, record: '2-0', url: 'https://www.nfl.com/teams/san-francisco-49ers/' },
+                'BAL': { name: 'Baltimore Ravens', rating: 90, record: '1-1', url: 'https://www.nfl.com/teams/baltimore-ravens/' },
+                'PHI': { name: 'Philadelphia Eagles', rating: 89, record: '2-0', url: 'https://www.nfl.com/teams/philadelphia-eagles/' },
+                'DET': { name: 'Detroit Lions', rating: 88, record: '1-1', url: 'https://www.nfl.com/teams/detroit-lions/' },
+                'DAL': { name: 'Dallas Cowboys', rating: 87, record: '1-1', url: 'https://www.nfl.com/teams/dallas-cowboys/' },
+                'CIN': { name: 'Cincinnati Bengals', rating: 86, record: '2-0', url: 'https://www.nfl.com/teams/cincinnati-bengals/' },
+                'GB': { name: 'Green Bay Packers', rating: 86, record: '2-0', url: 'https://www.nfl.com/teams/green-bay-packers/' },
+                'MIA': { name: 'Miami Dolphins', rating: 85, record: '0-2', url: 'https://www.nfl.com/teams/miami-dolphins/' },
                 'HOU': { name: 'Houston Texans', rating: 85, record: '0-1', url: 'https://www.nfl.com/teams/houston-texans/' },
-                'LAR': { name: 'Los Angeles Rams', rating: 85, record: '1-0', url: 'https://www.nfl.com/teams/los-angeles-rams/' },
-                'PIT': { name: 'Pittsburgh Steelers', rating: 84, record: '1-0', url: 'https://www.nfl.com/teams/pittsburgh-steelers/' },
+                'LAR': { name: 'Los Angeles Rams', rating: 85, record: '2-0', url: 'https://www.nfl.com/teams/los-angeles-rams/' },
+                'PIT': { name: 'Pittsburgh Steelers', rating: 84, record: '1-1', url: 'https://www.nfl.com/teams/pittsburgh-steelers/' },
                 'TB': { name: 'Tampa Bay Buccaneers', rating: 84, record: '1-0', url: 'https://www.nfl.com/teams/tampa-bay-buccaneers/' },
                 'LAC': { name: 'Los Angeles Chargers', rating: 83, record: '1-0', url: 'https://www.nfl.com/teams/los-angeles-chargers/' },
-                'SEA': { name: 'Seattle Seahawks', rating: 83, record: '0-1', url: 'https://www.nfl.com/teams/seattle-seahawks/' },
-                'JAX': { name: 'Jacksonville Jaguars', rating: 82, record: '1-0', url: 'https://www.nfl.com/teams/jacksonville-jaguars/' },
-                'MIN': { name: 'Minnesota Vikings', rating: 82, record: '0-1', url: 'https://www.nfl.com/teams/minnesota-vikings/' },
-                'NYJ': { name: 'New York Jets', rating: 81, record: '0-1', url: 'https://www.nfl.com/teams/new-york-jets/' },
-                'ATL': { name: 'Atlanta Falcons', rating: 81, record: '0-1', url: 'https://www.nfl.com/teams/atlanta-falcons/' },
-                'CHI': { name: 'Chicago Bears', rating: 80, record: '1-0', url: 'https://www.nfl.com/teams/chicago-bears/' },
-                'DEN': { name: 'Denver Broncos', rating: 80, record: '1-0', url: 'https://www.nfl.com/teams/denver-broncos/' },
-                'IND': { name: 'Indianapolis Colts', rating: 79, record: '1-0', url: 'https://www.nfl.com/teams/indianapolis-colts/' },
-                'NO': { name: 'New Orleans Saints', rating: 79, record: '0-1', url: 'https://www.nfl.com/teams/new-orleans-saints/' },
-                'CLE': { name: 'Cleveland Browns', rating: 78, record: '1-0', url: 'https://www.nfl.com/teams/cleveland-browns/' },
-                'ARI': { name: 'Arizona Cardinals', rating: 78, record: '1-0', url: 'https://www.nfl.com/teams/arizona-cardinals/' },
+                'SEA': { name: 'Seattle Seahawks', rating: 83, record: '1-1', url: 'https://www.nfl.com/teams/seattle-seahawks/' },
+                'JAX': { name: 'Jacksonville Jaguars', rating: 82, record: '1-1', url: 'https://www.nfl.com/teams/jacksonville-jaguars/' },
+                'MIN': { name: 'Minnesota Vikings', rating: 82, record: '1-1', url: 'https://www.nfl.com/teams/minnesota-vikings/' },
+                'NYJ': { name: 'New York Jets', rating: 81, record: '0-2', url: 'https://www.nfl.com/teams/new-york-jets/' },
+                'ATL': { name: 'Atlanta Falcons', rating: 81, record: '1-1', url: 'https://www.nfl.com/teams/atlanta-falcons/' },
+                'CHI': { name: 'Chicago Bears', rating: 80, record: '0-2', url: 'https://www.nfl.com/teams/chicago-bears/' },
+                'DEN': { name: 'Denver Broncos', rating: 80, record: '1-1', url: 'https://www.nfl.com/teams/denver-broncos/' },
+                'IND': { name: 'Indianapolis Colts', rating: 79, record: '2-0', url: 'https://www.nfl.com/teams/indianapolis-colts/' },
+                'NO': { name: 'New Orleans Saints', rating: 79, record: '0-2', url: 'https://www.nfl.com/teams/new-orleans-saints/' },
+                'CLE': { name: 'Cleveland Browns', rating: 78, record: '0-2', url: 'https://www.nfl.com/teams/cleveland-browns/' },
+                'ARI': { name: 'Arizona Cardinals', rating: 78, record: '2-0', url: 'https://www.nfl.com/teams/arizona-cardinals/' },
                 'LV': { name: 'Las Vegas Raiders', rating: 77, record: '1-0', url: 'https://www.nfl.com/teams/las-vegas-raiders/' },
-                'WAS': { name: 'Washington Commanders', rating: 77, record: '1-0', url: 'https://www.nfl.com/teams/washington-commanders/' },
-                'NYG': { name: 'New York Giants', rating: 76, record: '0-1', url: 'https://www.nfl.com/teams/new-york-giants/' },
-                'TEN': { name: 'Tennessee Titans', rating: 76, record: '0-1', url: 'https://www.nfl.com/teams/tennessee-titans/' },
-                'NE': { name: 'New England Patriots', rating: 75, record: '0-1', url: 'https://www.nfl.com/teams/new-england-patriots/' },
-                'CAR': { name: 'Carolina Panthers', rating: 74, record: '0-1', url: 'https://www.nfl.com/teams/carolina-panthers/' }
+                'WAS': { name: 'Washington Commanders', rating: 77, record: '1-1', url: 'https://www.nfl.com/teams/washington-commanders/' },
+                'NYG': { name: 'New York Giants', rating: 76, record: '0-2', url: 'https://www.nfl.com/teams/new-york-giants/' },
+                'TEN': { name: 'Tennessee Titans', rating: 76, record: '0-2', url: 'https://www.nfl.com/teams/tennessee-titans/' },
+                'NE': { name: 'New England Patriots', rating: 75, record: '1-1', url: 'https://www.nfl.com/teams/new-england-patriots/' },
+                'CAR': { name: 'Carolina Panthers', rating: 74, record: '0-2', url: 'https://www.nfl.com/teams/carolina-panthers/' }
             };
 
+            // Games with actual results
             const games = {
                 1: [
-                    { home: 'PHI', away: 'DAL', time: 'Thu 8:20 PM', gameType: 'thursday' },
-                    { home: 'LAC', away: 'KC', time: 'Fri 8:00 PM', gameType: 'international', location: 'São Paulo, Brazil' },
-                    { home: 'NE', away: 'LV', time: 'Sun 1:00 PM' },
-                    { home: 'NYJ', away: 'PIT', time: 'Sun 1:00 PM' },
-                    { home: 'IND', away: 'MIA', time: 'Sun 1:00 PM' },
-                    { home: 'NO', away: 'ARI', time: 'Sun 1:00 PM' },
-                    { home: 'WAS', away: 'NYG', time: 'Sun 1:00 PM' },
-                    { home: 'JAX', away: 'CAR', time: 'Sun 1:00 PM' },
-                    { home: 'CLE', away: 'CIN', time: 'Sun 1:00 PM' },
-                    { home: 'ATL', away: 'TB', time: 'Sun 1:00 PM' },
-                    { home: 'DEN', away: 'TEN', time: 'Sun 4:05 PM' },
-                    { home: 'SEA', away: 'SF', time: 'Sun 4:05 PM' },
-                    { home: 'GB', away: 'DET', time: 'Sun 4:25 PM' },
-                    { home: 'LAR', away: 'HOU', time: 'Sun 4:25 PM' },
-                    { home: 'BUF', away: 'BAL', time: 'Sun 8:20 PM' },
-                    { home: 'CHI', away: 'MIN', time: 'Mon 8:15 PM', gameType: 'monday' }
+                    { home: 'PHI', away: 'DAL', time: 'Thu 8:20 PM', gameType: 'thursday', score: '24-20', winner: 'PHI' },
+                    { home: 'LAC', away: 'KC', time: 'Fri 8:00 PM', gameType: 'international', location: 'São Paulo, Brazil', score: '27-21', winner: 'LAC' },
+                    { home: 'NE', away: 'LV', time: 'Sun 1:00 PM', score: '14-34', winner: 'LV' },
+                    { home: 'NYJ', away: 'PIT', time: 'Sun 1:00 PM', score: '21-24', winner: 'PIT' },
+                    { home: 'IND', away: 'MIA', time: 'Sun 1:00 PM', score: '33-8', winner: 'IND' },
+                    { home: 'NO', away: 'ARI', time: 'Sun 1:00 PM', score: '21-24', winner: 'ARI' },
+                    { home: 'WAS', away: 'NYG', time: 'Sun 1:00 PM', score: '20-17', winner: 'WAS' },
+                    { home: 'JAX', away: 'CAR', time: 'Sun 1:00 PM', score: '20-17', winner: 'JAX' },
+                    { home: 'CLE', away: 'CIN', time: 'Sun 1:00 PM', score: '16-17', winner: 'CIN' },
+                    { home: 'ATL', away: 'TB', time: 'Sun 1:00 PM', score: '20-23', winner: 'TB' },
+                    { home: 'DEN', away: 'TEN', time: 'Sun 4:05 PM', score: '20-14', winner: 'DEN' },
+                    { home: 'SEA', away: 'SF', time: 'Sun 4:05 PM', score: '17-23', winner: 'SF' },
+                    { home: 'GB', away: 'DET', time: 'Sun 4:25 PM', score: '27-13', winner: 'GB' },
+                    { home: 'LAR', away: 'HOU', time: 'Sun 4:25 PM', score: '27-20', winner: 'LAR' },
+                    { home: 'BUF', away: 'BAL', time: 'Sun 8:20 PM', score: '41-40', winner: 'BUF' },
+                    { home: 'CHI', away: 'MIN', time: 'Mon 8:15 PM', gameType: 'monday', score: '24-27', winner: 'MIN' }
                 ],
                 2: [
-                    { home: 'GB', away: 'WAS', time: 'Thu 8:15 PM', gameType: 'thursday' },
-                    { home: 'CIN', away: 'JAX', time: 'Sun 1:00 PM' },
-                    { home: 'DAL', away: 'NYG', time: 'Sun 1:00 PM' },
-                    { home: 'DET', away: 'CHI', time: 'Sun 1:00 PM' },
-                    { home: 'TEN', away: 'LAR', time: 'Sun 1:00 PM' },
-                    { home: 'MIA', away: 'NE', time: 'Sun 1:00 PM' },
-                    { home: 'NO', away: 'SF', time: 'Sun 1:00 PM' },
-                    { home: 'NYJ', away: 'BUF', time: 'Sun 1:00 PM' },
-                    { home: 'PIT', away: 'SEA', time: 'Sun 1:00 PM' },
-                    { home: 'BAL', away: 'CLE', time: 'Sun 1:00 PM' },
-                    { home: 'IND', away: 'DEN', time: 'Sun 4:05 PM' },
-                    { home: 'ARI', away: 'CAR', time: 'Sun 4:05 PM' },
-                    { home: 'KC', away: 'PHI', time: 'Sun 4:25 PM' },
-                    { home: 'MIN', away: 'ATL', time: 'Sun 8:20 PM' },
+                    { home: 'GB', away: 'WAS', time: 'Thu 8:15 PM', gameType: 'thursday', score: '27-18', winner: 'GB' },
+                    { home: 'CIN', away: 'JAX', time: 'Sun 1:00 PM', score: 'W', winner: 'CIN' },
+                    { home: 'DAL', away: 'NYG', time: 'Sun 1:00 PM', score: '40-37', winner: 'DAL' },
+                    { home: 'DET', away: 'CHI', time: 'Sun 1:00 PM', score: '52-21', winner: 'DET' },
+                    { home: 'TEN', away: 'LAR', time: 'Sun 1:00 PM', score: '19-33', winner: 'LAR' },
+                    { home: 'MIA', away: 'NE', time: 'Sun 1:00 PM', score: '27-33', winner: 'NE' },
+                    { home: 'NO', away: 'SF', time: 'Sun 1:00 PM', score: '21-26', winner: 'SF' },
+                    { home: 'NYJ', away: 'BUF', time: 'Sun 1:00 PM', score: '10-30', winner: 'BUF' },
+                    { home: 'PIT', away: 'SEA', time: 'Sun 1:00 PM', score: '17-31', winner: 'SEA' },
+                    { home: 'BAL', away: 'CLE', time: 'Sun 1:00 PM', score: '41-17', winner: 'BAL' },
+                    { home: 'IND', away: 'DEN', time: 'Sun 4:05 PM', score: '29-28', winner: 'IND' },
+                    { home: 'ARI', away: 'CAR', time: 'Sun 4:05 PM', score: '27-22', winner: 'ARI' },
+                    { home: 'KC', away: 'PHI', time: 'Sun 4:25 PM', score: '17-20', winner: 'PHI' },
+                    { home: 'MIN', away: 'ATL', time: 'Sun 8:20 PM', score: '6-22', winner: 'ATL' },
                     { home: 'HOU', away: 'TB', time: 'Mon 7:00 PM', gameType: 'monday' },
                     { home: 'LAC', away: 'LV', time: 'Mon 10:00 PM', gameType: 'monday' }
                 ],
                 3: [
-                    { home: 'PHI', away: 'LAR', time: 'Thu 8:20 PM', gameType: 'thursday' },
-                    { home: 'PIT', away: 'MIN', time: 'Sun 9:30 AM', gameType: 'international', location: 'Dublin, Ireland' },
-                    { home: 'KC', away: 'ATL', time: 'Sun 1:00 PM' },
-                    { home: 'DAL', away: 'CAR', time: 'Sun 1:00 PM' },
-                    { home: 'NYJ', away: 'NE', time: 'Sun 1:00 PM' },
-                    { home: 'GB', away: 'TEN', time: 'Sun 1:00 PM' },
-                    { home: 'HOU', away: 'JAX', time: 'Sun 1:00 PM' },
-                    { home: 'IND', away: 'CHI', time: 'Sun 1:00 PM' },
-                    { home: 'BAL', away: 'DEN', time: 'Sun 4:05 PM' },
-                    { home: 'ARI', away: 'WAS', time: 'Sun 4:25 PM' },
-                    { home: 'LAC', away: 'PIT', time: 'Sun 4:25 PM' },
-                    { home: 'SF', away: 'NYG', time: 'Sun 4:25 PM' },
-                    { home: 'TB', away: 'DET', time: 'Sun 8:20 PM' },
-                    { home: 'LV', away: 'BUF', time: 'Mon 8:15 PM', gameType: 'monday' }
-                ],
-                4: [
-                    { home: 'CIN', away: 'BAL', time: 'Thu 8:20 PM', gameType: 'thursday' },
-                    { home: 'CLE', away: 'MIN', time: 'Sun 9:30 AM', gameType: 'international', location: 'London, England' },
-                    { home: 'NYJ', away: 'DEN', time: 'Sun 1:00 PM', gameType: 'international', location: 'London, England' },
-                    { home: 'NYG', away: 'DAL', time: 'Sun 1:00 PM' },
-                    { home: 'MIA', away: 'TEN', time: 'Sun 1:00 PM' },
-                    { home: 'ATL', away: 'NO', time: 'Sun 1:00 PM' },
-                    { home: 'MIN', away: 'GB', time: 'Sun 1:00 PM' },
-                    { home: 'WAS', away: 'ARI', time: 'Sun 1:00 PM' },
-                    { home: 'DET', away: 'SEA', time: 'Sun 4:05 PM' },
-                    { home: 'SF', away: 'NE', time: 'Sun 4:25 PM' },
-                    { home: 'LAC', away: 'KC', time: 'Sun 4:25 PM' },
-                    { home: 'HOU', away: 'BUF', time: 'Sun 4:25 PM' },
-                    { home: 'LAR', away: 'JAX', time: 'Sun 1:00 PM', gameType: 'international', location: 'London, England' },
-                    { home: 'PHI', away: 'TB', time: 'Sun 8:20 PM' },
-                    { home: 'CHI', away: 'IND', time: 'Mon 8:15 PM', gameType: 'monday' }
+                    { home: 'BUF', away: 'NYJ', time: 'Thu 8:15 PM', gameType: 'thursday' },
+                    { home: 'NE', away: 'NYG', time: 'Sun 1:00 PM' },
+                    { home: 'CLE', away: 'TEN', time: 'Sun 1:00 PM' },
+                    { home: 'NO', away: 'GB', time: 'Sun 1:00 PM' },
+                    { home: 'MIA', away: 'DEN', time: 'Sun 1:00 PM' },
+                    { home: 'HOU', away: 'MIN', time: 'Sun 1:00 PM' },
+                    { home: 'IND', away: 'ATL', time: 'Sun 1:00 PM' },
+                    { home: 'CIN', away: 'WAS', time: 'Sun 1:00 PM' },
+                    { home: 'LV', away: 'CAR', time: 'Sun 4:05 PM' },
+                    { home: 'SEA', away: 'PIT', time: 'Sun 4:25 PM' },
+                    { home: 'LAR', away: 'DET', time: 'Sun 4:25 PM' },
+                    { home: 'SF', away: 'ARI', time: 'Sun 4:25 PM' },
+                    { home: 'CHI', away: 'DAL', time: 'Sun 4:25 PM' },
+                    { home: 'NYG', away: 'KC', time: 'Sun 8:20 PM' },
+                    { home: 'BAL', away: 'PHI', time: 'Mon 8:15 PM', gameType: 'monday' }
                 ]
             };
 
@@ -159,12 +153,62 @@
 
             const currentGames = games[selectedWeek] || [];
 
+            // Calculate prediction accuracy
+            const calculateAccuracy = (week) => {
+                const weekGames = games[week];
+                if (!weekGames) return { correct: 0, incorrect: 0, total: 0, percentage: 0 };
+                
+                let correct = 0;
+                let incorrect = 0;
+                let total = 0;
+
+                weekGames.forEach(game => {
+                    if (game.winner) {
+                        total++;
+                        const homeProb = calculateWinProb(game.home, game.away);
+                        const predictedWinner = homeProb > 50 ? game.home : game.away;
+                        if (predictedWinner === game.winner) {
+                            correct++;
+                        } else {
+                            incorrect++;
+                        }
+                    }
+                });
+
+                const percentage = total > 0 ? ((correct / total) * 100).toFixed(1) : 0;
+                return { correct, incorrect, total, percentage };
+            };
+
+            const week1Accuracy = calculateAccuracy(1);
+            const week2Accuracy = calculateAccuracy(2);
+            const overallAccuracy = {
+                correct: week1Accuracy.correct + week2Accuracy.correct,
+                incorrect: week1Accuracy.incorrect + week2Accuracy.incorrect,
+                total: week1Accuracy.total + week2Accuracy.total,
+                percentage: ((week1Accuracy.correct + week2Accuracy.correct) / (week1Accuracy.total + week2Accuracy.total) * 100).toFixed(1)
+            };
+
             const renderGameCard = (game, index) => {
                 const homeProb = calculateWinProb(game.home, game.away);
                 const awayProb = 100 - homeProb;
                 const spread = getSpread(game.home, game.away);
+                const predictedWinner = homeProb > 50 ? game.home : game.away;
                 const winner = homeProb > 50 ? teams[game.home].name : teams[game.away].name;
                 const confidence = Math.max(homeProb, awayProb);
+
+                // Check if prediction was correct
+                let predictionClass = "";
+                let resultBadge = null;
+                
+                if (game.winner) {
+                    const wasCorrect = predictedWinner === game.winner;
+                    predictionClass = wasCorrect ? "correct-prediction" : "incorrect-prediction";
+                    resultBadge = React.createElement('div', {
+                        className: `absolute top-2 right-2 px-3 py-1 rounded-full text-xs font-bold ${
+                            wasCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+                        }`
+                    }, wasCorrect ? '✓ CORRECT' : '✗ INCORRECT');
+                }
 
                 let borderClass = "border-gray-700";
                 let shadowClass = "";
@@ -196,8 +240,9 @@
 
                 return React.createElement('div', {
                     key: index,
-                    className: `bg-black/30 rounded-xl border-2 ${borderClass} ${shadowClass} p-6 transition-all hover:scale-105`
+                    className: `bg-black/30 rounded-xl border-2 ${borderClass} ${shadowClass} ${predictionClass} p-6 transition-all hover:scale-105 relative`
                 }, [
+                    resultBadge,
                     React.createElement('div', {
                         key: 'header',
                         className: "flex justify-between items-start mb-4"
@@ -215,7 +260,20 @@
                         React.createElement('span', {
                             key: 'spread',
                             className: "text-blue-400 font-semibold"
-                        }, `Spread: -${spread}`)
+                        }, `Spread: ${spread > 0 ? '+' : ''}${spread}`)
+                    ]),
+                    game.score && React.createElement('div', {
+                        key: 'final-score',
+                        className: "text-center mb-4 bg-black/50 rounded-lg py-2"
+                    }, [
+                        React.createElement('span', {
+                            key: 'final-label',
+                            className: "text-yellow-400 font-bold text-sm"
+                        }, 'FINAL: '),
+                        React.createElement('span', {
+                            key: 'score',
+                            className: "text-white font-bold text-xl"
+                        }, game.score)
                     ]),
                     React.createElement('div', {
                         key: 'teams',
@@ -223,7 +281,7 @@
                     }, [
                         React.createElement('div', {
                             key: 'away',
-                            className: "text-center"
+                            className: `text-center ${game.winner === game.away ? 'opacity-100' : game.winner ? 'opacity-50' : ''}`
                         }, [
                             React.createElement('div', {
                                 key: 'away-abbr',
@@ -254,7 +312,7 @@
                         }, '@'),
                         React.createElement('div', {
                             key: 'home',
-                            className: "text-center"
+                            className: `text-center ${game.winner === game.home ? 'opacity-100' : game.winner ? 'opacity-50' : ''}`
                         }, [
                             React.createElement('div', {
                                 key: 'home-abbr',
@@ -316,7 +374,7 @@
                     React.createElement('p', {
                         key: 'subtitle',
                         className: "text-xl text-gray-300 font-semibold"
-                    }, 'GAME DAY CENTER 2026'),
+                    }, 'GAME DAY CENTER 2025'),
                     React.createElement('p', {
                         key: 'description',
                         className: "text-gray-400 mt-2"
@@ -328,11 +386,11 @@
                         React.createElement('p', {
                             key: 'status-title',
                             className: "text-green-400 font-bold"
-                        }, '🏈 Week 1 Complete:'),
+                        }, '🏈 Live Results - Updated September 15, 2025'),
                         React.createElement('p', {
                             key: 'status-desc',
                             className: "text-gray-300"
-                        }, 'Records updated through Week 1 • Major upsets: Chargers beat Chiefs in Brazil! • Week 2 predictions ready • Updated weekly after games')
+                        }, 'Week 2 Sunday games complete • Monday Night Football tonight • Real-time scores and results')
                     ]),
                     React.createElement('div', {
                         key: 'tracker',
@@ -346,11 +404,11 @@
                             React.createElement('p', {
                                 key: 'record-title',
                                 className: "text-blue-400 font-bold"
-                            }, '📊 Big Sarge Prediction Record:'),
+                            }, '📊 Big Sarge Overall Prediction Record:'),
                             React.createElement('p', {
                                 key: 'record-stats',
                                 className: "text-gray-300"
-                            }, `${predictionRecord.correct} Correct • ${predictionRecord.incorrect} Incorrect • ${predictionRecord.total} Total Games`)
+                            }, `${overallAccuracy.correct} Correct • ${overallAccuracy.incorrect} Incorrect • ${overallAccuracy.total} Total Games`)
                         ]),
                         React.createElement('div', {
                             key: 'percentage',
@@ -358,8 +416,8 @@
                         }, [
                             React.createElement('div', {
                                 key: 'percent-num',
-                                className: `text-2xl font-bold ${predictionRecord.percentage >= 70 ? 'text-green-400' : predictionRecord.percentage >= 60 ? 'text-yellow-400' : 'text-red-400'}`
-                            }, `${predictionRecord.percentage}%`),
+                                className: `text-2xl font-bold ${overallAccuracy.percentage >= 70 ? 'text-green-400' : overallAccuracy.percentage >= 60 ? 'text-yellow-400' : 'text-red-400'}`
+                            }, `${overallAccuracy.percentage}%`),
                             React.createElement('div', {
                                 key: 'percent-label',
                                 className: "text-xs text-gray-400"
@@ -394,10 +452,28 @@
                             }, `Week ${week}`)
                         ))
                     ]),
-                    React.createElement('h2', {
-                        key: 'week-title',
-                        className: "text-3xl font-bold text-center mb-6"
-                    }, `Week ${selectedWeek} Predictions`),
+                    React.createElement('div', {
+                        key: 'week-header',
+                        className: "flex justify-between items-center mb-6"
+                    }, [
+                        React.createElement('h2', {
+                            key: 'week-title',
+                            className: "text-3xl font-bold"
+                        }, `Week ${selectedWeek} ${selectedWeek <= 2 ? 'Results & Predictions' : 'Predictions'}`),
+                        selectedWeek <= 2 && React.createElement('div', {
+                            key: 'week-accuracy',
+                            className: "bg-black/50 rounded-lg px-4 py-2"
+                        }, [
+                            React.createElement('span', {
+                                key: 'week-acc-label',
+                                className: "text-gray-400 text-sm"
+                            }, `Week ${selectedWeek} Accuracy: `),
+                            React.createElement('span', {
+                                key: 'week-acc-value',
+                                className: "text-white font-bold"
+                            }, `${selectedWeek === 1 ? week1Accuracy.percentage : week2Accuracy.percentage}%`)
+                        ])
+                    ]),
                     currentGames.length > 0 
                         ? React.createElement('div', {
                             key: 'games',
@@ -420,6 +496,59 @@
                                 className: "text-gray-400"
                             }, `Games for Week ${selectedWeek} coming soon!`)
                         ]),
+                    React.createElement('div', {
+                        key: 'legend',
+                        className: "mt-8 bg-black/20 rounded-xl border border-gray-700 p-4"
+                    }, [
+                        React.createElement('h3', {
+                            key: 'legend-title',
+                            className: "text-lg font-bold mb-3"
+                        }, 'Result Legend'),
+                        React.createElement('div', {
+                            key: 'legend-items',
+                            className: "flex gap-6 justify-center flex-wrap"
+                        }, [
+                            React.createElement('div', {
+                                key: 'correct',
+                                className: "flex items-center gap-2"
+                            }, [
+                                React.createElement('div', {
+                                    key: 'correct-box',
+                                    className: "w-4 h-4 bg-green-500 rounded"
+                                }),
+                                React.createElement('span', {
+                                    key: 'correct-text',
+                                    className: "text-sm text-gray-300"
+                                }, 'Correct Prediction')
+                            ]),
+                            React.createElement('div', {
+                                key: 'incorrect',
+                                className: "flex items-center gap-2"
+                            }, [
+                                React.createElement('div', {
+                                    key: 'incorrect-box',
+                                    className: "w-4 h-4 bg-red-500 rounded"
+                                }),
+                                React.createElement('span', {
+                                    key: 'incorrect-text',
+                                    className: "text-sm text-gray-300"
+                                }, 'Incorrect Prediction')
+                            ]),
+                            React.createElement('div', {
+                                key: 'pending',
+                                className: "flex items-center gap-2"
+                            }, [
+                                React.createElement('div', {
+                                    key: 'pending-box',
+                                    className: "w-4 h-4 bg-gray-600 rounded"
+                                }),
+                                React.createElement('span', {
+                                    key: 'pending-text',
+                                    className: "text-sm text-gray-300"
+                                }, 'Game Not Played')
+                            ])
+                        ])
+                    ]),
                     React.createElement('div', {
                         key: 'footer',
                         className: "mt-12 bg-black/20 rounded-xl border border-gray-700 p-6"
