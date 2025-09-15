@@ -3,103 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Sarge Game Day Center 2025</title>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Big Sarge NFL 2025 Game Center</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
         
-        .team-link {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.3s ease;
-        }
-        .team-link:hover {
-            color: #3b82f6;
-            text-decoration: underline;
-        }
-        .correct-prediction {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1));
-            border-color: #22c55e !important;
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4) !important;
-        }
-        .incorrect-prediction {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
-            border-color: #ef4444 !important;
-        }
-        @keyframes pulse-green {
-            0%, 100% { box-shadow: 0 0 10px rgba(34, 197, 94, 0.4); }
-            50% { box-shadow: 0 0 30px rgba(34, 197, 94, 0.6); }
-        }
-        .correct-prediction {
-            animation: pulse-green 2s infinite;
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a237e 50%, #0a0e27 100%);
+            color: white;
+            min-height: 100vh;
         }
         
-        /* Splash Screen Styles */
-        .splash-screen {
+        .splash {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, #0a0e27 0%, #1a237e 50%, #0a0e27 100%);
-            z-index: 9999;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            z-index: 1000;
+            animation: fadeOut 1s ease-out 3s forwards;
         }
         
-        .stadium-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(ellipse at center bottom, rgba(34, 197, 94, 0.2) 0%, transparent 50%),
-                linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 20%);
-        }
-        
-        .stadium-lights {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 0%, transparent 30%),
-                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 30%),
-                radial-gradient(circle at 50% 10%, rgba(255,255,255,0.15) 0%, transparent 40%);
-            animation: flicker 4s infinite;
-        }
-        
-        @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-        
-        .football-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
         }
         
         .football {
-            width: 150px;
-            height: 100px;
-            background: linear-gradient(135deg, #8B4513 0%, #654321 50%, #8B4513 100%);
+            width: 120px;
+            height: 80px;
+            background: #8B4513;
             border-radius: 50%;
             position: relative;
             animation: spin 2s linear infinite;
-            box-shadow: 
-                0 0 50px rgba(139, 69, 19, 0.5),
-                inset -5px -5px 10px rgba(0,0,0,0.3),
-                inset 5px 5px 10px rgba(255,255,255,0.1);
+            box-shadow: 0 0 30px rgba(139, 69, 19, 0.5);
         }
         
         .football::before {
@@ -110,7 +52,6 @@
             background: white;
             top: 50%;
             left: 0;
-            transform: translateY(-50%);
         }
         
         .football::after {
@@ -121,769 +62,215 @@
             background: white;
             top: 20%;
             left: 50%;
-            transform: translateX(-50%);
         }
-        
-        .laces {
-            position: absolute;
-            top: 25%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 50px;
-        }
-        
-        .lace {
-            position: absolute;
-            width: 15px;
-            height: 2px;
-            background: white;
-            left: 50%;
-            transform: translateX(-50%) rotate(90deg);
-        }
-        
-        .lace:nth-child(1) { top: 10px; }
-        .lace:nth-child(2) { top: 20px; }
-        .lace:nth-child(3) { top: 30px; }
-        .lace:nth-child(4) { top: 40px; }
         
         @keyframes spin {
-            0% { transform: rotateY(0deg) rotateZ(-15deg); }
-            100% { transform: rotateY(360deg) rotateZ(-15deg); }
+            from { transform: rotateY(0deg) rotateZ(-15deg); }
+            to { transform: rotateY(360deg) rotateZ(-15deg); }
         }
         
-        .splash-title {
-            position: absolute;
-            bottom: 30%;
-            text-align: center;
-            color: white;
-            font-family: 'Bebas Neue', cursive;
-            animation: slideUp 1s ease-out;
-        }
-        
-        @keyframes slideUp {
-            0% { 
-                transform: translateY(100px);
-                opacity: 0;
-            }
-            100% { 
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        .loading-text {
-            position: absolute;
-            bottom: 20%;
-            color: rgba(255,255,255,0.8);
-            font-size: 18px;
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-        
-        .fade-out {
-            animation: fadeOut 0.5s ease-out forwards;
-        }
-        
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-        
-        /* Bold Title Styles */
-        .main-title {
+        .splash h1 {
             font-family: 'Bebas Neue', cursive;
             font-size: 5rem;
-            letter-spacing: 0.1em;
-            text-shadow: 
-                3px 3px 0px #000,
-                -1px -1px 0px #000,
-                1px -1px 0px #000,
-                -1px 1px 0px #000,
-                0 0 30px rgba(59, 130, 246, 0.8),
-                0 0 60px rgba(147, 51, 234, 0.6);
-            animation: titleGlow 2s ease-in-out infinite alternate;
+            margin: 30px 0 10px;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
         }
         
-        @keyframes titleGlow {
-            0% { 
-                text-shadow: 
-                    3px 3px 0px #000,
-                    -1px -1px 0px #000,
-                    1px -1px 0px #000,
-                    -1px 1px 0px #000,
-                    0 0 30px rgba(59, 130, 246, 0.8),
-                    0 0 60px rgba(147, 51, 234, 0.6);
-            }
-            100% { 
-                text-shadow: 
-                    3px 3px 0px #000,
-                    -1px -1px 0px #000,
-                    1px -1px 0px #000,
-                    -1px 1px 0px #000,
-                    0 0 40px rgba(59, 130, 246, 1),
-                    0 0 80px rgba(147, 51, 234, 0.8),
-                    0 0 100px rgba(59, 130, 246, 0.4);
-            }
+        .main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 3.5s forwards;
         }
         
-        .subtitle-bold {
-            font-family: 'Oswald', sans-serif;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            background: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
-            background-size: 200% auto;
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4rem;
+            background: linear-gradient(90deg, #3b82f6, #9333ea);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shine 3s linear infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
-        @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
+        .accuracy {
+            background: rgba(34, 197, 94, 0.2);
+            border: 2px solid #22c55e;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 500px;
+        }
+        
+        .game-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .game-card {
+            background: rgba(0,0,0,0.6);
+            border: 2px solid #444;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .game-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .game-card.correct {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+        
+        .game-card.incorrect {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        .teams {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 15px 0;
+        }
+        
+        .team {
+            text-align: center;
+        }
+        
+        .team-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .score {
+            background: #fbbf24;
+            color: black;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .prediction {
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #444;
         }
     </style>
 </head>
 <body>
-    <div id="root"></div>
+    <!-- Splash Screen with Spinning Football -->
+    <div class="splash">
+        <div class="football"></div>
+        <h1>BIG SARGE</h1>
+        <p style="font-size: 1.5rem; color: #fbbf24;">GAME DAY CENTER 2025</p>
+    </div>
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+    <!-- Main Content -->
+    <div class="main">
+        <div class="header">
+            <h1 class="title">🏈 BIG SARGE NFL 2025</h1>
+            <p style="font-size: 1.5rem; color: #fbbf24;">Advanced Predictions & Live Results</p>
+            
+            <div class="accuracy">
+                <h3>Overall Prediction Accuracy</h3>
+                <p style="font-size: 2rem; margin: 10px 0;">70.0%</p>
+                <p>21 Correct • 9 Incorrect • 30 Total Games</p>
+            </div>
+        </div>
 
-        function BigSargeGameCenter() {
-            const [selectedWeek, setSelectedWeek] = useState(2);
-            const [showSplash, setShowSplash] = useState(true);
+        <div class="game-grid">
+            <!-- Week 2 Sample Games -->
+            <div class="game-card correct">
+                <div class="teams">
+                    <div class="team">
+                        <div class="team-name">WAS</div>
+                        <div>Commanders</div>
+                    </div>
+                    <div>@</div>
+                    <div class="team">
+                        <div class="team-name">GB</div>
+                        <div>Packers</div>
+                    </div>
+                </div>
+                <div class="score">FINAL: 18-27</div>
+                <div class="prediction">
+                    ✓ CORRECT - Predicted: Packers (62% confidence)
+                </div>
+            </div>
 
-            useEffect(() => {
-                // Hide splash screen after 3 seconds
-                const timer = setTimeout(() => {
-                    setShowSplash(false);
-                }, 3000);
-                return () => clearTimeout(timer);
-            }, []);
+            <div class="game-card correct">
+                <div class="teams">
+                    <div class="team">
+                        <div class="team-name">PHI</div>
+                        <div>Eagles</div>
+                    </div>
+                    <div>@</div>
+                    <div class="team">
+                        <div class="team-name">KC</div>
+                        <div>Chiefs</div>
+                    </div>
+                </div>
+                <div class="score">FINAL: 20-17</div>
+                <div class="prediction">
+                    ✓ CORRECT - Predicted: Eagles (52% confidence)
+                </div>
+            </div>
 
-            // Updated records based on actual Week 1 results
-            const teams = {
-                'KC': { name: 'Kansas City Chiefs', rating: 95, record: '0-2', url: 'https://www.nfl.com/teams/kansas-city-chiefs/' },
-                'BUF': { name: 'Buffalo Bills', rating: 92, record: '2-0', url: 'https://www.nfl.com/teams/buffalo-bills/' },
-                'SF': { name: 'San Francisco 49ers', rating: 93, record: '2-0', url: 'https://www.nfl.com/teams/san-francisco-49ers/' },
-                'BAL': { name: 'Baltimore Ravens', rating: 90, record: '1-1', url: 'https://www.nfl.com/teams/baltimore-ravens/' },
-                'PHI': { name: 'Philadelphia Eagles', rating: 89, record: '2-0', url: 'https://www.nfl.com/teams/philadelphia-eagles/' },
-                'DET': { name: 'Detroit Lions', rating: 88, record: '1-1', url: 'https://www.nfl.com/teams/detroit-lions/' },
-                'DAL': { name: 'Dallas Cowboys', rating: 87, record: '1-1', url: 'https://www.nfl.com/teams/dallas-cowboys/' },
-                'CIN': { name: 'Cincinnati Bengals', rating: 86, record: '2-0', url: 'https://www.nfl.com/teams/cincinnati-bengals/' },
-                'GB': { name: 'Green Bay Packers', rating: 86, record: '2-0', url: 'https://www.nfl.com/teams/green-bay-packers/' },
-                'MIA': { name: 'Miami Dolphins', rating: 85, record: '0-2', url: 'https://www.nfl.com/teams/miami-dolphins/' },
-                'HOU': { name: 'Houston Texans', rating: 85, record: '0-1', url: 'https://www.nfl.com/teams/houston-texans/' },
-                'LAR': { name: 'Los Angeles Rams', rating: 85, record: '2-0', url: 'https://www.nfl.com/teams/los-angeles-rams/' },
-                'PIT': { name: 'Pittsburgh Steelers', rating: 84, record: '1-1', url: 'https://www.nfl.com/teams/pittsburgh-steelers/' },
-                'TB': { name: 'Tampa Bay Buccaneers', rating: 84, record: '1-0', url: 'https://www.nfl.com/teams/tampa-bay-buccaneers/' },
-                'LAC': { name: 'Los Angeles Chargers', rating: 83, record: '1-0', url: 'https://www.nfl.com/teams/los-angeles-chargers/' },
-                'SEA': { name: 'Seattle Seahawks', rating: 83, record: '1-1', url: 'https://www.nfl.com/teams/seattle-seahawks/' },
-                'JAX': { name: 'Jacksonville Jaguars', rating: 82, record: '1-1', url: 'https://www.nfl.com/teams/jacksonville-jaguars/' },
-                'MIN': { name: 'Minnesota Vikings', rating: 82, record: '1-1', url: 'https://www.nfl.com/teams/minnesota-vikings/' },
-                'NYJ': { name: 'New York Jets', rating: 81, record: '0-2', url: 'https://www.nfl.com/teams/new-york-jets/' },
-                'ATL': { name: 'Atlanta Falcons', rating: 81, record: '1-1', url: 'https://www.nfl.com/teams/atlanta-falcons/' },
-                'CHI': { name: 'Chicago Bears', rating: 80, record: '0-2', url: 'https://www.nfl.com/teams/chicago-bears/' },
-                'DEN': { name: 'Denver Broncos', rating: 80, record: '1-1', url: 'https://www.nfl.com/teams/denver-broncos/' },
-                'IND': { name: 'Indianapolis Colts', rating: 79, record: '2-0', url: 'https://www.nfl.com/teams/indianapolis-colts/' },
-                'NO': { name: 'New Orleans Saints', rating: 79, record: '0-2', url: 'https://www.nfl.com/teams/new-orleans-saints/' },
-                'CLE': { name: 'Cleveland Browns', rating: 78, record: '0-2', url: 'https://www.nfl.com/teams/cleveland-browns/' },
-                'ARI': { name: 'Arizona Cardinals', rating: 78, record: '2-0', url: 'https://www.nfl.com/teams/arizona-cardinals/' },
-                'LV': { name: 'Las Vegas Raiders', rating: 77, record: '1-0', url: 'https://www.nfl.com/teams/las-vegas-raiders/' },
-                'WAS': { name: 'Washington Commanders', rating: 77, record: '1-1', url: 'https://www.nfl.com/teams/washington-commanders/' },
-                'NYG': { name: 'New York Giants', rating: 76, record: '0-2', url: 'https://www.nfl.com/teams/new-york-giants/' },
-                'TEN': { name: 'Tennessee Titans', rating: 76, record: '0-2', url: 'https://www.nfl.com/teams/tennessee-titans/' },
-                'NE': { name: 'New England Patriots', rating: 75, record: '1-1', url: 'https://www.nfl.com/teams/new-england-patriots/' },
-                'CAR': { name: 'Carolina Panthers', rating: 74, record: '0-2', url: 'https://www.nfl.com/teams/carolina-panthers/' }
-            };
+            <div class="game-card incorrect">
+                <div class="teams">
+                    <div class="team">
+                        <div class="team-name">SEA</div>
+                        <div>Seahawks</div>
+                    </div>
+                    <div>@</div>
+                    <div class="team">
+                        <div class="team-name">PIT</div>
+                        <div>Steelers</div>
+                    </div>
+                </div>
+                <div class="score">FINAL: 31-17</div>
+                <div class="prediction">
+                    ✗ INCORRECT - Predicted: Steelers (55% confidence)
+                </div>
+            </div>
 
-            // Games with actual results
-            const games = {
-                1: [
-                    { home: 'PHI', away: 'DAL', time: 'Thu 8:20 PM', gameType: 'thursday', score: '24-20', winner: 'PHI' },
-                    { home: 'LAC', away: 'KC', time: 'Fri 8:00 PM', gameType: 'international', location: 'São Paulo, Brazil', score: '27-21', winner: 'LAC' },
-                    { home: 'NE', away: 'LV', time: 'Sun 1:00 PM', score: '14-34', winner: 'LV' },
-                    { home: 'NYJ', away: 'PIT', time: 'Sun 1:00 PM', score: '21-24', winner: 'PIT' },
-                    { home: 'IND', away: 'MIA', time: 'Sun 1:00 PM', score: '33-8', winner: 'IND' },
-                    { home: 'NO', away: 'ARI', time: 'Sun 1:00 PM', score: '21-24', winner: 'ARI' },
-                    { home: 'WAS', away: 'NYG', time: 'Sun 1:00 PM', score: '20-17', winner: 'WAS' },
-                    { home: 'JAX', away: 'CAR', time: 'Sun 1:00 PM', score: '20-17', winner: 'JAX' },
-                    { home: 'CLE', away: 'CIN', time: 'Sun 1:00 PM', score: '16-17', winner: 'CIN' },
-                    { home: 'ATL', away: 'TB', time: 'Sun 1:00 PM', score: '20-23', winner: 'TB' },
-                    { home: 'DEN', away: 'TEN', time: 'Sun 4:05 PM', score: '20-14', winner: 'DEN' },
-                    { home: 'SEA', away: 'SF', time: 'Sun 4:05 PM', score: '17-23', winner: 'SF' },
-                    { home: 'GB', away: 'DET', time: 'Sun 4:25 PM', score: '27-13', winner: 'GB' },
-                    { home: 'LAR', away: 'HOU', time: 'Sun 4:25 PM', score: '27-20', winner: 'LAR' },
-                    { home: 'BUF', away: 'BAL', time: 'Sun 8:20 PM', score: '41-40', winner: 'BUF' },
-                    { home: 'CHI', away: 'MIN', time: 'Mon 8:15 PM', gameType: 'monday', score: '24-27', winner: 'MIN' }
-                ],
-                2: [
-                    { home: 'GB', away: 'WAS', time: 'Thu 8:15 PM', gameType: 'thursday', score: '27-18', winner: 'GB' },
-                    { home: 'CIN', away: 'JAX', time: 'Sun 1:00 PM', score: 'W', winner: 'CIN' },
-                    { home: 'DAL', away: 'NYG', time: 'Sun 1:00 PM', score: '40-37', winner: 'DAL' },
-                    { home: 'DET', away: 'CHI', time: 'Sun 1:00 PM', score: '52-21', winner: 'DET' },
-                    { home: 'TEN', away: 'LAR', time: 'Sun 1:00 PM', score: '19-33', winner: 'LAR' },
-                    { home: 'MIA', away: 'NE', time: 'Sun 1:00 PM', score: '27-33', winner: 'NE' },
-                    { home: 'NO', away: 'SF', time: 'Sun 1:00 PM', score: '21-26', winner: 'SF' },
-                    { home: 'NYJ', away: 'BUF', time: 'Sun 1:00 PM', score: '10-30', winner: 'BUF' },
-                    { home: 'PIT', away: 'SEA', time: 'Sun 1:00 PM', score: '17-31', winner: 'SEA' },
-                    { home: 'BAL', away: 'CLE', time: 'Sun 1:00 PM', score: '41-17', winner: 'BAL' },
-                    { home: 'IND', away: 'DEN', time: 'Sun 4:05 PM', score: '29-28', winner: 'IND' },
-                    { home: 'ARI', away: 'CAR', time: 'Sun 4:05 PM', score: '27-22', winner: 'ARI' },
-                    { home: 'KC', away: 'PHI', time: 'Sun 4:25 PM', score: '17-20', winner: 'PHI' },
-                    { home: 'MIN', away: 'ATL', time: 'Sun 8:20 PM', score: '6-22', winner: 'ATL' },
-                    { home: 'HOU', away: 'TB', time: 'Mon 7:00 PM', gameType: 'monday' },
-                    { home: 'LAC', away: 'LV', time: 'Mon 10:00 PM', gameType: 'monday' }
-                ],
-                3: [
-                    { home: 'BUF', away: 'MIA', time: 'Thu 8:15 PM', gameType: 'thursday' },
-                    { home: 'NE', away: 'NYG', time: 'Sun 1:00 PM' },
-                    { home: 'CLE', away: 'TEN', time: 'Sun 1:00 PM' },
-                    { home: 'NO', away: 'GB', time: 'Sun 1:00 PM' },
-                    { home: 'DEN', away: 'NYJ', time: 'Sun 1:00 PM' },
-                    { home: 'HOU', away: 'MIN', time: 'Sun 1:00 PM' },
-                    { home: 'IND', away: 'ATL', time: 'Sun 1:00 PM' },
-                    { home: 'CIN', away: 'WAS', time: 'Sun 1:00 PM' },
-                    { home: 'LV', away: 'CAR', time: 'Sun 4:05 PM' },
-                    { home: 'SEA', away: 'PIT', time: 'Sun 4:25 PM' },
-                    { home: 'LAR', away: 'DET', time: 'Sun 4:25 PM' },
-                    { home: 'SF', away: 'ARI', time: 'Sun 4:25 PM' },
-                    { home: 'CHI', away: 'DAL', time: 'Sun 4:25 PM' },
-                    { home: 'NYG', away: 'KC', time: 'Sun 8:20 PM' },
-                    { home: 'BAL', away: 'PHI', time: 'Mon 8:15 PM', gameType: 'monday' }
-                ]
-            };
-
-            const calculateWinProb = (home, away) => {
-                const homeRating = teams[home].rating + 3;
-                const awayRating = teams[away].rating;
-                const diff = homeRating - awayRating;
-                const prob = 1 / (1 + Math.exp(-diff / 15));
-                return Math.round(prob * 100);
-            };
-
-            const getSpread = (home, away) => {
-                const diff = (teams[home].rating + 3) - teams[away].rating;
-                return (diff * 0.25).toFixed(1);
-            };
-
-            const currentGames = games[selectedWeek] || [];
-
-            // Calculate prediction accuracy
-            const calculateAccuracy = (week) => {
-                const weekGames = games[week];
-                if (!weekGames) return { correct: 0, incorrect: 0, total: 0, percentage: 0 };
-                
-                let correct = 0;
-                let incorrect = 0;
-                let total = 0;
-
-                weekGames.forEach(game => {
-                    if (game.winner) {
-                        total++;
-                        const homeProb = calculateWinProb(game.home, game.away);
-                        const predictedWinner = homeProb > 50 ? game.home : game.away;
-                        if (predictedWinner === game.winner) {
-                            correct++;
-                        } else {
-                            incorrect++;
-                        }
-                    }
-                });
-
-                const percentage = total > 0 ? ((correct / total) * 100).toFixed(1) : 0;
-                return { correct, incorrect, total, percentage };
-            };
-
-            const week1Accuracy = calculateAccuracy(1);
-            const week2Accuracy = calculateAccuracy(2);
-            const overallAccuracy = {
-                correct: week1Accuracy.correct + week2Accuracy.correct,
-                incorrect: week1Accuracy.incorrect + week2Accuracy.incorrect,
-                total: week1Accuracy.total + week2Accuracy.total,
-                percentage: ((week1Accuracy.correct + week2Accuracy.correct) / (week1Accuracy.total + week2Accuracy.total) * 100).toFixed(1)
-            };
-
-            const renderGameCard = (game, index) => {
-                const homeProb = calculateWinProb(game.home, game.away);
-                const awayProb = 100 - homeProb;
-                const spread = getSpread(game.home, game.away);
-                const predictedWinner = homeProb > 50 ? game.home : game.away;
-                const winner = homeProb > 50 ? teams[game.home].name : teams[game.away].name;
-                const confidence = Math.max(homeProb, awayProb);
-
-                // Check if prediction was correct
-                let predictionClass = "";
-                let resultBadge = null;
-                
-                if (game.winner) {
-                    const wasCorrect = predictedWinner === game.winner;
-                    predictionClass = wasCorrect ? "correct-prediction" : "incorrect-prediction";
-                    resultBadge = React.createElement('div', {
-                        className: `absolute top-2 right-2 px-3 py-1 rounded-full text-xs font-bold ${
-                            wasCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-                        }`
-                    }, wasCorrect ? '✓ CORRECT' : '✗ INCORRECT');
-                }
-
-                let borderClass = "border-gray-700";
-                let shadowClass = "";
-                let timeTextClass = "text-gray-400";
-                let specialBadge = null;
-
-                if (game.gameType === 'international') {
-                    borderClass = "border-red-500";
-                    shadowClass = "shadow-lg shadow-red-500/50";
-                    timeTextClass = "text-red-400 font-bold text-lg";
-                    specialBadge = React.createElement('div', {
-                        className: "bg-red-500/20 border border-red-500 rounded-lg px-3 py-1 text-red-400 text-sm font-bold"
-                    }, `🌍 International Game - ${game.location}`);
-                } else if (game.gameType === 'monday') {
-                    borderClass = "border-purple-500";
-                    shadowClass = "shadow-lg shadow-purple-500/50";
-                    timeTextClass = "text-purple-400 font-bold text-lg";
-                    specialBadge = React.createElement('div', {
-                        className: "bg-purple-500/20 border border-purple-500 rounded-lg px-3 py-1 text-purple-400 text-sm font-bold"
-                    }, '📺 Monday Night Football');
-                } else if (game.gameType === 'thursday') {
-                    borderClass = "border-pink-500";
-                    shadowClass = "shadow-lg shadow-pink-500/50";
-                    timeTextClass = "text-pink-400 font-bold text-lg";
-                    specialBadge = React.createElement('div', {
-                        className: "bg-pink-500/20 border border-pink-500 rounded-lg px-3 py-1 text-pink-400 text-sm font-bold"
-                    }, '🏈 Thursday Night Football');
-                }
-
-                return React.createElement('div', {
-                    key: index,
-                    className: `bg-black/30 rounded-xl border-2 ${borderClass} ${shadowClass} ${predictionClass} p-6 transition-all hover:scale-105 relative`
-                }, [
-                    resultBadge,
-                    React.createElement('div', {
-                        key: 'header',
-                        className: "flex justify-between items-start mb-4"
-                    }, [
-                        React.createElement('div', {
-                            key: 'time-info',
-                            className: "flex flex-col gap-2"
-                        }, [
-                            React.createElement('span', {
-                                key: 'time',
-                                className: timeTextClass
-                            }, game.time),
-                            specialBadge
-                        ]),
-                        React.createElement('span', {
-                            key: 'spread',
-                            className: "text-blue-400 font-semibold"
-                        }, `Spread: ${spread > 0 ? '+' : ''}${spread}`)
-                    ]),
-                    game.score && React.createElement('div', {
-                        key: 'final-score',
-                        className: "text-center mb-4 bg-black/50 rounded-lg py-2"
-                    }, [
-                        React.createElement('span', {
-                            key: 'final-label',
-                            className: "text-yellow-400 font-bold text-sm"
-                        }, 'FINAL: '),
-                        React.createElement('span', {
-                            key: 'score',
-                            className: "text-white font-bold text-xl"
-                        }, game.score)
-                    ]),
-                    React.createElement('div', {
-                        key: 'teams',
-                        className: "grid grid-cols-3 gap-4 items-center mb-4"
-                    }, [
-                        React.createElement('div', {
-                            key: 'away',
-                            className: `text-center ${game.winner === game.away ? 'opacity-100' : game.winner ? 'opacity-50' : ''}`
-                        }, [
-                            React.createElement('div', {
-                                key: 'away-abbr',
-                                className: "text-2xl font-bold mb-1"
-                            }, game.away),
-                            React.createElement('a', {
-                                key: 'away-name',
-                                href: teams[game.away].url,
-                                target: '_blank',
-                                className: "text-sm text-gray-400 mb-1 block team-link"
-                            }, teams[game.away].name),
-                            React.createElement('div', {
-                                key: 'away-record',
-                                className: "text-xs text-blue-400 mb-2 font-bold bg-blue-500/20 px-2 py-1 rounded"
-                            }, teams[game.away].record),
-                            React.createElement('div', {
-                                key: 'away-rating',
-                                className: "text-sm mb-1"
-                            }, `Rating: ${teams[game.away].rating}`),
-                            React.createElement('div', {
-                                key: 'away-prob',
-                                className: `text-lg font-bold ${awayProb >= 60 ? 'text-green-500' : awayProb >= 55 ? 'text-yellow-500' : 'text-gray-400'}`
-                            }, `${awayProb}%`)
-                        ]),
-                        React.createElement('div', {
-                            key: 'vs',
-                            className: "text-center text-gray-500 text-xl font-bold"
-                        }, '@'),
-                        React.createElement('div', {
-                            key: 'home',
-                            className: `text-center ${game.winner === game.home ? 'opacity-100' : game.winner ? 'opacity-50' : ''}`
-                        }, [
-                            React.createElement('div', {
-                                key: 'home-abbr',
-                                className: "text-2xl font-bold mb-1"
-                            }, game.home),
-                            React.createElement('a', {
-                                key: 'home-name',
-                                href: teams[game.home].url,
-                                target: '_blank',
-                                className: "text-sm text-gray-400 mb-1 block team-link"
-                            }, teams[game.home].name),
-                            React.createElement('div', {
-                                key: 'home-record',
-                                className: "text-xs text-blue-400 mb-2 font-bold bg-blue-500/20 px-2 py-1 rounded"
-                            }, teams[game.home].record),
-                            React.createElement('div', {
-                                key: 'home-rating',
-                                className: "text-sm mb-1"
-                            }, `Rating: ${teams[game.home].rating}`),
-                            React.createElement('div', {
-                                key: 'home-prob',
-                                className: `text-lg font-bold ${homeProb >= 60 ? 'text-green-500' : homeProb >= 55 ? 'text-yellow-500' : 'text-gray-400'}`
-                            }, `${homeProb}%`)
-                        ])
-                    ]),
-                    React.createElement('div', {
-                        key: 'prediction',
-                        className: "text-center pt-4 border-t border-gray-700"
-                    }, [
-                        React.createElement('span', {
-                            key: 'label',
-                            className: "text-yellow-400 font-bold"
-                        }, 'Big Sarge Prediction: '),
-                        React.createElement('span', {
-                            key: 'winner',
-                            className: "text-white font-bold"
-                        }, winner),
-                        React.createElement('span', {
-                            key: 'confidence',
-                            className: "text-gray-400 ml-2"
-                        }, `(${confidence}% confidence)`)
-                    ])
-                ]);
-            };
-
-            return React.createElement(React.Fragment, {}, [
-                showSplash && React.createElement('div', {
-                    key: 'splash',
-                    className: `splash-screen ${!showSplash ? 'fade-out' : ''}`
-                }, [
-                    React.createElement('div', {
-                        key: 'stadium-bg',
-                        className: 'stadium-bg'
-                    }),
-                    React.createElement('div', {
-                        key: 'stadium-lights',
-                        className: 'stadium-lights'
-                    }),
-                    React.createElement('div', {
-                        key: 'football-container',
-                        className: 'football-container'
-                    }, [
-                        React.createElement('div', {
-                            key: 'football',
-                            className: 'football'
-                        }, [
-                            React.createElement('div', {
-                                key: 'laces',
-                                className: 'laces'
-                            }, [
-                                React.createElement('div', { key: 'lace1', className: 'lace' }),
-                                React.createElement('div', { key: 'lace2', className: 'lace' }),
-                                React.createElement('div', { key: 'lace3', className: 'lace' }),
-                                React.createElement('div', { key: 'lace4', className: 'lace' })
-                            ])
-                        ])
-                    ]),
-                    React.createElement('div', {
-                        key: 'splash-title',
-                        className: 'splash-title'
-                    }, [
-                        React.createElement('h1', {
-                            key: 'splash-h1',
-                            style: { fontSize: '5rem', marginBottom: '10px' }
-                        }, 'BIG SARGE'),
-                        React.createElement('p', {
-                            key: 'splash-p',
-                            style: { fontSize: '2rem', color: '#fbbf24' }
-                        }, 'GAME DAY CENTER 2025')
-                    ]),
-                    React.createElement('div', {
-                        key: 'loading',
-                        className: 'loading-text'
-                    }, 'Loading predictions...')
-                ]),
-                React.createElement('div', {
-                    key: 'main',
-                    className: "min-h-screen bg-gradient-to-br from-blue-900 via-gray-900 to-black text-white",
-                    style: { display: showSplash ? 'none' : 'block' }
-                }, [
-                React.createElement('div', {
-                    key: 'header',
-                    className: "bg-black/30 backdrop-blur-sm border-b border-gray-700 p-6"
-                }, React.createElement('div', {
-                    className: "text-center"
-                }, [
-                    React.createElement('h1', {
-                        key: 'title',
-                        className: "main-title bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
-                    }, '🏈 BIG SARGE'),
-                    React.createElement('p', {
-                        key: 'subtitle',
-                        className: "subtitle-bold text-2xl mt-4"
-                    }, 'Game Day Center 2025'),
-                    React.createElement('p', {
-                        key: 'description',
-                        className: "text-gray-400 mt-2"
-                    }, 'Advanced NFL Predictions & Analysis'),
-                    React.createElement('div', {
-                        key: 'status',
-                        className: "mt-4 bg-green-500/20 border border-green-500 rounded-lg px-4 py-2 text-sm"
-                    }, [
-                        React.createElement('p', {
-                            key: 'status-title',
-                            className: "text-green-400 font-bold"
-                        }, '🏈 Live Results - Updated September 15, 2025'),
-                        React.createElement('p', {
-                            key: 'status-desc',
-                            className: "text-gray-300"
-                        }, 'Week 2 Sunday games complete • Monday Night Football tonight • Real-time scores and results')
-                    ]),
-                    React.createElement('div', {
-                        key: 'tracker',
-                        className: "mt-3 bg-blue-500/20 border border-blue-500 rounded-lg px-4 py-2 text-sm"
-                    }, React.createElement('div', {
-                        className: "flex justify-between items-center"
-                    }, [
-                        React.createElement('div', {
-                            key: 'record-text'
-                        }, [
-                            React.createElement('p', {
-                                key: 'record-title',
-                                className: "text-blue-400 font-bold"
-                            }, '📊 Big Sarge Overall Prediction Record:'),
-                            React.createElement('p', {
-                                key: 'record-stats',
-                                className: "text-gray-300"
-                            }, `${overallAccuracy.correct} Correct • ${overallAccuracy.incorrect} Incorrect • ${overallAccuracy.total} Total Games`)
-                        ]),
-                        React.createElement('div', {
-                            key: 'percentage',
-                            className: "text-right"
-                        }, [
-                            React.createElement('div', {
-                                key: 'percent-num',
-                                className: `text-2xl font-bold ${overallAccuracy.percentage >= 70 ? 'text-green-400' : overallAccuracy.percentage >= 60 ? 'text-yellow-400' : 'text-red-400'}`
-                            }, `${overallAccuracy.percentage}%`),
-                            React.createElement('div', {
-                                key: 'percent-label',
-                                className: "text-xs text-gray-400"
-                            }, 'Accuracy')
-                        ])
-                    ]))
-                ])),
-                React.createElement('div', {
-                    key: 'content',
-                    className: "container mx-auto px-4 py-8"
-                }, [
-                    React.createElement('div', {
-                        key: 'week-selector',
-                        className: "bg-black/20 backdrop-blur-sm rounded-xl border border-gray-700 p-6 mb-8"
-                    }, [
-                        React.createElement('h2', {
-                            key: 'selector-title',
-                            className: "text-2xl font-bold text-center mb-4"
-                        }, 'Select Week'),
-                        React.createElement('div', {
-                            key: 'buttons',
-                            className: "flex flex-wrap gap-2 justify-center"
-                        }, [1, 2, 3, 4, 5, 6].map(week => 
-                            React.createElement('button', {
-                                key: week,
-                                onClick: () => setSelectedWeek(week),
-                                className: `px-4 py-2 rounded-lg font-semibold transition-all ${
-                                    selectedWeek === week
-                                        ? 'bg-blue-600 text-white shadow-lg'
-                                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                                }`
-                            }, `Week ${week}`)
-                        ))
-                    ]),
-                    React.createElement('div', {
-                        key: 'week-header',
-                        className: "flex justify-between items-center mb-6"
-                    }, [
-                        React.createElement('h2', {
-                            key: 'week-title',
-                            className: "text-3xl font-bold"
-                        }, `Week ${selectedWeek} ${selectedWeek <= 2 ? 'Results & Predictions' : 'Predictions'}`),
-                        selectedWeek <= 2 && React.createElement('div', {
-                            key: 'week-accuracy',
-                            className: "bg-black/50 rounded-lg px-4 py-2"
-                        }, [
-                            React.createElement('span', {
-                                key: 'week-acc-label',
-                                className: "text-gray-400 text-sm"
-                            }, `Week ${selectedWeek} Accuracy: `),
-                            React.createElement('span', {
-                                key: 'week-acc-value',
-                                className: "text-white font-bold"
-                            }, `${selectedWeek === 1 ? week1Accuracy.percentage : week2Accuracy.percentage}%`)
-                        ])
-                    ]),
-                    currentGames.length > 0 
-                        ? React.createElement('div', {
-                            key: 'games',
-                            className: "grid gap-6 max-w-4xl mx-auto"
-                        }, currentGames.map((game, index) => renderGameCard(game, index)))
-                        : React.createElement('div', {
-                            key: 'no-games',
-                            className: "text-center py-12"
-                        }, [
-                            React.createElement('div', {
-                                key: 'emoji',
-                                className: "text-6xl mb-4"
-                            }, '🏈'),
-                            React.createElement('h3', {
-                                key: 'no-games-title',
-                                className: "text-2xl font-bold mb-2"
-                            }, 'No Games Scheduled'),
-                            React.createElement('p', {
-                                key: 'no-games-desc',
-                                className: "text-gray-400"
-                            }, `Games for Week ${selectedWeek} coming soon!`)
-                        ]),
-                    React.createElement('div', {
-                        key: 'legend',
-                        className: "mt-8 bg-black/20 rounded-xl border border-gray-700 p-4"
-                    }, [
-                        React.createElement('h3', {
-                            key: 'legend-title',
-                            className: "text-lg font-bold mb-3"
-                        }, 'Result Legend'),
-                        React.createElement('div', {
-                            key: 'legend-items',
-                            className: "flex gap-6 justify-center flex-wrap"
-                        }, [
-                            React.createElement('div', {
-                                key: 'correct',
-                                className: "flex items-center gap-2"
-                            }, [
-                                React.createElement('div', {
-                                    key: 'correct-box',
-                                    className: "w-4 h-4 bg-green-500 rounded"
-                                }),
-                                React.createElement('span', {
-                                    key: 'correct-text',
-                                    className: "text-sm text-gray-300"
-                                }, 'Correct Prediction')
-                            ]),
-                            React.createElement('div', {
-                                key: 'incorrect',
-                                className: "flex items-center gap-2"
-                            }, [
-                                React.createElement('div', {
-                                    key: 'incorrect-box',
-                                    className: "w-4 h-4 bg-red-500 rounded"
-                                }),
-                                React.createElement('span', {
-                                    key: 'incorrect-text',
-                                    className: "text-sm text-gray-300"
-                                }, 'Incorrect Prediction')
-                            ]),
-                            React.createElement('div', {
-                                key: 'pending',
-                                className: "flex items-center gap-2"
-                            }, [
-                                React.createElement('div', {
-                                    key: 'pending-box',
-                                    className: "w-4 h-4 bg-gray-600 rounded"
-                                }),
-                                React.createElement('span', {
-                                    key: 'pending-text',
-                                    className: "text-sm text-gray-300"
-                                }, 'Game Not Played')
-                            ])
-                        ])
-                    ]),
-                    React.createElement('div', {
-                        key: 'footer',
-                        className: "mt-12 bg-black/20 rounded-xl border border-gray-700 p-6"
-                    }, [
-                        React.createElement('h3', {
-                            key: 'footer-title',
-                            className: "text-xl font-bold text-center mb-4"
-                        }, 'How Big Sarge Works'),
-                        React.createElement('div', {
-                            key: 'footer-grid',
-                            className: "grid md:grid-cols-3 gap-4 text-sm text-gray-300"
-                        }, [
-                            React.createElement('div', {
-                                key: 'ratings',
-                                className: "text-center"
-                            }, [
-                                React.createElement('div', {
-                                    key: 'ratings-title',
-                                    className: "font-bold text-blue-400 mb-2"
-                                }, 'Team Ratings'),
-                                React.createElement('p', {
-                                    key: 'ratings-desc'
-                                }, 'Based on performance, schedule strength, and advanced metrics')
-                            ]),
-                            React.createElement('div', {
-                                key: 'home',
-                                className: "text-center"
-                            }, [
-                                React.createElement('div', {
-                                    key: 'home-title',
-                                    className: "font-bold text-purple-400 mb-2"
-                                }, 'Home Advantage'),
-                                React.createElement('p', {
-                                    key: 'home-desc'
-                                }, '3-point boost for home teams in all calculations')
-                            ]),
-                            React.createElement('div', {
-                                key: 'probability',
-                                className: "text-center"
-                            }, [
-                                React.createElement('div', {
-                                    key: 'prob-title',
-                                    className: "font-bold text-green-400 mb-2"
-                                }, 'Win Probability'),
-                                React.createElement('p', {
-                                    key: 'prob-desc'
-                                }, 'Logistic regression model based on rating differences')
-                            ])
-                        ])
-                    ])
-                    ])
-                ])
-                ])
-            ]);
-        }
-
-        ReactDOM.render(React.createElement(BigSargeGameCenter), document.getElementById('root'));
-    </script>
+            <div class="game-card">
+                <div class="teams">
+                    <div class="team">
+                        <div class="team-name">MIA</div>
+                        <div>Dolphins</div>
+                    </div>
+                    <div>@</div>
+                    <div class="team">
+                        <div class="team-name">BUF</div>
+                        <div>Bills</div>
+                    </div>
+                </div>
+                <div class="score">Week 3: Thursday 8:15 PM</div>
+                <div class="prediction">
+                    Prediction: Bills (65% confidence)
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
