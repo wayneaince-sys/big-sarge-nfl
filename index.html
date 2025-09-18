@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Sarge NFL 2025 Game Center</title>
+    <title>Big Sarge NFL 2025 Game Center - Advanced Analytics</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&display=swap');
         
@@ -27,7 +27,7 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            animation: fadeOut 0.5s ease-out 3.5s forwards;
+            animation: fadeOut 0.5s ease-out 4s forwards;
         }
         
         @keyframes fadeOut {
@@ -193,6 +193,63 @@
             text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
         }
         
+        .injury-alert {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(239, 68, 68, 0.1) 100%);
+            border: 2px solid #ef4444;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+        }
+        
+        .injury-alert h3 {
+            color: #ef4444;
+            margin: 0 0 15px 0;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .injury-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .injury-table th {
+            background: rgba(239, 68, 68, 0.2);
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid #ef4444;
+        }
+        
+        .injury-table td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        
+        .injury-impact {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        
+        .impact-critical {
+            background: #dc2626;
+            color: white;
+        }
+        
+        .impact-major {
+            background: #f59e0b;
+            color: black;
+        }
+        
+        .impact-moderate {
+            background: #fbbf24;
+            color: black;
+        }
+        
         .week-selector {
             display: flex;
             justify-content: center;
@@ -248,6 +305,7 @@
             padding: 20px;
             transition: all 0.3s;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
         }
         
         .game-card:hover {
@@ -264,6 +322,18 @@
         .game-card.incorrect {
             border-color: #ef4444;
             background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.05) 100%);
+        }
+        
+        .injury-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ef4444;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: bold;
         }
         
         .game-type {
@@ -336,6 +406,15 @@
             color: #FFFFFF;
         }
         
+        .injury-note {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 3px solid #ef4444;
+            padding: 8px;
+            margin: 10px 0;
+            font-size: 0.85rem;
+            color: #fbbf24;
+        }
+        
         .result-badge {
             display: inline-block;
             padding: 5px 10px;
@@ -385,7 +464,7 @@
             <button class="week-btn" onclick="showWeek(3)">WEEK 3</button>
         </div>
 
-        <!-- Week 1 Games -->
+        <!-- Week 1 Games (Previous content remains the same) -->
         <div id="week1" class="week-content active">
             <h2 style="text-align: center; color: #FFD700; font-size: 2rem; margin: 30px 0;">WEEK 1 RESULTS</h2>
             <div class="game-grid">
@@ -682,9 +761,9 @@
             </div>
         </div>
 
-        <!-- Week 2 Games -->
+        <!-- Week 2 Games (Previous content remains the same) -->
         <div id="week2" class="week-content">
-            <h2 style="text-align: center; color: #FFD700; font-size: 2rem; margin: 30px 0;">WEEK 2 RESULTS & PREDICTIONS</h2>
+            <h2 style="text-align: center; color: #FFD700; font-size: 2rem; margin: 30px 0;">WEEK 2 RESULTS</h2>
             <div class="game-grid">
                 <div class="game-card correct">
                     <div class="game-type">Thursday Night Football</div>
@@ -979,9 +1058,84 @@
             </div>
         </div>
 
-        <!-- Week 3 Games - CORRECTED SCHEDULE -->
+        <!-- Week 3 Games with Injury Updates -->
         <div id="week3" class="week-content">
             <h2 style="text-align: center; color: #FFD700; font-size: 2rem; margin: 30px 0;">WEEK 3 PREDICTIONS</h2>
+            
+            <!-- Injury Alert Section -->
+            <div class="injury-alert">
+                <h3>⚠️ CRITICAL WEEK 3 INJURIES</h3>
+                <table class="injury-table">
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Player</th>
+                            <th>Position</th>
+                            <th>Status</th>
+                            <th>Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bengals</td>
+                            <td>Joe Burrow</td>
+                            <td>QB</td>
+                            <td>OUT (3+ months)</td>
+                            <td><span class="injury-impact impact-critical">CRITICAL</span></td>
+                        </tr>
+                        <tr>
+                            <td>Vikings</td>
+                            <td>J.J. McCarthy</td>
+                            <td>QB</td>
+                            <td>OUT (Ankle)</td>
+                            <td><span class="injury-impact impact-major">MAJOR</span></td>
+                        </tr>
+                        <tr>
+                            <td>Vikings</td>
+                            <td>Aaron Jones</td>
+                            <td>RB</td>
+                            <td>IR (Hamstring)</td>
+                            <td><span class="injury-impact impact-major">MAJOR</span></td>
+                        </tr>
+                        <tr>
+                            <td>Jets</td>
+                            <td>Justin Fields</td>
+                            <td>QB</td>
+                            <td>OUT (Concussion)</td>
+                            <td><span class="injury-impact impact-critical">CRITICAL</span></td>
+                        </tr>
+                        <tr>
+                            <td>Commanders</td>
+                            <td>Jayden Daniels</td>
+                            <td>QB</td>
+                            <td>Questionable (Knee)</td>
+                            <td><span class="injury-impact impact-major">MAJOR</span></td>
+                        </tr>
+                        <tr>
+                            <td>49ers</td>
+                            <td>Brock Purdy</td>
+                            <td>QB</td>
+                            <td>Doubtful (Toe)</td>
+                            <td><span class="injury-impact impact-major">MAJOR</span></td>
+                        </tr>
+                        <tr>
+                            <td>Commanders</td>
+                            <td>Austin Ekeler</td>
+                            <td>RB</td>
+                            <td>OUT (Season)</td>
+                            <td><span class="injury-impact impact-moderate">MODERATE</span></td>
+                        </tr>
+                        <tr>
+                            <td>Chargers</td>
+                            <td>Khalil Mack</td>
+                            <td>EDGE</td>
+                            <td>IR (Elbow)</td>
+                            <td><span class="injury-impact impact-moderate">MODERATE</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <div class="game-grid">
                 <div class="game-card">
                     <div class="game-type">Thursday Night Football</div>
@@ -998,11 +1152,12 @@
                     </div>
                     <div class="time">Thursday 8:15 PM ET</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Bills (77%)
+                        Big Sarge Prediction: Bills (82%)
                     </div>
                 </div>
 
                 <div class="game-card">
+                    <div class="injury-indicator">QB OUT</div>
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">NYJ</div>
@@ -1015,8 +1170,11 @@
                         </div>
                     </div>
                     <div class="time">Sunday 1:00 PM ET</div>
+                    <div class="injury-note">
+                        ⚠️ Justin Fields OUT - Tyrod Taylor starting
+                    </div>
                     <div class="prediction">
-                        Big Sarge Prediction: Buccaneers (70%)
+                        Big Sarge Prediction: Buccaneers (78%)
                     </div>
                 </div>
 
@@ -1034,7 +1192,7 @@
                     </div>
                     <div class="time">Sunday 1:00 PM ET</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Colts (62%)
+                        Big Sarge Prediction: Colts (65%)
                     </div>
                 </div>
 
@@ -1052,7 +1210,7 @@
                     </div>
                     <div class="time">Sunday 1:00 PM ET</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Packers (68%)
+                        Big Sarge Prediction: Packers (71%)
                     </div>
                 </div>
 
@@ -1070,11 +1228,12 @@
                     </div>
                     <div class="time">Sunday 1:00 PM ET</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Texans (56%)
+                        Big Sarge Prediction: Texans (58%)
                     </div>
                 </div>
 
                 <div class="game-card">
+                    <div class="injury-indicator">BOTH QB ISSUES</div>
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">CIN</div>
@@ -1087,8 +1246,11 @@
                         </div>
                     </div>
                     <div class="time">Sunday 1:00 PM ET</div>
+                    <div class="injury-note">
+                        ⚠️ Burrow OUT (Jake Browning) vs McCarthy OUT (Wentz likely)
+                    </div>
                     <div class="prediction">
-                        Big Sarge Prediction: Vikings (52%)
+                        Big Sarge Prediction: Vikings (55%)
                     </div>
                 </div>
 
@@ -1106,11 +1268,12 @@
                     </div>
                     <div class="time">Sunday 1:00 PM ET</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Falcons (58%)
+                        Big Sarge Prediction: Falcons (62%)
                     </div>
                 </div>
 
                 <div class="game-card">
+                    <div class="injury-indicator">QB QUESTIONABLE</div>
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">LV</div>
@@ -1123,8 +1286,11 @@
                         </div>
                     </div>
                     <div class="time">Sunday 1:00 PM ET</div>
+                    <div class="injury-note">
+                        ⚠️ Jayden Daniels questionable - Marcus Mariota may start
+                    </div>
                     <div class="prediction">
-                        Big Sarge Prediction: Commanders (60%)
+                        Big Sarge Prediction: Commanders (52%)
                     </div>
                 </div>
 
@@ -1142,7 +1308,7 @@
                     </div>
                     <div class="time">Sunday 1:00 PM ET</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Patriots (55%)
+                        Big Sarge Prediction: Patriots (56%)
                     </div>
                 </div>
 
@@ -1160,11 +1326,12 @@
                     </div>
                     <div class="time">Sunday 1:00 PM ET</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Eagles (60%)
+                        Big Sarge Prediction: Eagles (63%)
                     </div>
                 </div>
 
                 <div class="game-card">
+                    <div class="injury-indicator">DEF INJURY</div>
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">DEN</div>
@@ -1177,8 +1344,11 @@
                         </div>
                     </div>
                     <div class="time">Sunday 4:05 PM ET</div>
+                    <div class="injury-note">
+                        ⚠️ Khalil Mack on IR - Pass rush weakened
+                    </div>
                     <div class="prediction">
-                        Big Sarge Prediction: Chargers (64%)
+                        Big Sarge Prediction: Chargers (59%)
                     </div>
                 </div>
 
@@ -1196,11 +1366,12 @@
                     </div>
                     <div class="time">Sunday 4:25 PM ET</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Seahawks (58%)
+                        Big Sarge Prediction: Seahawks (61%)
                     </div>
                 </div>
 
                 <div class="game-card">
+                    <div class="injury-indicator">QB LIKELY OUT</div>
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">ARI</div>
@@ -1213,8 +1384,11 @@
                         </div>
                     </div>
                     <div class="time">Sunday 4:25 PM ET</div>
+                    <div class="injury-note">
+                        ⚠️ Brock Purdy doubtful - Mac Jones likely starting
+                    </div>
                     <div class="prediction">
-                        Big Sarge Prediction: 49ers (52%)
+                        Big Sarge Prediction: Cardinals (51%)
                     </div>
                 </div>
 
@@ -1232,7 +1406,7 @@
                     </div>
                     <div class="time">Sunday 4:25 PM ET</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Cowboys (61%)
+                        Big Sarge Prediction: Cowboys (64%)
                     </div>
                 </div>
 
@@ -1251,7 +1425,7 @@
                     </div>
                     <div class="time">Sunday 8:20 PM ET</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Chiefs (68%)
+                        Big Sarge Prediction: Chiefs (72%)
                     </div>
                 </div>
 
@@ -1270,7 +1444,7 @@
                     </div>
                     <div class="time">Monday 8:15 PM ET</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Ravens (52%)
+                        Big Sarge Prediction: Ravens (54%)
                     </div>
                 </div>
             </div>
@@ -1281,7 +1455,7 @@
         // Show main content after splash screen
         setTimeout(function() {
             document.getElementById('main').classList.add('show');
-        }, 4000);
+        }, 4500);
 
         // Week selector function
         function showWeek(weekNumber) {
