@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Sarge NFL 2025 Game Center - Advanced Analytics</title>
+    <title>Big Sarge NFL 2025 Game Center - Week 3 Complete</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&display=swap');
         
@@ -336,6 +336,18 @@
             font-weight: bold;
         }
         
+        .upset-indicator {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #fbbf24;
+            color: black;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
         .game-type {
             text-align: center;
             font-size: 0.9rem;
@@ -432,6 +444,20 @@
             background: #ef4444;
             color: white;
         }
+        
+        .week-stats {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .week-stats h3 {
+            color: #3b82f6;
+            margin: 0 0 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -451,22 +477,26 @@
             <p class="subtitle">ADVANCED PREDICTIONS & LIVE RESULTS</p>
             
             <div class="accuracy">
-                <h3>OVERALL PREDICTION ACCURACY</h3>
-                <div class="accuracy-number">70.0%</div>
-                <p style="font-size: 1.1rem;">21 Correct • 9 Incorrect • 30 Total Games</p>
+                <h3>SEASON PREDICTION ACCURACY</h3>
+                <div class="accuracy-number">63.3%</div>
+                <p style="font-size: 1.1rem;">29 Correct • 17 Incorrect • 46 Total Games</p>
+                <p style="font-size: 0.9rem; color: #fbbf24;">Week 3: 8-8 (50%) • Major upsets impacted accuracy</p>
             </div>
         </div>
 
         <!-- Week Selector -->
         <div class="week-selector">
-            <button class="week-btn active" onclick="showWeek(1)">WEEK 1</button>
+            <button class="week-btn" onclick="showWeek(1)">WEEK 1</button>
             <button class="week-btn" onclick="showWeek(2)">WEEK 2</button>
-            <button class="week-btn" onclick="showWeek(3)">WEEK 3</button>
+            <button class="week-btn active" onclick="showWeek(3)">WEEK 3</button>
         </div>
 
-        <!-- Week 1 Games (Previous content remains the same) -->
-        <div id="week1" class="week-content active">
+        <!-- Week 1 Games -->
+        <div id="week1" class="week-content">
             <h2 style="text-align: center; color: #FFD700; font-size: 2rem; margin: 30px 0;">WEEK 1 RESULTS</h2>
+            <div class="week-stats">
+                <h3>Week 1 Performance: 13-3 (81.3%)</h3>
+            </div>
             <div class="game-grid">
                 <div class="game-card correct">
                     <div class="game-type">Thursday Night Football</div>
@@ -761,9 +791,12 @@
             </div>
         </div>
 
-        <!-- Week 2 Games (Previous content remains the same) -->
+        <!-- Week 2 Games -->
         <div id="week2" class="week-content">
             <h2 style="text-align: center; color: #FFD700; font-size: 2rem; margin: 30px 0;">WEEK 2 RESULTS</h2>
+            <div class="week-stats">
+                <h3>Week 2 Performance: 8-6 (57.1%)</h3>
+            </div>
             <div class="game-grid">
                 <div class="game-card correct">
                     <div class="game-type">Thursday Night Football</div>
@@ -796,7 +829,7 @@
                             <div class="team-name">Bengals</div>
                         </div>
                     </div>
-                    <div class="score">FINAL: WIN CIN</div>
+                    <div class="score">FINAL: 27-31</div>
                     <div class="prediction">
                         Big Sarge: Bengals <span class="result-badge correct">✔ CORRECT</span>
                     </div>
@@ -1001,6 +1034,7 @@
                 </div>
 
                 <div class="game-card incorrect">
+                    <div class="game-type">Sunday Night Football</div>
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">ATL</div>
@@ -1058,13 +1092,19 @@
             </div>
         </div>
 
-        <!-- Week 3 Games with Injury Updates -->
-        <div id="week3" class="week-content">
-            <h2 style="text-align: center; color: #FFD700; font-size: 2rem; margin: 30px 0;">WEEK 3 PREDICTIONS</h2>
+        <!-- Week 3 Games - ACTUAL RESULTS -->
+        <div id="week3" class="week-content active">
+            <h2 style="text-align: center; color: #FFD700; font-size: 2rem; margin: 30px 0;">WEEK 3 RESULTS</h2>
             
+            <!-- Week 3 Stats -->
+            <div class="week-stats">
+                <h3>Week 3 Performance: 8-8 (50%)</h3>
+                <p style="margin: 10px 0;">Major upsets: Browns over Packers • Panthers over Falcons • Bears over Cowboys</p>
+            </div>
+
             <!-- Injury Alert Section -->
             <div class="injury-alert">
-                <h3>⚠️ CRITICAL WEEK 3 INJURIES</h3>
+                <h3>⚠️ WEEK 3 INJURY IMPACT ANALYSIS</h3>
                 <table class="injury-table">
                     <thead>
                         <tr>
@@ -1072,7 +1112,7 @@
                             <th>Player</th>
                             <th>Position</th>
                             <th>Status</th>
-                            <th>Impact</th>
+                            <th>Game Impact</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1080,64 +1120,44 @@
                             <td>Bengals</td>
                             <td>Joe Burrow</td>
                             <td>QB</td>
-                            <td>OUT (3+ months)</td>
-                            <td><span class="injury-impact impact-critical">CRITICAL</span></td>
+                            <td>OUT (Surgery)</td>
+                            <td><span class="injury-impact impact-critical">Lost 48-10</span></td>
                         </tr>
                         <tr>
                             <td>Vikings</td>
                             <td>J.J. McCarthy</td>
                             <td>QB</td>
                             <td>OUT (Ankle)</td>
-                            <td><span class="injury-impact impact-major">MAJOR</span></td>
-                        </tr>
-                        <tr>
-                            <td>Vikings</td>
-                            <td>Aaron Jones</td>
-                            <td>RB</td>
-                            <td>IR (Hamstring)</td>
-                            <td><span class="injury-impact impact-major">MAJOR</span></td>
+                            <td><span class="injury-impact impact-moderate">Won 48-10</span></td>
                         </tr>
                         <tr>
                             <td>Jets</td>
                             <td>Justin Fields</td>
                             <td>QB</td>
                             <td>OUT (Concussion)</td>
-                            <td><span class="injury-impact impact-critical">CRITICAL</span></td>
+                            <td><span class="injury-impact impact-major">Lost 29-27</span></td>
                         </tr>
                         <tr>
                             <td>Commanders</td>
                             <td>Jayden Daniels</td>
                             <td>QB</td>
-                            <td>Questionable (Knee)</td>
-                            <td><span class="injury-impact impact-major">MAJOR</span></td>
+                            <td>OUT (Knee)</td>
+                            <td><span class="injury-impact impact-moderate">Won 41-24</span></td>
                         </tr>
                         <tr>
                             <td>49ers</td>
                             <td>Brock Purdy</td>
                             <td>QB</td>
-                            <td>Doubtful (Toe)</td>
-                            <td><span class="injury-impact impact-major">MAJOR</span></td>
-                        </tr>
-                        <tr>
-                            <td>Commanders</td>
-                            <td>Austin Ekeler</td>
-                            <td>RB</td>
-                            <td>OUT (Season)</td>
-                            <td><span class="injury-impact impact-moderate">MODERATE</span></td>
-                        </tr>
-                        <tr>
-                            <td>Chargers</td>
-                            <td>Khalil Mack</td>
-                            <td>EDGE</td>
-                            <td>IR (Elbow)</td>
-                            <td><span class="injury-impact impact-moderate">MODERATE</span></td>
+                            <td>OUT (Toe/Shoulder)</td>
+                            <td><span class="injury-impact impact-major">Won 16-15</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="game-grid">
-                <div class="game-card">
+                <!-- Thursday Night Football -->
+                <div class="game-card correct">
                     <div class="game-type">Thursday Night Football</div>
                     <div class="teams">
                         <div class="team">
@@ -1150,13 +1170,14 @@
                             <div class="team-name">Bills</div>
                         </div>
                     </div>
-                    <div class="time">Thursday 8:15 PM ET</div>
+                    <div class="score">FINAL: 21-31</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Bills (82%)
+                        Big Sarge: Bills (82%) <span class="result-badge correct">✔ CORRECT</span>
                     </div>
                 </div>
 
-                <div class="game-card">
+                <!-- Sunday Early Games -->
+                <div class="game-card correct">
                     <div class="injury-indicator">QB OUT</div>
                     <div class="teams">
                         <div class="team">
@@ -1169,16 +1190,16 @@
                             <div class="team-name">Buccaneers</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 1:00 PM ET</div>
+                    <div class="score">FINAL: 27-29</div>
                     <div class="injury-note">
-                        ⚠️ Justin Fields OUT - Tyrod Taylor starting
+                        ⚠️ Tyrod Taylor started for injured Fields
                     </div>
                     <div class="prediction">
-                        Big Sarge Prediction: Buccaneers (78%)
+                        Big Sarge: Buccaneers (78%) <span class="result-badge correct">✔ CORRECT</span>
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card correct">
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">IND</div>
@@ -1190,13 +1211,14 @@
                             <div class="team-name">Titans</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 1:00 PM ET</div>
+                    <div class="score">FINAL: 41-20</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Colts (65%)
+                        Big Sarge: Colts (65%) <span class="result-badge correct">✔ CORRECT</span>
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card incorrect">
+                    <div class="upset-indicator">UPSET!</div>
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">GB</div>
@@ -1208,13 +1230,13 @@
                             <div class="team-name">Browns</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 1:00 PM ET</div>
+                    <div class="score">FINAL: 10-13</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Packers (71%)
+                        Big Sarge: Packers (71%) <span class="result-badge incorrect">✗ WRONG</span>
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card incorrect">
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">HOU</div>
@@ -1226,14 +1248,14 @@
                             <div class="team-name">Jaguars</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 1:00 PM ET</div>
+                    <div class="score">FINAL: 10-17</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Texans (58%)
+                        Big Sarge: Texans (58%) <span class="result-badge incorrect">✗ WRONG</span>
                     </div>
                 </div>
 
-                <div class="game-card">
-                    <div class="injury-indicator">BOTH QB ISSUES</div>
+                <div class="game-card correct">
+                    <div class="injury-indicator">BOTH QBs OUT</div>
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">CIN</div>
@@ -1245,16 +1267,17 @@
                             <div class="team-name">Vikings</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 1:00 PM ET</div>
+                    <div class="score">FINAL: 10-48</div>
                     <div class="injury-note">
-                        ⚠️ Burrow OUT (Jake Browning) vs McCarthy OUT (Wentz likely)
+                        ⚠️ Jake Browning vs Carson Wentz
                     </div>
                     <div class="prediction">
-                        Big Sarge Prediction: Vikings (55%)
+                        Big Sarge: Vikings (55%) <span class="result-badge correct">✔ CORRECT</span>
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card incorrect">
+                    <div class="upset-indicator">UPSET!</div>
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">ATL</div>
@@ -1266,14 +1289,14 @@
                             <div class="team-name">Panthers</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 1:00 PM ET</div>
+                    <div class="score">FINAL: 0-30</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Falcons (62%)
+                        Big Sarge: Falcons (62%) <span class="result-badge incorrect">✗ WRONG</span>
                     </div>
                 </div>
 
-                <div class="game-card">
-                    <div class="injury-indicator">QB QUESTIONABLE</div>
+                <div class="game-card correct">
+                    <div class="injury-indicator">QB OUT</div>
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">LV</div>
@@ -1285,16 +1308,16 @@
                             <div class="team-name">Commanders</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 1:00 PM ET</div>
+                    <div class="score">FINAL: 24-41</div>
                     <div class="injury-note">
-                        ⚠️ Jayden Daniels questionable - Marcus Mariota may start
+                        ⚠️ Marcus Mariota started for injured Daniels
                     </div>
                     <div class="prediction">
-                        Big Sarge Prediction: Commanders (52%)
+                        Big Sarge: Commanders (52%) <span class="result-badge correct">✔ CORRECT</span>
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card incorrect">
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">PIT</div>
@@ -1306,13 +1329,13 @@
                             <div class="team-name">Patriots</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 1:00 PM ET</div>
+                    <div class="score">FINAL: 21-14</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Patriots (56%)
+                        Big Sarge: Patriots (56%) <span class="result-badge incorrect">✗ WRONG</span>
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card correct">
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">LAR</div>
@@ -1324,13 +1347,14 @@
                             <div class="team-name">Eagles</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 1:00 PM ET</div>
+                    <div class="score">FINAL: 26-33</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Eagles (63%)
+                        Big Sarge: Eagles (63%) <span class="result-badge correct">✔ CORRECT</span>
                     </div>
                 </div>
 
-                <div class="game-card">
+                <!-- Sunday Late Games -->
+                <div class="game-card incorrect">
                     <div class="injury-indicator">DEF INJURY</div>
                     <div class="teams">
                         <div class="team">
@@ -1343,16 +1367,16 @@
                             <div class="team-name">Chargers</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 4:05 PM ET</div>
+                    <div class="score">FINAL: 20-23</div>
                     <div class="injury-note">
-                        ⚠️ Khalil Mack on IR - Pass rush weakened
+                        ⚠️ Khalil Mack on IR
                     </div>
                     <div class="prediction">
-                        Big Sarge Prediction: Chargers (59%)
+                        Big Sarge: Chargers (59%) <span class="result-badge correct">✔ CORRECT</span>
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card correct">
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">NO</div>
@@ -1364,14 +1388,14 @@
                             <div class="team-name">Seahawks</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 4:25 PM ET</div>
+                    <div class="score">FINAL: 13-44</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Seahawks (61%)
+                        Big Sarge: Seahawks (61%) <span class="result-badge correct">✔ CORRECT</span>
                     </div>
                 </div>
 
-                <div class="game-card">
-                    <div class="injury-indicator">QB LIKELY OUT</div>
+                <div class="game-card incorrect">
+                    <div class="injury-indicator">QB OUT</div>
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">ARI</div>
@@ -1383,16 +1407,17 @@
                             <div class="team-name">49ers</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 4:25 PM ET</div>
+                    <div class="score">FINAL: 15-16</div>
                     <div class="injury-note">
-                        ⚠️ Brock Purdy doubtful - Mac Jones likely starting
+                        ⚠️ Mac Jones started for injured Purdy
                     </div>
                     <div class="prediction">
-                        Big Sarge Prediction: Cardinals (51%)
+                        Big Sarge: Cardinals (51%) <span class="result-badge incorrect">✗ WRONG</span>
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card incorrect">
+                    <div class="upset-indicator">UPSET!</div>
                     <div class="teams">
                         <div class="team">
                             <div class="team-abbr">DAL</div>
@@ -1404,12 +1429,13 @@
                             <div class="team-name">Bears</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 4:25 PM ET</div>
+                    <div class="score">FINAL: 14-31</div>
                     <div class="prediction">
-                        Big Sarge Prediction: Cowboys (64%)
+                        Big Sarge: Cowboys (64%) <span class="result-badge incorrect">✗ WRONG</span>
                     </div>
                 </div>
 
+                <!-- Sunday Night Football -->
                 <div class="game-card">
                     <div class="game-type">Sunday Night Football</div>
                     <div class="teams">
@@ -1423,12 +1449,13 @@
                             <div class="team-name">Giants</div>
                         </div>
                     </div>
-                    <div class="time">Sunday 8:20 PM ET</div>
+                    <div class="time">Tonight 8:20 PM ET</div>
                     <div class="prediction">
                         Big Sarge Prediction: Chiefs (72%)
                     </div>
                 </div>
 
+                <!-- Monday Night Football -->
                 <div class="game-card">
                     <div class="game-type">Monday Night Football</div>
                     <div class="teams">
