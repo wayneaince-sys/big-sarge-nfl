@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,571 +6,568 @@
     <title>Big Sarge NFL 2025 Game Day Center</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&family=Inter:wght@400;600;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-```
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e1a;
+            background-image: 
+                linear-gradient(135deg, #0a0e1a 0%, #1a1f3a 100%),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.01) 10px,
+                    rgba(255, 255, 255, 0.01) 20px
+                );
+            color: #f1f5f9;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
 
-    body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background: #0a0e1a;
-        background-image: 
-            linear-gradient(135deg, #0a0e1a 0%, #1a1f3a 100%),
-            repeating-linear-gradient(
-                45deg,
+        /* Team Ratings Style */
+        .team-rating {
+            color: #ffd700;
+            font-weight: 900;
+            text-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.5),
+                0 0 20px rgba(255, 215, 0, 0.3);
+            font-size: 1.1em;
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
+            padding: 3rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
                 transparent,
-                transparent 10px,
-                rgba(255, 255, 255, 0.01) 10px,
-                rgba(255, 255, 255, 0.01) 20px
+                rgba(255, 255, 255, 0.1),
+                transparent
             );
-        color: #f1f5f9;
-        min-height: 100vh;
-        line-height: 1.6;
-    }
+            animation: shimmer 8s infinite;
+        }
 
-    /* Team Ratings Style */
-    .team-rating {
-        color: #ffd700;
-        font-weight: 900;
-        text-shadow: 
-            0 0 10px rgba(255, 215, 0, 0.5),
-            0 0 20px rgba(255, 215, 0, 0.3);
-        font-size: 1.1em;
-        display: inline-block;
-        margin-left: 8px;
-    }
+        @keyframes shimmer {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); }
+        }
 
-    /* Header */
-    .header {
-        background: linear-gradient(135deg, #1e3a8a 0%, #312e81 100%);
-        padding: 3rem 0;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
-        position: relative;
-        overflow: hidden;
-    }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .header::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 200%;
-        height: 100%;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.1),
-            transparent
-        );
-        animation: shimmer 8s infinite;
-    }
-
-    @keyframes shimmer {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(50%); }
-    }
-
-    .container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    h1 {
-        font-family: 'Bebas Neue', cursive;
-        font-size: 4rem;
-        text-align: center;
-        color: #ffffff;
-        text-shadow: 
-            0 0 20px rgba(59, 130, 246, 0.5),
-            3px 3px 6px rgba(0,0,0,0.7);
-        letter-spacing: 0.15em;
-        position: relative;
-        z-index: 1;
-        margin-bottom: 1rem;
-    }
-
-    .week-tabs {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin: 2rem 0;
-        flex-wrap: wrap;
-    }
-
-    .week-tab {
-        padding: 15px 30px;
-        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-        border: none;
-        color: white;
-        font-size: 1.1rem;
-        font-weight: bold;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.3s;
-        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-    }
-
-    .week-tab:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
-    }
-
-    .week-tab.active {
-        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-        box-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
-    }
-
-    /* Injury Alert */
-    .injury-section {
-        background: linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(153, 27, 27, 0.15) 100%);
-        border: 2px solid #dc2626;
-        border-radius: 16px;
-        padding: 2rem;
-        margin: 2rem 0;
-        box-shadow: 0 0 40px rgba(220, 38, 38, 0.3);
-    }
-
-    .injury-title {
-        font-size: 2rem;
-        font-weight: bold;
-        color: #ef4444;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-    }
-
-    .injury-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1rem;
-    }
-
-    .injury-card {
-        background: rgba(0, 0, 0, 0.5);
-        padding: 1rem;
-        border-radius: 8px;
-        border-left: 4px solid #dc2626;
-    }
-
-    .injury-player {
-        color: #fbbf24;
-        font-weight: bold;
-        font-size: 1.1rem;
-    }
-
-    .injury-details {
-        color: #cbd5e1;
-        margin-top: 0.5rem;
-    }
-
-    .injury-status {
-        display: inline-block;
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-size: 0.85rem;
-        font-weight: bold;
-        margin-top: 0.5rem;
-    }
-
-    .status-critical {
-        background: #dc2626;
-        color: white;
-    }
-
-    .status-major {
-        background: #ea580c;
-        color: white;
-    }
-
-    .status-moderate {
-        background: #ca8a04;
-        color: white;
-    }
-
-    /* Standings */
-    .standings-section {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 2rem;
-        margin: 3rem 0;
-    }
-
-    .standings-card {
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
-        border: 1px solid rgba(100, 116, 139, 0.3);
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .standings-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-
-    .undefeated {
-        color: #22c55e;
-        border-color: #22c55e;
-    }
-
-    .winless {
-        color: #ef4444;
-        border-color: #ef4444;
-    }
-
-    .team-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: center;
-    }
-
-    .team-badge {
-        background: rgba(30, 41, 59, 0.8);
-        padding: 8px 16px;
-        border-radius: 20px;
-        border: 1px solid rgba(100, 116, 139, 0.5);
-        font-weight: 600;
-    }
-
-    /* Game Cards */
-    .games-section {
-        margin: 3rem 0;
-    }
-
-    .section-title {
-        font-family: 'Russo One', sans-serif;
-        font-size: 2rem;
-        color: #fbbf24;
-        margin: 2rem 0 1.5rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 2px solid rgba(251, 191, 36, 0.3);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-    }
-
-    .games-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-        gap: 2rem;
-        margin-bottom: 3rem;
-    }
-
-    .game-card {
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
-        border: 1px solid rgba(100, 116, 139, 0.3);
-        border-radius: 16px;
-        padding: 1.5rem;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .game-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
-        background-size: 200% 100%;
-        animation: gradient-shift 3s ease infinite;
-    }
-
-    @keyframes gradient-shift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    .game-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-        border-color: rgba(59, 130, 246, 0.5);
-    }
-
-    .game-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1rem;
-    }
-
-    .game-time {
-        font-size: 0.9rem;
-        color: #94a3b8;
-        font-weight: 600;
-    }
-
-    .prime-badge {
-        background: linear-gradient(135deg, #fbbf24, #f59e0b);
-        color: #000;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-weight: bold;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-    }
-
-    .teams-matchup {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 1.5rem 0;
-    }
-
-    .team-info {
-        flex: 1;
-        text-align: center;
-    }
-
-    .team-name {
-        font-weight: 700;
-        font-size: 1.4rem;
-        color: #f1f5f9;
-        margin-bottom: 0.3rem;
-    }
-
-    .team-record {
-        font-size: 0.9rem;
-        color: #64748b;
-    }
-
-    .vs-symbol {
-        padding: 0 1.5rem;
-        color: #64748b;
-        font-weight: bold;
-        font-size: 1.2rem;
-    }
-
-    .score-line {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        font-size: 2.2rem;
-        font-weight: bold;
-        margin: 1.5rem 0;
-    }
-
-    .score {
-        padding: 0.5rem 1.5rem;
-        background: rgba(30, 41, 59, 0.8);
-        border-radius: 10px;
-        min-width: 70px;
-        text-align: center;
-    }
-
-    .winning-score {
-        background: linear-gradient(135deg, #22c55e, #16a34a);
-        color: white;
-        box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
-    }
-
-    .prediction-box {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-        border: 1px solid rgba(59, 130, 246, 0.3);
-        border-radius: 10px;
-        padding: 1rem;
-        margin-top: 1.5rem;
-    }
-
-    .prediction-title {
-        font-size: 0.9rem;
-        color: #60a5fa;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.5rem;
-    }
-
-    .prediction-text {
-        font-size: 1.1rem;
-        color: #f1f5f9;
-        font-weight: 600;
-    }
-
-    .spread-info {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid rgba(100, 116, 139, 0.3);
-    }
-
-    .spread-item {
-        text-align: center;
-    }
-
-    .spread-label {
-        font-size: 0.8rem;
-        color: #64748b;
-        text-transform: uppercase;
-    }
-
-    .spread-value {
-        font-size: 1.2rem;
-        color: #fbbf24;
-        font-weight: bold;
-        margin-top: 0.3rem;
-    }
-
-    .game-result {
-        text-align: center;
-        padding: 0.5rem;
-        margin-top: 1rem;
-        border-radius: 8px;
-        font-weight: bold;
-    }
-
-    .result-final {
-        background: rgba(34, 197, 94, 0.1);
-        border: 1px solid #22c55e;
-        color: #22c55e;
-    }
-
-    .upset-badge {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: linear-gradient(135deg, #ef4444, #dc2626);
-        color: white;
-        padding: 5px 15px;
-        border-radius: 25px;
-        font-size: 0.8rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        animation: pulse 2s ease-in-out infinite;
-        box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
-    }
-
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
-
-    .qb-out-badge {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        background: linear-gradient(135deg, #f59e0b, #d97706);
-        color: white;
-        padding: 5px 15px;
-        border-radius: 25px;
-        font-size: 0.8rem;
-        font-weight: bold;
-        animation: blink 3s ease-in-out infinite;
-    }
-
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
-    }
-
-    /* Tab Content */
-    .tab-content {
-        display: none;
-    }
-
-    .tab-content.active {
-        display: block;
-        animation: fadeIn 0.5s ease-in;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Footer */
-    .footer {
-        text-align: center;
-        padding: 3rem 1rem;
-        margin-top: 4rem;
-        border-top: 1px solid rgba(100, 116, 139, 0.3);
-        color: #64748b;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
         h1 {
-            font-size: 2.5rem;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4rem;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 
+                0 0 20px rgba(59, 130, 246, 0.5),
+                3px 3px 6px rgba(0,0,0,0.7);
+            letter-spacing: 0.15em;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1rem;
+        }
+
+        .week-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .week-tab {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .week-tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+        }
+
+        .week-tab.active {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+        }
+
+        /* Injury Alert */
+        .injury-section {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(153, 27, 27, 0.15) 100%);
+            border: 2px solid #dc2626;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 0 40px rgba(220, 38, 38, 0.3);
+        }
+
+        .injury-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ef4444;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .injury-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .injury-card {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #dc2626;
+        }
+
+        .injury-player {
+            color: #fbbf24;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .injury-details {
+            color: #cbd5e1;
+            margin-top: 0.5rem;
+        }
+
+        .injury-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .status-critical {
+            background: #dc2626;
+            color: white;
+        }
+
+        .status-major {
+            background: #ea580c;
+            color: white;
+        }
+
+        .status-moderate {
+            background: #ca8a04;
+            color: white;
+        }
+
+        /* Standings */
+        .standings-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .standings-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .standings-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .undefeated {
+            color: #22c55e;
+            border-color: #22c55e;
+        }
+
+        .winless {
+            color: #ef4444;
+            border-color: #ef4444;
+        }
+
+        .team-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .team-badge {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(100, 116, 139, 0.5);
+            font-weight: 600;
+        }
+
+        /* Game Cards */
+        .games-section {
+            margin: 3rem 0;
+        }
+
+        .section-title {
+            font-family: 'Russo One', sans-serif;
+            font-size: 2rem;
+            color: #fbbf24;
+            margin: 2rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(251, 191, 36, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
         .games-grid {
-            grid-template-columns: 1fr;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .game-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            background-size: 200% 100%;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .game-time {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            font-weight: 600;
+        }
+
+        .prime-badge {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .teams-matchup {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+
+        .team-info {
+            flex: 1;
+            text-align: center;
+        }
+
+        .team-name {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #f1f5f9;
+            margin-bottom: 0.3rem;
+        }
+
+        .team-record {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .vs-symbol {
+            padding: 0 1.5rem;
+            color: #64748b;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .score-line {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+        }
+
+        .score {
+            padding: 0.5rem 1.5rem;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 10px;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .winning-score {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+        }
+
+        .prediction-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .prediction-title {
+            font-size: 0.9rem;
+            color: #60a5fa;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .prediction-text {
+            font-size: 1.1rem;
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        .spread-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(100, 116, 139, 0.3);
+        }
+
+        .spread-item {
+            text-align: center;
+        }
+
+        .spread-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        .spread-value {
+            font-size: 1.2rem;
+            color: #fbbf24;
+            font-weight: bold;
+            margin-top: 0.3rem;
+        }
+
+        .game-result {
+            text-align: center;
+            padding: 0.5rem;
+            margin-top: 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .result-final {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid #22c55e;
+            color: #22c55e;
+        }
+
+        .upset-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .qb-out-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            animation: blink 3s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(100, 116, 139, 0.3);
+            color: #64748b;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .score-line {
+                font-size: 1.8rem;
+            }
+
+            .team-rating {
+                font-size: 1em;
+            }
+        }
+
+        /* Power Rankings Box */
+        .power-rankings {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border: 2px solid #fbbf24;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .rankings-title {
             font-size: 1.8rem;
+            color: #fbbf24;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
-        .team-rating {
-            font-size: 1em;
+        .rankings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
         }
-    }
 
-    /* Power Rankings Box */
-    .power-rankings {
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
-        border: 2px solid #fbbf24;
-        border-radius: 16px;
-        padding: 2rem;
-        margin: 3rem 0;
-    }
+        .rank-item {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.8rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 3px solid #fbbf24;
+        }
 
-    .rankings-title {
-        font-size: 1.8rem;
-        color: #fbbf24;
-        text-align: center;
-        margin-bottom: 1.5rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-    }
+        .rank-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #60a5fa;
+            margin-right: 1rem;
+        }
 
-    .rankings-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
-    }
+        .rank-team {
+            flex: 1;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
 
-    .rank-item {
-        background: rgba(0, 0, 0, 0.4);
-        padding: 0.8rem;
-        border-radius: 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-left: 3px solid #fbbf24;
-    }
-
-    .rank-number {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #60a5fa;
-        margin-right: 1rem;
-    }
-
-    .rank-team {
-        flex: 1;
-        font-weight: 600;
-        color: #f1f5f9;
-    }
-
-    .rank-record {
-        color: #94a3b8;
-        font-size: 0.9rem;
-    }
-</style>
-```
-
+        .rank-record {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -586,631 +582,627 @@
         </div>
     </header>
 
-```
-<main class="container">
-    <!-- Big Sarge Prediction Tracker -->
-    <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(185, 28, 28, 0.15) 100%); border: 2px solid #ef4444; border-radius: 16px; padding: 2rem; margin: 2rem auto; max-width: 1200px; box-shadow: 0 0 40px rgba(239, 68, 68, 0.3);">
-        <h2 style="text-align: center; color: #ef4444; font-size: 2rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em;">🎯 BIG SARGE PREDICTION ACCURACY</h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
-            <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(239, 68, 68, 0.5);">
-                <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Season Overall</div>
-                <div style="color: #fbbf24; font-size: 3rem; font-weight: 900; margin: 0.5rem 0; text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);">56.3%</div>
-                <div style="color: #ef4444; font-size: 1.2rem; font-weight: bold;">27-21</div>
+    <main class="container">
+        <!-- Big Sarge Prediction Tracker -->
+        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(185, 28, 28, 0.15) 100%); border: 2px solid #ef4444; border-radius: 16px; padding: 2rem; margin: 2rem auto; max-width: 1200px; box-shadow: 0 0 40px rgba(239, 68, 68, 0.3);">
+            <h2 style="text-align: center; color: #ef4444; font-size: 2rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em;">🎯 BIG SARGE PREDICTION ACCURACY</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(239, 68, 68, 0.5);">
+                    <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Season Overall</div>
+                    <div style="color: #fbbf24; font-size: 3rem; font-weight: 900; margin: 0.5rem 0; text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);">56.3%</div>
+                    <div style="color: #ef4444; font-size: 1.2rem; font-weight: bold;">27-21</div>
+                </div>
+                
+                <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                    <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 1</div>
+                    <div style="color: #ffd700; font-size: 2rem; font-weight: bold;">81.3%</div>
+                    <div style="color: #f1f5f9; font-size: 1rem;">13-3</div>
+                </div>
+                
+                <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                    <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 2</div>
+                    <div style="color: #ffd700; font-size: 2rem; font-weight: bold;">57.1%</div>
+                    <div style="color: #f1f5f9; font-size: 1rem;">8-6 (2 games pending)</div>
+                </div>
+                
+                <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                    <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 3</div>
+                    <div style="color: #fbbf24; font-size: 2rem; font-weight: bold;">50.0%</div>
+                    <div style="color: #f1f5f9; font-size: 1rem;">8-8</div>
+                </div>
+                
+                <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(239, 68, 68, 0.5);">
+                    <div style="color: #ef4444; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 4</div>
+                    <div style="color: #ef4444; font-size: 2rem; font-weight: bold;">43.8%</div>
+                    <div style="color: #94a3b8; font-size: 1rem;">7-9 (Final)</div>
+                </div>
             </div>
             
-            <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center;">
-                <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 1</div>
-                <div style="color: #ffd700; font-size: 2rem; font-weight: bold;">81.3%</div>
-                <div style="color: #f1f5f9; font-size: 1rem;">13-3</div>
+            <div style="background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+                <p style="color: #ef4444; margin: 0; font-weight: 600;">📉 BIG SARGE'S WEEK 4 REALITY CHECK:</p>
+                <p style="color: #cbd5e1; margin: 0.5rem 0 0 0;">• Giants upset Chargers (HUGE MISS) • Ravens blown out by Chiefs (WRONG) • Multiple upsets hit hard • Accuracy dropped to 43.8%</p>
             </div>
+        </div>
+
+        <!-- Week Selector -->
+        <div class="week-tabs">
+            <button class="week-tab" onclick="showWeek(3)">Week 3 Results</button>
+            <button class="week-tab active" onclick="showWeek(4)">Week 4 Results</button>
+        </div>
+
+        <!-- Week 3 Content -->
+        <div id="week3" class="tab-content">
+            <!-- Previous Week 3 content would go here -->
+            <div style="text-align: center; padding: 3rem; color: #94a3b8;">
+                <h2>Week 3 Results</h2>
+                <p>Click "Week 4 Results" to see the latest games and analysis.</p>
+            </div>
+        </div>
+
+        <!-- Week 4 Content -->
+        <div id="week4" class="tab-content active">
+            <!-- Major Week 4 Injuries -->
+            <div class="injury-section">
+                <h2 class="injury-title">⚠️ Major Week 4 Injuries & Updates</h2>
+                <div class="injury-grid">
+                    <div class="injury-card">
+                        <div class="injury-player">Lamar Jackson - BAL</div>
+                        <div class="injury-details">Hamstring Injury (vs Chiefs)</div>
+                        <span class="injury-status status-critical">LEFT GAME Q3</span>
+                    </div>
+                    <div class="injury-card">
+                        <div class="injury-player">Roquan Smith - BAL</div>
+                        <div class="injury-details">Hamstring Injury</div>
+                        <span class="injury-status status-major">LEFT GAME</span>
+                    </div>
+                    <div class="injury-card">
+                        <div class="injury-player">Marlon Humphrey - BAL</div>
+                        <div class="injury-details">Calf Injury</div>
+                        <span class="injury-status status-major">LEFT GAME</span>
+                    </div>
+                    <div class="injury-card">
+                        <div class="injury-player">Ronnie Stanley - BAL</div>
+                        <div class="injury-details">Ankle Injury</div>
+                        <span class="injury-status status-moderate">LEFT GAME</span>
+                    </div>
+                    <div class="injury-card">
+                        <div class="injury-player">Nate Wiggins - BAL</div>
+                        <div class="injury-details">Elbow Injury</div>
+                        <span class="injury-status status-moderate">CARTED OFF</span>
+                    </div>
+                    <div class="injury-card">
+                        <div class="injury-player">James Conner - ARI</div>
+                        <div class="injury-details">Knee Injury</div>
+                        <span class="injury-status status-major">WEEK 5 DOUBTFUL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Updated Standings -->
+            <div class="standings-section">
+                <div class="standings-card">
+                    <h3 class="standings-title undefeated">UNDEFEATED TEAMS (4-0)</h3>
+                    <div class="team-list">
+                        <span class="team-badge">Bills</span>
+                        <span class="team-badge">Eagles</span>
+                        <span class="team-badge">Lions</span>
+                    </div>
+                </div>
+                <div class="standings-card">
+                    <h3 class="standings-title winless">WINLESS TEAMS (0-4)</h3>
+                    <div class="team-list">
+                        <span class="team-badge">Saints</span>
+                        <span class="team-badge">Titans</span>
+                    </div>
+                </div>
+                <div class="standings-card">
+                    <h3 class="standings-title" style="color: #ef4444;">STRUGGLING TEAMS (1-3)</h3>
+                    <div class="team-list">
+                        <span class="team-badge">Ravens</span>
+                        <span class="team-badge">Texans</span>
+                        <span class="team-badge">Giants</span>
+                        <span class="team-badge">Browns</span>
+                        <span class="team-badge">Panthers</span>
+                        <span class="team-badge">Raiders</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thursday Night Football Week 4 -->
+            <section class="games-section">
+                <h2 class="section-title">Thursday Night Football - September 25</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                            <span class="prime-badge">TNF PRIME</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Seahawks</div>
+                                <div class="team-record">3-1</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Cardinals</div>
+                                <div class="team-record">2-2</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score winning-score">30</span>
+                            <span>-</span>
+                            <span class="score">18</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Seahawks dominate without Conner
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sunday Early Games Week 4 -->
+            <section class="games-section">
+                <h2 class="section-title">Sunday Early Games - September 28</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <span class="upset-badge">UPSET!</span>
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                            <span class="prime-badge">DUBLIN</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Vikings</div>
+                                <div class="team-record">2-2</div>
+                            </div>
+                            <div class="vs-symbol">vs</div>
+                            <div class="team-info">
+                                <div class="team-name">Steelers</div>
+                                <div class="team-record">3-1</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score">16</span>
+                            <span>-</span>
+                            <span class="score winning-score">28</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Steelers dominate in Dublin
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Saints</div>
+                                <div class="team-record">0-4</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Bills</div>
+                                <div class="team-record">4-0</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score">19</span>
+                            <span>-</span>
+                            <span class="score winning-score">31</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Bills cover spread but closer than expected
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <span class="upset-badge">MASSIVE UPSET!</span>
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Chargers</div>
+                                <div class="team-record">3-1</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Giants</div>
+                                <div class="team-record">1-3</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score">18</span>
+                            <span>-</span>
+                            <span class="score winning-score">21</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Jaxson Dart's debut stuns Chargers!
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Browns</div>
+                                <div class="team-record">1-3</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Lions</div>
+                                <div class="team-record">4-0</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score">10</span>
+                            <span>-</span>
+                            <span class="score winning-score">34</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Lions crush Browns as expected
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Eagles</div>
+                                <div class="team-record">4-0</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Buccaneers</div>
+                                <div class="team-record">3-1</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score winning-score">31</span>
+                            <span>-</span>
+                            <span class="score">25</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Eagles stay perfect in tight battle
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Commanders</div>
+                                <div class="team-record">2-2</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Falcons</div>
+                                <div class="team-record">2-2</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score">27</span>
+                            <span>-</span>
+                            <span class="score winning-score">34</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Falcons bounce back with big win
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <span class="upset-badge">SHUTOUT!</span>
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Titans</div>
+                                <div class="team-record">0-4</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Texans</div>
+                                <div class="team-record">1-3</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score">0</span>
+                            <span>-</span>
+                            <span class="score winning-score">26</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Texans shut out winless Titans
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Panthers</div>
+                                <div class="team-record">1-3</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Patriots</div>
+                                <div class="team-record">2-2</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score">13</span>
+                            <span>-</span>
+                            <span class="score winning-score">42</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Patriots demolish Panthers at home
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <span class="upset-badge">UPSET!</span>
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Colts</div>
+                                <div class="team-record">3-1</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Bears</div>
+                                <div class="team-record">2-2</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score">20</span>
+                            <span>-</span>
+                            <span class="score winning-score">24</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Bears defense steps up for home win
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sunday Late Games Week 4 -->
+            <section class="games-section">
+                <h2 class="section-title">Sunday Late Games</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <span style="position: absolute; top: 15px; left: 15px; background: linear-gradient(135deg, #ef4444, #dc2626); color: white; padding: 5px 15px; border-radius: 25px; font-size: 0.8rem; font-weight: bold;">LAMAR HURT</span>
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Ravens</div>
+                                <div class="team-record">1-3</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Chiefs</div>
+                                <div class="team-record">2-2</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score">20</span>
+                            <span>-</span>
+                            <span class="score winning-score">37</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Mahomes throws 4 TDs, Jackson injured
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <span class="upset-badge">UPSET!</span>
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Jaguars</div>
+                                <div class="team-record">2-2</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">49ers</div>
+                                <div class="team-record">3-1</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score winning-score">26</span>
+                            <span>-</span>
+                            <span class="score">21</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Jags hand 49ers first loss
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <span class="upset-badge">UPSET!</span>
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Colts</div>
+                                <div class="team-record">3-1</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Rams</div>
+                                <div class="team-record">2-2</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score">20</span>
+                            <span>-</span>
+                            <span class="score winning-score">27</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Rams late rally shocks Colts
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Raiders</div>
+                                <div class="team-record">1-3</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Bears</div>
+                                <div class="team-record">2-2</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score">24</span>
+                            <span>-</span>
+                            <span class="score winning-score">25</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Bears squeeze by Raiders
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sunday Night Football Week 4 -->
+            <section class="games-section">
+                <h2 class="section-title">Sunday Night Football</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                            <span class="prime-badge">SNF NBC</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Packers</div>
+                                <div class="team-record">3-1</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Cowboys</div>
+                                <div class="team-record">1-3</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score winning-score">31</span>
+                            <span>-</span>
+                            <span class="score">17</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Packers dominate in Dallas
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Monday Night Football Week 4 -->
+            <section class="games-section">
+                <h2 class="section-title">Monday Night Football - September 29</h2>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                            <span class="prime-badge">MNF ESPN</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Jets</div>
+                                <div class="team-record">1-3</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Dolphins</div>
+                                <div class="team-record">1-3</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score winning-score">24</span>
+                            <span>-</span>
+                            <span class="score">17</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Jets avoid 0-4 start in Miami
+                        </div>
+                    </div>
+
+                    <div class="game-card">
+                        <div class="game-header">
+                            <span class="game-time">FINAL</span>
+                            <span class="prime-badge">MNF ABC</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Bengals</div>
+                                <div class="team-record">2-2</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Broncos</div>
+                                <div class="team-record">2-2</div>
+                            </div>
+                        </div>
+                        <div class="score-line">
+                            <span class="score">17</span>
+                            <span>-</span>
+                            <span class="score winning-score">28</span>
+                        </div>
+                        <div class="game-result result-final">
+                            Broncos defense dominates backup QB
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Big Sarge NFL Game Day Center. All rights reserved.</p>
+        <p>Week 4 was a humbling reminder that NFL predictions are incredibly difficult</p>
+        <p>Major upsets included Giants over Chargers and multiple defensive performances</p>
+        <p>Season Record: 27-21 (56.3%) • Follow Big Sarge for weekly NFL predictions and analysis</p>
+    </footer>
+
+    <script>
+        function showWeek(week) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
             
-            <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center;">
-                <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 2</div>
-                <div style="color: #ffd700; font-size: 2rem; font-weight: bold;">57.1%</div>
-                <div style="color: #f1f5f9; font-size: 1rem;">8-6 (2 games pending)</div>
-            </div>
+            // Show selected tab
+            document.getElementById('week' + week).classList.add('active');
             
-            <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center;">
-                <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 3</div>
-                <div style="color: #fbbf24; font-size: 2rem; font-weight: bold;">50.0%</div>
-                <div style="color: #f1f5f9; font-size: 1rem;">8-8</div>
-            </div>
+            // Update button states
+            document.querySelectorAll('.week-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
             
-            <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(239, 68, 68, 0.5);">
-                <div style="color: #ef4444; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 4</div>
-                <div style="color: #ef4444; font-size: 2rem; font-weight: bold;">43.8%</div>
-                <div style="color: #94a3b8; font-size: 1rem;">7-9 (Final)</div>
-            </div>
-        </div>
-        
-        <div style="background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
-            <p style="color: #ef4444; margin: 0; font-weight: 600;">📉 BIG SARGE'S WEEK 4 REALITY CHECK:</p>
-            <p style="color: #cbd5e1; margin: 0.5rem 0 0 0;">• Giants upset Chargers (HUGE MISS) • Ravens blown out by Chiefs (WRONG) • Multiple upsets hit hard • Accuracy dropped to 43.8%</p>
-        </div>
-    </div>
-
-    <!-- Week Selector -->
-    <div class="week-tabs">
-        <button class="week-tab" onclick="showWeek(3)">Week 3 Results</button>
-        <button class="week-tab active" onclick="showWeek(4)">Week 4 Results</button>
-    </div>
-
-    <!-- Week 3 Content -->
-    <div id="week3" class="tab-content">
-        <!-- Previous Week 3 content would go here -->
-        <div style="text-align: center; padding: 3rem; color: #94a3b8;">
-            <h2>Week 3 Results</h2>
-            <p>Click "Week 4 Results" to see the latest games and analysis.</p>
-        </div>
-    </div>
-
-    <!-- Week 4 Content -->
-    <div id="week4" class="tab-content active">
-        <!-- Major Week 4 Injuries -->
-        <div class="injury-section">
-            <h2 class="injury-title">⚠️ Major Week 4 Injuries & Updates</h2>
-            <div class="injury-grid">
-                <div class="injury-card">
-                    <div class="injury-player">Lamar Jackson - BAL</div>
-                    <div class="injury-details">Hamstring Injury (vs Chiefs)</div>
-                    <span class="injury-status status-critical">LEFT GAME Q3</span>
-                </div>
-                <div class="injury-card">
-                    <div class="injury-player">Roquan Smith - BAL</div>
-                    <div class="injury-details">Hamstring Injury</div>
-                    <span class="injury-status status-major">LEFT GAME</span>
-                </div>
-                <div class="injury-card">
-                    <div class="injury-player">Marlon Humphrey - BAL</div>
-                    <div class="injury-details">Calf Injury</div>
-                    <span class="injury-status status-major">LEFT GAME</span>
-                </div>
-                <div class="injury-card">
-                    <div class="injury-player">Ronnie Stanley - BAL</div>
-                    <div class="injury-details">Ankle Injury</div>
-                    <span class="injury-status status-moderate">LEFT GAME</span>
-                </div>
-                <div class="injury-card">
-                    <div class="injury-player">Nate Wiggins - BAL</div>
-                    <div class="injury-details">Elbow Injury</div>
-                    <span class="injury-status status-moderate">CARTED OFF</span>
-                </div>
-                <div class="injury-card">
-                    <div class="injury-player">James Conner - ARI</div>
-                    <div class="injury-details">Knee Injury</div>
-                    <span class="injury-status status-major">WEEK 5 DOUBTFUL</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Updated Standings -->
-        <div class="standings-section">
-            <div class="standings-card">
-                <h3 class="standings-title undefeated">UNDEFEATED TEAMS (4-0)</h3>
-                <div class="team-list">
-                    <span class="team-badge">Bills</span>
-                    <span class="team-badge">Eagles</span>
-                    <span class="team-badge">Lions</span>
-                </div>
-            </div>
-            <div class="standings-card">
-                <h3 class="standings-title winless">WINLESS TEAMS (0-4)</h3>
-                <div class="team-list">
-                    <span class="team-badge">Saints</span>
-                    <span class="team-badge">Titans</span>
-                </div>
-            </div>
-            <div class="standings-card">
-                <h3 class="standings-title" style="color: #ef4444;">STRUGGLING TEAMS (1-3)</h3>
-                <div class="team-list">
-                    <span class="team-badge">Ravens</span>
-                    <span class="team-badge">Texans</span>
-                    <span class="team-badge">Giants</span>
-                    <span class="team-badge">Browns</span>
-                    <span class="team-badge">Panthers</span>
-                    <span class="team-badge">Raiders</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Thursday Night Football Week 4 -->
-        <section class="games-section">
-            <h2 class="section-title">Thursday Night Football - September 25</h2>
-            <div class="games-grid">
-                <div class="game-card">
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                        <span class="prime-badge">TNF PRIME</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Seahawks</div>
-                            <div class="team-record">3-1</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Cardinals</div>
-                            <div class="team-record">2-2</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score winning-score">30</span>
-                        <span>-</span>
-                        <span class="score">18</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Seahawks dominate without Conner
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sunday Early Games Week 4 -->
-        <section class="games-section">
-            <h2 class="section-title">Sunday Early Games - September 28</h2>
-            <div class="games-grid">
-                <div class="game-card">
-                    <span class="upset-badge">UPSET!</span>
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                        <span class="prime-badge">DUBLIN</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Vikings</div>
-                            <div class="team-record">2-2</div>
-                        </div>
-                        <div class="vs-symbol">vs</div>
-                        <div class="team-info">
-                            <div class="team-name">Steelers</div>
-                            <div class="team-record">3-1</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score">16</span>
-                        <span>-</span>
-                        <span class="score winning-score">28</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Steelers dominate in Dublin
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Saints</div>
-                            <div class="team-record">0-4</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Bills</div>
-                            <div class="team-record">4-0</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score">19</span>
-                        <span>-</span>
-                        <span class="score winning-score">31</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Bills cover spread but closer than expected
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <span class="upset-badge">MASSIVE UPSET!</span>
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Chargers</div>
-                            <div class="team-record">3-1</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Giants</div>
-                            <div class="team-record">1-3</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score">18</span>
-                        <span>-</span>
-                        <span class="score winning-score">21</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Jaxson Dart's debut stuns Chargers!
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Browns</div>
-                            <div class="team-record">1-3</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Lions</div>
-                            <div class="team-record">4-0</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score">10</span>
-                        <span>-</span>
-                        <span class="score winning-score">34</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Lions crush Browns as expected
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Eagles</div>
-                            <div class="team-record">4-0</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Buccaneers</div>
-                            <div class="team-record">3-1</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score winning-score">31</span>
-                        <span>-</span>
-                        <span class="score">25</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Eagles stay perfect in tight battle
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Commanders</div>
-                            <div class="team-record">2-2</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Falcons</div>
-                            <div class="team-record">2-2</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score">27</span>
-                        <span>-</span>
-                        <span class="score winning-score">34</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Falcons bounce back with big win
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <span class="upset-badge">SHUTOUT!</span>
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Titans</div>
-                            <div class="team-record">0-4</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Texans</div>
-                            <div class="team-record">1-3</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score">0</span>
-                        <span>-</span>
-                        <span class="score winning-score">26</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Texans shut out winless Titans
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Panthers</div>
-                            <div class="team-record">1-3</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Patriots</div>
-                            <div class="team-record">2-2</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score">13</span>
-                        <span>-</span>
-                        <span class="score winning-score">42</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Patriots demolish Panthers at home
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <span class="upset-badge">UPSET!</span>
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Colts</div>
-                            <div class="team-record">3-1</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Bears</div>
-                            <div class="team-record">2-2</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score">20</span>
-                        <span>-</span>
-                        <span class="score winning-score">24</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Bears defense steps up for home win
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sunday Late Games Week 4 -->
-        <section class="games-section">
-            <h2 class="section-title">Sunday Late Games</h2>
-            <div class="games-grid">
-                <div class="game-card">
-                    <span style="position: absolute; top: 15px; left: 15px; background: linear-gradient(135deg, #ef4444, #dc2626); color: white; padding: 5px 15px; border-radius: 25px; font-size: 0.8rem; font-weight: bold;">LAMAR HURT</span>
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Ravens</div>
-                            <div class="team-record">1-3</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Chiefs</div>
-                            <div class="team-record">2-2</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score">20</span>
-                        <span>-</span>
-                        <span class="score winning-score">37</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Mahomes throws 4 TDs, Jackson injured
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <span class="upset-badge">UPSET!</span>
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Jaguars</div>
-                            <div class="team-record">2-2</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">49ers</div>
-                            <div class="team-record">3-1</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score winning-score">26</span>
-                        <span>-</span>
-                        <span class="score">21</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Jags hand 49ers first loss
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <span class="upset-badge">UPSET!</span>
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Colts</div>
-                            <div class="team-record">3-1</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Rams</div>
-                            <div class="team-record">2-2</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score">20</span>
-                        <span>-</span>
-                        <span class="score winning-score">27</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Rams late rally shocks Colts
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Raiders</div>
-                            <div class="team-record">1-3</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Bears</div>
-                            <div class="team-record">2-2</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score">24</span>
-                        <span>-</span>
-                        <span class="score winning-score">25</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Bears squeeze by Raiders
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sunday Night Football Week 4 -->
-        <section class="games-section">
-            <h2 class="section-title">Sunday Night Football</h2>
-            <div class="games-grid">
-                <div class="game-card">
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                        <span class="prime-badge">SNF NBC</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Packers</div>
-                            <div class="team-record">3-1</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Cowboys</div>
-                            <div class="team-record">1-3</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score winning-score">31</span>
-                        <span>-</span>
-                        <span class="score">17</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Packers dominate in Dallas
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Monday Night Football Week 4 -->
-        <section class="games-section">
-            <h2 class="section-title">Monday Night Football - September 29</h2>
-            <div class="games-grid">
-                <div class="game-card">
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                        <span class="prime-badge">MNF ESPN</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Jets</div>
-                            <div class="team-record">1-3</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Dolphins</div>
-                            <div class="team-record">1-3</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score winning-score">24</span>
-                        <span>-</span>
-                        <span class="score">17</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Jets avoid 0-4 start in Miami
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-header">
-                        <span class="game-time">FINAL</span>
-                        <span class="prime-badge">MNF ABC</span>
-                    </div>
-                    <div class="teams-matchup">
-                        <div class="team-info">
-                            <div class="team-name">Bengals</div>
-                            <div class="team-record">2-2</div>
-                        </div>
-                        <div class="vs-symbol">@</div>
-                        <div class="team-info">
-                            <div class="team-name">Broncos</div>
-                            <div class="team-record">2-2</div>
-                        </div>
-                    </div>
-                    <div class="score-line">
-                        <span class="score">17</span>
-                        <span>-</span>
-                        <span class="score winning-score">28</span>
-                    </div>
-                    <div class="game-result result-final">
-                        Broncos defense dominates backup QB
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-</main>
-
-<footer class="footer">
-    <p>&copy; 2025 Big Sarge NFL Game Day Center. All rights reserved.</p>
-    <p>Week 4 was a humbling reminder that NFL predictions are incredibly difficult</p>
-    <p>Major upsets included Giants over Chargers and multiple defensive performances</p>
-    <p>Season Record: 27-21 (56.3%) • Follow Big Sarge for weekly NFL predictions and analysis</p>
-</footer>
-
-<script>
-    function showWeek(week) {
-        // Hide all tabs
-        document.querySelectorAll('.tab-content').forEach(tab => {
-            tab.classList.remove('active');
-        });
-        
-        // Show selected tab
-        document.getElementById('week' + week).classList.add('active');
-        
-        // Update button states
-        document.querySelectorAll('.week-tab').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        
-        // Add active class to clicked button
-        event.target.classList.add('active');
-    }
-</script>
-```
-
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
-
