@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Big Sarge NFL 2025 Game Day Center</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&family=Inter:wght@400;600;700;900&display=swap');
 
@@ -15,11 +16,35 @@
         box-sizing: border-box;
     }
 
+    :root {
+        --bg-primary: #0a0e1a;
+        --bg-secondary: #1a1f3a;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --text-muted: #94a3b8;
+        --accent-blue: #3b82f6;
+        --accent-gold: #fbbf24;
+        --accent-green: #22c55e;
+        --accent-red: #ef4444;
+        --card-bg: rgba(30, 41, 59, 0.95);
+        --card-border: rgba(100, 116, 139, 0.3);
+    }
+
+    body.light-mode {
+        --bg-primary: #f1f5f9;
+        --bg-secondary: #e2e8f0;
+        --text-primary: #0f172a;
+        --text-secondary: #334155;
+        --text-muted: #64748b;
+        --card-bg: rgba(255, 255, 255, 0.95);
+        --card-border: rgba(203, 213, 225, 0.8);
+    }
+
     body {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background: #0a0e1a;
+        background: var(--bg-primary);
         background-image: 
-            linear-gradient(135deg, #0a0e1a 0%, #1a1f3a 100%),
+            linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%),
             repeating-linear-gradient(
                 45deg,
                 transparent,
@@ -27,9 +52,10 @@
                 rgba(255, 255, 255, 0.01) 10px,
                 rgba(255, 255, 255, 0.01) 20px
             );
-        color: #f1f5f9;
+        color: var(--text-primary);
         min-height: 100vh;
         line-height: 1.6;
+        transition: background 0.3s ease, color 0.3s ease;
     }
 
     .header {
@@ -81,6 +107,69 @@
         margin-bottom: 1rem;
     }
 
+    .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        background: var(--accent-blue);
+        border: none;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+    }
+
+    .controls-bar {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .search-box {
+        padding: 12px 20px;
+        border-radius: 25px;
+        border: 2px solid var(--accent-blue);
+        background: var(--card-bg);
+        color: var(--text-primary);
+        font-size: 1rem;
+        min-width: 250px;
+        transition: all 0.3s ease;
+    }
+
+    .search-box:focus {
+        outline: none;
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+
+    .filter-btn {
+        padding: 12px 20px;
+        background: var(--card-bg);
+        border: 2px solid var(--card-border);
+        color: var(--text-primary);
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+        background: var(--accent-blue);
+        color: white;
+        border-color: var(--accent-blue);
+    }
+
     .week-tabs {
         display: flex;
         justify-content: center;
@@ -110,6 +199,32 @@
     .week-tab.active {
         background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
         box-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+    }
+
+    .chart-section {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 2rem 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .chart-title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--accent-gold);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+    .charts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
     }
 
     .injury-section {
@@ -144,6 +259,10 @@
         border-left: 4px solid #dc2626;
     }
 
+    body.light-mode .injury-card {
+        background: rgba(220, 38, 38, 0.1);
+    }
+
     .injury-player {
         color: #fbbf24;
         font-weight: bold;
@@ -151,7 +270,7 @@
     }
 
     .injury-details {
-        color: #cbd5e1;
+        color: var(--text-secondary);
         margin-top: 0.5rem;
     }
 
@@ -187,8 +306,8 @@
     }
 
     .standings-card {
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
-        border: 1px solid rgba(100, 116, 139, 0.3);
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
         border-radius: 12px;
         padding: 1.5rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -226,6 +345,10 @@
         font-weight: 600;
     }
 
+    body.light-mode .team-badge {
+        background: rgba(226, 232, 240, 0.8);
+    }
+
     .games-section {
         margin: 3rem 0;
     }
@@ -233,7 +356,7 @@
     .section-title {
         font-family: 'Russo One', sans-serif;
         font-size: 2rem;
-        color: #fbbf24;
+        color: var(--accent-gold);
         margin: 2rem 0 1.5rem;
         padding-bottom: 0.5rem;
         border-bottom: 2px solid rgba(251, 191, 36, 0.3);
@@ -249,13 +372,17 @@
     }
 
     .game-card {
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
-        border: 1px solid rgba(100, 116, 139, 0.3);
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
         border-radius: 16px;
         padding: 1.5rem;
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+    }
+
+    .game-card.hidden {
+        display: none;
     }
 
     .game-card::before {
@@ -291,7 +418,7 @@
 
     .game-time {
         font-size: 0.9rem;
-        color: #94a3b8;
+        color: var(--text-muted);
         font-weight: 600;
     }
 
@@ -303,6 +430,22 @@
         font-weight: bold;
         font-size: 0.8rem;
         text-transform: uppercase;
+    }
+
+    .live-indicator {
+        background: #ef4444;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.6; }
     }
 
     .teams-matchup {
@@ -320,18 +463,18 @@
     .team-name {
         font-weight: 700;
         font-size: 1.4rem;
-        color: #f1f5f9;
+        color: var(--text-primary);
         margin-bottom: 0.3rem;
     }
 
     .team-record {
         font-size: 0.9rem;
-        color: #64748b;
+        color: var(--text-muted);
     }
 
     .vs-symbol {
         padding: 0 1.5rem;
-        color: #64748b;
+        color: var(--text-muted);
         font-weight: bold;
         font-size: 1.2rem;
     }
@@ -352,6 +495,10 @@
         border-radius: 10px;
         min-width: 70px;
         text-align: center;
+    }
+
+    body.light-mode .score {
+        background: rgba(226, 232, 240, 0.8);
     }
 
     .winning-score {
@@ -378,7 +525,7 @@
 
     .prediction-text {
         font-size: 1.1rem;
-        color: #f1f5f9;
+        color: var(--text-primary);
         font-weight: 600;
     }
 
@@ -387,7 +534,7 @@
         justify-content: space-around;
         margin-top: 1rem;
         padding-top: 1rem;
-        border-top: 1px solid rgba(100, 116, 139, 0.3);
+        border-top: 1px solid var(--card-border);
     }
 
     .spread-item {
@@ -396,13 +543,13 @@
 
     .spread-label {
         font-size: 0.8rem;
-        color: #64748b;
+        color: var(--text-muted);
         text-transform: uppercase;
     }
 
     .spread-value {
         font-size: 1.2rem;
-        color: #fbbf24;
+        color: var(--accent-gold);
         font-weight: bold;
         margin-top: 0.3rem;
     }
@@ -436,11 +583,6 @@
         box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
     }
 
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
-
     .tab-content {
         display: none;
     }
@@ -459,8 +601,8 @@
         text-align: center;
         padding: 3rem 1rem;
         margin-top: 4rem;
-        border-top: 1px solid rgba(100, 116, 139, 0.3);
-        color: #64748b;
+        border-top: 1px solid var(--card-border);
+        color: var(--text-muted);
     }
 
     @media (max-width: 768px) {
@@ -475,25 +617,38 @@
         .score-line {
             font-size: 1.8rem;
         }
+
+        .charts-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .theme-toggle {
+            top: 10px;
+            right: 10px;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+        }
     }
 </style>
 ```
 
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1>🏈 BIG SARGE NFL 2025 GAME DAY CENTER</h1>
-            <p style="text-align: center; color: #fbbf24; font-size: 1.3rem; margin-top: 0.5rem;">
-                Season Accuracy: 56.3% (27-21) • Week 4 Complete • Week 5 Predictions Ready
-            </p>
-            <p style="text-align: center; color: #94a3b8; margin-top: 0.5rem;">
-                October 2-6, 2025 • Injury Crisis Hits NFL Hard
-            </p>
-        </div>
-    </header>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
 
 ```
+<header class="header">
+    <div class="container">
+        <h1>🏈 BIG SARGE NFL 2025 GAME DAY CENTER</h1>
+        <p style="text-align: center; color: #fbbf24; font-size: 1.3rem; margin-top: 0.5rem;">
+            Season Accuracy: <span id="season-accuracy">56.3%</span> (<span id="season-record">27-21</span>) • Week 4 Complete • Week 5 Predictions Ready
+        </p>
+        <p style="text-align: center; color: #94a3b8; margin-top: 0.5rem;">
+            October 2-6, 2025 • Injury Crisis Hits NFL Hard
+        </p>
+    </div>
+</header>
+
 <main class="container">
     <!-- Big Sarge Prediction Tracker -->
     <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(185, 28, 28, 0.15) 100%); border: 2px solid #ef4444; border-radius: 16px; padding: 2rem; margin: 2rem auto; max-width: 1200px; box-shadow: 0 0 40px rgba(239, 68, 68, 0.3);">
@@ -537,6 +692,27 @@
         </div>
     </div>
 
+    <!-- Interactive Charts Section -->
+    <div class="charts-grid">
+        <div class="chart-section">
+            <h3 class="chart-title">📊 Weekly Accuracy Trends</h3>
+            <canvas id="accuracyChart"></canvas>
+        </div>
+        <div class="chart-section">
+            <h3 class="chart-title">📈 Cumulative Record</h3>
+            <canvas id="recordChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Search and Filter Controls -->
+    <div class="controls-bar">
+        <input type="text" class="search-box" id="searchBox" placeholder="Search teams or games..." onkeyup="filterGames()">
+        <button class="filter-btn active" onclick="filterByStatus('all')">All Games</button>
+        <button class="filter-btn" onclick="filterByStatus('prime')">Prime Time</button>
+        <button class="filter-btn" onclick="filterByStatus('early')">Early Games</button>
+        <button class="filter-btn" onclick="filterByStatus('late')">Late Games</button>
+    </div>
+
     <!-- Week Selector -->
     <div class="week-tabs">
         <button class="week-tab" onclick="showWeek(4)">Week 4 Results</button>
@@ -545,8 +721,7 @@
 
     <!-- Week 4 Content -->
     <div id="week4" class="tab-content">
-        <!-- Week 4 summary would go here -->
-        <div style="text-align: center; padding: 3rem; color: #94a3b8;">
+        <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
             <h2>Week 4 Results</h2>
             <p>Click "Week 5 Predictions" to see the upcoming games and analysis.</p>
         </div>
@@ -662,7 +837,7 @@
         <section class="games-section">
             <h2 class="section-title">Thursday Night Football - October 2</h2>
             <div class="games-grid">
-                <div class="game-card">
+                <div class="game-card" data-time="prime" data-teams="49ers Rams">
                     <div class="game-header">
                         <span class="game-time">8:15 PM ET</span>
                         <span class="prime-badge">TNF PRIME</span>
@@ -704,7 +879,7 @@
         <section class="games-section">
             <h2 class="section-title">Sunday Early Games - October 5</h2>
             <div class="games-grid">
-                <div class="game-card">
+                <div class="game-card" data-time="early" data-teams="Vikings Browns">
                     <div class="game-header">
                         <span class="game-time">9:30 AM ET</span>
                         <span class="prime-badge">LONDON</span>
@@ -740,7 +915,7 @@
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card" data-time="early" data-teams="Texans Ravens">
                     <div class="game-header">
                         <span class="game-time">1:00 PM ET</span>
                     </div>
@@ -775,7 +950,7 @@
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card" data-time="early" data-teams="Dolphins Panthers">
                     <div class="game-header">
                         <span class="game-time">1:00 PM ET</span>
                     </div>
@@ -810,7 +985,7 @@
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card" data-time="early" data-teams="Raiders Colts">
                     <div class="game-header">
                         <span class="game-time">1:00 PM ET</span>
                     </div>
@@ -845,7 +1020,7 @@
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card" data-time="early" data-teams="Giants Saints">
                     <div class="game-header">
                         <span class="game-time">1:00 PM ET</span>
                     </div>
@@ -880,7 +1055,7 @@
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card" data-time="early" data-teams="Cowboys Jets">
                     <div class="game-header">
                         <span class="game-time">1:00 PM ET</span>
                     </div>
@@ -915,7 +1090,7 @@
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card" data-time="early" data-teams="Broncos Eagles">
                     <div class="game-header">
                         <span class="game-time">1:00 PM ET</span>
                     </div>
@@ -956,7 +1131,7 @@
         <section class="games-section">
             <h2 class="section-title">Sunday Late Games - October 5</h2>
             <div class="games-grid">
-                <div class="game-card">
+                <div class="game-card" data-time="late" data-teams="Titans Cardinals">
                     <div class="game-header">
                         <span class="game-time">4:05 PM ET</span>
                     </div>
@@ -991,7 +1166,7 @@
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card" data-time="late" data-teams="Buccaneers Seahawks">
                     <div class="game-header">
                         <span class="game-time">4:05 PM ET</span>
                     </div>
@@ -1026,7 +1201,7 @@
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card" data-time="late" data-teams="Commanders Chargers">
                     <div class="game-header">
                         <span class="game-time">4:05 PM ET</span>
                     </div>
@@ -1061,7 +1236,7 @@
                     </div>
                 </div>
 
-                <div class="game-card">
+                <div class="game-card" data-time="late" data-teams="Lions Bengals">
                     <div class="game-header">
                         <span class="game-time">4:25 PM ET</span>
                     </div>
@@ -1102,7 +1277,7 @@
         <section class="games-section">
             <h2 class="section-title">Sunday Night Football</h2>
             <div class="games-grid">
-                <div class="game-card">
+                <div class="game-card" data-time="prime" data-teams="Patriots Bills">
                     <div class="game-header">
                         <span class="game-time">8:20 PM ET</span>
                         <span class="prime-badge">SNF NBC</span>
@@ -1144,7 +1319,7 @@
         <section class="games-section">
             <h2 class="section-title">Monday Night Football - October 6</h2>
             <div class="games-grid">
-                <div class="game-card">
+                <div class="game-card" data-time="prime" data-teams="Chiefs Jaguars">
                     <div class="game-header">
                         <span class="game-time">8:15 PM ET</span>
                         <span class="prime-badge">MNF ESPN</span>
@@ -1191,23 +1366,229 @@
 </footer>
 
 <script>
+    // Theme Toggle
+    function toggleTheme() {
+        document.body.classList.toggle('light-mode');
+        const theme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+        localStorage.setItem('theme', theme);
+    }
+
+    // Load saved theme
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+        }
+        
+        // Initialize charts
+        initCharts();
+    });
+
+    // Week Tab Switching
     function showWeek(week) {
-        // Hide all tabs
         document.querySelectorAll('.tab-content').forEach(tab => {
             tab.classList.remove('active');
         });
         
-        // Show selected tab
         document.getElementById('week' + week).classList.add('active');
         
-        // Update button states
         document.querySelectorAll('.week-tab').forEach(btn => {
             btn.classList.remove('active');
         });
         
-        // Add active class to clicked button
         event.target.classList.add('active');
     }
+
+    // Search and Filter Functions
+    function filterGames() {
+        const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+        const gameCards = document.querySelectorAll('.game-card');
+        
+        gameCards.forEach(card => {
+            const teams = card.getAttribute('data-teams').toLowerCase();
+            if (teams.includes(searchTerm)) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
+
+    function filterByStatus(status) {
+        const gameCards = document.querySelectorAll('.game-card');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        
+        // Update button states
+        filterBtns.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        // Clear search
+        document.getElementById('searchBox').value = '';
+        
+        // Filter cards
+        gameCards.forEach(card => {
+            const timeSlot = card.getAttribute('data-time');
+            
+            if (status === 'all') {
+                card.classList.remove('hidden');
+            } else if (status === timeSlot) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
+
+    // Initialize Charts
+    function initCharts() {
+        // Weekly Accuracy Chart
+        const accuracyCtx = document.getElementById('accuracyChart').getContext('2d');
+        new Chart(accuracyCtx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Prediction Accuracy %',
+                    data: [81.3, 57.1, 50.0, 43.8],
+                    borderColor: '#fbbf24',
+                    backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                    pointBackgroundColor: '#fbbf24',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: getComputedStyle(document.body).getPropertyValue('--text-primary'),
+                            font: { size: 14, weight: 'bold' }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: '#fbbf24',
+                        bodyColor: '#fff',
+                        borderColor: '#fbbf24',
+                        borderWidth: 1,
+                        padding: 12,
+                        displayColors: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            color: getComputedStyle(document.body).getPropertyValue('--text-muted'),
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(100, 116, 139, 0.2)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: getComputedStyle(document.body).getPropertyValue('--text-muted')
+                        },
+                        grid: {
+                            color: 'rgba(100, 116, 139, 0.2)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Cumulative Record Chart
+        const recordCtx = document.getElementById('recordChart').getContext('2d');
+        new Chart(recordCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Season Total'],
+                datasets: [{
+                    label: 'Wins',
+                    data: [13, 8, 8, 7, 27],
+                    backgroundColor: '#22c55e',
+                    borderColor: '#16a34a',
+                    borderWidth: 2
+                }, {
+                    label: 'Losses',
+                    data: [3, 6, 8, 9, 21],
+                    backgroundColor: '#ef4444',
+                    borderColor: '#dc2626',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: getComputedStyle(document.body).getPropertyValue('--text-primary'),
+                            font: { size: 14, weight: 'bold' }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: '#fbbf24',
+                        bodyColor: '#fff',
+                        borderColor: '#fbbf24',
+                        borderWidth: 1,
+                        padding: 12
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: getComputedStyle(document.body).getPropertyValue('--text-muted'),
+                            stepSize: 5
+                        },
+                        grid: {
+                            color: 'rgba(100, 116, 139, 0.2)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: getComputedStyle(document.body).getPropertyValue('--text-muted')
+                        },
+                        grid: {
+                            color: 'rgba(100, 116, 139, 0.2)'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Simulate Live Score Updates (Demo)
+    function simulateLiveUpdates() {
+        // This is a placeholder for real-time score updates
+        // In production, this would connect to an API
+        setInterval(() => {
+            const now = new Date();
+            const dayOfWeek = now.getDay();
+            
+            // Example: Show live indicator on game days
+            if (dayOfWeek === 0 || dayOfWeek === 4 || dayOfWeek === 1) {
+                // Sunday, Thursday, or Monday - potential game days
+                // You could add live indicators to relevant games here
+            }
+        }, 60000); // Check every minute
+    }
+
+    // Start live update simulation
+    simulateLiveUpdates();
 </script>
 ```
 
