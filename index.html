@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Sarge NFL 2025 Game Day Center - Weeks 5 & 6</title>
+    <title>Big Sarge NFL 2025 Game Day Center - Weeks 6 & 7</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&family=Inter:wght@400;600;700;900&display=swap');
@@ -223,77 +223,6 @@
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
-        }
-
-        .injury-section {
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(153, 27, 27, 0.15) 100%);
-            border: 2px solid #dc2626;
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 0 40px rgba(220, 38, 38, 0.3);
-        }
-
-        .injury-title {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #ef4444;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .injury-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-        }
-
-        .injury-card {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #dc2626;
-        }
-
-        body.light-mode .injury-card {
-            background: rgba(220, 38, 38, 0.1);
-        }
-
-        .injury-player {
-            color: #fbbf24;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .injury-details {
-            color: var(--text-secondary);
-            margin-top: 0.5rem;
-        }
-
-        .injury-status {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-top: 0.5rem;
-        }
-
-        .status-critical {
-            background: #dc2626;
-            color: white;
-        }
-
-        .status-major {
-            background: #ea580c;
-            color: white;
-        }
-
-        .status-moderate {
-            background: #ca8a04;
-            color: white;
         }
 
         .standings-section {
@@ -644,10 +573,10 @@
         <div class="container">
             <h1>🏈 BIG SARGE NFL 2025 GAME DAY CENTER</h1>
             <p style="text-align: center; color: #fbbf24; font-size: 1.3rem; margin-top: 0.5rem;">
-                Season Accuracy: <span id="season-accuracy">45.8%</span> (<span id="season-record">33-39</span>) • Week 6 In Progress
+                Season Accuracy: <span id="season-accuracy">56.0%</span> (<span id="season-record">42-33</span>) • Week 6 Complete: 7-8 (46.7%)
             </p>
             <p style="text-align: center; color: #94a3b8; margin-top: 0.5rem;">
-                🌍 International Series Complete • Sunday-Monday Action Ongoing
+                📊 Updated October 14, 2025 • Week 7 Predictions Live
             </p>
         </div>
     </header>
@@ -656,54 +585,54 @@
         <!-- Big Sarge Prediction Tracker -->
         <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(185, 28, 28, 0.15) 100%); border: 2px solid #ef4444; border-radius: 16px; padding: 2rem; margin: 2rem auto; max-width: 1200px; box-shadow: 0 0 40px rgba(239, 68, 68, 0.3);">
             <h2 style="text-align: center; color: #ef4444; font-size: 2rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em;">🎯 BIG SARGE PREDICTION TRACKER</h2>
-            
+
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
                 <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(239, 68, 68, 0.5);">
                     <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Season Overall</div>
-                    <div style="color: #fbbf24; font-size: 3rem; font-weight: 900; margin: 0.5rem 0; text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);">45.8%</div>
-                    <div style="color: #ef4444; font-size: 1.2rem; font-weight: bold;">33-39</div>
+                    <div style="color: #fbbf24; font-size: 3rem; font-weight: 900; margin: 0.5rem 0; text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);">56.0%</div>
+                    <div style="color: #22c55e; font-size: 1.2rem; font-weight: bold;">42-33</div>
                 </div>
-                
+
                 <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center;">
                     <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 1</div>
                     <div style="color: #22c55e; font-size: 2rem; font-weight: bold;">81.3%</div>
                     <div style="color: #f1f5f9; font-size: 1rem;">13-3</div>
                 </div>
-                
+
                 <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center;">
                     <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 2</div>
                     <div style="color: #fbbf24; font-size: 2rem; font-weight: bold;">57.1%</div>
                     <div style="color: #f1f5f9; font-size: 1rem;">8-6</div>
                 </div>
-                
+
                 <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center;">
                     <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 3</div>
                     <div style="color: #fbbf24; font-size: 2rem; font-weight: bold;">50.0%</div>
                     <div style="color: #f1f5f9; font-size: 1rem;">8-8</div>
                 </div>
-                
+
                 <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center;">
                     <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 4</div>
                     <div style="color: #ef4444; font-size: 2rem; font-weight: bold;">43.8%</div>
                     <div style="color: #f1f5f9; font-size: 1rem;">7-9</div>
                 </div>
 
-                <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(34, 197, 94, 0.5);">
-                    <div style="color: #22c55e; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 5</div>
+                <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                    <div style="color: #94a3b8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 5</div>
                     <div style="color: #22c55e; font-size: 2rem; font-weight: bold;">61.5%</div>
-                    <div style="color: #f1f5f9; font-size: 1rem;">8-5 ✓</div>
+                    <div style="color: #f1f5f9; font-size: 1rem;">8-5</div>
                 </div>
 
                 <div style="background: rgba(0, 0, 0, 0.4); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(239, 68, 68, 0.5);">
                     <div style="color: #ef4444; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Week 6</div>
-                    <div style="color: #ef4444; font-size: 2rem; font-weight: bold;">16.7%</div>
-                    <div style="color: #f1f5f9; font-size: 1rem;">2-10 📉</div>
+                    <div style="color: #ef4444; font-size: 2rem; font-weight: bold;">46.7%</div>
+                    <div style="color: #f1f5f9; font-size: 1rem;">7-8 ✗</div>
                 </div>
             </div>
-            
+
             <div style="background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
                 <p style="color: #ef4444; margin: 0; font-weight: 600;">📉 WEEK 6 STRUGGLES:</p>
-                <p style="color: #cbd5e1; margin: 0.5rem 0 0 0;">Big Sarge having a rough week with only 16.7% accuracy so far • Major upsets with Giants over Eagles and Chiefs over Lions • Season record drops to 33-39 (45.8%)</p>
+                <p style="color: #cbd5e1; margin: 0.5rem 0 0 0;">Tough week with major upsets • Giants shock Eagles 34-17 • Panthers beat Cowboys • Falcons upset Bills • Back to drawing board for Week 7</p>
             </div>
         </div>
 
@@ -730,517 +659,27 @@
 
         <!-- Week Selector -->
         <div class="week-tabs">
-            <button class="week-tab" onclick="showWeek(5)">Week 5 Results</button>
-            <button class="week-tab active" onclick="showWeek(6)">Week 6 Results</button>
+            <button class="week-tab" onclick="showWeek(6)">Week 6 Results</button>
+            <button class="week-tab active" onclick="showWeek(7)">Week 7 Predictions</button>
         </div>
 
-        <!-- Week 5 Content (Same as original) -->
-        <div id="week5" class="tab-content">
-            <section class="games-section">
-                <h2 class="section-title">Thursday Night Football - October 3</h2>
-                <div class="games-grid">
-                    <div class="game-card" data-time="prime" data-teams="49ers Rams">
-                        <div class="game-header">
-                            <span class="game-time">8:15 PM ET</span>
-                            <span class="prime-badge">TNF</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">49ers</div>
-                                <div class="team-record">3-1</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Rams</div>
-                                <div class="team-record">2-2</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">20</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">27</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Rams 27, 49ers 23</div>
-                        </div>
-                        <div class="game-result result-correct">
-                            ✓ CORRECT - Rams Win!
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="games-section">
-                <h2 class="section-title">🌍 Sunday London Game - October 6</h2>
-                <div class="games-grid">
-                    <div class="game-card" data-time="early" data-teams="Vikings Browns">
-                        <div class="game-header">
-                            <span class="game-time">9:30 AM ET</span>
-                            <span class="international-badge">🇬🇧 LONDON</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Vikings</div>
-                                <div class="team-record">2-2</div>
-                            </div>
-                            <div class="vs-symbol">vs</div>
-                            <div class="team-info">
-                                <div class="team-name">Browns</div>
-                                <div class="team-record">1-3</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score winning-score">31</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score">20</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Vikings 27, Browns 17</div>
-                        </div>
-                        <div class="game-result result-correct">
-                            ✓ CORRECT - Vikings Win at Tottenham!
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="games-section">
-                <h2 class="section-title">Sunday Early Games - October 6</h2>
-                <div class="games-grid">
-                    <div class="game-card" data-time="early" data-teams="Texans Ravens">
-                        <div class="game-header">
-                            <span class="game-time">1:00 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Texans</div>
-                                <div class="team-record">1-3</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Ravens</div>
-                                <div class="team-record">1-3</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">24</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">28</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Ravens 31, Texans 20</div>
-                        </div>
-                        <div class="game-result result-correct">
-                            ✓ CORRECT - Ravens Win!
-                        </div>
-                    </div>
-
-                    <div class="game-card" data-time="early" data-teams="Dolphins Panthers">
-                        <div class="game-header">
-                            <span class="game-time">1:00 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Dolphins</div>
-                                <div class="team-record">1-3</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Panthers</div>
-                                <div class="team-record">1-3</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">17</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">21</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Panthers 24, Dolphins 21</div>
-                        </div>
-                        <div class="game-result result-correct">
-                            ✓ CORRECT - Panthers Win!
-                        </div>
-                        <div class="upset-badge">UPSET!</div>
-                    </div>
-
-                    <div class="game-card" data-time="early" data-teams="Raiders Colts">
-                        <div class="game-header">
-                            <span class="game-time">1:00 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Raiders</div>
-                                <div class="team-record">1-3</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Colts</div>
-                                <div class="team-record">3-1</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">13</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">27</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Colts 28, Raiders 17</div>
-                        </div>
-                        <div class="game-result result-correct">
-                            ✓ CORRECT - Colts Win!
-                        </div>
-                    </div>
-
-                    <div class="game-card" data-time="early" data-teams="Giants Saints">
-                        <div class="game-header">
-                            <span class="game-time">1:00 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Giants</div>
-                                <div class="team-record">1-3</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Saints</div>
-                                <div class="team-record">0-4</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">17</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">24</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Giants 23, Saints 20</div>
-                        </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Saints Win!
-                        </div>
-                    </div>
-
-                    <div class="game-card" data-time="early" data-teams="Cowboys Jets">
-                        <div class="game-header">
-                            <span class="game-time">1:00 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Cowboys</div>
-                                <div class="team-record">1-2-1</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Jets</div>
-                                <div class="team-record">1-3</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score winning-score">31</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score">27</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Cowboys 24, Jets 20</div>
-                        </div>
-                        <div class="game-result result-correct">
-                            ✓ CORRECT - Cowboys Win!
-                        </div>
-                    </div>
-
-                    <div class="game-card" data-time="early" data-teams="Broncos Eagles">
-                        <div class="game-header">
-                            <span class="game-time">1:00 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Broncos</div>
-                                <div class="team-record">2-2</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Eagles</div>
-                                <div class="team-record">4-0</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">13</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">34</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Eagles 30, Broncos 17</div>
-                        </div>
-                        <div class="game-result result-correct">
-                            ✓ CORRECT - Eagles Win!
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="games-section">
-                <h2 class="section-title">Sunday Late Games - October 6</h2>
-                <div class="games-grid">
-                    <div class="game-card" data-time="late" data-teams="Titans Cardinals">
-                        <div class="game-header">
-                            <span class="game-time">4:05 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Titans</div>
-                                <div class="team-record">0-4</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Cardinals</div>
-                                <div class="team-record">2-2</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score winning-score">24</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score">20</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Cardinals 27, Titans 13</div>
-                        </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Titans Upset!
-                        </div>
-                        <div class="upset-badge">UPSET!</div>
-                    </div>
-
-                    <div class="game-card" data-time="late" data-teams="Buccaneers Seahawks">
-                        <div class="game-header">
-                            <span class="game-time">4:05 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Buccaneers</div>
-                                <div class="team-record">3-1</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Seahawks</div>
-                                <div class="team-record">3-1</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">20</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">24</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Seahawks 28, Buccaneers 24</div>
-                        </div>
-                        <div class="game-result result-correct">
-                            ✓ CORRECT - Seahawks Win!
-                        </div>
-                    </div>
-
-                    <div class="game-card" data-time="late" data-teams="Commanders Chargers">
-                        <div class="game-header">
-                            <span class="game-time">4:05 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Commanders</div>
-                                <div class="team-record">2-2</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Chargers</div>
-                                <div class="team-record">3-1</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score winning-score">27</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score">24</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Chargers 27, Commanders 23</div>
-                        </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Commanders Upset!
-                        </div>
-                        <div class="upset-badge">UPSET!</div>
-                    </div>
-
-                    <div class="game-card" data-time="late" data-teams="Lions Bengals">
-                        <div class="game-header">
-                            <span class="game-time">4:25 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Lions</div>
-                                <div class="team-record">4-0</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Bengals</div>
-                                <div class="team-record">2-2</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score winning-score">38</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score">27</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Lions 34, Bengals 20</div>
-                        </div>
-                        <div class="game-result result-correct">
-                            ✓ CORRECT - Lions Stay Undefeated!
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="games-section">
-                <h2 class="section-title">Sunday Night Football - October 6</h2>
-                <div class="games-grid">
-                    <div class="game-card" data-time="prime" data-teams="Patriots Bills">
-                        <div class="game-header">
-                            <span class="game-time">8:20 PM ET</span>
-                            <span class="prime-badge">SNF</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Patriots</div>
-                                <div class="team-record">2-2</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Bills</div>
-                                <div class="team-record">4-0</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">17</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">27</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Bills 31, Patriots 20</div>
-                        </div>
-                        <div class="game-result result-correct">
-                            ✓ CORRECT - Bills Win!
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="games-section">
-                <h2 class="section-title">Monday Night Football - October 7</h2>
-                <div class="games-grid">
-                    <div class="game-card" data-time="prime" data-teams="Chiefs Jaguars">
-                        <div class="game-header">
-                            <span class="game-time">8:15 PM ET</span>
-                            <span class="prime-badge">MNF</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Chiefs</div>
-                                <div class="team-record">2-2</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Jaguars</div>
-                                <div class="team-record">2-2</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score winning-score">31</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score">20</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Chiefs 28, Jaguars 24</div>
-                        </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Chiefs Blowout!
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Week 6 Content - UPDATED WITH ACTUAL SCORES -->
-        <div id="week6" class="tab-content active">
-            <!-- Major Injuries Heading Into Week 6 -->
-            <div class="injury-section">
-                <h2 class="injury-title">🚨 MAJOR INJURIES - WEEK 6 IMPACT</h2>
-                <div class="injury-grid">
-                    <div class="injury-card">
-                        <div class="injury-player">Tyreek Hill - MIA</div>
-                        <div class="injury-details">Dislocated Knee + Torn ACL/Multiple Ligaments</div>
-                        <span class="injury-status status-critical">OUT FOR SEASON</span>
-                    </div>
-                    <div class="injury-card">
-                        <div class="injury-player">Nick Bosa - SF</div>
-                        <div class="injury-details">Torn ACL (Right Knee)</div>
-                        <span class="injury-status status-critical">OUT FOR SEASON</span>
-                    </div>
-                    <div class="injury-card">
-                        <div class="injury-player">Malik Nabers - NYG</div>
-                        <div class="injury-details">Torn ACL</div>
-                        <span class="injury-status status-critical">OUT FOR SEASON</span>
-                    </div>
-                    <div class="injury-card">
-                        <div class="injury-player">Najee Harris - LAC</div>
-                        <div class="injury-details">Achilles Tear</div>
-                        <span class="injury-status status-critical">OUT FOR SEASON</span>
-                    </div>
-                    <div class="injury-card">
-                        <div class="injury-player">Lamar Jackson - BAL</div>
-                        <div class="injury-details">Hamstring Strain</div>
-                        <span class="injury-status status-major">PLAYED WEEK 6</span>
-                    </div>
-                    <div class="injury-card">
-                        <div class="injury-player">Mike Evans - TB</div>
-                        <div class="injury-details">Hamstring Injury</div>
-                        <span class="injury-status status-major">OUT 2-3 WEEKS</span>
-                    </div>
-                    <div class="injury-card">
-                        <div class="injury-player">James Conner - ARI</div>
-                        <div class="injury-details">Knee Injury</div>
-                        <span class="injury-status status-moderate">OUT WEEK 6</span>
-                    </div>
-                    <div class="injury-card">
-                        <div class="injury-player">Brock Purdy - SF</div>
-                        <div class="injury-details">Shoulder/Toe - Rest Week</div>
-                        <span class="injury-status status-moderate">ON BYE WEEK</span>
-                    </div>
-                </div>
-            </div>
-
+        <!-- Week 6 Content -->
+        <div id="week6" class="tab-content">
             <!-- Updated Standings After Week 6 -->
             <div class="standings-section">
                 <div class="standings-card">
                     <h3 class="standings-title undefeated">UNDEFEATED TEAMS (6-0)</h3>
                     <div class="team-list">
-                        <span class="team-badge">Bills</span>
+                        <span class="team-badge">Lions</span>
                     </div>
                 </div>
                 <div class="standings-card">
-                    <h3 class="standings-title" style="color: #22c55e;">5-1 TEAMS</h3>
+                    <h3 class="standings-title" style="color: #3b82f6;">ONE-LOSS TEAMS (5-1)</h3>
                     <div class="team-list">
                         <span class="team-badge">Buccaneers</span>
+                        <span class="team-badge">Eagles</span>
+                        <span class="team-badge">Chiefs</span>
+                        <span class="team-badge">Colts</span>
                     </div>
                 </div>
                 <div class="standings-card">
@@ -1251,14 +690,13 @@
                 </div>
             </div>
 
-            <!-- Thursday Night Football Week 6 -->
             <section class="games-section">
-                <h2 class="section-title">Thursday Night Football - October 9</h2>
+                <h2 class="section-title">Thursday Night Football - October 10</h2>
                 <div class="games-grid">
                     <div class="game-card" data-time="prime" data-teams="Eagles Giants">
                         <div class="game-header">
                             <span class="game-time">8:15 PM ET</span>
-                            <span class="prime-badge">TNF PRIME</span>
+                            <span class="prime-badge">TNF</span>
                         </div>
                         <div class="teams-matchup">
                             <div class="team-info">
@@ -1281,16 +719,15 @@
                             <div class="prediction-text">Eagles 31, Giants 17</div>
                         </div>
                         <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Giants HUGE Upset! Jaxson Dart & Cam Skattebo dominate!
+                            ✗ INCORRECT - Giants HUGE Upset!
                         </div>
-                        <div class="upset-badge">MASSIVE UPSET!</div>
+                        <div class="upset-badge">MEGA UPSET!</div>
                     </div>
                 </div>
             </section>
 
-            <!-- Sunday International Game Week 6 -->
             <section class="games-section">
-                <h2 class="section-title">🌍 Sunday International - October 12</h2>
+                <h2 class="section-title">🌍 Sunday London Game - October 13</h2>
                 <div class="games-grid">
                     <div class="game-card" data-time="early" data-teams="Broncos Jets">
                         <div class="game-header">
@@ -1318,416 +755,850 @@
                             <div class="prediction-text">Broncos 28, Jets 13</div>
                         </div>
                         <div class="game-result result-correct">
-                            ✓ CORRECT - Broncos Win ugly at Wembley! 9 sacks on Fields!
+                            ✓ CORRECT - Defensive Battle at Tottenham!
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Sunday Early Games Week 6 -->
             <section class="games-section">
-                <h2 class="section-title">Sunday Early Games - October 12</h2>
+                <h2 class="section-title">Sunday Early Games - October 13</h2>
                 <div class="games-grid">
-                    <div class="game-card" data-time="early" data-teams="Rams Ravens">
-                        <div class="game-header">
-                            <span class="game-time">1:00 PM ET</span>
+                    <div class="game-card" data-time="early" data-teams="Colts Cardinals">
+                        <div class="score-line">
+                            <div class="score winning-score">31</div>
+                            <div class="vs-symbol">-</div>
+                            <div class="score">27</div>
                         </div>
                         <div class="teams-matchup">
                             <div class="team-info">
-                                <div class="team-name">Rams</div>
-                                <div class="team-record">3-2</div>
+                                <div class="team-name">Colts @ Cardinals</div>
                             </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Ravens</div>
-                                <div class="team-record">2-3</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score winning-score">17</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score">3</div>
                         </div>
                         <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Ravens 27, Commanders 24</div>
+                            <div class="prediction-text">Predicted: Colts 27, Titans 20</div>
                         </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Rams dominate Ravens!
-                        </div>
+                        <div class="game-result result-correct">✓ CORRECT - Colts 5-1</div>
                     </div>
 
                     <div class="game-card" data-time="early" data-teams="Chargers Dolphins">
-                        <div class="game-header">
-                            <span class="game-time">1:00 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Chargers</div>
-                                <div class="team-record">3-2</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Dolphins</div>
-                                <div class="team-record">1-4</div>
-                            </div>
-                        </div>
                         <div class="score-line">
                             <div class="score winning-score">29</div>
                             <div class="vs-symbol">-</div>
                             <div class="score">27</div>
                         </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Chargers 31, Dolphins 20</div>
-                        </div>
-                        <div class="game-result result-correct">
-                            ✓ CORRECT - Chargers Win close without Tyreek Hill!
-                        </div>
-                    </div>
-
-                    <div class="game-card" data-time="early" data-teams="Cardinals Colts">
-                        <div class="game-header">
-                            <span class="game-time">1:00 PM ET</span>
-                        </div>
                         <div class="teams-matchup">
                             <div class="team-info">
-                                <div class="team-name">Cardinals</div>
-                                <div class="team-record">2-3</div>
+                                <div class="team-name">Chargers @ Dolphins</div>
                             </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Colts</div>
-                                <div class="team-record">4-1</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">27</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">31</div>
                         </div>
                         <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Colts 27, Titans 20</div>
+                            <div class="prediction-text">Predicted: Chargers 31, Dolphins 20</div>
                         </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Close game, Colts win!
-                        </div>
+                        <div class="game-result result-correct">✓ CORRECT - Last-Second FG!</div>
                     </div>
 
                     <div class="game-card" data-time="early" data-teams="Patriots Saints">
-                        <div class="game-header">
-                            <span class="game-time">1:00 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Patriots</div>
-                                <div class="team-record">2-3</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Saints</div>
-                                <div class="team-record">1-4</div>
-                            </div>
-                        </div>
                         <div class="score-line">
                             <div class="score winning-score">25</div>
                             <div class="vs-symbol">-</div>
                             <div class="score">19</div>
                         </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Patriots @ Saints</div>
+                            </div>
+                        </div>
                         <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Buccaneers 27, Panthers 23</div>
+                            <div class="prediction-text">Predicted: Patriots 24, Titans 21</div>
                         </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Different matchup, Patriots win
-                        </div>
+                        <div class="game-result result-correct">✓ CORRECT - Drake Maye 3 TDs</div>
                     </div>
 
-                    <div class="game-card" data-time="early" data-teams="Cowboys Panthers">
-                        <div class="game-header">
-                            <span class="game-time">1:00 PM ET</span>
+                    <div class="game-card" data-time="early" data-teams="Steelers Browns">
+                        <div class="score-line">
+                            <div class="score winning-score">23</div>
+                            <div class="vs-symbol">-</div>
+                            <div class="score">9</div>
                         </div>
                         <div class="teams-matchup">
                             <div class="team-info">
-                                <div class="team-name">Cowboys</div>
-                                <div class="team-record">2-3</div>
+                                <div class="team-name">Steelers @ Browns</div>
                             </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Panthers</div>
-                                <div class="team-record">2-3</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">27</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">30</div>
                         </div>
                         <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Cowboys 24, Patriots 17</div>
+                            <div class="prediction-text">Predicted: Steelers 23, Raiders 17</div>
                         </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Panthers Upset!
+                        <div class="game-result result-correct">✓ CORRECT - Rodgers Leads PIT</div>
+                    </div>
+
+                    <div class="game-card" data-time="early" data-teams="Panthers Cowboys">
+                        <div class="score-line">
+                            <div class="score winning-score">30</div>
+                            <div class="vs-symbol">-</div>
+                            <div class="score">27</div>
                         </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Panthers @ Cowboys</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-text">Predicted: Cowboys 24, Panthers 21</div>
+                        </div>
+                        <div class="game-result result-incorrect">✗ INCORRECT - Buzzer-Beater FG!</div>
                         <div class="upset-badge">UPSET!</div>
                     </div>
 
-                    <div class="game-card" data-time="early" data-teams="Browns Steelers">
-                        <div class="game-header">
-                            <span class="game-time">1:00 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Browns</div>
-                                <div class="team-record">1-4</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Steelers</div>
-                                <div class="team-record">3-2</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">9</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">23</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Steelers 23, Raiders 17</div>
-                        </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Steelers dominate Browns!
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Sunday Late Games Week 6 -->
-            <section class="games-section">
-                <h2 class="section-title">Sunday Late Games - October 12</h2>
-                <div class="games-grid">
-                    <div class="game-card" data-time="late" data-teams="Titans Raiders">
-                        <div class="game-header">
-                            <span class="game-time">4:05 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Titans</div>
-                                <div class="team-record">1-4</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Raiders</div>
-                                <div class="team-record">1-4</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">10</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">20</div>
-                        </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Cardinals @ Seahawks</div>
-                        </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Raiders Win
-                        </div>
-                    </div>
-
-                    <div class="game-card" data-time="late" data-teams="Seahawks Jaguars">
-                        <div class="game-header">
-                            <span class="game-time">4:05 PM ET</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Seahawks</div>
-                                <div class="team-record">4-1</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Jaguars</div>
-                                <div class="team-record">2-3</div>
-                            </div>
-                        </div>
+                    <div class="game-card" data-time="early" data-teams="Seahawks Jaguars">
                         <div class="score-line">
                             <div class="score winning-score">20</div>
                             <div class="vs-symbol">-</div>
                             <div class="score">12</div>
                         </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Seahawks @ Jaguars</div>
+                            </div>
+                        </div>
                         <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Seahawks 30, Cardinals 24</div>
+                            <div class="prediction-text">Predicted: Seahawks 30, Cardinals 24</div>
                         </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Seahawks win lower-scoring game
-                        </div>
+                        <div class="game-result result-correct">✓ CORRECT - Sam Darnold 2 TDs</div>
                     </div>
 
-                    <div class="game-card" data-time="late" data-teams="Bengals Packers">
-                        <div class="game-header">
-                            <span class="game-time">4:25 PM ET</span>
+                    <div class="game-card" data-time="early" data-teams="Rams Ravens">
+                        <div class="score-line">
+                            <div class="score winning-score">17</div>
+                            <div class="vs-symbol">-</div>
+                            <div class="score">3</div>
                         </div>
                         <div class="teams-matchup">
                             <div class="team-info">
-                                <div class="team-name">Bengals</div>
-                                <div class="team-record">2-3</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Packers</div>
-                                <div class="team-record">2-2-1</div>
+                                <div class="team-name">Rams @ Ravens</div>
                             </div>
                         </div>
+                        <div class="prediction-box">
+                            <div class="prediction-text">Predicted: Ravens 27, Commanders 24</div>
+                        </div>
+                        <div class="game-result result-correct">✓ CORRECT - No Lamar Jackson</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="games-section">
+                <h2 class="section-title">Sunday Late Games - October 13</h2>
+                <div class="games-grid">
+                    <div class="game-card" data-time="late" data-teams="Raiders Titans">
+                        <div class="score-line">
+                            <div class="score winning-score">20</div>
+                            <div class="vs-symbol">-</div>
+                            <div class="score">10</div>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Raiders @ Titans</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-text">Predicted: Seahawks 30, Cardinals 24</div>
+                        </div>
+                        <div class="game-result result-correct">✓ CORRECT - Raiders End Skid</div>
+                    </div>
+
+                    <div class="game-card" data-time="late" data-teams="Buccaneers 49ers">
+                        <div class="score-line">
+                            <div class="score winning-score">30</div>
+                            <div class="vs-symbol">-</div>
+                            <div class="score">19</div>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Buccaneers @ 49ers</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-text">Predicted: Buccaneers 27, Panthers 23</div>
+                        </div>
+                        <div class="game-result result-correct">✓ CORRECT - Baker Mayfield MVP Case</div>
+                    </div>
+
+                    <div class="game-card" data-time="late" data-teams="Bengals Packers">
                         <div class="score-line">
                             <div class="score">18</div>
                             <div class="vs-symbol">-</div>
                             <div class="score winning-score">27</div>
                         </div>
-                        <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Bills 34, Bengals 27</div>
-                        </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Different matchup, Packers win
-                        </div>
-                    </div>
-
-                    <div class="game-card" data-time="late" data-teams="49ers Buccaneers">
-                        <div class="game-header">
-                            <span class="game-time">4:25 PM ET</span>
-                        </div>
                         <div class="teams-matchup">
                             <div class="team-info">
-                                <div class="team-name">49ers</div>
-                                <div class="team-record">3-2</div>
+                                <div class="team-name">Bengals @ Packers</div>
                             </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Buccaneers</div>
-                                <div class="team-record">4-1</div>
-                            </div>
-                        </div>
-                        <div class="score-line">
-                            <div class="score">19</div>
-                            <div class="vs-symbol">-</div>
-                            <div class="score winning-score">30</div>
                         </div>
                         <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">N/A - 49ers on BYE</div>
+                            <div class="prediction-text">Predicted: Bills 34, Bengals 27</div>
                         </div>
-                        <div class="game-result result-incorrect">
-                            ✗ Bucs Win! 49ers injuries pile up
-                        </div>
+                        <div class="game-result result-incorrect">✗ INCORRECT - Joe Flacco Debut</div>
                     </div>
-                </div>
-            </section>
 
-            <!-- Sunday Night Football Week 6 -->
-            <section class="games-section">
-                <h2 class="section-title">Sunday Night Football - October 12</h2>
-                <div class="games-grid">
-                    <div class="game-card" data-time="prime" data-teams="Lions Chiefs">
-                        <div class="game-header">
-                            <span class="game-time">8:20 PM ET</span>
-                            <span class="prime-badge">SNF NBC</span>
-                        </div>
-                        <div class="teams-matchup">
-                            <div class="team-info">
-                                <div class="team-name">Lions</div>
-                                <div class="team-record">5-0</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Chiefs</div>
-                                <div class="team-record">2-3</div>
-                            </div>
-                        </div>
+                    <div class="game-card" data-time="late" data-teams="Lions Chiefs">
                         <div class="score-line">
                             <div class="score">17</div>
                             <div class="vs-symbol">-</div>
                             <div class="score winning-score">30</div>
                         </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Lions @ Chiefs</div>
+                            </div>
+                        </div>
                         <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Lions 31, Chiefs 27</div>
+                            <div class="prediction-text">Predicted: Lions 31, Chiefs 27</div>
                         </div>
-                        <div class="game-result result-incorrect">
-                            ✗ INCORRECT - Mahomes dominates! 4 TDs as Chiefs win big!
-                        </div>
-                        <div class="upset-badge">UPSET!</div>
+                        <div class="game-result result-incorrect">✗ INCORRECT - Mahomes Responds</div>
                     </div>
                 </div>
             </section>
 
-            <!-- Monday Night Football Week 6 -->
             <section class="games-section">
-                <h2 class="section-title">Monday Night Football - October 13</h2>
+                <h2 class="section-title">Monday Night Football - October 14</h2>
                 <div class="games-grid">
                     <div class="game-card" data-time="prime" data-teams="Bills Falcons">
                         <div class="game-header">
-                            <span class="game-time">⏰ 7:15 PM ET</span>
-                            <span class="prime-badge">MNF ESPN</span>
+                            <span class="game-time">7:15 PM ET</span>
+                            <span class="prime-badge">MNF</span>
+                        </div>
+                        <div class="score-line">
+                            <div class="score">23</div>
+                            <div class="vs-symbol">-</div>
+                            <div class="score winning-score">24</div>
                         </div>
                         <div class="teams-matchup">
                             <div class="team-info">
-                                <div class="team-name">Bills</div>
-                                <div class="team-record">5-0</div>
-                            </div>
-                            <div class="vs-symbol">@</div>
-                            <div class="team-info">
-                                <div class="team-name">Falcons</div>
-                                <div class="team-record">2-3</div>
+                                <div class="team-name">Bills @ Falcons</div>
                             </div>
                         </div>
                         <div class="prediction-box">
-                            <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Bills expected to win</div>
+                            <div class="prediction-text">Predicted: Bills 34, Falcons 25</div>
                         </div>
-                        <div class="spread-info">
-                            <div class="spread-item">
-                                <div class="spread-label">Time</div>
-                                <div class="spread-value">LIVE</div>
-                            </div>
-                            <div class="spread-item">
-                                <div class="spread-label">Status</div>
-                                <div class="spread-value">In Progress</div>
-                            </div>
-                        </div>
+                        <div class="game-result result-incorrect">✗ INCORRECT - Bijan Robinson Huge!</div>
+                        <div class="upset-badge">UPSET!</div>
                     </div>
 
                     <div class="game-card" data-time="prime" data-teams="Bears Commanders">
                         <div class="game-header">
-                            <span class="game-time">⏰ 8:15 PM ET</span>
-                            <span class="prime-badge">MNF ABC</span>
+                            <span class="game-time">8:15 PM ET</span>
+                            <span class="prime-badge">MNF</span>
+                        </div>
+                        <div class="score-line">
+                            <div class="score">24</div>
+                            <div class="vs-symbol">-</div>
+                            <div class="score winning-score">25</div>
                         </div>
                         <div class="teams-matchup">
                             <div class="team-info">
-                                <div class="team-name">Bears</div>
-                                <div class="team-record">2-3</div>
+                                <div class="team-name">Bears @ Commanders</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-text">Predicted: Commanders 27, Bears 20</div>
+                        </div>
+                        <div class="game-result result-incorrect">✗ INCORRECT - Jake Moody FG Wins It!</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Week 7 Content -->
+        <div id="week7" class="tab-content active">
+            <!-- Big Sarge's Week 7 Analysis -->
+            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%); border: 2px solid #3b82f6; border-radius: 16px; padding: 2rem; margin: 2rem 0; box-shadow: 0 0 40px rgba(59, 130, 246, 0.3);">
+                <h2 style="text-align: center; color: #3b82f6; font-size: 1.8rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em;">
+                    📋 BIG SARGE'S WEEK 7 TOP PICKS
+                </h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <div style="background: rgba(0, 0, 0, 0.5); padding: 1.2rem; border-radius: 10px; border-left: 4px solid #22c55e;">
+                        <div style="color: #22c55e; font-weight: bold; margin-bottom: 0.5rem;">🔥 LOCK OF THE WEEK</div>
+                        <div style="color: #ffd700; font-size: 1.3rem; font-weight: bold;">Chiefs -10.5 vs Raiders</div>
+                        <div style="color: #cbd5e1; margin-top: 0.5rem;">Sunday 4:05 PM ET • Mahomes bounces back huge at home</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.5); padding: 1.2rem; border-radius: 10px; border-left: 4px solid #8b5cf6;">
+                        <div style="color: #8b5cf6; font-weight: bold; margin-bottom: 0.5rem;">🌍 INTERNATIONAL SPECIAL</div>
+                        <div style="color: #ffd700; font-size: 1.3rem; font-weight: bold;">Jaguars over Rams</div>
+                        <div style="color: #cbd5e1; margin-top: 0.5rem;">Sunday 9:30 AM ET • Wembley Stadium, London</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.5); padding: 1.2rem; border-radius: 10px; border-left: 4px solid #3b82f6;">
+                        <div style="color: #3b82f6; font-weight: bold; margin-bottom: 0.5rem;">💰 BEST VALUE</div>
+                        <div style="color: #ffd700; font-size: 1.3rem; font-weight: bold;">Lions -5.5 vs Bucs</div>
+                        <div style="color: #cbd5e1; margin-top: 0.5rem;">Monday 7:00 PM ET • GAME OF THE WEEK shootout!</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.5); padding: 1.2rem; border-radius: 10px; border-left: 4px solid #ef4444;">
+                        <div style="color: #ef4444; font-weight: bold; margin-bottom: 0.5rem;">⚠️ UPSET ALERT</div>
+                        <div style="color: #ffd700; font-size: 1.3rem; font-weight: bold;">Vikings over Eagles</div>
+                        <div style="color: #cbd5e1; margin-top: 0.5rem;">Sunday 1:00 PM ET • Eagles on short week after upset loss</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thursday Night Football Week 7 -->
+            <section class="games-section">
+                <h2 class="section-title">Thursday Night Football - October 17</h2>
+                <div class="games-grid">
+                    <div class="game-card" data-time="prime" data-teams="Steelers Bengals">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 8:15 PM ET</span>
+                            <span class="prime-badge">TNF PRIME</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Steelers</div>
+                                <div class="team-record">4-1</div>
                             </div>
                             <div class="vs-symbol">@</div>
                             <div class="team-info">
-                                <div class="team-name">Commanders</div>
-                                <div class="team-record">3-2</div>
+                                <div class="team-name">Bengals</div>
+                                <div class="team-record">2-4</div>
                             </div>
                         </div>
                         <div class="prediction-box">
                             <div class="prediction-title">Big Sarge Prediction</div>
-                            <div class="prediction-text">Commanders favored</div>
+                            <div class="prediction-text">Steelers 27, Bengals 20</div>
                         </div>
                         <div class="spread-info">
                             <div class="spread-item">
-                                <div class="spread-label">Time</div>
-                                <div class="spread-value">LIVE</div>
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">PIT -5.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">42.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">Battle</div>
+                                <div class="spread-value">Old QBs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sunday International Game Week 7 -->
+            <section class="games-section">
+                <h2 class="section-title">🌍 Sunday International - October 20</h2>
+                <div class="games-grid">
+                    <div class="game-card" data-time="early" data-teams="Rams Jaguars">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 9:30 AM ET</span>
+                            <span class="international-badge">🇬🇧 LONDON</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Rams</div>
+                                <div class="team-record">4-2</div>
+                            </div>
+                            <div class="vs-symbol">vs</div>
+                            <div class="team-info">
+                                <div class="team-name">Jaguars</div>
+                                <div class="team-record">2-4</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Jaguars 24, Rams 20</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">JAX -3</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">41.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">Venue</div>
+                                <div class="spread-value">Wembley</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sunday Early Games Week 7 -->
+            <section class="games-section">
+                <h2 class="section-title">Sunday Early Games - October 20</h2>
+                <div class="games-grid">
+                    <div class="game-card" data-time="early" data-teams="Saints Bears">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 1:00 PM ET</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Saints</div>
+                                <div class="team-record">1-5</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Bears</div>
+                                <div class="team-record">3-3</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Bears 27, Saints 17</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">CHI -7</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">43.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">Defense</div>
+                                <div class="spread-value">CHI Edge</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card" data-time="early" data-teams="Patriots Titans">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 1:00 PM ET</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Patriots</div>
+                                <div class="team-record">3-3</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Titans</div>
+                                <div class="team-record">1-5</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Patriots 24, Titans 21</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">NE -3</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">38.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">Return</div>
+                                <div class="spread-value">Vrabel</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card" data-time="early" data-teams="Dolphins Browns">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 1:00 PM ET</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Dolphins</div>
+                                <div class="team-record">1-5</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Browns</div>
+                                <div class="team-record">1-5</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Browns 23, Dolphins 20</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">CLE -2.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">42.5</div>
                             </div>
                             <div class="spread-item">
                                 <div class="spread-label">Status</div>
-                                <div class="spread-value">In Progress</div>
+                                <div class="spread-value">Must Win</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card" data-time="early" data-teams="Panthers Jets">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 1:00 PM ET</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Panthers</div>
+                                <div class="team-record">3-3</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Jets</div>
+                                <div class="team-record">0-6</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Panthers 27, Jets 13</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">CAR -4</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">40.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">RB</div>
+                                <div class="spread-value">Dowdle</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card" data-time="early" data-teams="Eagles Vikings">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 1:00 PM ET</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Eagles</div>
+                                <div class="team-record">5-1</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Vikings</div>
+                                <div class="team-record">4-2</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Vikings 28, Eagles 24</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">MIN -3</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">47.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">Alert</div>
+                                <div class="spread-value">UPSET</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sunday Late Games Week 7 -->
+            <section class="games-section">
+                <h2 class="section-title">Sunday Late Games - October 20</h2>
+                <div class="games-grid">
+                    <div class="game-card" data-time="late" data-teams="Giants Broncos">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 4:05 PM ET</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Giants</div>
+                                <div class="team-record">2-4</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Broncos</div>
+                                <div class="team-record">4-2</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Broncos 28, Giants 17</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">DEN -9.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">41.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">Defense</div>
+                                <div class="spread-value">DEN #1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card" data-time="late" data-teams="Raiders Chiefs">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 4:05 PM ET</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Raiders</div>
+                                <div class="team-record">2-4</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Chiefs</div>
+                                <div class="team-record">5-1</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Chiefs 34, Raiders 17</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">KC -10.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">44.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">Lock</div>
+                                <div class="spread-value">WEEK</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card" data-time="late" data-teams="Colts Chargers">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 4:25 PM ET</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Colts</div>
+                                <div class="team-record">5-1</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Chargers</div>
+                                <div class="team-record">4-2</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Chargers 27, Colts 24</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">LAC -3</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">46.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">QB</div>
+                                <div class="spread-value">Herbert</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card" data-time="late" data-teams="Packers Cardinals">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 4:25 PM ET</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Packers</div>
+                                <div class="team-record">4-2</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Cardinals</div>
+                                <div class="team-record">2-4</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Packers 31, Cardinals 24</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">GB -6.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">48.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">Status</div>
+                                <div class="spread-value">No RBs</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card" data-time="late" data-teams="Commanders Cowboys">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 4:25 PM ET</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Commanders</div>
+                                <div class="team-record">4-2</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Cowboys</div>
+                                <div class="team-record">2-4</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Cowboys 30, Commanders 27</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">DAL -4</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">51.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">Rival</div>
+                                <div class="spread-value">NFC E</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sunday Night Football Week 7 -->
+            <section class="games-section">
+                <h2 class="section-title">Sunday Night Football - October 20</h2>
+                <div class="games-grid">
+                    <div class="game-card" data-time="prime" data-teams="Falcons 49ers">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 8:20 PM ET</span>
+                            <span class="prime-badge">SNF NBC</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Falcons</div>
+                                <div class="team-record">4-2</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">49ers</div>
+                                <div class="team-record">4-2</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">49ers 27, Falcons 24</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">SF -3.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">45.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">QB</div>
+                                <div class="spread-value">Purdy?</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Monday Night Football Week 7 -->
+            <section class="games-section">
+                <h2 class="section-title">Monday Night Football - October 21</h2>
+                <div class="games-grid">
+                    <div class="game-card" data-time="prime" data-teams="Buccaneers Lions">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 7:00 PM ET</span>
+                            <span class="prime-badge">MNF ESPN</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Buccaneers</div>
+                                <div class="team-record">5-1</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Lions</div>
+                                <div class="team-record">6-0</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Lions 34, Buccaneers 31</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">DET -5.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">52.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">Game</div>
+                                <div class="spread-value">OF WEEK</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="game-card" data-time="prime" data-teams="Texans Seahawks">
+                        <div class="game-header">
+                            <span class="game-time">⏰ 10:00 PM ET</span>
+                            <span class="prime-badge">MNF ESPN</span>
+                        </div>
+                        <div class="teams-matchup">
+                            <div class="team-info">
+                                <div class="team-name">Texans</div>
+                                <div class="team-record">4-2</div>
+                            </div>
+                            <div class="vs-symbol">@</div>
+                            <div class="team-info">
+                                <div class="team-name">Seahawks</div>
+                                <div class="team-record">4-2</div>
+                            </div>
+                        </div>
+                        <div class="prediction-box">
+                            <div class="prediction-title">Big Sarge Prediction</div>
+                            <div class="prediction-text">Seahawks 28, Texans 24</div>
+                        </div>
+                        <div class="spread-info">
+                            <div class="spread-item">
+                                <div class="spread-label">Spread</div>
+                                <div class="spread-value">SEA -3.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">O/U</div>
+                                <div class="spread-value">47.5</div>
+                            </div>
+                            <div class="spread-item">
+                                <div class="spread-label">Late</div>
+                                <div class="spread-value">Night</div>
                             </div>
                         </div>
                     </div>
@@ -1738,8 +1609,8 @@
 
     <footer class="footer">
         <p>&copy; 2025 Big Sarge NFL Game Day Center. All rights reserved.</p>
-        <p>🌍 Week 6 Results: Broncos beat Jets 13-11 in London • Giants shocked Eagles 34-17 • Chiefs beat Lions 30-17</p>
-        <p>Season Record: 33-39 (45.8%) • Week 5: 8-5 (61.5%) • Week 6: 2-10 (16.7%) • Follow Big Sarge for expert analysis</p>
+        <p>🌍 Week 7 International Series: Rams vs Jaguars at Wembley Stadium, London (9:30 AM ET Sunday)</p>
+        <p>Season Record: 42-33 (56.0%) • Week 6: 7-8 (46.7%) • Follow Big Sarge for expert analysis</p>
     </footer>
 
     <script>
@@ -1756,7 +1627,7 @@
             if (savedTheme === 'light') {
                 document.body.classList.add('light-mode');
             }
-            
+
             // Initialize charts
             initCharts();
         });
@@ -1766,13 +1637,13 @@
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
-            
+
             document.getElementById('week' + week).classList.add('active');
-            
+
             document.querySelectorAll('.week-tab').forEach(btn => {
                 btn.classList.remove('active');
             });
-            
+
             event.target.classList.add('active');
         }
 
@@ -1780,7 +1651,7 @@
         function filterGames() {
             const searchTerm = document.getElementById('searchBox').value.toLowerCase();
             const gameCards = document.querySelectorAll('.game-card');
-            
+
             gameCards.forEach(card => {
                 const teams = card.getAttribute('data-teams').toLowerCase();
                 if (teams.includes(searchTerm)) {
@@ -1793,25 +1664,21 @@
 
         function filterByStatus(status) {
             const gameCards = document.querySelectorAll('.game-card');
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            
-            // Update button states
-            filterBtns.forEach(btn => btn.classList.remove('active'));
+            const filterButtons = document.querySelectorAll('.filter-btn');
+
+            filterButtons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-            
-            // Clear search
-            document.getElementById('searchBox').value = '';
-            
-            // Filter cards
+
             gameCards.forEach(card => {
-                const timeSlot = card.getAttribute('data-time');
-                
                 if (status === 'all') {
                     card.classList.remove('hidden');
-                } else if (status === timeSlot) {
-                    card.classList.remove('hidden');
                 } else {
-                    card.classList.add('hidden');
+                    const timeStatus = card.getAttribute('data-time');
+                    if (timeStatus === status) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
                 }
             });
         }
@@ -1825,18 +1692,14 @@
                 data: {
                     labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
                     datasets: [{
-                        label: 'Prediction Accuracy %',
-                        data: [81.3, 57.1, 50.0, 43.8, 61.5, 16.7],
+                        label: 'Accuracy %',
+                        data: [81.3, 57.1, 50.0, 43.8, 61.5, 46.7],
                         borderColor: '#fbbf24',
                         backgroundColor: 'rgba(251, 191, 36, 0.1)',
-                        borderWidth: 3,
-                        fill: true,
                         tension: 0.4,
+                        fill: true,
                         pointRadius: 6,
-                        pointHoverRadius: 8,
-                        pointBackgroundColor: '#fbbf24',
-                        pointBorderColor: '#fff',
-                        pointBorderWidth: 2
+                        pointHoverRadius: 8
                     }]
                 },
                 options: {
@@ -1845,41 +1708,21 @@
                     plugins: {
                         legend: {
                             labels: {
-                                color: getComputedStyle(document.body).getPropertyValue('--text-primary'),
-                                font: { size: 14, weight: 'bold' }
+                                color: '#f1f5f9',
+                                font: { size: 14 }
                             }
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                            titleColor: '#fbbf24',
-                            bodyColor: '#fff',
-                            borderColor: '#fbbf24',
-                            borderWidth: 1,
-                            padding: 12,
-                            displayColors: false
                         }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
                             max: 100,
-                            ticks: {
-                                color: getComputedStyle(document.body).getPropertyValue('--text-muted'),
-                                callback: function(value) {
-                                    return value + '%';
-                                }
-                            },
-                            grid: {
-                                color: 'rgba(100, 116, 139, 0.2)'
-                            }
+                            ticks: { color: '#cbd5e1' },
+                            grid: { color: 'rgba(100, 116, 139, 0.2)' }
                         },
                         x: {
-                            ticks: {
-                                color: getComputedStyle(document.body).getPropertyValue('--text-muted')
-                            },
-                            grid: {
-                                color: 'rgba(100, 116, 139, 0.2)'
-                            }
+                            ticks: { color: '#cbd5e1' },
+                            grid: { color: 'rgba(100, 116, 139, 0.2)' }
                         }
                     }
                 }
@@ -1890,19 +1733,15 @@
             new Chart(recordCtx, {
                 type: 'bar',
                 data: {
-                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Season Total'],
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
                     datasets: [{
-                        label: 'Wins',
-                        data: [13, 8, 8, 7, 8, 2, 33],
-                        backgroundColor: '#22c55e',
-                        borderColor: '#16a34a',
-                        borderWidth: 2
+                        label: 'Correct',
+                        data: [13, 8, 8, 7, 8, 7],
+                        backgroundColor: '#22c55e'
                     }, {
-                        label: 'Losses',
-                        data: [3, 6, 8, 9, 5, 10, 39],
-                        backgroundColor: '#ef4444',
-                        borderColor: '#dc2626',
-                        borderWidth: 2
+                        label: 'Incorrect',
+                        data: [3, 6, 8, 9, 5, 8],
+                        backgroundColor: '#ef4444'
                     }]
                 },
                 options: {
@@ -1911,37 +1750,22 @@
                     plugins: {
                         legend: {
                             labels: {
-                                color: getComputedStyle(document.body).getPropertyValue('--text-primary'),
-                                font: { size: 14, weight: 'bold' }
+                                color: '#f1f5f9',
+                                font: { size: 14 }
                             }
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                            titleColor: '#fbbf24',
-                            bodyColor: '#fff',
-                            borderColor: '#fbbf24',
-                            borderWidth: 1,
-                            padding: 12
                         }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
-                            ticks: {
-                                color: getComputedStyle(document.body).getPropertyValue('--text-muted'),
-                                stepSize: 5
-                            },
-                            grid: {
-                                color: 'rgba(100, 116, 139, 0.2)'
-                            }
+                            stacked: true,
+                            ticks: { color: '#cbd5e1' },
+                            grid: { color: 'rgba(100, 116, 139, 0.2)' }
                         },
                         x: {
-                            ticks: {
-                                color: getComputedStyle(document.body).getPropertyValue('--text-muted')
-                            },
-                            grid: {
-                                color: 'rgba(100, 116, 139, 0.2)'
-                            }
+                            stacked: true,
+                            ticks: { color: '#cbd5e1' },
+                            grid: { color: 'rgba(100, 116, 139, 0.2)' }
                         }
                     }
                 }
@@ -1950,4 +1774,3 @@
     </script>
 </body>
 </html>
-
