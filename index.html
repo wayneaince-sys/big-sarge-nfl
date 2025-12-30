@@ -4,216 +4,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏈 BIG SARGE NFL 2025 TRACKER - Week 17</title>
+    <title>Big Sarge NFL Tracker - Week 18 (2025-26 Season)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --air-force-blue: #00308F;
+            --air-force-dark: #001F5C;
+            --air-force-light: #4169E1;
+            --gold: #FFD700;
+            --gold-dark: #DAA520;
+            --white: #FFFFFF;
+            --success: #10B981;
+            --danger: #EF4444;
+            --playoff-glow: #FF6B35;
         }
 
 ```
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: #fff;
-        padding: 20px;
-        line-height: 1.6;
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, var(--air-force-dark) 0%, var(--air-force-blue) 50%, #1a365d 100%);
+        min-height: 100vh;
+        color: var(--white);
     }
-    
-    .container {
-        max-width: 1400px;
-        margin: 0 auto;
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 15px;
-        padding: 30px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    }
-    
-    header {
+
+    .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+
+    .header {
         text-align: center;
+        padding: 40px 20px;
+        background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 100%);
+        border-bottom: 4px solid var(--gold);
         margin-bottom: 30px;
-        padding-bottom: 20px;
-        border-bottom: 3px solid #ffd700;
     }
-    
-    h1 {
-        font-size: 3em;
-        margin-bottom: 10px;
-        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+
+    .logo-badge { display: inline-flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+
+    .star-icon {
+        font-size: 48px;
+        color: var(--gold);
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        animation: pulse 2s infinite;
     }
-    
+
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+    .title {
+        font-family: 'Russo One', sans-serif;
+        font-size: 3.5rem;
+        color: var(--white);
+        text-shadow: 3px 3px 0 var(--gold), 6px 6px 10px rgba(0,0,0,0.3);
+    }
+
     .subtitle {
-        font-size: 1.2em;
-        color: #ffd700;
-        margin-bottom: 10px;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.8rem;
+        color: var(--gold);
+        letter-spacing: 5px;
+        margin-top: 10px;
     }
-    
-    .stats-grid {
+
+    .rank-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+        color: var(--air-force-dark);
+        padding: 8px 25px;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        border-radius: 5px;
+        margin-top: 15px;
+    }
+
+    .stats-bar {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 20px;
-        margin: 30px 0;
+        margin-bottom: 40px;
     }
-    
+
     .stat-card {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,215,0,0.3);
+        border-radius: 15px;
         padding: 20px;
-        border-radius: 10px;
         text-align: center;
-        border: 2px solid rgba(255, 215, 0, 0.3);
+        transition: all 0.3s ease;
     }
-    
-    .stat-card h3 {
-        color: #ffd700;
-        margin-bottom: 10px;
-        font-size: 0.9em;
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(255,215,0,0.2);
     }
-    
-    .stat-card .stat-value {
-        font-size: 2em;
-        font-weight: bold;
+
+    .stat-label {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.8rem;
+        color: var(--gold);
+        letter-spacing: 2px;
     }
-    
-    .game-section {
-        margin: 30px 0;
+
+    .stat-value {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2.2rem;
+        color: var(--white);
     }
-    
+
+    .stat-sub { font-size: 0.75rem; color: rgba(255,255,255,0.7); }
+
     .section-header {
-        background: linear-gradient(90deg, #ffd700 0%, #ff8c00 100%);
-        color: #000;
-        padding: 15px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        font-size: 1.5em;
-        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin: 40px 0 25px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid var(--gold);
     }
-    
+
+    .section-header h2 {
+        font-family: 'Russo One', sans-serif;
+        font-size: 1.6rem;
+    }
+
+    .section-badge {
+        background: var(--gold);
+        color: var(--air-force-dark);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .games-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
     .game-card {
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 10px;
-        padding: 20px;
-        margin-bottom: 15px;
-        border-left: 5px solid #ffd700;
+        background: linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
     }
-    
-    .game-header {
+
+    .game-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    .game-card.playoff-impact {
+        border: 2px solid var(--playoff-glow);
+    }
+
+    .playoff-badge {
+        background: linear-gradient(90deg, var(--playoff-glow), #FF8C42);
+        color: var(--white);
+        padding: 8px 15px;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-align: center;
+        letter-spacing: 1px;
+    }
+
+    .game-info {
+        padding: 12px 15px;
+        background: rgba(0,0,0,0.2);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 15px;
-        flex-wrap: wrap;
     }
-    
+
     .game-time {
-        color: #ffd700;
-        font-weight: bold;
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.85rem;
+        color: var(--gold);
     }
-    
+
+    .game-network {
+        background: rgba(255,255,255,0.15);
+        padding: 3px 10px;
+        border-radius: 10px;
+        font-size: 0.7rem;
+    }
+
     .matchup {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 10px 0;
-        padding: 10px;
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 5px;
+        padding: 15px;
     }
-    
-    .team {
-        flex: 1;
+
+    .team { text-align: center; flex: 1; }
+
+    .team-name {
+        font-family: 'Russo One', sans-serif;
+        font-size: 1.2rem;
+        margin-bottom: 3px;
+    }
+
+    .team-record {
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.7);
+    }
+
+    .vs-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    .vs {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.3rem;
+        color: var(--gold);
+    }
+
+    .spread {
+        font-size: 0.7rem;
+        color: rgba(255,255,255,0.6);
+        margin-top: 2px;
+    }
+
+    .score-display {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        padding: 10px;
+        background: rgba(0,0,0,0.3);
+    }
+
+    .score {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2rem;
+        min-width: 45px;
         text-align: center;
     }
-    
-    .score {
-        font-size: 2em;
-        font-weight: bold;
-        margin: 0 20px;
+
+    .score.winner { color: var(--gold); }
+
+    .score-dash { font-size: 1.3rem; color: rgba(255,255,255,0.5); }
+
+    .final-badge {
+        background: var(--success);
+        padding: 2px 8px;
+        border-radius: 8px;
+        font-size: 0.65rem;
+        font-weight: 700;
     }
-    
-    .winner {
-        color: #00ff00;
+
+    .predictions {
+        padding: 12px 15px;
+        background: rgba(0,48,143,0.3);
+        border-top: 1px solid rgba(255,215,0,0.2);
     }
-    
-    .loser {
-        color: #ff6b6b;
-        opacity: 0.7;
+
+    .prediction-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    
-    .prediction {
-        background: rgba(255, 215, 0, 0.1);
-        padding: 15px;
-        border-radius: 5px;
-        margin-top: 10px;
-        border-left: 3px solid #ffd700;
+
+    .prediction-row:last-child { border-bottom: none; }
+
+    .prediction-type {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.7rem;
+        color: var(--gold);
+        letter-spacing: 1px;
     }
-    
-    .prediction-header {
-        color: #ffd700;
-        font-weight: bold;
-        margin-bottom: 5px;
+
+    .prediction-pick {
+        font-weight: 600;
+        font-size: 0.85rem;
+        padding: 3px 10px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.1);
     }
-    
-    .correct {
-        color: #00ff00;
-        font-weight: bold;
-    }
-    
-    .incorrect {
-        color: #ff6b6b;
-        font-weight: bold;
-    }
-    
-    .upset {
-        background: #ff4444;
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
-        display: inline-block;
-        margin-left: 10px;
-        font-size: 0.8em;
-    }
-    
-    .spread-info {
-        color: #87ceeb;
-        font-size: 0.9em;
-        margin-top: 5px;
-    }
-    
-    .pick-badge {
-        display: inline-block;
-        padding: 3px 8px;
-        border-radius: 3px;
-        font-size: 0.85em;
+
+    .result-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: 8px;
+        font-size: 0.7rem;
+        font-weight: 700;
         margin-left: 8px;
     }
-    
-    .ats-pick {
-        background: #4CAF50;
-        color: white;
+
+    .result-badge.correct { background: var(--success); }
+    .result-badge.incorrect { background: var(--danger); }
+
+    .pick-highlight {
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+        color: var(--air-force-dark);
+        font-weight: 700;
     }
-    
-    .su-pick {
-        background: #2196F3;
-        color: white;
+
+    .message-banner {
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+        color: var(--air-force-dark);
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        margin: 40px 0;
+        box-shadow: 0 10px 40px rgba(255,215,0,0.3);
     }
-    
+
+    .message-banner h3 {
+        font-family: 'Russo One', sans-serif;
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+
+    .message-banner p { font-size: 1rem; line-height: 1.6; }
+
+    .message-banner .signature {
+        font-family: 'Oswald', sans-serif;
+        margin-top: 15px;
+        letter-spacing: 2px;
+    }
+
+    .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        padding: 15px;
+        background: rgba(0,0,0,0.2);
+        border-radius: 15px;
+        margin: 20px 0;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.8rem;
+    }
+
+    .legend-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+
+    .legend-dot.playoff { background: var(--playoff-glow); }
+    .legend-dot.su { background: var(--gold); }
+    .legend-dot.ats { background: var(--air-force-light); }
+
+    .footer {
+        text-align: center;
+        padding: 40px 20px;
+        border-top: 2px solid rgba(255,215,0,0.3);
+        margin-top: 40px;
+    }
+
+    .footer-brand {
+        font-family: 'Russo One', sans-serif;
+        font-size: 1.4rem;
+        color: var(--gold);
+    }
+
+    .social-link {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 8px 20px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid var(--gold);
+        border-radius: 25px;
+        color: var(--gold);
+        text-decoration: none;
+        font-family: 'Oswald', sans-serif;
+    }
+
     @media (max-width: 768px) {
-        h1 {
-            font-size: 2em;
-        }
-        
-        .stats-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .matchup {
-            flex-direction: column;
-        }
-        
-        .score {
-            margin: 10px 0;
-        }
+        .title { font-size: 2rem; }
+        .subtitle { font-size: 1.2rem; }
+        .games-grid { grid-template-columns: 1fr; }
     }
 </style>
 ```
@@ -221,665 +399,1094 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>🏈 BIG SARGE NFL 2025 TRACKER</h1>
-            <div class="subtitle">Season Tracker • Updated December 22, 2025</div>
-            <div class="subtitle">Week 16 Results • Week 17 Predictions</div>
+        <header class="header">
+            <div class="logo-badge">
+                <span class="star-icon">★</span>
+                <div>
+                    <h1 class="title">BIG SARGE</h1>
+                    <p class="subtitle">NFL GAME DAY TRACKER</p>
+                </div>
+                <span class="star-icon">★</span>
+            </div>
+            <div class="rank-badge">US AIR FORCE RETIRED SENIOR MASTER SERGEANT</div>
         </header>
 
 ```
-    <!-- Season Stats -->
-    <div class="stats-grid">
+    <div class="stats-bar">
         <div class="stat-card">
-            <h3>SEASON RECORD</h3>
-            <div class="stat-value">TBD</div>
-            <div>Overall Accuracy</div>
+            <div class="stat-label">WEEK 17 RECORD</div>
+            <div class="stat-value">10-6</div>
+            <div class="stat-sub">62.5% Accuracy</div>
         </div>
         <div class="stat-card">
-            <h3>WEEK 16</h3>
-            <div class="stat-value">Results In</div>
-            <div>15 Games Complete</div>
+            <div class="stat-label">SEASON SU</div>
+            <div class="stat-value">152-103</div>
+            <div class="stat-sub">59.6% Straight Up</div>
         </div>
         <div class="stat-card">
-            <h3>WEEK 17</h3>
-            <div class="stat-value">16 Games</div>
-            <div>Christmas Week!</div>
+            <div class="stat-label">SEASON ATS</div>
+            <div class="stat-value">131-117-7</div>
+            <div class="stat-sub">52.8% vs Spread</div>
         </div>
         <div class="stat-card">
-            <h3>PLAYOFFS</h3>
-            <div class="stat-value">2 Weeks</div>
-            <div>Until Postseason</div>
+            <div class="stat-label">WEEK 18</div>
+            <div class="stat-value">16</div>
+            <div class="stat-sub">Final Week!</div>
         </div>
     </div>
 
-    <!-- WEEK 16 RESULTS -->
-    <div class="game-section">
-        <div class="section-header">📊 WEEK 16 RESULTS (Dec 18-22, 2025)</div>
-
-        <!-- Thursday Night -->
-        <div class="game-card">
-            <div class="game-header">
-                <span>THURSDAY NIGHT FOOTBALL - Dec 18</span>
-                <span class="game-time">Prime Video</span>
-            </div>
-            <div class="matchup">
-                <div class="team loser">
-                    <div>LA Rams</div>
-                    <div class="score">37</div>
-                </div>
-                <div class="team winner">
-                    <div>Seattle Seahawks</div>
-                    <div class="score">38</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: SEA -1.5 | Result: Seahawks win in OT with 2-pt conversion</div>
-        </div>
-
-        <!-- Saturday Games -->
-        <div class="game-card">
-            <div class="game-header">
-                <span>SATURDAY - Dec 20</span>
-                <span class="game-time">FOX</span>
-            </div>
-            <div class="matchup">
-                <div class="team winner">
-                    <div>Philadelphia Eagles</div>
-                    <div class="score">29</div>
-                </div>
-                <div class="team loser">
-                    <div>Washington Commanders</div>
-                    <div class="score">18</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: PHI -6.5 | Eagles cover</div>
-        </div>
-
-        <div class="game-card">
-            <div class="game-header">
-                <span>SATURDAY - Dec 20</span>
-                <span class="game-time">FOX</span>
-            </div>
-            <div class="matchup">
-                <div class="team winner">
-                    <div>Green Bay Packers</div>
-                    <div class="score">16</div>
-                </div>
-                <div class="team loser">
-                    <div>Chicago Bears</div>
-                    <div class="score">22</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: GB -1.5 | Bears upset and cover! <span class="upset">UPSET!</span></div>
-        </div>
-
-        <!-- Sunday Early Games -->
-        <div class="game-card">
-            <div class="game-header">
-                <span>SUNDAY EARLY - Dec 21</span>
-                <span class="game-time">1:00 PM ET</span>
-            </div>
-            
-            <div class="matchup">
-                <div class="team winner">
-                    <div>Buffalo Bills</div>
-                    <div class="score">23</div>
-                </div>
-                <div class="team loser">
-                    <div>Cleveland Browns</div>
-                    <div class="score">20</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: BUF -10 | Bills fail to cover</div>
-        </div>
-
-        <div class="game-card">
-            <div class="matchup">
-                <div class="team winner">
-                    <div>LA Chargers</div>
-                    <div class="score">34</div>
-                </div>
-                <div class="team loser">
-                    <div>Dallas Cowboys</div>
-                    <div class="score">17</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: DAL -1.5 | Chargers dominate and cover big</div>
-        </div>
-
-        <div class="game-card">
-            <div class="matchup">
-                <div class="team winner">
-                    <div>Tennessee Titans</div>
-                    <div class="score">26</div>
-                </div>
-                <div class="team loser">
-                    <div>Kansas City Chiefs</div>
-                    <div class="score">9</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: KC -3.5 | Titans huge upset! <span class="upset">UPSET!</span></div>
-        </div>
-
-        <div class="game-card">
-            <div class="matchup">
-                <div class="team winner">
-                    <div>Cincinnati Bengals</div>
-                    <div class="score">45</div>
-                </div>
-                <div class="team loser">
-                    <div>Miami Dolphins</div>
-                    <div class="score">21</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: CIN -2.5 | Bengals dominate</div>
-        </div>
-
-        <div class="game-card">
-            <div class="matchup">
-                <div class="team winner">
-                    <div>New Orleans Saints</div>
-                    <div class="score">29</div>
-                </div>
-                <div class="team loser">
-                    <div>New York Jets</div>
-                    <div class="score">6</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: NO -4.5 | Saints cover easily</div>
-        </div>
-
-        <div class="game-card">
-            <div class="matchup">
-                <div class="team winner">
-                    <div>Minnesota Vikings</div>
-                    <div class="score">16</div>
-                </div>
-                <div class="team loser">
-                    <div>New York Giants</div>
-                    <div class="score">13</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: MIN -3 | Vikings cover in close game</div>
-        </div>
-
-        <div class="game-card">
-            <div class="matchup">
-                <div class="team winner">
-                    <div>Carolina Panthers</div>
-                    <div class="score">23</div>
-                </div>
-                <div class="team loser">
-                    <div>Tampa Bay Buccaneers</div>
-                    <div class="score">20</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: TB -3 | Panthers upset! <span class="upset">UPSET!</span></div>
-        </div>
-
-        <div class="game-card">
-            <div class="matchup">
-                <div class="team winner">
-                    <div>Jacksonville Jaguars</div>
-                    <div class="score">34</div>
-                </div>
-                <div class="team loser">
-                    <div>Denver Broncos</div>
-                    <div class="score">20</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: DEN -3 | Jaguars upset! <span class="upset">UPSET!</span></div>
-        </div>
-
-        <div class="game-card">
-            <div class="matchup">
-                <div class="team winner">
-                    <div>Atlanta Falcons</div>
-                    <div class="score">26</div>
-                </div>
-                <div class="team loser">
-                    <div>Arizona Cardinals</div>
-                    <div class="score">19</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: ATL -2.5 | Falcons cover</div>
-        </div>
-
-        <!-- Sunday Afternoon -->
-        <div class="game-card">
-            <div class="game-header">
-                <span>SUNDAY AFTERNOON - Dec 21</span>
-                <span class="game-time">4:00 PM ET</span>
-            </div>
-            
-            <div class="matchup">
-                <div class="team winner">
-                    <div>Pittsburgh Steelers</div>
-                    <div class="score">29</div>
-                </div>
-                <div class="team loser">
-                    <div>Detroit Lions</div>
-                    <div class="score">24</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: DET -7 | Steelers upset! Controversial ending <span class="upset">MAJOR UPSET!</span></div>
-        </div>
-
-        <div class="game-card">
-            <div class="matchup">
-                <div class="team winner">
-                    <div>Houston Texans</div>
-                    <div class="score">23</div>
-                </div>
-                <div class="team loser">
-                    <div>Las Vegas Raiders</div>
-                    <div class="score">21</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: HOU -14.5 | Texans win but don't cover</div>
-        </div>
-
-        <!-- Sunday Night -->
-        <div class="game-card">
-            <div class="game-header">
-                <span>SUNDAY NIGHT FOOTBALL - Dec 21</span>
-                <span class="game-time">8:20 PM ET NBC</span>
-            </div>
-            <div class="matchup">
-                <div class="team winner">
-                    <div>New England Patriots</div>
-                    <div class="score">28</div>
-                </div>
-                <div class="team loser">
-                    <div>Baltimore Ravens</div>
-                    <div class="score">24</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: BAL -3 | Patriots 4th quarter comeback! <span class="upset">UPSET!</span></div>
-        </div>
-
-        <!-- Monday Night -->
-        <div class="game-card">
-            <div class="game-header">
-                <span>MONDAY NIGHT FOOTBALL - Dec 22</span>
-                <span class="game-time">8:15 PM ET ESPN</span>
-            </div>
-            <div class="matchup">
-                <div class="team">
-                    <div>San Francisco 49ers (10-4)</div>
-                    <div class="score">vs</div>
-                </div>
-                <div class="team">
-                    <div>Indianapolis Colts (8-6)</div>
-                    <div class="score">TBD</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: SF -6 | Tonight's Game</div>
-        </div>
+    <div class="legend">
+        <div class="legend-item"><span class="legend-dot playoff"></span>🔥 Playoff Impact</div>
+        <div class="legend-item"><span class="legend-dot su"></span>SU = Straight Up</div>
+        <div class="legend-item"><span class="legend-dot ats"></span>ATS = Against Spread</div>
     </div>
 
-    <!-- WEEK 17 PREDICTIONS -->
-    <div class="game-section">
-        <div class="section-header">🎯 WEEK 17 PREDICTIONS (Dec 25-29, 2025)</div>
+    <!-- WEEK 17 RESULTS -->
+    <div class="section-header">
+        <h2>📊 WEEK 17 RESULTS (2025 SEASON)</h2>
+        <span class="section-badge">FINAL</span>
+    </div>
 
+    <div class="games-grid">
         <!-- Christmas Day Games -->
         <div class="game-card">
-            <div class="game-header">
-                <span>🎄 CHRISTMAS DAY - Dec 25</span>
-                <span class="game-time">1:00 PM ET • Netflix</span>
+            <div class="game-info">
+                <span class="game-time">THU DEC 25 • CHRISTMAS</span>
+                <span class="game-network">Netflix</span>
             </div>
             <div class="matchup">
                 <div class="team">
-                    <div>Dallas Cowboys (6-8-1)</div>
+                    <div class="team-name">Cowboys</div>
+                    <div class="team-record">6-10</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ Washington Commanders (4-11)</div>
+                    <div class="team-name">Commanders</div>
+                    <div class="team-record">10-6</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: DAL -6.5 | Total: 50.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Cowboys 31, Commanders 20</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Cowboys -6.5</span> <span class="pick-badge su-pick">SU: Cowboys</span></div>
-                <div style="margin-top: 8px; font-size: 0.95em;">Dallas desperate for win to keep playoff hopes alive. Washington likely starting backup QB with Mariota questionable.</div>
+            <div class="score-display">
+                <span class="score winner">30</span>
+                <span class="score-dash">-</span>
+                <span class="score">23</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Commanders<span class="result-badge incorrect">✗</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Cowboys +3<span class="result-badge correct">✓</span></span>
+                </div>
             </div>
         </div>
 
         <div class="game-card">
-            <div class="game-header">
-                <span>🎄 CHRISTMAS DAY - Dec 25</span>
-                <span class="game-time">4:30 PM ET • Netflix</span>
+            <div class="game-info">
+                <span class="game-time">THU DEC 25 • CHRISTMAS</span>
+                <span class="game-network">Netflix</span>
             </div>
             <div class="matchup">
                 <div class="team">
-                    <div>Detroit Lions (8-7)</div>
+                    <div class="team-name">Lions</div>
+                    <div class="team-record">13-3</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ Minnesota Vikings (7-8)</div>
+                    <div class="team-name">Vikings</div>
+                    <div class="team-record">14-2</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: DET -6 | Total: 44.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Lions 28, Vikings 21</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Lions -6</span> <span class="pick-badge su-pick">SU: Lions</span></div>
-                <div style="margin-top: 8px; font-size: 0.95em;">Lions MUST win to keep playoff hopes alive after devastating Week 16 loss. Vikings may be without QB J.J. McCarthy (hand injury).</div>
+            <div class="score-display">
+                <span class="score">10</span>
+                <span class="score-dash">-</span>
+                <span class="score winner">23</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Vikings<span class="result-badge correct">✓</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Vikings +3<span class="result-badge correct">✓</span></span>
+                </div>
             </div>
         </div>
 
         <div class="game-card">
-            <div class="game-header">
-                <span>🎄 CHRISTMAS DAY - Dec 25</span>
-                <span class="game-time">8:15 PM ET • Prime Video</span>
+            <div class="game-info">
+                <span class="game-time">THU DEC 25 • CHRISTMAS</span>
+                <span class="game-network">Prime Video</span>
             </div>
             <div class="matchup">
                 <div class="team">
-                    <div>Denver Broncos (12-3)</div>
+                    <div class="team-name">Broncos</div>
+                    <div class="team-record">13-3</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ Kansas City Chiefs (6-9)</div>
+                    <div class="team-name">Chiefs</div>
+                    <div class="team-record">6-10</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: DEN -12.5 | Total: 37.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Broncos 27, Chiefs 14</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Broncos -12.5</span> <span class="pick-badge su-pick">SU: Broncos</span></div>
-                <div style="margin-top: 8px; font-size: 0.95em;">Chiefs without Mahomes struggle mightily. Broncos clinch playoff spot with win. Bo Nix continues stellar rookie campaign.</div>
+            <div class="score-display">
+                <span class="score winner">20</span>
+                <span class="score-dash">-</span>
+                <span class="score">13</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Broncos<span class="result-badge correct">✓</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Chiefs +13.5<span class="result-badge correct">✓</span></span>
+                </div>
             </div>
         </div>
 
         <!-- Saturday Games -->
         <div class="game-card">
-            <div class="game-header">
-                <span>SATURDAY - Dec 27</span>
-                <span class="game-time">4:30 PM ET • NFL Network</span>
+            <div class="game-info">
+                <span class="game-time">SAT DEC 27</span>
+                <span class="game-network">NFL Network</span>
             </div>
             <div class="matchup">
                 <div class="team">
-                    <div>Houston Texans (10-5)</div>
+                    <div class="team-name">Texans</div>
+                    <div class="team-record">11-5</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ LA Chargers (11-4)</div>
+                    <div class="team-name">Chargers</div>
+                    <div class="team-record">11-5</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: LAC -1.5 | Total: 39.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Chargers 24, Texans 20</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Chargers -1.5</span> <span class="pick-badge su-pick">SU: Chargers</span></div>
-                <div style="margin-top: 8px; font-size: 0.95em;">Massive AFC playoff seeding game. Chargers defense dominates at home. Pick-em type game but Chargers edge it.</div>
+            <div class="score-display">
+                <span class="score winner">20</span>
+                <span class="score-dash">-</span>
+                <span class="score">16</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Chargers<span class="result-badge incorrect">✗</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Texans +2.5<span class="result-badge correct">✓</span></span>
+                </div>
             </div>
         </div>
 
         <div class="game-card">
-            <div class="game-header">
-                <span>SATURDAY - Dec 27</span>
-                <span class="game-time">8:00 PM ET • Peacock</span>
+            <div class="game-info">
+                <span class="game-time">SAT DEC 27</span>
+                <span class="game-network">Peacock</span>
             </div>
             <div class="matchup">
                 <div class="team">
-                    <div>Baltimore Ravens (7-8)</div>
+                    <div class="team-name">Ravens</div>
+                    <div class="team-record">8-8</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ Green Bay Packers (9-5-1)</div>
+                    <div class="team-name">Packers</div>
+                    <div class="team-record">9-6-1</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: GB -2.5 | Total: 40.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Packers 27, Ravens 23</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Packers -2.5</span> <span class="pick-badge su-pick">SU: Packers</span></div>
-                <div style="margin-top: 8px; font-size: 0.95em;">Jordan Love leads Packers in crucial NFC North game. Ravens coming off tough loss to Patriots.</div>
+            <div class="score-display">
+                <span class="score winner">41</span>
+                <span class="score-dash">-</span>
+                <span class="score">24</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Ravens<span class="result-badge correct">✓</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Ravens +2.5<span class="result-badge correct">✓</span></span>
+                </div>
             </div>
         </div>
 
-        <!-- Sunday Early Games -->
-        <div class="game-card">
-            <div class="game-header">
-                <span>SUNDAY EARLY - Dec 28</span>
-                <span class="game-time">1:00 PM ET</span>
+        <!-- Sunday Games -->
+        <div class="game-card playoff-impact">
+            <div class="playoff-badge">🏆 AFC NORTH IMPLICATIONS</div>
+            <div class="game-info">
+                <span class="game-time">SUN DEC 28 • 1:00 PM</span>
+                <span class="game-network">CBS</span>
             </div>
-
             <div class="matchup">
                 <div class="team">
-                    <div>Seattle Seahawks (8-7)</div>
+                    <div class="team-name">Steelers</div>
+                    <div class="team-record">9-7</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ Carolina Panthers (8-7)</div>
+                    <div class="team-name">Browns</div>
+                    <div class="team-record">3-13</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: SEA -3.5 | Total: 43.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Seahawks 26, Panthers 20</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Seahawks -3.5</span> <span class="pick-badge su-pick">SU: Seahawks</span></div>
+            <div class="score-display">
+                <span class="score">6</span>
+                <span class="score-dash">-</span>
+                <span class="score winner">13</span>
+                <span class="final-badge">FINAL</span>
             </div>
-        </div>
-
-        <div class="game-card">
-            <div class="matchup">
-                <div class="team">
-                    <div>Arizona Cardinals (3-11)</div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Steelers<span class="result-badge incorrect">✗</span></span>
                 </div>
-                <div class="team">
-                    <div>@ Cincinnati Bengals (5-10)</div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Browns +3.5<span class="result-badge correct">✓</span></span>
                 </div>
-            </div>
-            <div class="spread-info">Spread: CIN -7 | Total: 53.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Bengals 34, Cardinals 20</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Bengals -7</span> <span class="pick-badge su-pick">SU: Bengals</span></div>
-            </div>
-        </div>
-
-        <div class="game-card">
-            <div class="matchup">
-                <div class="team">
-                    <div>Pittsburgh Steelers (9-6)</div>
-                </div>
-                <div class="team">
-                    <div>@ Cleveland Browns (3-12)</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: PIT -4.5 | Total: 34.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Steelers 20, Browns 10</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Steelers -4.5</span> <span class="pick-badge su-pick">SU: Steelers</span></div>
-                <div style="margin-top: 8px; font-size: 0.95em;">Steelers clinch AFC North with win. DK Metcalf may be suspended after Week 16 incident.</div>
             </div>
         </div>
 
         <div class="game-card">
+            <div class="game-info">
+                <span class="game-time">SUN DEC 28 • 1:00 PM</span>
+                <span class="game-network">FOX</span>
+            </div>
             <div class="matchup">
                 <div class="team">
-                    <div>Jacksonville Jaguars (11-4)</div>
+                    <div class="team-name">Buccaneers</div>
+                    <div class="team-record">7-9</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ Indianapolis Colts (8-6)</div>
+                    <div class="team-name">Dolphins</div>
+                    <div class="team-record">7-9</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: JAX -8.5 | Total: 48.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Jaguars 31, Colts 20</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Jaguars -8.5</span> <span class="pick-badge su-pick">SU: Jaguars</span></div>
-                <div style="margin-top: 8px; font-size: 0.95em;">Red-hot Jaguars continue dominant run. Huge AFC South implications.</div>
+            <div class="score-display">
+                <span class="score">17</span>
+                <span class="score-dash">-</span>
+                <span class="score winner">20</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Buccaneers<span class="result-badge incorrect">✗</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Dolphins +5.5<span class="result-badge correct">✓</span></span>
+                </div>
             </div>
         </div>
 
         <div class="game-card">
+            <div class="game-info">
+                <span class="game-time">SUN DEC 28 • 1:00 PM</span>
+                <span class="game-network">FOX</span>
+            </div>
             <div class="matchup">
                 <div class="team">
-                    <div>Tampa Bay Buccaneers (7-8)</div>
+                    <div class="team-name">Patriots</div>
+                    <div class="team-record">12-4</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ Miami Dolphins (6-9)</div>
+                    <div class="team-name">Jets</div>
+                    <div class="team-record">3-13</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: TB -5.5 | Total: 46.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Buccaneers 27, Dolphins 17</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Buccaneers -5.5</span> <span class="pick-badge su-pick">SU: Buccaneers</span></div>
+            <div class="score-display">
+                <span class="score winner">42</span>
+                <span class="score-dash">-</span>
+                <span class="score">10</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Patriots<span class="result-badge correct">✓</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Patriots -13.5<span class="result-badge correct">✓</span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-card playoff-impact">
+            <div class="playoff-badge">🏆 NFC SOUTH IMPLICATIONS</div>
+            <div class="game-info">
+                <span class="game-time">SUN DEC 28 • 1:00 PM</span>
+                <span class="game-network">CBS</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Seahawks</div>
+                    <div class="team-record">13-3</div>
+                </div>
+                <div class="vs-container"><span class="vs">@</span></div>
+                <div class="team">
+                    <div class="team-name">Panthers</div>
+                    <div class="team-record">8-8</div>
+                </div>
+            </div>
+            <div class="score-display">
+                <span class="score winner">27</span>
+                <span class="score-dash">-</span>
+                <span class="score">10</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Seahawks<span class="result-badge correct">✓</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Seahawks -7.5<span class="result-badge correct">✓</span></span>
+                </div>
             </div>
         </div>
 
         <div class="game-card">
+            <div class="game-info">
+                <span class="game-time">SUN DEC 28 • 1:00 PM</span>
+                <span class="game-network">CBS</span>
+            </div>
             <div class="matchup">
                 <div class="team">
-                    <div>New England Patriots (12-3)</div>
+                    <div class="team-name">Saints</div>
+                    <div class="team-record">6-10</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ NY Jets (3-12)</div>
+                    <div class="team-name">Titans</div>
+                    <div class="team-record">3-13</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: NE -12.5 | Total: 40.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Patriots 28, Jets 13</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Patriots -12.5</span> <span class="pick-badge su-pick">SU: Patriots</span></div>
+            <div class="score-display">
+                <span class="score winner">34</span>
+                <span class="score-dash">-</span>
+                <span class="score">26</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Saints<span class="result-badge correct">✓</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Saints -2.5<span class="result-badge correct">✓</span></span>
+                </div>
             </div>
         </div>
 
         <div class="game-card">
-            <div class="matchup">
-                <div class="team">
-                    <div>New Orleans Saints (5-10)</div>
-                </div>
-                <div class="team">
-                    <div>@ Tennessee Titans (3-12)</div>
-                </div>
-            </div>
-            <div class="spread-info">Spread: NO -2.5 | Total: 38.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Saints 23, Titans 17</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Saints -2.5</span> <span class="pick-badge su-pick">SU: Saints</span></div>
-            </div>
-        </div>
-
-        <!-- Sunday Late Games -->
-        <div class="game-card">
-            <div class="game-header">
-                <span>SUNDAY AFTERNOON - Dec 28</span>
-                <span class="game-time">4:05 PM ET</span>
+            <div class="game-info">
+                <span class="game-time">SUN DEC 28 • 1:00 PM</span>
+                <span class="game-network">FOX</span>
             </div>
             <div class="matchup">
                 <div class="team">
-                    <div>NY Giants (2-13)</div>
+                    <div class="team-name">Jaguars</div>
+                    <div class="team-record">12-4</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ Las Vegas Raiders (2-13)</div>
+                    <div class="team-name">Colts</div>
+                    <div class="team-record">8-8</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: LV -1.5 | Total: 37.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Raiders 17, Giants 14</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Raiders -1.5</span> <span class="pick-badge su-pick">SU: Raiders</span></div>
-                <div style="margin-top: 8px; font-size: 0.95em;">Battle for #1 draft pick! Whoever loses might get first overall selection.</div>
+            <div class="score-display">
+                <span class="score winner">23</span>
+                <span class="score-dash">-</span>
+                <span class="score">17</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Jaguars<span class="result-badge correct">✓</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Jaguars -6.5<span class="result-badge incorrect">✗</span></span>
+                </div>
             </div>
         </div>
 
         <div class="game-card">
-            <div class="game-header">
-                <span>SUNDAY LATE - Dec 28</span>
-                <span class="game-time">4:25 PM ET • FOX</span>
+            <div class="game-info">
+                <span class="game-time">SUN DEC 28 • 1:00 PM</span>
+                <span class="game-network">FOX</span>
             </div>
             <div class="matchup">
                 <div class="team">
-                    <div>Philadelphia Eagles (10-5)</div>
+                    <div class="team-name">Cardinals</div>
+                    <div class="team-record">3-13</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ Buffalo Bills (11-4)</div>
+                    <div class="team-name">Bengals</div>
+                    <div class="team-record">5-11</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: BUF -2.5 | Total: 45.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION - GAME OF THE WEEK! 🔥</div>
-                <div><strong>Bills 27, Eagles 24</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Bills -2.5</span> <span class="pick-badge su-pick">SU: Bills</span></div>
-                <div style="margin-top: 8px; font-size: 0.95em;">POTENTIAL SUPER BOWL PREVIEW! Josh Allen vs Jalen Hurts. Bills at home in December are dangerous. Tight game but Bills pull it out.</div>
+            <div class="score-display">
+                <span class="score">14</span>
+                <span class="score-dash">-</span>
+                <span class="score winner">37</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Bengals<span class="result-badge correct">✓</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Bengals -7<span class="result-badge correct">✓</span></span>
+                </div>
             </div>
         </div>
 
-        <!-- Sunday Night -->
         <div class="game-card">
-            <div class="game-header">
-                <span>SUNDAY NIGHT FOOTBALL - Dec 28</span>
-                <span class="game-time">8:20 PM ET • NBC/Peacock</span>
+            <div class="game-info">
+                <span class="game-time">SUN DEC 28 • 1:00 PM</span>
+                <span class="game-network">CBS</span>
             </div>
             <div class="matchup">
                 <div class="team">
-                    <div>Chicago Bears (11-4)</div>
+                    <div class="team-name">Giants</div>
+                    <div class="team-record">3-13</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ San Francisco 49ers (10-4)</div>
+                    <div class="team-name">Raiders</div>
+                    <div class="team-record">2-14</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: SF -2.5 | Total: 50.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Bears 28, 49ers 27</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Bears +2.5</span> <span class="pick-badge su-pick">SU: Bears</span></div>
-                <div style="margin-top: 8px; font-size: 0.95em;">Bears coming off emotional comeback win. Caleb Williams continues to develop. 49ers struggle without key pieces. Bears pull upset!</div>
+            <div class="score-display">
+                <span class="score winner">34</span>
+                <span class="score-dash">-</span>
+                <span class="score">10</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Raiders<span class="result-badge incorrect">✗</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Giants +1.5<span class="result-badge correct">✓</span></span>
+                </div>
             </div>
         </div>
 
-        <!-- Monday Night -->
         <div class="game-card">
-            <div class="game-header">
-                <span>MONDAY NIGHT FOOTBALL - Dec 29</span>
-                <span class="game-time">8:15 PM ET • ESPN</span>
+            <div class="game-info">
+                <span class="game-time">SUN DEC 28 • 4:25 PM</span>
+                <span class="game-network">FOX</span>
             </div>
             <div class="matchup">
                 <div class="team">
-                    <div>LA Rams (11-4)</div>
+                    <div class="team-name">Eagles</div>
+                    <div class="team-record">11-5</div>
                 </div>
+                <div class="vs-container"><span class="vs">@</span></div>
                 <div class="team">
-                    <div>@ Atlanta Falcons (6-9)</div>
+                    <div class="team-name">Bills</div>
+                    <div class="team-record">11-5</div>
                 </div>
             </div>
-            <div class="spread-info">Spread: LAR -8.5 | Total: 49.5</div>
-            <div class="prediction">
-                <div class="prediction-header">BIG SARGE PREDICTION:</div>
-                <div><strong>Rams 31, Falcons 20</strong></div>
-                <div><span class="pick-badge ats-pick">ATS: Rams -8.5</span> <span class="pick-badge su-pick">SU: Rams</span></div>
-                <div style="margin-top: 8px; font-size: 0.95em;">Rams bounce back from Thursday night heartbreak. Matthew Stafford leads the way. Rams cover on the road.</div>
+            <div class="score-display">
+                <span class="score winner">13</span>
+                <span class="score-dash">-</span>
+                <span class="score">12</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Bills<span class="result-badge incorrect">✗</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Eagles +1.5<span class="result-badge correct">✓</span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-info">
+                <span class="game-time">SUN DEC 28 • 8:20 PM</span>
+                <span class="game-network">NBC</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Bears</div>
+                    <div class="team-record">12-4</div>
+                </div>
+                <div class="vs-container"><span class="vs">@</span></div>
+                <div class="team">
+                    <div class="team-name">49ers</div>
+                    <div class="team-record">12-4</div>
+                </div>
+            </div>
+            <div class="score-display">
+                <span class="score">38</span>
+                <span class="score-dash">-</span>
+                <span class="score winner">42</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">49ers<span class="result-badge correct">✓</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Bears +3<span class="result-badge correct">✓</span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-info">
+                <span class="game-time">MON DEC 29 • 8:15 PM</span>
+                <span class="game-network">ESPN</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Rams</div>
+                    <div class="team-record">12-4</div>
+                </div>
+                <div class="vs-container"><span class="vs">@</span></div>
+                <div class="team">
+                    <div class="team-name">Falcons</div>
+                    <div class="team-record">7-9</div>
+                </div>
+            </div>
+            <div class="score-display">
+                <span class="score">24</span>
+                <span class="score-dash">-</span>
+                <span class="score winner">27</span>
+                <span class="final-badge">FINAL</span>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">SU PICK</span>
+                    <span class="prediction-pick">Rams<span class="result-badge incorrect">✗</span></span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">ATS PICK</span>
+                    <span class="prediction-pick">Falcons +8.5<span class="result-badge correct">✓</span></span>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Big Sarge's Top Picks -->
-    <div class="game-section">
-        <div class="section-header">🔥 BIG SARGE'S WEEK 17 TOP PICKS</div>
-        
-        <div class="game-card" style="border-left: 5px solid #ff0000;">
-            <div class="prediction-header" style="font-size: 1.2em;">🔒 LOCK OF THE WEEK</div>
-            <div style="font-size: 1.1em; margin: 10px 0;"><strong>Broncos -12.5 vs Chiefs (Christmas)</strong></div>
-            <div>Patrick Mahomes is out for the season. Chiefs have lost 4 straight. Broncos are rolling and need this for playoff seeding. This is a blowout waiting to happen.</div>
+    <!-- WEEK 18 PREDICTIONS -->
+    <div class="section-header">
+        <h2>🎯 WEEK 18 PREDICTIONS</h2>
+        <span class="section-badge">JAN 4-5, 2026</span>
+    </div>
+
+    <div class="games-grid">
+        <!-- Saturday Games -->
+        <div class="game-card playoff-impact">
+            <div class="playoff-badge">🏆 NFC SOUTH TITLE GAME - WINNER IN, LOSER OUT!</div>
+            <div class="game-info">
+                <span class="game-time">SAT JAN 4 • 4:30 PM</span>
+                <span class="game-network">ABC/ESPN</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Panthers</div>
+                    <div class="team-record">8-8</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">TB -2.5</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Buccaneers</div>
+                    <div class="team-record">7-9</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 BUCCANEERS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">PANTHERS +2.5</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">BIG SARGE TAKE</span>
+                    <span class="prediction-pick">Baker Mayfield bounces back at home. Close game but Bucs take NFC South!</span>
+                </div>
+            </div>
         </div>
 
-        <div class="game-card" style="border-left: 5px solid #ffd700;">
-            <div class="prediction-header" style="font-size: 1.2em;">💰 BEST VALUE</div>
-            <div style="font-size: 1.1em; margin: 10px 0;"><strong>Bears +2.5 @ 49ers (SNF)</strong></div>
-            <div>Bears are 11-4 and coming off an emotional win. Getting points as a dog? Yes please! This Bears team is for real and 49ers are banged up.</div>
+        <div class="game-card playoff-impact">
+            <div class="playoff-badge">🏆 NFC WEST TITLE + NFC #1 SEED ON THE LINE!</div>
+            <div class="game-info">
+                <span class="game-time">SAT JAN 4 • 8:00 PM</span>
+                <span class="game-network">ABC/ESPN</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Seahawks</div>
+                    <div class="team-record">13-3</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">SEA -1.5</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">49ers</div>
+                    <div class="team-record">12-4</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 SEAHAWKS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">SEAHAWKS -1.5</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">BIG SARGE TAKE</span>
+                    <span class="prediction-pick">Seattle's riding hot! Winner gets NFC West + #1 seed + bye week. Sam Darnold delivers!</span>
+                </div>
+            </div>
         </div>
 
-        <div class="game-card" style="border-left: 5px solid #00ff00;">
-            <div class="prediction-header" style="font-size: 1.2em;">🎯 UPSET SPECIAL</div>
-            <div style="font-size: 1.1em; margin: 10px 0;"><strong>Bears ML @ 49ers (SNF)</strong></div>
-            <div>Taking Bears straight up to win! They're getting no respect at +124 ML. This is a trap line. Bears win outright on primetime!</div>
+        <!-- Sunday 1 PM Games -->
+        <div class="game-card playoff-impact">
+            <div class="playoff-badge">🔥 AFC SOUTH TITLE IMPLICATIONS</div>
+            <div class="game-info">
+                <span class="game-time">SUN JAN 5 • 1:00 PM</span>
+                <span class="game-network">CBS</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Colts</div>
+                    <div class="team-record">8-8</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">HOU -10.5</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Texans</div>
+                    <div class="team-record">11-5</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 TEXANS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">COLTS +10.5</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-card playoff-impact">
+            <div class="playoff-badge">🔥 AFC SOUTH TITLE - JAGS CAN CLINCH!</div>
+            <div class="game-info">
+                <span class="game-time">SUN JAN 5 • 1:00 PM</span>
+                <span class="game-network">FOX</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Titans</div>
+                    <div class="team-record">3-13</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">JAX -12.5</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Jaguars</div>
+                    <div class="team-record">12-4</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 JAGUARS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">JAGUARS -12.5</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">BIG SARGE TAKE</span>
+                    <span class="prediction-pick">Jags win 8th straight! Trevor Lawrence is BACK. Could grab #1 seed with help!</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-info">
+                <span class="game-time">SUN JAN 5 • 1:00 PM</span>
+                <span class="game-network">FOX</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Falcons</div>
+                    <div class="team-record">7-9</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">ATL -2.5</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Saints</div>
+                    <div class="team-record">6-10</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 FALCONS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">FALCONS -2.5</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-info">
+                <span class="game-time">SUN JAN 5 • 1:00 PM</span>
+                <span class="game-network">CBS</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Packers</div>
+                    <div class="team-record">9-6-1</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">MIN -6.5</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Vikings</div>
+                    <div class="team-record">14-2</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 VIKINGS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">PACKERS +6.5</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-info">
+                <span class="game-time">SUN JAN 5 • 1:00 PM</span>
+                <span class="game-network">CBS</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Browns</div>
+                    <div class="team-record">3-13</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">CIN -7</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Bengals</div>
+                    <div class="team-record">5-11</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 BENGALS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">BENGALS -7</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sunday 4:25 PM Games -->
+        <div class="game-card playoff-impact">
+            <div class="playoff-badge">🔥 AFC WEST - BRONCOS CLINCH SPOT WITH WIN!</div>
+            <div class="game-info">
+                <span class="game-time">SUN JAN 5 • 4:25 PM</span>
+                <span class="game-network">CBS</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Chargers</div>
+                    <div class="team-record">11-5</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">DEN -11.5</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Broncos</div>
+                    <div class="team-record">13-3</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 BRONCOS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">CHARGERS +11.5</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">BIG SARGE TAKE</span>
+                    <span class="prediction-pick">Bo Nix & Broncos clinch! But Herbert keeps it closer than expected.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-card playoff-impact">
+            <div class="playoff-badge">🏆 NFC NORTH TITLE + #1 SEED - HUGE!</div>
+            <div class="game-info">
+                <span class="game-time">SUN JAN 5 • 4:25 PM</span>
+                <span class="game-network">FOX</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Lions</div>
+                    <div class="team-record">13-3</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">CHI -2.5</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Bears</div>
+                    <div class="team-record">12-4</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 BEARS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">BEARS -2.5</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">BIG SARGE TAKE</span>
+                    <span class="prediction-pick">Caleb Williams makes a statement! Bears take NFC North at home!</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-info">
+                <span class="game-time">SUN JAN 5 • 4:25 PM</span>
+                <span class="game-network">FOX</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Cardinals</div>
+                    <div class="team-record">3-13</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">LAR -14</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Rams</div>
+                    <div class="team-record">11-5</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 RAMS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">CARDINALS +14</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-info">
+                <span class="game-time">SUN JAN 5 • 4:25 PM</span>
+                <span class="game-network">CBS</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Commanders</div>
+                    <div class="team-record">10-6</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">PHI -8</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Eagles</div>
+                    <div class="team-record">11-5</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 EAGLES WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">COMMANDERS +8</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-info">
+                <span class="game-time">SUN JAN 5 • 4:25 PM</span>
+                <span class="game-network">FOX</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Dolphins</div>
+                    <div class="team-record">7-9</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">NE -10</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Patriots</div>
+                    <div class="team-record">12-4</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 PATRIOTS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">DOLPHINS +10</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-info">
+                <span class="game-time">SUN JAN 5 • 4:25 PM</span>
+                <span class="game-network">CBS</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Bills</div>
+                    <div class="team-record">11-5</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">BUF -3.5</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Jets</div>
+                    <div class="team-record">3-13</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 BILLS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">JETS +3.5</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SNF -->
+        <div class="game-card playoff-impact">
+            <div class="playoff-badge">🏆 AFC NORTH TITLE - WINNER TAKES ALL, LOSER OUT!</div>
+            <div class="game-info">
+                <span class="game-time">SUN JAN 5 • 8:20 PM</span>
+                <span class="game-network">NBC/Peacock</span>
+            </div>
+            <div class="matchup">
+                <div class="team">
+                    <div class="team-name">Ravens</div>
+                    <div class="team-record">8-8</div>
+                </div>
+                <div class="vs-container">
+                    <span class="vs">@</span>
+                    <span class="spread">BAL -3.5</span>
+                </div>
+                <div class="team">
+                    <div class="team-name">Steelers</div>
+                    <div class="team-record">9-7</div>
+                </div>
+            </div>
+            <div class="predictions">
+                <div class="prediction-row">
+                    <span class="prediction-type">STRAIGHT UP</span>
+                    <span class="prediction-pick pick-highlight">🏈 RAVENS WIN</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">AGAINST SPREAD</span>
+                    <span class="prediction-pick pick-highlight">RAVENS -3.5</span>
+                </div>
+                <div class="prediction-row">
+                    <span class="prediction-type">🔒 BIG SARGE'S LOCK OF THE WEEK</span>
+                    <span class="prediction-pick">Lamar Jackson returns healthy. Derrick Henry ran for 216 yards & 4 TDs last week. Ravens take AFC North!</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <footer style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #ffd700;">
-        <p style="font-size: 1.2em; margin-bottom: 10px;">🏈 BIG SARGE NFL 2025 TRACKER 🏈</p>
-        <p>Breaking Ranks Blog • Mental Health Advocacy • NFL Analysis</p>
-        <p style="margin-top: 10px; font-size: 0.9em;">Updated: December 22, 2025 • Week 17 Predictions</p>
-        <p style="margin-top: 10px; font-size: 0.8em; font-style: italic;">All spreads via DraftKings Sportsbook • Gamble Responsibly</p>
+    <!-- Message Banner -->
+    <div class="message-banner">
+        <h3>🎖️ THANK YOU FOR FOLLOWING BIG SARGE NFL TRACKER! 🎖️</h3>
+        <p>Good luck to everyone in Week 18 as we close out an incredible 2025 regular season! May your picks be sharp, your teams victorious, and your playoff brackets ready to roll. It's been an honor breaking down the games with you all season long.</p>
+        <p class="signature">— BIG SARGE 🇺🇸<br/>US AIR FORCE RETIRED SENIOR MASTER SERGEANT<br/>BREAKING RANKS BOOKS | big-sarge.blog</p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-brand">BIG SARGE NFL TRACKER</div>
+        <p style="color: rgba(255,255,255,0.6); margin-top: 10px;">2025-26 Season • Week 18 Edition</p>
+        <a href="https://big-sarge.blog" class="social-link" target="_blank">📖 BREAKING RANKS BLOG</a>
+        <p style="margin-top: 20px; font-size: 0.75rem; color: rgba(255,255,255,0.4);">© 2026 Breaking Ranks Books | For Entertainment Purposes Only</p>
     </footer>
 </div>
 ```
