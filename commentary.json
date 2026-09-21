@@ -1,0 +1,21 @@
+{
+  "_README": "Big Sarge's commentary, one entry per game. Key is the game id: season_week_AWAY_HOME, e.g. 2026_03_KC_BUF. Value is your take, plain text. Leave a value empty and nothing renders for that game.",
+  "_HOW": "Edit this file, then run: python3 tools/build_2026.py games.csv index.html  Rebuilding pulls fresh scores and keeps every word you wrote, because your commentary lives here and not in index.html.",
+  "_IDS": "Every game id follows the same pattern, so you can add any game in any week without looking it up. Week 3's slate is listed below, ready to fill in.",
+  "2026_03_ATL_GB": "Short week, long flight, and a Lambeau crowd waiting on them. Atlanta's 0-2 and now they head north to a Packers team that's already found its legs. Green Bay by a touchdown, and it won't feel that close late.",
+  "2026_03_LAC_BUF": "Buffalo's 2-0 and at home. The Chargers are 0-2 and still hunting for answers they haven't found. Bills stack another one and it isn't dramatic.",
+  "2026_03_CAR_CLE": "Two 1-1 teams that both think they're one game from figuring it out. Cleveland's home, so I'll give the Browns the edge, but this is a rock fight into the fourth quarter.",
+  "2026_03_NYJ_DET": "Detroit at home off a split is a dangerous animal. The Jets can hang for a half, but the Lions have more juice in the tank. Detroit pulls away late.",
+  "2026_03_HOU_IND": "Division game and both these teams are 0-2 and desperate. Somebody walks out at 1-2 feeling alive again. Colts have the home field, so Indy gets off the mat.",
+  "2026_03_NE_JAX": "Even money on paper, both sitting 1-1. Jacksonville's home and that's the tiebreaker for me. Jags grind out a close one.",
+  "2026_03_KC_MIA": "Kansas City's 2-0, Miami's 0-2 and hurting. The Chiefs don't have to be fancy here, they just have to be themselves. KC handles business.",
+  "2026_03_TEN_NYG": "The Giants are 1-0 and protecting home turf. Tennessee's 0-2 and still checking for a pulse. New York takes this one.",
+  "2026_03_CIN_PIT": "This is the one circled on the AFC North calendar. Bengals roll in at 2-0, Pittsburgh's home at 1-1, and nobody in this rivalry gives an inch. Give me Cincinnati by a field goal, but bank on it going to the wire.",
+  "2026_03_SEA_WAS": "Seattle's 2-0 and rolling. Washington's 0-2 and it shows on tape. Seahawks keep it clean on the road.",
+  "2026_03_ARI_SF": "NFC West, and the 49ers are 2-0 at home. Arizona's frisky at 1-1 but San Francisco is the class of this matchup right now. Niners hold serve.",
+  "2026_03_MIN_TB": "Minnesota's 2-0 and playing with its chest out. Tampa's 0-2 and pressing. Vikings take care of it.",
+  "2026_03_BAL_DAL": "Football in Brazil, neutral turf at the Maracana, two 1-1 teams under the lights. No home crowd, no comfort, just execution. I'll take Baltimore to be the more disciplined team when it matters.",
+  "2026_03_LV_NO": "The Raiders are the early-season surprise at 2-0. New Orleans is 1-1 at home and won't lie down for anybody. Vegas keeps the magic alive, barely.",
+  "2026_03_LAR_DEN": "Denver's home at 1-1, the Rams are 0-1 and still shaking off the rust. Mile High is a bad place to go looking for your footing. Broncos by a score.",
+  "2026_03_PHI_CHI": "Monday night, Eagles march into Chicago at 2-0 and the Bears get their prime-time shot at 1-1. Philadelphia's the more complete team, but a loud night at Soldier Field keeps Chicago breathing into the fourth. Eagles escape."
+}
