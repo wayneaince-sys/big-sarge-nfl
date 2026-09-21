@@ -1,50 +1,692 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 48.0px 'Hiragino Sans'; color: #fed10a; -webkit-text-stroke: #fed10a}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 21.6px Helvetica; color: #fed10a; -webkit-text-stroke: #fed10a}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px Helvetica; color: #01154a; -webkit-text-stroke: #01154a}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.2px Helvetica; color: #ffffff; -webkit-text-stroke: #ffffff}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.6px Helvetica; color: #01154a; -webkit-text-stroke: #01154a; background-color: #fed10a}
-    p.p8 {margin: 0.0px 0.0px 22.0px 0.0px; font: 10.8px Helvetica; color: #ffffff; color: rgba(255, 255, 255, 0.75); -webkit-text-stroke: rgba(255, 255, 255, 0.75)}
-    p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #ffffff; -webkit-text-stroke: #ffffff; min-height: 14.0px}
-    p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 16.8px Helvetica; color: #fed10a; -webkit-text-stroke: #fed10a}
-    p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 10.2px Helvetica; color: #ffffff; color: rgba(255, 255, 255, 0.75); -webkit-text-stroke: rgba(255, 255, 255, 0.75)}
-    span.s1 {font-kerning: none; text-shadow: 0.0px -0.0px 20.0px rgba(255, 255, 254, 0.0039)}
-    span.s2 {font-kerning: none; text-shadow: 3.0px 3.0px 0.0px #fed70a}
-    span.s3 {font-kerning: none}
-    span.s4 {font-kerning: none; background-color: rgba(1, 21, 74, 0.92)}
-    span.s5 {font: 16.8px 'Hiragino Sans'; font-kerning: none}
-    span.s6 {font: 10.2px Helvetica; text-decoration: underline ; font-kerning: none}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Big Sarge NFL Tracker - the complete 2026 NFL schedule, all 18 weeks and 272 games, with scores, standings and the playoff picture.">
+<meta name="keywords" content="NFL, 2026 NFL schedule, NFL scores, NFL standings, playoff picture, Big Sarge">
+<meta name="author" content="Big Sarge">
+<meta property="og:title" content="Big Sarge NFL Tracker - 2026 Season">
+<meta property="og:description" content="Every 2026 NFL game, week by week: kickoff times, scores, standings and the playoff picture.">
+<meta property="og:type" content="website">
+<title>Big Sarge NFL Tracker - 2026 Season</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --air-force-blue: #00308F;
+    --air-force-dark: #001F5C;
+    --air-force-light: #4169E1;
+    --gold: #FFD700;
+    --gold-dark: #DAA520;
+    --white: #FFFFFF;
+    --success: #10B981;
+    --danger: #EF4444;
+    --playoff-glow: #FF6B35;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* The gradient goes on html, not body: a body background with
+   background-attachment:fixed leaves a bare strip above the sticky nav
+   on scroll, because html itself stays transparent. */
+html {
+    scroll-behavior: smooth;
+    background: var(--air-force-dark);
+    background-image: linear-gradient(135deg, var(--air-force-dark) 0%, var(--air-force-blue) 50%, #1a365d 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: transparent;
+    min-height: 100vh;
+    color: var(--white);
+}
+
+.container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+
+/* ---------- header ---------- */
+.header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 100%);
+    border-bottom: 4px solid var(--gold);
+    margin-bottom: 30px;
+}
+.logo-badge { display: inline-flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+.star-icon {
+    font-size: 48px;
+    color: var(--gold);
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+.title {
+    font-family: 'Russo One', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1.1;
+    color: var(--white);
+    text-shadow: 3px 3px 0 var(--gold), 6px 6px 10px rgba(0,0,0,0.3);
+}
+.subtitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    letter-spacing: 5px;
+    margin-top: 10px;
+}
+.rank-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--air-force-dark);
+    padding: 8px 25px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* ---------- nav ---------- */
+.nav {
+    position: sticky; top: 0; z-index: 30;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    padding: 12px 15px;
+    background: rgba(0,31,92,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(255,215,0,0.4);
+    margin-bottom: 30px;
+}
+.nav a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+    padding: 6px 14px; border-radius: 20px;
+    transition: background 0.25s, color 0.25s;
+}
+.nav a:hover { background: var(--gold); color: var(--air-force-dark); }
+.nav a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* ---------- stats ---------- */
+.stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.stat-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,215,0,0.3);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,215,0,0.2); }
+.stat-label { font-family: 'Oswald', sans-serif; font-size: 0.8rem; color: var(--gold); letter-spacing: 2px; }
+.stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--white); line-height: 1.2; }
+.stat-sub { font-size: 0.75rem; color: rgba(255,255,255,0.7); }
+
+/* ---------- section headers ---------- */
+.section { scroll-margin-top: 70px; }
+.section-header {
+    display: flex; align-items: center; gap: 15px; flex-wrap: wrap;
+    margin: 40px 0 10px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--gold);
+}
+.section-header h2 { font-family: 'Russo One', sans-serif; font-size: 1.6rem; }
+.section-badge {
+    background: var(--gold); color: var(--air-force-dark);
+    padding: 5px 15px; border-radius: 20px;
+    font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 600;
+}
+.section-note {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.9rem; line-height: 1.6;
+    margin: 0 0 22px; max-width: 78ch;
+}
+
+/* ---------- week selector ---------- */
+.week-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.week-tab {
+    font-family: 'Oswald', sans-serif; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 1px;
+    padding: 7px 14px; border-radius: 20px; cursor: pointer;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,215,0,0.3);
+    color: var(--white);
+    transition: all 0.25s ease;
+}
+.week-tab:hover { background: rgba(255,215,0,0.25); transform: translateY(-2px); }
+.week-tab:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.week-tab[aria-selected="true"] {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--air-force-dark);
+    font-weight: 700;
+    border-color: var(--gold);
+    box-shadow: 0 5px 18px rgba(255,215,0,0.3);
+}
+.week-tab .dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--success); margin-left: 7px; vertical-align: middle;
+}
+.week-tab[aria-selected="true"] .dot { background: var(--air-force-dark); }
+
+.week-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px; margin: 28px 0 18px; }
+.week-head h3 { font-family: 'Russo One', sans-serif; font-size: 1.5rem; }
+.week-head .dates { font-family: 'Oswald', sans-serif; color: var(--gold); letter-spacing: 1px; }
+
+.week-note {
+    background: rgba(255,215,0,0.12);
+    border: 1px solid rgba(255,215,0,0.4);
+    border-left: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 14px 18px; margin-bottom: 22px;
+    font-size: 0.88rem; line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+}
+
+.day-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold);
+    margin: 26px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,215,0,0.25);
+}
+
+/* ---------- game cards ---------- */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+}
+.game-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: all 0.3s ease;
+}
+.game-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+.game-card.intl { border: 2px solid var(--playoff-glow); }
+
+.game-info {
+    padding: 12px 15px;
+    background: rgba(0,0,0,0.2);
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+}
+.game-time { font-family: 'Oswald', sans-serif; font-size: 0.85rem; color: var(--gold); letter-spacing: 1px; }
+.game-time.tbd { color: rgba(255,255,255,0.55); font-style: italic; }
+.badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.badge {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 1px;
+    padding: 3px 9px; border-radius: 10px;
+    background: rgba(255,255,255,0.15);
+    white-space: nowrap;
+}
+.badge.tnf { background: rgba(139,92,246,0.45); }
+.badge.mnf { background: rgba(255,107,53,0.45); }
+.badge.sat { background: rgba(56,189,248,0.4); }
+.badge.intl { background: linear-gradient(90deg, var(--playoff-glow), #FF8C42); }
+.badge.div { background: rgba(255,215,0,0.25); color: var(--gold); }
+
+.matchup { display: flex; justify-content: space-between; align-items: center; padding: 15px; gap: 6px; }
+.team { text-align: center; flex: 1; min-width: 0; }
+.team a { color: inherit; text-decoration: none; }
+.team a:hover .team-name { color: var(--gold); }
+.team a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+.team-name { font-family: 'Russo One', sans-serif; font-size: 1.15rem; margin-bottom: 3px; transition: color 0.2s; }
+.team-record { font-size: 0.8rem; color: rgba(255,255,255,0.7); }
+.vs-container { display: flex; flex-direction: column; align-items: center; padding: 0 10px; }
+.vs { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--gold); }
+.venue { font-size: 0.68rem; color: rgba(255,255,255,0.6); margin-top: 2px; text-align: center; }
+
+.score-display {
+    display: flex; justify-content: center; align-items: center; gap: 12px;
+    padding: 10px; background: rgba(0,0,0,0.3);
+}
+.score { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; min-width: 45px; text-align: center; }
+.score.winner { color: var(--gold); }
+.score-dash { font-size: 1.3rem; color: rgba(255,255,255,0.5); }
+.final-badge {
+    background: var(--success); padding: 2px 8px; border-radius: 8px;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 1px;
+}
+
+.take {
+    padding: 12px 15px;
+    background: rgba(0,48,143,0.3);
+    border-top: 1px solid rgba(255,215,0,0.2);
+    margin-top: auto;
+}
+.take-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem; color: var(--gold); letter-spacing: 1px;
+    display: block; margin-bottom: 4px;
+}
+.take-text { font-size: 0.86rem; line-height: 1.55; color: rgba(255,255,255,0.92); }
+
+.byes {
+    margin-top: 24px; padding: 14px 18px;
+    background: rgba(0,0,0,0.22);
+    border: 1px dashed rgba(255,215,0,0.4);
+    border-radius: 12px; font-size: 0.88rem;
+}
+.byes .label {
+    font-family: 'Oswald', sans-serif; color: var(--gold);
+    letter-spacing: 1px; text-transform: uppercase; font-size: 0.75rem;
+    display: block; margin-bottom: 4px;
+}
+
+/* ---------- playoffs ---------- */
+.two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 22px; }
+.panel {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,215,0,0.3);
+    border-radius: 15px; padding: 22px;
+}
+.panel h3 {
+    font-family: 'Russo One', sans-serif; font-size: 1.15rem;
+    margin-bottom: 14px; padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255,215,0,0.4);
+}
+.seed {
+    display: grid; grid-template-columns: 28px 1fr auto;
+    align-items: center; gap: 10px; padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.seed:last-child { border-bottom: none; }
+.seed-number { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; color: var(--gold); }
+.seed .nm { font-family: 'Oswald', sans-serif; font-size: 0.95rem; }
+.seed .role { display: block; font-size: 0.7rem; color: rgba(255,255,255,0.6); letter-spacing: 1px; }
+.seed .rec { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; }
+.cut {
+    margin: 10px 0 2px; padding-top: 8px;
+    border-top: 2px dashed rgba(255,215,0,0.6);
+    font-family: 'Oswald', sans-serif; font-size: 0.7rem;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+}
+
+/* ---------- standings ---------- */
+.div-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.div-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 15px; padding: 18px;
+}
+.div-card h4 {
+    font-family: 'Oswald', sans-serif; font-size: 0.95rem;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,215,0,0.25);
+}
+.trow {
+    display: grid; grid-template-columns: 1fr auto auto;
+    gap: 12px; align-items: center; padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.trow:last-child { border-bottom: none; }
+.trow a { color: var(--white); text-decoration: none; font-size: 0.92rem; }
+.trow a:hover { color: var(--gold); }
+.trow a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 3px; }
+.trow .rec { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; }
+.trow .pd { font-size: 0.75rem; color: rgba(255,255,255,0.6); min-width: 42px; text-align: right; }
+
+/* ---------- footer ---------- */
+.footer {
+    text-align: center; padding: 35px 20px 20px; margin-top: 50px;
+    border-top: 3px solid var(--gold);
+    font-size: 0.85rem; color: rgba(255,255,255,0.75);
+}
+.footer a { color: var(--gold); }
+.footer .sig { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--gold); letter-spacing: 3px; }
+
+@media (max-width: 720px) {
+    .container { padding: 12px; }
+    .header { padding: 28px 15px; }
+    .title { font-size: 2.1rem; }
+    .subtitle { font-size: 1.2rem; letter-spacing: 3px; }
+    .star-icon { font-size: 34px; }
+    .games-grid { grid-template-columns: 1fr; }
+    .team-name { font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+@media print {
+    body { background: #fff; color: #000; }
+    .nav, .week-tabs { display: none; }
+    .game-card, .panel, .div-card, .stat-card { border: 1px solid #999; background: #fff; color: #000; }
+}
+</style>
 </head>
 <body>
-<p class="p1"><span class="s1">★</span></p>
-<h1 style="margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 42.0px Helvetica; color: #ffffff; -webkit-text-stroke: #ffffff"><span class="s2"><b>BIG SARGE NFL TRACKER</b></span></h1>
-<p class="p3"><span class="s3">2026 SEASON • ALL 18 WEEKS</span></p>
-<p class="p4"><span class="s3"><b>272 GAMES • SEP 9, 2026 – JAN 10, 2027</b><b></b></span></p>
-<p class="p5"><span class="s4">SCHEDULE</span></p>
-<p class="p5"><span class="s4">PLAYOFF PICTURE</span></p>
-<p class="p5"><span class="s4">STANDINGS</span></p>
-<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 19.2px Helvetica; color: #ffffff; -webkit-text-stroke: #ffffff"><span class="s3"><b>THE SCHEDULE</b></span></h2>
-<p class="p7"><span class="s3"><b>ALL 18 WEEKS</b></span></p>
-<p class="p8"><span class="s3">Every game of the 2026 regular season. Kickoff times are Eastern and flex from Week 5 on, so late-season Sunday windows can still move. Weeks with games in the books carry a green dot.</span></p>
-<p class="p9"><span class="s3"></span><br></p>
-<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 19.2px Helvetica; color: #ffffff; -webkit-text-stroke: #ffffff"><span class="s3"><b>PLAYOFF PICTURE</b></span></h2>
-<p class="p7"><span class="s3"><b>LIVE SEEDING</b></span></p>
-<p class="p8"><span class="s3">Four division leaders, then the next three by record. This is a straight win-percentage sort broken by division record and point differential — the NFL's real head-to-head and common-games tiebreakers are not applied, so close seeds can flip. Entertainment only.</span></p>
-<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 19.2px Helvetica; color: #ffffff; -webkit-text-stroke: #ffffff"><span class="s3"><b>STANDINGS</b></span></h2>
-<p class="p7"><span class="s3"><b>ALL 32 TEAMS</b></span></p>
-<p class="p8"><span class="s3">Records computed from played games. Team names link to their NFL.com page.</span></p>
-<p class="p9"><span class="s3"></span><br></p>
-<p class="p10"><span class="s5">★</span><span class="s3"> BIG SARGE </span><span class="s5">★</span></p>
-<p class="p11"><span class="s3">Schedule and results from <a href="https://github.com/nflverse/nfldata"><span class="s6">nflverse</span></a> • updated September 21, 2026</span></p>
-<p class="p11"><span class="s3">Team names and logos are property of the National Football League.</span></p>
+<div class="container">
+
+    <header class="header">
+        <div class="logo-badge">
+            <span class="star-icon" aria-hidden="true">&#9733;</span>
+            <h1 class="title">BIG SARGE NFL TRACKER</h1>
+        </div>
+        <p class="subtitle">2026 SEASON &bull; ALL 18 WEEKS</p>
+        <div class="rank-badge">272 GAMES &bull; SEP 9, 2026 &ndash; JAN 10, 2027</div>
+    </header>
+
+    <nav class="nav">
+        <a href="#schedule">Schedule</a>
+        <a href="#playoffs">Playoff Picture</a>
+        <a href="#standings">Standings</a>
+    </nav>
+
+    <div class="stats-bar" id="statsBar"></div>
+
+    <section class="section" id="schedule">
+        <div class="section-header">
+            <h2>THE SCHEDULE</h2>
+            <span class="section-badge">ALL 18 WEEKS</span>
+        </div>
+        <p class="section-note">
+            Every game of the 2026 regular season. Kickoff times are Eastern and flex from Week 5 on,
+            so late-season Sunday windows can still move. Weeks with games in the books carry a green dot.
+        </p>
+        <div class="week-tabs" id="weekTabs" role="tablist" aria-label="Select week"></div>
+        <div id="weekPanel" role="tabpanel"></div>
+    </section>
+
+    <section class="section" id="playoffs">
+        <div class="section-header">
+            <h2>PLAYOFF PICTURE</h2>
+            <span class="section-badge">LIVE SEEDING</span>
+        </div>
+        <p class="section-note">
+            Four division leaders, then the next three by record. This is a straight win-percentage
+            sort broken by division record and point differential &mdash; the NFL's real head-to-head
+            and common-games tiebreakers are not applied, so close seeds can flip. Entertainment only.
+        </p>
+        <div class="two-col" id="playoffPanels"></div>
+    </section>
+
+    <section class="section" id="standings">
+        <div class="section-header">
+            <h2>STANDINGS</h2>
+            <span class="section-badge">ALL 32 TEAMS</span>
+        </div>
+        <p class="section-note">
+            Records computed from played games. Team names link to their NFL.com page.
+        </p>
+        <div id="standingsWrap"></div>
+    </section>
+
+    <footer class="footer">
+        <p class="sig">&#9733; BIG SARGE &#9733;</p>
+        <p>Schedule and results from <a href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener noreferrer">nflverse</a> &bull; updated September 21, 2026</p>
+        <p>Team names and logos are property of the National Football League.</p>
+    </footer>
+</div>
+
+<script id="nflData" type="application/json">{"season":"2026","games":[{"id":"2026_01_NE_SEA","wk":1,"date":"2026-09-09","day":"Wednesday","time":"8:20 PM","away":"NE","home":"SEA","div":false,"as":10,"hs":13},{"id":"2026_01_SF_LAR","wk":1,"date":"2026-09-10","day":"Thursday","time":"8:35 PM","away":"SF","home":"LAR","div":true,"as":27,"hs":7,"kind":"intl","at":"Melbourne, Australia"},{"id":"2026_01_CHI_CAR","wk":1,"date":"2026-09-13","day":"Sunday","time":"1:00 PM","away":"CHI","home":"CAR","div":false,"as":59,"hs":37},{"id":"2026_01_TB_CIN","wk":1,"date":"2026-09-13","day":"Sunday","time":"1:00 PM","away":"TB","home":"CIN","div":false,"as":27,"hs":33},{"id":"2026_01_NO_DET","wk":1,"date":"2026-09-13","day":"Sunday","time":"1:00 PM","away":"NO","home":"DET","div":false,"as":30,"hs":31},{"id":"2026_01_BUF_HOU","wk":1,"date":"2026-09-13","day":"Sunday","time":"1:00 PM","away":"BUF","home":"HOU","div":false,"as":36,"hs":31},{"id":"2026_01_BAL_IND","wk":1,"date":"2026-09-13","day":"Sunday","time":"1:00 PM","away":"BAL","home":"IND","div":false,"as":41,"hs":23},{"id":"2026_01_CLE_JAX","wk":1,"date":"2026-09-13","day":"Sunday","time":"1:00 PM","away":"CLE","home":"JAX","div":false,"as":10,"hs":34},{"id":"2026_01_ATL_PIT","wk":1,"date":"2026-09-13","day":"Sunday","time":"1:00 PM","away":"ATL","home":"PIT","div":false,"as":13,"hs":20},{"id":"2026_01_NYJ_TEN","wk":1,"date":"2026-09-13","day":"Sunday","time":"1:00 PM","away":"NYJ","home":"TEN","div":false,"as":23,"hs":10},{"id":"2026_01_ARI_LAC","wk":1,"date":"2026-09-13","day":"Sunday","time":"4:25 PM","away":"ARI","home":"LAC","div":false,"as":26,"hs":14},{"id":"2026_01_MIA_LV","wk":1,"date":"2026-09-13","day":"Sunday","time":"4:25 PM","away":"MIA","home":"LV","div":false,"as":13,"hs":27},{"id":"2026_01_GB_MIN","wk":1,"date":"2026-09-13","day":"Sunday","time":"4:25 PM","away":"GB","home":"MIN","div":true,"as":22,"hs":39},{"id":"2026_01_WAS_PHI","wk":1,"date":"2026-09-13","day":"Sunday","time":"4:25 PM","away":"WAS","home":"PHI","div":true,"as":22,"hs":24},{"id":"2026_01_DAL_NYG","wk":1,"date":"2026-09-13","day":"Sunday","time":"8:20 PM","away":"DAL","home":"NYG","div":true,"as":20,"hs":28},{"id":"2026_01_DEN_KC","wk":1,"date":"2026-09-14","day":"Monday","time":"8:15 PM","away":"DEN","home":"KC","div":true,"as":10,"hs":31,"kind":"mnf"},{"id":"2026_02_DET_BUF","wk":2,"date":"2026-09-17","day":"Thursday","time":"8:15 PM","away":"DET","home":"BUF","div":false,"as":31,"hs":41,"kind":"tnf"},{"id":"2026_02_CAR_ATL","wk":2,"date":"2026-09-20","day":"Sunday","time":"1:00 PM","away":"CAR","home":"ATL","div":true,"as":34,"hs":3},{"id":"2026_02_NO_BAL","wk":2,"date":"2026-09-20","day":"Sunday","time":"1:00 PM","away":"NO","home":"BAL","div":false,"as":24,"hs":17},{"id":"2026_02_MIN_CHI","wk":2,"date":"2026-09-20","day":"Sunday","time":"1:00 PM","away":"MIN","home":"CHI","div":true,"as":9,"hs":3},{"id":"2026_02_CIN_HOU","wk":2,"date":"2026-09-20","day":"Sunday","time":"1:00 PM","away":"CIN","home":"HOU","div":false,"as":20,"hs":6},{"id":"2026_02_PIT_NE","wk":2,"date":"2026-09-20","day":"Sunday","time":"1:00 PM","away":"PIT","home":"NE","div":false,"as":3,"hs":20},{"id":"2026_02_GB_NYJ","wk":2,"date":"2026-09-20","day":"Sunday","time":"1:00 PM","away":"GB","home":"NYJ","div":false,"as":20,"hs":17},{"id":"2026_02_CLE_TB","wk":2,"date":"2026-09-20","day":"Sunday","time":"1:00 PM","away":"CLE","home":"TB","div":false,"as":23,"hs":19},{"id":"2026_02_PHI_TEN","wk":2,"date":"2026-09-20","day":"Sunday","time":"1:00 PM","away":"PHI","home":"TEN","div":false,"as":24,"hs":20},{"id":"2026_02_JAX_DEN","wk":2,"date":"2026-09-20","day":"Sunday","time":"4:05 PM","away":"JAX","home":"DEN","div":false,"as":13,"hs":20},{"id":"2026_02_LV_LAC","wk":2,"date":"2026-09-20","day":"Sunday","time":"4:05 PM","away":"LV","home":"LAC","div":true,"as":26,"hs":14},{"id":"2026_02_SEA_ARI","wk":2,"date":"2026-09-20","day":"Sunday","time":"4:25 PM","away":"SEA","home":"ARI","div":true,"as":31,"hs":7},{"id":"2026_02_WAS_DAL","wk":2,"date":"2026-09-20","day":"Sunday","time":"4:25 PM","away":"WAS","home":"DAL","div":true,"as":20,"hs":37},{"id":"2026_02_MIA_SF","wk":2,"date":"2026-09-20","day":"Sunday","time":"4:25 PM","away":"MIA","home":"SF","div":false,"as":13,"hs":35},{"id":"2026_02_IND_KC","wk":2,"date":"2026-09-20","day":"Sunday","time":"8:20 PM","away":"IND","home":"KC","div":false,"as":30,"hs":33},{"id":"2026_02_NYG_LAR","wk":2,"date":"2026-09-21","day":"Monday","time":"8:15 PM","away":"NYG","home":"LAR","div":false,"kind":"mnf"},{"id":"2026_03_ATL_GB","wk":3,"date":"2026-09-24","day":"Thursday","time":"8:15 PM","away":"ATL","home":"GB","div":false,"kind":"tnf"},{"id":"2026_03_LAC_BUF","wk":3,"date":"2026-09-27","day":"Sunday","time":"1:00 PM","away":"LAC","home":"BUF","div":false},{"id":"2026_03_CAR_CLE","wk":3,"date":"2026-09-27","day":"Sunday","time":"1:00 PM","away":"CAR","home":"CLE","div":false},{"id":"2026_03_NYJ_DET","wk":3,"date":"2026-09-27","day":"Sunday","time":"1:00 PM","away":"NYJ","home":"DET","div":false},{"id":"2026_03_HOU_IND","wk":3,"date":"2026-09-27","day":"Sunday","time":"1:00 PM","away":"HOU","home":"IND","div":true},{"id":"2026_03_NE_JAX","wk":3,"date":"2026-09-27","day":"Sunday","time":"1:00 PM","away":"NE","home":"JAX","div":false},{"id":"2026_03_KC_MIA","wk":3,"date":"2026-09-27","day":"Sunday","time":"1:00 PM","away":"KC","home":"MIA","div":false},{"id":"2026_03_TEN_NYG","wk":3,"date":"2026-09-27","day":"Sunday","time":"1:00 PM","away":"TEN","home":"NYG","div":false},{"id":"2026_03_CIN_PIT","wk":3,"date":"2026-09-27","day":"Sunday","time":"1:00 PM","away":"CIN","home":"PIT","div":true},{"id":"2026_03_SEA_WAS","wk":3,"date":"2026-09-27","day":"Sunday","time":"1:00 PM","away":"SEA","home":"WAS","div":false},{"id":"2026_03_ARI_SF","wk":3,"date":"2026-09-27","day":"Sunday","time":"4:05 PM","away":"ARI","home":"SF","div":true},{"id":"2026_03_MIN_TB","wk":3,"date":"2026-09-27","day":"Sunday","time":"4:05 PM","away":"MIN","home":"TB","div":false},{"id":"2026_03_BAL_DAL","wk":3,"date":"2026-09-27","day":"Sunday","time":"4:25 PM","away":"BAL","home":"DAL","div":false,"kind":"intl","at":"Rio de Janeiro, Brazil"},{"id":"2026_03_LV_NO","wk":3,"date":"2026-09-27","day":"Sunday","time":"4:25 PM","away":"LV","home":"NO","div":false},{"id":"2026_03_LAR_DEN","wk":3,"date":"2026-09-27","day":"Sunday","time":"8:20 PM","away":"LAR","home":"DEN","div":false},{"id":"2026_03_PHI_CHI","wk":3,"date":"2026-09-28","day":"Monday","time":"8:15 PM","away":"PHI","home":"CHI","div":false,"kind":"mnf"},{"id":"2026_04_PIT_CLE","wk":4,"date":"2026-10-01","day":"Thursday","time":"8:15 PM","away":"PIT","home":"CLE","div":true,"kind":"tnf"},{"id":"2026_04_TEN_BAL","wk":4,"date":"2026-10-04","day":"Sunday","time":"1:00 PM","away":"TEN","home":"BAL","div":false},{"id":"2026_04_NE_BUF","wk":4,"date":"2026-10-04","day":"Sunday","time":"1:00 PM","away":"NE","home":"BUF","div":true},{"id":"2026_04_NYJ_CHI","wk":4,"date":"2026-10-04","day":"Sunday","time":"1:00 PM","away":"NYJ","home":"CHI","div":false},{"id":"2026_04_JAX_CIN","wk":4,"date":"2026-10-04","day":"Sunday","time":"1:00 PM","away":"JAX","home":"CIN","div":false},{"id":"2026_04_DAL_HOU","wk":4,"date":"2026-10-04","day":"Sunday","time":"1:00 PM","away":"DAL","home":"HOU","div":false},{"id":"2026_04_ARI_NYG","wk":4,"date":"2026-10-04","day":"Sunday","time":"1:00 PM","away":"ARI","home":"NYG","div":false},{"id":"2026_04_LAR_PHI","wk":4,"date":"2026-10-04","day":"Sunday","time":"1:00 PM","away":"LAR","home":"PHI","div":false},{"id":"2026_04_GB_TB","wk":4,"date":"2026-10-04","day":"Sunday","time":"1:00 PM","away":"GB","home":"TB","div":false},{"id":"2026_04_MIA_MIN","wk":4,"date":"2026-10-04","day":"Sunday","time":"4:05 PM","away":"MIA","home":"MIN","div":false},{"id":"2026_04_KC_LV","wk":4,"date":"2026-10-04","day":"Sunday","time":"4:25 PM","away":"KC","home":"LV","div":true},{"id":"2026_04_LAC_SEA","wk":4,"date":"2026-10-04","day":"Sunday","time":"4:25 PM","away":"LAC","home":"SEA","div":false},{"id":"2026_04_DEN_SF","wk":4,"date":"2026-10-04","day":"Sunday","time":"4:25 PM","away":"DEN","home":"SF","div":false},{"id":"2026_04_DET_CAR","wk":4,"date":"2026-10-04","day":"Sunday","time":"8:20 PM","away":"DET","home":"CAR","div":false},{"id":"2026_04_IND_WAS","wk":4,"date":"2026-10-04","day":"Sunday","time":"9:30 AM","away":"IND","home":"WAS","div":false,"kind":"intl","at":"London, England"},{"id":"2026_04_ATL_NO","wk":4,"date":"2026-10-05","day":"Monday","time":"8:15 PM","away":"ATL","home":"NO","div":true,"kind":"mnf"},{"id":"2026_05_TB_DAL","wk":5,"date":"2026-10-08","day":"Thursday","time":"8:15 PM","away":"TB","home":"DAL","div":false,"kind":"tnf"},{"id":"2026_05_CIN_MIA","wk":5,"date":"2026-10-11","day":"Sunday","time":"1:00 PM","away":"CIN","home":"MIA","div":false},{"id":"2026_05_LV_NE","wk":5,"date":"2026-10-11","day":"Sunday","time":"1:00 PM","away":"LV","home":"NE","div":false},{"id":"2026_05_MIN_NO","wk":5,"date":"2026-10-11","day":"Sunday","time":"1:00 PM","away":"MIN","home":"NO","div":false},{"id":"2026_05_CLE_NYJ","wk":5,"date":"2026-10-11","day":"Sunday","time":"1:00 PM","away":"CLE","home":"NYJ","div":false},{"id":"2026_05_IND_PIT","wk":5,"date":"2026-10-11","day":"Sunday","time":"1:00 PM","away":"IND","home":"PIT","div":false},{"id":"2026_05_HOU_TEN","wk":5,"date":"2026-10-11","day":"Sunday","time":"1:00 PM","away":"HOU","home":"TEN","div":true},{"id":"2026_05_NYG_WAS","wk":5,"date":"2026-10-11","day":"Sunday","time":"1:00 PM","away":"NYG","home":"WAS","div":true},{"id":"2026_05_DEN_LAC","wk":5,"date":"2026-10-11","day":"Sunday","time":"4:05 PM","away":"DEN","home":"LAC","div":true},{"id":"2026_05_DET_ARI","wk":5,"date":"2026-10-11","day":"Sunday","time":"4:25 PM","away":"DET","home":"ARI","div":false},{"id":"2026_05_CHI_GB","wk":5,"date":"2026-10-11","day":"Sunday","time":"4:25 PM","away":"CHI","home":"GB","div":true},{"id":"2026_05_SF_SEA","wk":5,"date":"2026-10-11","day":"Sunday","time":"4:25 PM","away":"SF","home":"SEA","div":true},{"id":"2026_05_BAL_ATL","wk":5,"date":"2026-10-11","day":"Sunday","time":"8:20 PM","away":"BAL","home":"ATL","div":false},{"id":"2026_05_PHI_JAX","wk":5,"date":"2026-10-11","day":"Sunday","time":"9:30 AM","away":"PHI","home":"JAX","div":false},{"id":"2026_05_BUF_LAR","wk":5,"date":"2026-10-12","day":"Monday","time":"8:15 PM","away":"BUF","home":"LAR","div":false,"kind":"mnf"},{"id":"2026_06_SEA_DEN","wk":6,"date":"2026-10-15","day":"Thursday","time":"8:15 PM","away":"SEA","home":"DEN","div":false,"kind":"tnf"},{"id":"2026_06_CHI_ATL","wk":6,"date":"2026-10-18","day":"Sunday","time":"1:00 PM","away":"CHI","home":"ATL","div":false},{"id":"2026_06_BAL_CLE","wk":6,"date":"2026-10-18","day":"Sunday","time":"1:00 PM","away":"BAL","home":"CLE","div":true},{"id":"2026_06_TEN_IND","wk":6,"date":"2026-10-18","day":"Sunday","time":"1:00 PM","away":"TEN","home":"IND","div":true},{"id":"2026_06_NYJ_NE","wk":6,"date":"2026-10-18","day":"Sunday","time":"1:00 PM","away":"NYJ","home":"NE","div":true},{"id":"2026_06_NO_NYG","wk":6,"date":"2026-10-18","day":"Sunday","time":"1:00 PM","away":"NO","home":"NYG","div":false},{"id":"2026_06_CAR_PHI","wk":6,"date":"2026-10-18","day":"Sunday","time":"1:00 PM","away":"CAR","home":"PHI","div":false},{"id":"2026_06_PIT_TB","wk":6,"date":"2026-10-18","day":"Sunday","time":"1:00 PM","away":"PIT","home":"TB","div":false},{"id":"2026_06_ARI_LAR","wk":6,"date":"2026-10-18","day":"Sunday","time":"4:05 PM","away":"ARI","home":"LAR","div":true},{"id":"2026_06_LAC_KC","wk":6,"date":"2026-10-18","day":"Sunday","time":"4:25 PM","away":"LAC","home":"KC","div":true},{"id":"2026_06_BUF_LV","wk":6,"date":"2026-10-18","day":"Sunday","time":"4:25 PM","away":"BUF","home":"LV","div":false},{"id":"2026_06_DAL_GB","wk":6,"date":"2026-10-18","day":"Sunday","time":"8:20 PM","away":"DAL","home":"GB","div":false},{"id":"2026_06_HOU_JAX","wk":6,"date":"2026-10-18","day":"Sunday","time":"9:30 AM","away":"HOU","home":"JAX","div":true,"kind":"intl","at":"London, England"},{"id":"2026_06_WAS_SF","wk":6,"date":"2026-10-19","day":"Monday","time":"8:15 PM","away":"WAS","home":"SF","div":false,"kind":"mnf"},{"id":"2026_07_NE_CHI","wk":7,"date":"2026-10-22","day":"Thursday","time":"8:15 PM","away":"NE","home":"CHI","div":false,"kind":"tnf"},{"id":"2026_07_SF_ATL","wk":7,"date":"2026-10-25","day":"Sunday","time":"1:00 PM","away":"SF","home":"ATL","div":false},{"id":"2026_07_CIN_BAL","wk":7,"date":"2026-10-25","day":"Sunday","time":"1:00 PM","away":"CIN","home":"BAL","div":true},{"id":"2026_07_TB_CAR","wk":7,"date":"2026-10-25","day":"Sunday","time":"1:00 PM","away":"TB","home":"CAR","div":true},{"id":"2026_07_NYG_HOU","wk":7,"date":"2026-10-25","day":"Sunday","time":"1:00 PM","away":"NYG","home":"HOU","div":false},{"id":"2026_07_IND_MIN","wk":7,"date":"2026-10-25","day":"Sunday","time":"1:00 PM","away":"IND","home":"MIN","div":false},{"id":"2026_07_MIA_NYJ","wk":7,"date":"2026-10-25","day":"Sunday","time":"1:00 PM","away":"MIA","home":"NYJ","div":true},{"id":"2026_07_CLE_TEN","wk":7,"date":"2026-10-25","day":"Sunday","time":"1:00 PM","away":"CLE","home":"TEN","div":false},{"id":"2026_07_DEN_ARI","wk":7,"date":"2026-10-25","day":"Sunday","time":"4:05 PM","away":"DEN","home":"ARI","div":false},{"id":"2026_07_GB_DET","wk":7,"date":"2026-10-25","day":"Sunday","time":"4:25 PM","away":"GB","home":"DET","div":true},{"id":"2026_07_LAR_LV","wk":7,"date":"2026-10-25","day":"Sunday","time":"4:25 PM","away":"LAR","home":"LV","div":false},{"id":"2026_07_KC_SEA","wk":7,"date":"2026-10-25","day":"Sunday","time":"8:20 PM","away":"KC","home":"SEA","div":false},{"id":"2026_07_PIT_NO","wk":7,"date":"2026-10-25","day":"Sunday","time":"9:30 AM","away":"PIT","home":"NO","div":false,"kind":"intl","at":"Paris, France"},{"id":"2026_07_DAL_PHI","wk":7,"date":"2026-10-26","day":"Monday","time":"8:15 PM","away":"DAL","home":"PHI","div":true,"kind":"mnf"},{"id":"2026_08_CAR_GB","wk":8,"date":"2026-10-29","day":"Thursday","time":"8:15 PM","away":"CAR","home":"GB","div":false,"kind":"tnf"},{"id":"2026_08_BAL_BUF","wk":8,"date":"2026-11-01","day":"Sunday","time":"1:00 PM","away":"BAL","home":"BUF","div":false},{"id":"2026_08_TEN_CIN","wk":8,"date":"2026-11-01","day":"Sunday","time":"1:00 PM","away":"TEN","home":"CIN","div":false},{"id":"2026_08_ARI_DAL","wk":8,"date":"2026-11-01","day":"Sunday","time":"1:00 PM","away":"ARI","home":"DAL","div":false},{"id":"2026_08_MIN_DET","wk":8,"date":"2026-11-01","day":"Sunday","time":"1:00 PM","away":"MIN","home":"DET","div":true},{"id":"2026_08_IND_JAX","wk":8,"date":"2026-11-01","day":"Sunday","time":"1:00 PM","away":"IND","home":"JAX","div":true},{"id":"2026_08_LV_NYJ","wk":8,"date":"2026-11-01","day":"Sunday","time":"1:00 PM","away":"LV","home":"NYJ","div":false},{"id":"2026_08_CLE_PIT","wk":8,"date":"2026-11-01","day":"Sunday","time":"1:00 PM","away":"CLE","home":"PIT","div":true},{"id":"2026_08_ATL_TB","wk":8,"date":"2026-11-01","day":"Sunday","time":"1:00 PM","away":"ATL","home":"TB","div":true},{"id":"2026_08_LAC_LAR","wk":8,"date":"2026-11-01","day":"Sunday","time":"4:05 PM","away":"LAC","home":"LAR","div":false},{"id":"2026_08_KC_DEN","wk":8,"date":"2026-11-01","day":"Sunday","time":"4:25 PM","away":"KC","home":"DEN","div":true},{"id":"2026_08_NE_MIA","wk":8,"date":"2026-11-01","day":"Sunday","time":"4:25 PM","away":"NE","home":"MIA","div":true},{"id":"2026_08_PHI_WAS","wk":8,"date":"2026-11-01","day":"Sunday","time":"8:20 PM","away":"PHI","home":"WAS","div":true},{"id":"2026_08_CHI_SEA","wk":8,"date":"2026-11-02","day":"Monday","time":"8:15 PM","away":"CHI","home":"SEA","div":false,"kind":"mnf"},{"id":"2026_09_JAX_BAL","wk":9,"date":"2026-11-05","day":"Thursday","time":"8:15 PM","away":"JAX","home":"BAL","div":false,"kind":"tnf"},{"id":"2026_09_DEN_CAR","wk":9,"date":"2026-11-08","day":"Sunday","time":"1:00 PM","away":"DEN","home":"CAR","div":false},{"id":"2026_09_DAL_IND","wk":9,"date":"2026-11-08","day":"Sunday","time":"1:00 PM","away":"DAL","home":"IND","div":false},{"id":"2026_09_NYJ_KC","wk":9,"date":"2026-11-08","day":"Sunday","time":"1:00 PM","away":"NYJ","home":"KC","div":false},{"id":"2026_09_DET_MIA","wk":9,"date":"2026-11-08","day":"Sunday","time":"1:00 PM","away":"DET","home":"MIA","div":false},{"id":"2026_09_CLE_NO","wk":9,"date":"2026-11-08","day":"Sunday","time":"1:00 PM","away":"CLE","home":"NO","div":false},{"id":"2026_09_NYG_PHI","wk":9,"date":"2026-11-08","day":"Sunday","time":"1:00 PM","away":"NYG","home":"PHI","div":true},{"id":"2026_09_LAR_WAS","wk":9,"date":"2026-11-08","day":"Sunday","time":"1:00 PM","away":"LAR","home":"WAS","div":false},{"id":"2026_09_HOU_LAC","wk":9,"date":"2026-11-08","day":"Sunday","time":"4:05 PM","away":"HOU","home":"LAC","div":false},{"id":"2026_09_LV_SF","wk":9,"date":"2026-11-08","day":"Sunday","time":"4:05 PM","away":"LV","home":"SF","div":false},{"id":"2026_09_GB_NE","wk":9,"date":"2026-11-08","day":"Sunday","time":"4:25 PM","away":"GB","home":"NE","div":false},{"id":"2026_09_ARI_SEA","wk":9,"date":"2026-11-08","day":"Sunday","time":"4:25 PM","away":"ARI","home":"SEA","div":true},{"id":"2026_09_TB_CHI","wk":9,"date":"2026-11-08","day":"Sunday","time":"8:20 PM","away":"TB","home":"CHI","div":false},{"id":"2026_09_CIN_ATL","wk":9,"date":"2026-11-08","day":"Sunday","time":"9:30 AM","away":"CIN","home":"ATL","div":false,"kind":"intl","at":"Madrid, Spain"},{"id":"2026_09_BUF_MIN","wk":9,"date":"2026-11-09","day":"Monday","time":"8:15 PM","away":"BUF","home":"MIN","div":false,"kind":"mnf"},{"id":"2026_10_WAS_NYG","wk":10,"date":"2026-11-12","day":"Thursday","time":"8:15 PM","away":"WAS","home":"NYG","div":true,"kind":"tnf"},{"id":"2026_10_KC_ATL","wk":10,"date":"2026-11-15","day":"Sunday","time":"1:00 PM","away":"KC","home":"ATL","div":false},{"id":"2026_10_HOU_CLE","wk":10,"date":"2026-11-15","day":"Sunday","time":"1:00 PM","away":"HOU","home":"CLE","div":false},{"id":"2026_10_MIN_GB","wk":10,"date":"2026-11-15","day":"Sunday","time":"1:00 PM","away":"MIN","home":"GB","div":true},{"id":"2026_10_MIA_IND","wk":10,"date":"2026-11-15","day":"Sunday","time":"1:00 PM","away":"MIA","home":"IND","div":false},{"id":"2026_10_CAR_NO","wk":10,"date":"2026-11-15","day":"Sunday","time":"1:00 PM","away":"CAR","home":"NO","div":true},{"id":"2026_10_BUF_NYJ","wk":10,"date":"2026-11-15","day":"Sunday","time":"1:00 PM","away":"BUF","home":"NYJ","div":true},{"id":"2026_10_JAX_TEN","wk":10,"date":"2026-11-15","day":"Sunday","time":"1:00 PM","away":"JAX","home":"TEN","div":true},{"id":"2026_10_LAR_ARI","wk":10,"date":"2026-11-15","day":"Sunday","time":"4:05 PM","away":"LAR","home":"ARI","div":true},{"id":"2026_10_SEA_LV","wk":10,"date":"2026-11-15","day":"Sunday","time":"4:05 PM","away":"SEA","home":"LV","div":false},{"id":"2026_10_SF_DAL","wk":10,"date":"2026-11-15","day":"Sunday","time":"4:25 PM","away":"SF","home":"DAL","div":false},{"id":"2026_10_PIT_CIN","wk":10,"date":"2026-11-15","day":"Sunday","time":"8:20 PM","away":"PIT","home":"CIN","div":true},{"id":"2026_10_NE_DET","wk":10,"date":"2026-11-15","day":"Sunday","time":"9:30 AM","away":"NE","home":"DET","div":false,"kind":"intl","at":"Munich, Germany"},{"id":"2026_10_LAC_BAL","wk":10,"date":"2026-11-16","day":"Monday","time":"8:15 PM","away":"LAC","home":"BAL","div":false,"kind":"mnf"},{"id":"2026_11_IND_HOU","wk":11,"date":"2026-11-19","day":"Thursday","time":"8:15 PM","away":"IND","home":"HOU","div":true,"kind":"tnf"},{"id":"2026_11_MIA_BUF","wk":11,"date":"2026-11-22","day":"Sunday","time":"1:00 PM","away":"MIA","home":"BUF","div":true},{"id":"2026_11_BAL_CAR","wk":11,"date":"2026-11-22","day":"Sunday","time":"1:00 PM","away":"BAL","home":"CAR","div":false},{"id":"2026_11_NO_CHI","wk":11,"date":"2026-11-22","day":"Sunday","time":"1:00 PM","away":"NO","home":"CHI","div":false},{"id":"2026_11_TEN_DAL","wk":11,"date":"2026-11-22","day":"Sunday","time":"1:00 PM","away":"TEN","home":"DAL","div":false},{"id":"2026_11_TB_DET","wk":11,"date":"2026-11-22","day":"Sunday","time":"1:00 PM","away":"TB","home":"DET","div":false},{"id":"2026_11_ARI_KC","wk":11,"date":"2026-11-22","day":"Sunday","time":"1:00 PM","away":"ARI","home":"KC","div":false},{"id":"2026_11_JAX_NYG","wk":11,"date":"2026-11-22","day":"Sunday","time":"1:00 PM","away":"JAX","home":"NYG","div":false},{"id":"2026_11_NYJ_LAC","wk":11,"date":"2026-11-22","day":"Sunday","time":"4:05 PM","away":"NYJ","home":"LAC","div":false},{"id":"2026_11_LV_DEN","wk":11,"date":"2026-11-22","day":"Sunday","time":"4:25 PM","away":"LV","home":"DEN","div":true},{"id":"2026_11_PIT_PHI","wk":11,"date":"2026-11-22","day":"Sunday","time":"4:25 PM","away":"PIT","home":"PHI","div":false},{"id":"2026_11_MIN_SF","wk":11,"date":"2026-11-22","day":"Sunday","time":"8:20 PM","away":"MIN","home":"SF","div":false,"kind":"intl","at":"Mexico City, Mexico"},{"id":"2026_11_CIN_WAS","wk":11,"date":"2026-11-23","day":"Monday","time":"8:15 PM","away":"CIN","home":"WAS","div":false,"kind":"mnf"},{"id":"2026_12_GB_LAR","wk":12,"date":"2026-11-25","day":"Wednesday","time":"8:00 PM","away":"GB","home":"LAR","div":false},{"id":"2026_12_CHI_DET","wk":12,"date":"2026-11-26","day":"Thursday","time":"1:00 PM","away":"CHI","home":"DET","div":true,"kind":"tnf"},{"id":"2026_12_PHI_DAL","wk":12,"date":"2026-11-26","day":"Thursday","time":"4:30 PM","away":"PHI","home":"DAL","div":true,"kind":"tnf"},{"id":"2026_12_KC_BUF","wk":12,"date":"2026-11-26","day":"Thursday","time":"8:20 PM","away":"KC","home":"BUF","div":false,"kind":"tnf"},{"id":"2026_12_DEN_PIT","wk":12,"date":"2026-11-27","day":"Friday","time":"3:00 PM","away":"DEN","home":"PIT","div":false},{"id":"2026_12_NO_CIN","wk":12,"date":"2026-11-29","day":"Sunday","time":"1:00 PM","away":"NO","home":"CIN","div":false},{"id":"2026_12_LV_CLE","wk":12,"date":"2026-11-29","day":"Sunday","time":"1:00 PM","away":"LV","home":"CLE","div":false},{"id":"2026_12_BAL_HOU","wk":12,"date":"2026-11-29","day":"Sunday","time":"1:00 PM","away":"BAL","home":"HOU","div":false},{"id":"2026_12_NYG_IND","wk":12,"date":"2026-11-29","day":"Sunday","time":"1:00 PM","away":"NYG","home":"IND","div":false},{"id":"2026_12_NYJ_MIA","wk":12,"date":"2026-11-29","day":"Sunday","time":"1:00 PM","away":"NYJ","home":"MIA","div":true},{"id":"2026_12_ATL_MIN","wk":12,"date":"2026-11-29","day":"Sunday","time":"1:00 PM","away":"ATL","home":"MIN","div":false},{"id":"2026_12_TEN_JAX","wk":12,"date":"2026-11-29","day":"Sunday","time":"4:05 PM","away":"TEN","home":"JAX","div":true},{"id":"2026_12_WAS_ARI","wk":12,"date":"2026-11-29","day":"Sunday","time":"4:25 PM","away":"WAS","home":"ARI","div":false},{"id":"2026_12_SEA_SF","wk":12,"date":"2026-11-29","day":"Sunday","time":"4:25 PM","away":"SEA","home":"SF","div":true},{"id":"2026_12_NE_LAC","wk":12,"date":"2026-11-29","day":"Sunday","time":"8:20 PM","away":"NE","home":"LAC","div":false},{"id":"2026_12_CAR_TB","wk":12,"date":"2026-11-30","day":"Monday","time":"8:15 PM","away":"CAR","home":"TB","div":true,"kind":"mnf"},{"id":"2026_13_KC_LAR","wk":13,"date":"2026-12-03","day":"Thursday","time":"8:15 PM","away":"KC","home":"LAR","div":false,"kind":"tnf"},{"id":"2026_13_DET_ATL","wk":13,"date":"2026-12-06","day":"Sunday","time":"1:00 PM","away":"DET","home":"ATL","div":false},{"id":"2026_13_JAX_CHI","wk":13,"date":"2026-12-06","day":"Sunday","time":"1:00 PM","away":"JAX","home":"CHI","div":false},{"id":"2026_13_CIN_CLE","wk":13,"date":"2026-12-06","day":"Sunday","time":"1:00 PM","away":"CIN","home":"CLE","div":true},{"id":"2026_13_GB_NO","wk":13,"date":"2026-12-06","day":"Sunday","time":"1:00 PM","away":"GB","home":"NO","div":false},{"id":"2026_13_SF_NYG","wk":13,"date":"2026-12-06","day":"Sunday","time":"1:00 PM","away":"SF","home":"NYG","div":false},{"id":"2026_13_LAC_TB","wk":13,"date":"2026-12-06","day":"Sunday","time":"1:00 PM","away":"LAC","home":"TB","div":false},{"id":"2026_13_WAS_TEN","wk":13,"date":"2026-12-06","day":"Sunday","time":"1:00 PM","away":"WAS","home":"TEN","div":false},{"id":"2026_13_PHI_ARI","wk":13,"date":"2026-12-06","day":"Sunday","time":"4:05 PM","away":"PHI","home":"ARI","div":false},{"id":"2026_13_MIA_DEN","wk":13,"date":"2026-12-06","day":"Sunday","time":"4:05 PM","away":"MIA","home":"DEN","div":false},{"id":"2026_13_CAR_MIN","wk":13,"date":"2026-12-06","day":"Sunday","time":"4:25 PM","away":"CAR","home":"MIN","div":false},{"id":"2026_13_BUF_NE","wk":13,"date":"2026-12-06","day":"Sunday","time":"4:25 PM","away":"BUF","home":"NE","div":true},{"id":"2026_13_HOU_PIT","wk":13,"date":"2026-12-06","day":"Sunday","time":"8:20 PM","away":"HOU","home":"PIT","div":false},{"id":"2026_13_DAL_SEA","wk":13,"date":"2026-12-07","day":"Monday","time":"8:15 PM","away":"DAL","home":"SEA","div":false,"kind":"mnf"},{"id":"2026_14_MIN_NE","wk":14,"date":"2026-12-10","day":"Thursday","time":"8:15 PM","away":"MIN","home":"NE","div":false,"kind":"tnf"},{"id":"2026_14_TB_BAL","wk":14,"date":"2026-12-13","day":"Sunday","time":"1:00 PM","away":"TB","home":"BAL","div":false},{"id":"2026_14_NO_CAR","wk":14,"date":"2026-12-13","day":"Sunday","time":"1:00 PM","away":"NO","home":"CAR","div":true},{"id":"2026_14_ATL_CLE","wk":14,"date":"2026-12-13","day":"Sunday","time":"1:00 PM","away":"ATL","home":"CLE","div":false},{"id":"2026_14_TEN_DET","wk":14,"date":"2026-12-13","day":"Sunday","time":"1:00 PM","away":"TEN","home":"DET","div":false},{"id":"2026_14_CHI_MIA","wk":14,"date":"2026-12-13","day":"Sunday","time":"1:00 PM","away":"CHI","home":"MIA","div":false},{"id":"2026_14_DEN_NYJ","wk":14,"date":"2026-12-13","day":"Sunday","time":"1:00 PM","away":"DEN","home":"NYJ","div":false},{"id":"2026_14_IND_PHI","wk":14,"date":"2026-12-13","day":"Sunday","time":"1:00 PM","away":"IND","home":"PHI","div":false},{"id":"2026_14_HOU_WAS","wk":14,"date":"2026-12-13","day":"Sunday","time":"1:00 PM","away":"HOU","home":"WAS","div":false},{"id":"2026_14_LAC_LV","wk":14,"date":"2026-12-13","day":"Sunday","time":"4:05 PM","away":"LAC","home":"LV","div":true},{"id":"2026_14_KC_CIN","wk":14,"date":"2026-12-13","day":"Sunday","time":"4:25 PM","away":"KC","home":"CIN","div":false},{"id":"2026_14_NYG_SEA","wk":14,"date":"2026-12-13","day":"Sunday","time":"4:25 PM","away":"NYG","home":"SEA","div":false},{"id":"2026_14_LAR_SF","wk":14,"date":"2026-12-13","day":"Sunday","time":"4:25 PM","away":"LAR","home":"SF","div":true},{"id":"2026_14_BUF_GB","wk":14,"date":"2026-12-13","day":"Sunday","time":"8:20 PM","away":"BUF","home":"GB","div":false},{"id":"2026_14_PIT_JAX","wk":14,"date":"2026-12-14","day":"Monday","time":"8:15 PM","away":"PIT","home":"JAX","div":false,"kind":"mnf"},{"id":"2026_15_SF_LAC","wk":15,"date":"2026-12-17","day":"Thursday","time":"8:15 PM","away":"SF","home":"LAC","div":false,"kind":"tnf"},{"id":"2026_15_SEA_PHI","wk":15,"date":"2026-12-19","day":"Saturday","time":"5:00 PM","away":"SEA","home":"PHI","div":false,"kind":"sat"},{"id":"2026_15_CHI_BUF","wk":15,"date":"2026-12-19","day":"Saturday","time":"8:20 PM","away":"CHI","home":"BUF","div":false,"kind":"sat"},{"id":"2026_15_CIN_CAR","wk":15,"date":"2026-12-20","day":"Sunday","time":"1:00 PM","away":"CIN","home":"CAR","div":false},{"id":"2026_15_MIA_GB","wk":15,"date":"2026-12-20","day":"Sunday","time":"1:00 PM","away":"MIA","home":"GB","div":false},{"id":"2026_15_JAX_HOU","wk":15,"date":"2026-12-20","day":"Sunday","time":"1:00 PM","away":"JAX","home":"HOU","div":true},{"id":"2026_15_CLE_NYG","wk":15,"date":"2026-12-20","day":"Sunday","time":"1:00 PM","away":"CLE","home":"NYG","div":false},{"id":"2026_15_BAL_PIT","wk":15,"date":"2026-12-20","day":"Sunday","time":"1:00 PM","away":"BAL","home":"PIT","div":true},{"id":"2026_15_NO_TB","wk":15,"date":"2026-12-20","day":"Sunday","time":"1:00 PM","away":"NO","home":"TB","div":true},{"id":"2026_15_IND_TEN","wk":15,"date":"2026-12-20","day":"Sunday","time":"1:00 PM","away":"IND","home":"TEN","div":true},{"id":"2026_15_ATL_WAS","wk":15,"date":"2026-12-20","day":"Sunday","time":"1:00 PM","away":"ATL","home":"WAS","div":false},{"id":"2026_15_NYJ_ARI","wk":15,"date":"2026-12-20","day":"Sunday","time":"4:05 PM","away":"NYJ","home":"ARI","div":false},{"id":"2026_15_DAL_LAR","wk":15,"date":"2026-12-20","day":"Sunday","time":"4:25 PM","away":"DAL","home":"LAR","div":false},{"id":"2026_15_DEN_LV","wk":15,"date":"2026-12-20","day":"Sunday","time":"4:25 PM","away":"DEN","home":"LV","div":true},{"id":"2026_15_DET_MIN","wk":15,"date":"2026-12-20","day":"Sunday","time":"8:20 PM","away":"DET","home":"MIN","div":true},{"id":"2026_15_NE_KC","wk":15,"date":"2026-12-21","day":"Monday","time":"8:15 PM","away":"NE","home":"KC","div":false,"kind":"mnf"},{"id":"2026_16_HOU_PHI","wk":16,"date":"2026-12-24","day":"Thursday","time":"8:15 PM","away":"HOU","home":"PHI","div":false,"kind":"tnf"},{"id":"2026_16_GB_CHI","wk":16,"date":"2026-12-25","day":"Friday","time":"1:00 PM","away":"GB","home":"CHI","div":true},{"id":"2026_16_BUF_DEN","wk":16,"date":"2026-12-25","day":"Friday","time":"4:30 PM","away":"BUF","home":"DEN","div":false},{"id":"2026_16_LAR_SEA","wk":16,"date":"2026-12-25","day":"Friday","time":"8:15 PM","away":"LAR","home":"SEA","div":true},{"id":"2026_16_TB_ATL","wk":16,"date":"2026-12-27","day":"Sunday","time":"1:00 PM","away":"TB","home":"ATL","div":true},{"id":"2026_16_CLE_BAL","wk":16,"date":"2026-12-27","day":"Sunday","time":"1:00 PM","away":"CLE","home":"BAL","div":true},{"id":"2026_16_CIN_IND","wk":16,"date":"2026-12-27","day":"Sunday","time":"1:00 PM","away":"CIN","home":"IND","div":false},{"id":"2026_16_LAC_MIA","wk":16,"date":"2026-12-27","day":"Sunday","time":"1:00 PM","away":"LAC","home":"MIA","div":false},{"id":"2026_16_WAS_MIN","wk":16,"date":"2026-12-27","day":"Sunday","time":"1:00 PM","away":"WAS","home":"MIN","div":false},{"id":"2026_16_ARI_NO","wk":16,"date":"2026-12-27","day":"Sunday","time":"1:00 PM","away":"ARI","home":"NO","div":false},{"id":"2026_16_NE_NYJ","wk":16,"date":"2026-12-27","day":"Sunday","time":"1:00 PM","away":"NE","home":"NYJ","div":true},{"id":"2026_16_CAR_PIT","wk":16,"date":"2026-12-27","day":"Sunday","time":"1:00 PM","away":"CAR","home":"PIT","div":false},{"id":"2026_16_TEN_LV","wk":16,"date":"2026-12-27","day":"Sunday","time":"4:05 PM","away":"TEN","home":"LV","div":false},{"id":"2026_16_SF_KC","wk":16,"date":"2026-12-27","day":"Sunday","time":"4:25 PM","away":"SF","home":"KC","div":false},{"id":"2026_16_JAX_DAL","wk":16,"date":"2026-12-27","day":"Sunday","time":"8:20 PM","away":"JAX","home":"DAL","div":false},{"id":"2026_16_NYG_DET","wk":16,"date":"2026-12-28","day":"Monday","time":"8:15 PM","away":"NYG","home":"DET","div":false,"kind":"mnf"},{"id":"2026_17_BAL_CIN","wk":17,"date":"2026-12-31","day":"Thursday","time":"8:15 PM","away":"BAL","home":"CIN","div":true,"kind":"tnf"},{"id":"2026_17_NO_ATL","wk":17,"date":"2027-01-03","day":"Sunday","time":"1:00 PM","away":"NO","home":"ATL","div":true},{"id":"2026_17_SEA_CAR","wk":17,"date":"2027-01-03","day":"Sunday","time":"1:00 PM","away":"SEA","home":"CAR","div":false},{"id":"2026_17_IND_CLE","wk":17,"date":"2027-01-03","day":"Sunday","time":"1:00 PM","away":"IND","home":"CLE","div":false},{"id":"2026_17_NYG_DAL","wk":17,"date":"2027-01-03","day":"Sunday","time":"1:00 PM","away":"NYG","home":"DAL","div":true},{"id":"2026_17_WAS_JAX","wk":17,"date":"2027-01-03","day":"Sunday","time":"1:00 PM","away":"WAS","home":"JAX","div":false},{"id":"2026_17_KC_LAC","wk":17,"date":"2027-01-03","day":"Sunday","time":"1:00 PM","away":"KC","home":"LAC","div":true},{"id":"2026_17_BUF_MIA","wk":17,"date":"2027-01-03","day":"Sunday","time":"1:00 PM","away":"BUF","home":"MIA","div":true},{"id":"2026_17_DEN_NE","wk":17,"date":"2027-01-03","day":"Sunday","time":"1:00 PM","away":"DEN","home":"NE","div":false},{"id":"2026_17_MIN_NYJ","wk":17,"date":"2027-01-03","day":"Sunday","time":"1:00 PM","away":"MIN","home":"NYJ","div":false},{"id":"2026_17_LAR_TB","wk":17,"date":"2027-01-03","day":"Sunday","time":"1:00 PM","away":"LAR","home":"TB","div":false},{"id":"2026_17_PIT_TEN","wk":17,"date":"2027-01-03","day":"Sunday","time":"1:00 PM","away":"PIT","home":"TEN","div":false},{"id":"2026_17_LV_ARI","wk":17,"date":"2027-01-03","day":"Sunday","time":"4:05 PM","away":"LV","home":"ARI","div":false},{"id":"2026_17_DET_CHI","wk":17,"date":"2027-01-03","day":"Sunday","time":"4:25 PM","away":"DET","home":"CHI","div":true},{"id":"2026_17_PHI_SF","wk":17,"date":"2027-01-03","day":"Sunday","time":"8:20 PM","away":"PHI","home":"SF","div":false},{"id":"2026_17_HOU_GB","wk":17,"date":"2027-01-04","day":"Monday","time":"8:15 PM","away":"HOU","home":"GB","div":false,"kind":"mnf"},{"id":"2026_18_SF_ARI","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"SF","home":"ARI","div":true,"tbd":true},{"id":"2026_18_PIT_BAL","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"PIT","home":"BAL","div":true,"tbd":true},{"id":"2026_18_NYJ_BUF","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"NYJ","home":"BUF","div":true,"tbd":true},{"id":"2026_18_ATL_CAR","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"ATL","home":"CAR","div":true,"tbd":true},{"id":"2026_18_CLE_CIN","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"CLE","home":"CIN","div":true,"tbd":true},{"id":"2026_18_LAC_DEN","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"LAC","home":"DEN","div":true,"tbd":true},{"id":"2026_18_DET_GB","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"DET","home":"GB","div":true,"tbd":true},{"id":"2026_18_TEN_HOU","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"TEN","home":"HOU","div":true,"tbd":true},{"id":"2026_18_JAX_IND","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"JAX","home":"IND","div":true,"tbd":true},{"id":"2026_18_LV_KC","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"LV","home":"KC","div":true,"tbd":true},{"id":"2026_18_SEA_LAR","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"SEA","home":"LAR","div":true,"tbd":true},{"id":"2026_18_CHI_MIN","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"CHI","home":"MIN","div":true,"tbd":true},{"id":"2026_18_MIA_NE","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"MIA","home":"NE","div":true,"tbd":true},{"id":"2026_18_TB_NO","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"TB","home":"NO","div":true,"tbd":true},{"id":"2026_18_PHI_NYG","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"PHI","home":"NYG","div":true,"tbd":true},{"id":"2026_18_DAL_WAS","wk":18,"date":"2027-01-10","day":"Sunday","time":"TBD","away":"DAL","home":"WAS","div":true,"tbd":true}],"byes":{"5":["CAR","KC"],"6":["CIN","DET","MIA","MIN"],"7":["BUF","JAX","LAC","WAS"],"8":["HOU","NO","NYG","SF"],"9":["PIT","TEN"],"10":["CHI","DEN","PHI","TB"],"11":["ATL","CLE","GB","LAR","NE","SEA"],"13":["BAL","IND","LV","NYJ"],"14":["ARI","DAL"]},"ranges":{"1":"Sep 9\u201314","2":"Sep 17\u201321","3":"Sep 24\u201328","4":"Oct 1\u20135","5":"Oct 8\u201312","6":"Oct 15\u201319","7":"Oct 22\u201326","8":"Oct 29 \u2013 Nov 2","9":"Nov 5\u20139","10":"Nov 12\u201316","11":"Nov 19\u201323","12":"Nov 25\u201330","13":"Dec 3\u20137","14":"Dec 10\u201314","15":"Dec 17\u201321","16":"Dec 24\u201328","17":"Dec 31 \u2013 Jan 4","18":"Jan 10"},"currentWeek":2,"played":31,"commentary":{},"teams":{"BUF":{"n":"Buffalo Bills","short":"Bills","c":"AFC","d":"East","u":"https://www.nfl.com/teams/buffalo-bills/"},"MIA":{"n":"Miami Dolphins","short":"Dolphins","c":"AFC","d":"East","u":"https://www.nfl.com/teams/miami-dolphins/"},"NE":{"n":"New England Patriots","short":"Patriots","c":"AFC","d":"East","u":"https://www.nfl.com/teams/new-england-patriots/"},"NYJ":{"n":"New York Jets","short":"Jets","c":"AFC","d":"East","u":"https://www.nfl.com/teams/new-york-jets/"},"BAL":{"n":"Baltimore Ravens","short":"Ravens","c":"AFC","d":"North","u":"https://www.nfl.com/teams/baltimore-ravens/"},"CIN":{"n":"Cincinnati Bengals","short":"Bengals","c":"AFC","d":"North","u":"https://www.nfl.com/teams/cincinnati-bengals/"},"CLE":{"n":"Cleveland Browns","short":"Browns","c":"AFC","d":"North","u":"https://www.nfl.com/teams/cleveland-browns/"},"PIT":{"n":"Pittsburgh Steelers","short":"Steelers","c":"AFC","d":"North","u":"https://www.nfl.com/teams/pittsburgh-steelers/"},"HOU":{"n":"Houston Texans","short":"Texans","c":"AFC","d":"South","u":"https://www.nfl.com/teams/houston-texans/"},"IND":{"n":"Indianapolis Colts","short":"Colts","c":"AFC","d":"South","u":"https://www.nfl.com/teams/indianapolis-colts/"},"JAX":{"n":"Jacksonville Jaguars","short":"Jaguars","c":"AFC","d":"South","u":"https://www.nfl.com/teams/jacksonville-jaguars/"},"TEN":{"n":"Tennessee Titans","short":"Titans","c":"AFC","d":"South","u":"https://www.nfl.com/teams/tennessee-titans/"},"DEN":{"n":"Denver Broncos","short":"Broncos","c":"AFC","d":"West","u":"https://www.nfl.com/teams/denver-broncos/"},"KC":{"n":"Kansas City Chiefs","short":"Chiefs","c":"AFC","d":"West","u":"https://www.nfl.com/teams/kansas-city-chiefs/"},"LV":{"n":"Las Vegas Raiders","short":"Raiders","c":"AFC","d":"West","u":"https://www.nfl.com/teams/las-vegas-raiders/"},"LAC":{"n":"Los Angeles Chargers","short":"Chargers","c":"AFC","d":"West","u":"https://www.nfl.com/teams/los-angeles-chargers/"},"DAL":{"n":"Dallas Cowboys","short":"Cowboys","c":"NFC","d":"East","u":"https://www.nfl.com/teams/dallas-cowboys/"},"NYG":{"n":"New York Giants","short":"Giants","c":"NFC","d":"East","u":"https://www.nfl.com/teams/new-york-giants/"},"PHI":{"n":"Philadelphia Eagles","short":"Eagles","c":"NFC","d":"East","u":"https://www.nfl.com/teams/philadelphia-eagles/"},"WAS":{"n":"Washington Commanders","short":"Commanders","c":"NFC","d":"East","u":"https://www.nfl.com/teams/washington-commanders/"},"CHI":{"n":"Chicago Bears","short":"Bears","c":"NFC","d":"North","u":"https://www.nfl.com/teams/chicago-bears/"},"DET":{"n":"Detroit Lions","short":"Lions","c":"NFC","d":"North","u":"https://www.nfl.com/teams/detroit-lions/"},"GB":{"n":"Green Bay Packers","short":"Packers","c":"NFC","d":"North","u":"https://www.nfl.com/teams/green-bay-packers/"},"MIN":{"n":"Minnesota Vikings","short":"Vikings","c":"NFC","d":"North","u":"https://www.nfl.com/teams/minnesota-vikings/"},"ATL":{"n":"Atlanta Falcons","short":"Falcons","c":"NFC","d":"South","u":"https://www.nfl.com/teams/atlanta-falcons/"},"CAR":{"n":"Carolina Panthers","short":"Panthers","c":"NFC","d":"South","u":"https://www.nfl.com/teams/carolina-panthers/"},"NO":{"n":"New Orleans Saints","short":"Saints","c":"NFC","d":"South","u":"https://www.nfl.com/teams/new-orleans-saints/"},"TB":{"n":"Tampa Bay Buccaneers","short":"Buccaneers","c":"NFC","d":"South","u":"https://www.nfl.com/teams/tampa-bay-buccaneers/"},"ARI":{"n":"Arizona Cardinals","short":"Cardinals","c":"NFC","d":"West","u":"https://www.nfl.com/teams/arizona-cardinals/"},"LAR":{"n":"Los Angeles Rams","short":"Rams","c":"NFC","d":"West","u":"https://www.nfl.com/teams/los-angeles-rams/"},"SF":{"n":"San Francisco 49ers","short":"49ers","c":"NFC","d":"West","u":"https://www.nfl.com/teams/san-francisco-49ers/"},"SEA":{"n":"Seattle Seahawks","short":"Seahawks","c":"NFC","d":"West","u":"https://www.nfl.com/teams/seattle-seahawks/"}},"notes":{"18":"Week 18 matchups are locked \u2014 all 16 are division games \u2014 but the NFL sets days and kickoff times only after Week 17. Times show TBD until then, and expect a Saturday, January 9 split."}}</script>
+<script>
+(function () {
+    'use strict';
+
+    var DATA = JSON.parse(document.getElementById('nflData').textContent);
+    var GAMES = DATA.games, TEAMS = DATA.teams, TAKES = DATA.commentary || {};
+    var DIVS = ['East', 'North', 'South', 'West'];
+    var LABEL = { tnf: 'Thursday Night', mnf: 'Monday Night', sat: 'Saturday', intl: 'International' };
+
+    function el(tag, cls, text) {
+        var n = document.createElement(tag);
+        if (cls) n.className = cls;
+        if (text != null) n.textContent = text;
+        return n;
+    }
+    function link(team) {
+        var a = document.createElement('a');
+        a.href = TEAMS[team].u;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        return a;
+    }
+
+    /* records from played games */
+    var R = {};
+    Object.keys(TEAMS).forEach(function (t) { R[t] = { w: 0, l: 0, t: 0, pf: 0, pa: 0, dw: 0, dl: 0, dt: 0 }; });
+    GAMES.forEach(function (g) {
+        if (g.hs == null || g.as == null) return;
+        var h = R[g.home], a = R[g.away];
+        h.pf += g.hs; h.pa += g.as; a.pf += g.as; a.pa += g.hs;
+        if (g.hs > g.as) { h.w++; a.l++; if (g.div) { h.dw++; a.dl++; } }
+        else if (g.as > g.hs) { a.w++; h.l++; if (g.div) { a.dw++; h.dl++; } }
+        else { h.t++; a.t++; if (g.div) { h.dt++; a.dt++; } }
+    });
+    function rec(t) { var r = R[t]; return r.t ? r.w + '-' + r.l + '-' + r.t : r.w + '-' + r.l; }
+    function pct(r) { var n = r.w + r.l + r.t; return n ? (r.w + r.t * 0.5) / n : 0; }
+    function dpct(r) { var n = r.dw + r.dl + r.dt; return n ? (r.dw + r.dt * 0.5) / n : 0; }
+    function diff(t) { return R[t].pf - R[t].pa; }
+    function rank(a, b) {
+        return (pct(R[b]) - pct(R[a])) || (dpct(R[b]) - dpct(R[a])) ||
+               (diff(b) - diff(a)) || TEAMS[a].n.localeCompare(TEAMS[b].n);
+    }
+    function fmtDate(iso) {
+        var p = iso.split('-');
+        return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])).toLocaleDateString('en-US',
+            { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+    }
+
+    /* stats bar */
+    (function () {
+        var bar = document.getElementById('statsBar');
+        var next = GAMES.filter(function (g) { return g.hs == null; })[0];
+        [['Season', '2026', '18 weeks &bull; 272 games'],
+         ['Current Week', 'WEEK ' + DATA.currentWeek, DATA.ranges[DATA.currentWeek]],
+         ['Games Played', DATA.played + ' / ' + GAMES.length,
+          Math.round(DATA.played / GAMES.length * 100) + '% of the season'],
+         ['Next Kickoff', next ? next.day.toUpperCase() : 'DONE',
+          next ? next.away + ' at ' + next.home + (next.tbd ? '' : ' &bull; ' + next.time + ' ET')
+               : 'Regular season complete']
+        ].forEach(function (s) {
+            var c = el('div', 'stat-card');
+            c.appendChild(el('div', 'stat-label', s[0]));
+            c.appendChild(el('div', 'stat-value', s[1]));
+            var sub = el('div', 'stat-sub'); sub.innerHTML = s[2];
+            c.appendChild(sub);
+            bar.appendChild(c);
+        });
+    })();
+
+    /* one game card */
+    function card(g) {
+        var done = g.hs != null && g.as != null;
+        var c = el('div', 'game-card' + (g.kind === 'intl' ? ' intl' : ''));
+
+        var info = el('div', 'game-info');
+        info.appendChild(el('div', 'game-time' + (g.tbd ? ' tbd' : ''),
+                            g.tbd ? 'TIME TBD' : g.time + ' ET'));
+        var badges = el('div', 'badges');
+        if (g.kind) badges.appendChild(el('span', 'badge ' + g.kind, LABEL[g.kind]));
+        if (g.div) badges.appendChild(el('span', 'badge div', 'DIVISION'));
+        info.appendChild(badges);
+        c.appendChild(info);
+
+        var m = el('div', 'matchup');
+        [g.away, g.home].forEach(function (t, i) {
+            if (i === 1) {
+                var vc = el('div', 'vs-container');
+                vc.appendChild(el('div', 'vs', 'AT'));
+                if (g.at) vc.appendChild(el('div', 'venue', g.at));
+                m.appendChild(vc);
+            }
+            var box = el('div', 'team');
+            var a = link(t);
+            a.appendChild(el('div', 'team-name', TEAMS[t].short));
+            box.appendChild(a);
+            box.appendChild(el('div', 'team-record', rec(t)));
+            m.appendChild(box);
+        });
+        c.appendChild(m);
+
+        if (done) {
+            var sd = el('div', 'score-display');
+            sd.appendChild(el('span', 'score' + (g.as > g.hs ? ' winner' : ''), String(g.as)));
+            sd.appendChild(el('span', 'score-dash', '–'));
+            sd.appendChild(el('span', 'score' + (g.hs > g.as ? ' winner' : ''), String(g.hs)));
+            sd.appendChild(el('span', 'final-badge', 'FINAL'));
+            c.appendChild(sd);
+        }
+
+        if (TAKES[g.id]) {
+            var take = el('div', 'take');
+            take.appendChild(el('span', 'take-label', "BIG SARGE'S TAKE"));
+            take.appendChild(el('div', 'take-text', TAKES[g.id]));
+            c.appendChild(take);
+        }
+        return c;
+    }
+
+    function renderWeek(wk) {
+        var panel = document.getElementById('weekPanel');
+        panel.textContent = '';
+
+        var head = el('div', 'week-head');
+        head.appendChild(el('h3', null, 'WEEK ' + wk));
+        head.appendChild(el('span', 'dates', DATA.ranges[wk]));
+        panel.appendChild(head);
+
+        if (DATA.notes[wk]) panel.appendChild(el('div', 'week-note', DATA.notes[wk]));
+
+        var wg = GAMES.filter(function (g) { return g.wk === wk; });
+        var days = [];
+        wg.forEach(function (g) { if (days.indexOf(g.date) === -1) days.push(g.date); });
+
+        days.forEach(function (d) {
+            var dg = wg.filter(function (g) { return g.date === d; });
+            panel.appendChild(el('div', 'day-label', dg[0].day + ' — ' + fmtDate(d)));
+            var grid = el('div', 'games-grid');
+            dg.forEach(function (g) { grid.appendChild(card(g)); });
+            panel.appendChild(grid);
+        });
+
+        if (DATA.byes[wk]) {
+            var b = el('div', 'byes');
+            b.appendChild(el('span', 'label', 'On Bye'));
+            b.appendChild(document.createTextNode(
+                DATA.byes[wk].map(function (t) { return TEAMS[t].n; }).join(', ')));
+            panel.appendChild(b);
+        }
+    }
+
+    /* week tabs */
+    (function () {
+        var wrap = document.getElementById('weekTabs'), btns = [];
+        function select(wk) {
+            btns.forEach(function (b, i) {
+                var on = i + 1 === wk;
+                b.setAttribute('aria-selected', on ? 'true' : 'false');
+                b.tabIndex = on ? 0 : -1;
+            });
+            document.getElementById('weekPanel').setAttribute('aria-labelledby', 'wk-' + wk);
+            renderWeek(wk);
+            if (history.replaceState) history.replaceState(null, '', '#week-' + wk);
+        }
+        for (var i = 1; i <= 18; i++) {
+            (function (w) {
+                var b = el('button', 'week-tab');
+                b.type = 'button';
+                b.id = 'wk-' + w;
+                b.setAttribute('role', 'tab');
+                b.appendChild(document.createTextNode('WK ' + w));
+                if (GAMES.some(function (g) { return g.wk === w && g.hs != null; })) {
+                    b.appendChild(el('span', 'dot'));
+                }
+                b.addEventListener('click', function () { select(w); });
+                b.addEventListener('keydown', function (e) {
+                    var n = e.key === 'ArrowRight' ? w + 1 : e.key === 'ArrowLeft' ? w - 1 : 0;
+                    if (!n || n < 1 || n > 18) return;
+                    e.preventDefault();
+                    select(n);
+                    btns[n - 1].focus();
+                });
+                wrap.appendChild(b);
+                btns.push(b);
+            })(i);
+        }
+        var start = DATA.currentWeek;
+        var m = /^#week-(\d+)$/.exec(location.hash);
+        if (m && +m[1] >= 1 && +m[1] <= 18) start = +m[1];
+        select(start);
+    })();
+
+    /* playoff picture */
+    (function () {
+        var wrap = document.getElementById('playoffPanels');
+        ['AFC', 'NFC'].forEach(function (conf) {
+            var p = el('div', 'panel');
+            p.appendChild(el('h3', null, conf + ' SEEDING'));
+            var leaders = DIVS.map(function (d) {
+                return Object.keys(TEAMS).filter(function (t) {
+                    return TEAMS[t].c === conf && TEAMS[t].d === d;
+                }).sort(rank)[0];
+            }).sort(rank);
+            var wc = Object.keys(TEAMS).filter(function (t) {
+                return TEAMS[t].c === conf && leaders.indexOf(t) === -1;
+            }).sort(rank).slice(0, 3);
+
+            leaders.concat(wc).forEach(function (t, i) {
+                if (i === 4) p.appendChild(el('div', 'cut', 'Wild Cards'));
+                var row = el('div', 'seed');
+                row.appendChild(el('span', 'seed-number', String(i + 1)));
+                var nm = el('span', 'nm');
+                nm.appendChild(document.createTextNode(TEAMS[t].n));
+                nm.appendChild(el('span', 'role',
+                    i < 4 ? TEAMS[t].c + ' ' + TEAMS[t].d + ' LEADER' : 'WILD CARD'));
+                row.appendChild(nm);
+                row.appendChild(el('span', 'rec', rec(t)));
+                p.appendChild(row);
+            });
+            wrap.appendChild(p);
+        });
+    })();
+
+    /* standings */
+    (function () {
+        var wrap = document.getElementById('standingsWrap');
+        ['AFC', 'NFC'].forEach(function (conf) {
+            var h = el('div', 'day-label', conf);
+            wrap.appendChild(h);
+            var grid = el('div', 'div-grid');
+            DIVS.forEach(function (d) {
+                var c = el('div', 'div-card');
+                c.appendChild(el('h4', null, conf + ' ' + d));
+                Object.keys(TEAMS).filter(function (t) {
+                    return TEAMS[t].c === conf && TEAMS[t].d === d;
+                }).sort(rank).forEach(function (t) {
+                    var row = el('div', 'trow');
+                    var a = link(t);
+                    a.textContent = TEAMS[t].n;
+                    row.appendChild(a);
+                    row.appendChild(el('span', 'rec', rec(t)));
+                    var dv = diff(t);
+                    row.appendChild(el('span', 'pd', (dv > 0 ? '+' : '') + dv));
+                    c.appendChild(row);
+                });
+                grid.appendChild(c);
+            });
+            wrap.appendChild(grid);
+        });
+    })();
+})();
+</script>
 </body>
 </html>
