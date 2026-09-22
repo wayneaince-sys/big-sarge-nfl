@@ -1,0 +1,14 @@
+{
+  "_README": "Big Sarge's weekly Miami Dolphins update. Edit the fields below, then rebuild: python3 tools/build_2026.py games.csv index.html. Leave the file out (or empty 'body') and no Dolphins Weekly section renders.",
+  "week": "Week 2",
+  "dateRange": "Sept 18–20, 2026",
+  "headline": "49ers 35, Dolphins 13",
+  "record": "0-2",
+  "body": [
+    "Miami hung tough into halftime down 14-6, then the roof caved in. A missed field goal and a botched punt snap handed San Francisco the field, and a defense that couldn't get off the grass did the rest. Brock Purdy went 20 of 22 for 287 yards and three total scores while the Niners found the end zone on their first five drives. That's not a bad quarter, that's a system failure.",
+    "The bright spots were there if you squinted. De'Von Achane ran for 74 and looked like the one guy who could move the chains. Malik Willis threw for 197 and hit Ryan Miller on a 77-yard strike for Miami's only touchdown. Rookie tackle Patrick Paul held his corner even as the line coughed up four sacks.",
+    "The real trouble is up front on defense, and it got worse with Chop Robinson out in the concussion protocol, his third in a year. You can't rush a quarterback with your best pass rusher standing on the sideline.",
+    "Now the Chiefs roll into Hard Rock on Sunday and Miami's staring at 0-2. Fix the special teams, get somebody home on the passer, or this becomes 0-3 in a hurry. No sugarcoating it."
+  ],
+  "next": "Kansas City Chiefs at Miami — Sunday, Sept 27, 1:00 PM ET, Hard Rock Stadium"
+}
