@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Big Sarge NFL Tracker - the complete 2026 NFL schedule, all 18 weeks and 272 games, with scores, standings and the playoff picture.">
+<meta name="keywords" content="NFL, 2026 NFL schedule, NFL scores, NFL standings, playoff picture, Big Sarge">
+<meta name="author" content="Big Sarge">
+<meta property="og:title" content="Big Sarge NFL Tracker - 2026 Season">
+<meta property="og:description" content="Every 2026 NFL game, week by week: kickoff times, scores, standings and the playoff picture.">
+<meta property="og:type" content="website">
+<title>Big Sarge NFL Tracker - 2026 Season</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --air-force-blue: #00308F;
+    --air-force-dark: #001F5C;
+    --air-force-light: #4169E1;
+    --gold: #FFD700;
+    --gold-dark: #DAA520;
+    --white: #FFFFFF;
+    --success: #10B981;
+    --danger: #EF4444;
+    --playoff-glow: #FF6B35;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* The gradient goes on html, not body: a body background with
+   background-attachment:fixed leaves a bare strip above the sticky nav
+   on scroll, because html itself stays transparent. */
+html {
+    scroll-behavior: smooth;
+    background: var(--air-force-dark);
+    background-image: linear-gradient(135deg, var(--air-force-dark) 0%, var(--air-force-blue) 50%, #1a365d 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: transparent;
+    min-height: 100vh;
+    color: var(--white);
+}
+
+.container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+
+/* ---------- header ---------- */
+.header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 100%);
+    border-bottom: 4px solid var(--gold);
+    margin-bottom: 30px;
+}
+.logo-badge { display: inline-flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+.star-icon {
+    font-size: 48px;
+    color: var(--gold);
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+.title {
+    font-family: 'Russo One', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1.1;
+    color: var(--white);
+    text-shadow: 3px 3px 0 var(--gold), 6px 6px 10px rgba(0,0,0,0.3);
+}
+.subtitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    letter-spacing: 5px;
+    margin-top: 10px;
+}
+.rank-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--air-force-dark);
+    padding: 8px 25px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* ---------- nav ---------- */
+.nav {
+    position: sticky; top: 0; z-index: 30;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    padding: 12px 15px;
+    background: rgba(0,31,92,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(255,215,0,0.4);
+    margin-bottom: 30px;
+}
+.nav a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--white); text-decoration: none;
+    padding: 6px 14px; border-radius: 20px;
+    transition: background 0.25s, color 0.25s;
+}
+.nav a:hover { background: var(--gold); color: var(--air-force-dark); }
+.nav a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* ---------- stats ---------- */
+.stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.stat-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,215,0,0.3);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,215,0,0.2); }
+.stat-label { font-family: 'Oswald', sans-serif; font-size: 0.8rem; color: var(--gold); letter-spacing: 2px; }
+.stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--white); line-height: 1.2; }
+.stat-sub { font-size: 0.75rem; color: rgba(255,255,255,0.7); }
+
+/* ---------- dolphins weekly ---------- */
+.miami {
+    background: linear-gradient(145deg, rgba(0,142,151,0.22) 0%, rgba(255,255,255,0.05) 100%);
+    border: 1px solid rgba(0,142,151,0.55);
+    border-left: 5px solid #008E97;
+    border-radius: 15px;
+    padding: 24px 26px;
+    margin-bottom: 40px;
+}
+.miami .kicker {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase;
+    color: #2fd4de;
+}
+.miami h2 {
+    font-family: 'Russo One', sans-serif; font-size: 1.5rem;
+    margin: 4px 0 2px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.miami .score-line { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--gold); letter-spacing: 1px; }
+.miami .rec-pill {
+    font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 600;
+    background: rgba(255,255,255,0.15); color: var(--white);
+    padding: 2px 10px; border-radius: 12px;
+}
+.miami p { margin: 12px 0 0; font-size: 0.95rem; line-height: 1.65; }
+.miami .next {
+    margin-top: 16px; padding-top: 14px;
+    border-top: 1px solid rgba(0,142,151,0.4);
+    font-size: 0.88rem;
+}
+.miami .next b { color: #2fd4de; font-family: 'Oswald', sans-serif; letter-spacing: 1px; }
+
+/* ---------- section headers ---------- */
+.section { scroll-margin-top: 70px; }
+.section-header {
+    display: flex; align-items: center; gap: 15px; flex-wrap: wrap;
+    margin: 40px 0 10px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid var(--gold);
+}
+.section-header h2 { font-family: 'Russo One', sans-serif; font-size: 1.6rem; }
+.section-badge {
+    background: var(--gold); color: var(--air-force-dark);
+    padding: 5px 15px; border-radius: 20px;
+    font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 600;
+}
+.section-note {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.9rem; line-height: 1.6;
+    margin: 0 0 22px; max-width: 78ch;
+}
+
+/* ---------- week selector ---------- */
+.week-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.week-tab {
+    font-family: 'Oswald', sans-serif; font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 1px;
+    padding: 7px 14px; border-radius: 20px; cursor: pointer;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,215,0,0.3);
+    color: var(--white);
+    transition: all 0.25s ease;
+}
+.week-tab:hover { background: rgba(255,215,0,0.25); transform: translateY(-2px); }
+.week-tab:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.week-tab[aria-selected="true"] {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--air-force-dark);
+    font-weight: 700;
+    border-color: var(--gold);
+    box-shadow: 0 5px 18px rgba(255,215,0,0.3);
+}
+.week-tab .dot {
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--success); margin-left: 7px; vertical-align: middle;
+}
+.week-tab[aria-selected="true"] .dot { background: var(--air-force-dark); }
+
+.week-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px; margin: 28px 0 18px; }
+.week-head h3 { font-family: 'Russo One', sans-serif; font-size: 1.5rem; }
+.week-head .dates { font-family: 'Oswald', sans-serif; color: var(--gold); letter-spacing: 1px; }
+
+.week-note {
+    background: rgba(255,215,0,0.12);
+    border: 1px solid rgba(255,215,0,0.4);
+    border-left: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 14px 18px; margin-bottom: 22px;
+    font-size: 0.88rem; line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+}
+
+.day-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold);
+    margin: 26px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,215,0,0.25);
+}
+
+/* ---------- game cards ---------- */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+}
+.game-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: all 0.3s ease;
+}
+.game-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+.game-card.intl { border: 2px solid var(--playoff-glow); }
+
+.game-info {
+    padding: 12px 15px;
+    background: rgba(0,0,0,0.2);
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+}
+.game-time { font-family: 'Oswald', sans-serif; font-size: 0.85rem; color: var(--gold); letter-spacing: 1px; }
+.game-time.tbd { color: rgba(255,255,255,0.55); font-style: italic; }
+.badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.badge {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 1px;
+    padding: 3px 9px; border-radius: 10px;
+    background: rgba(255,255,255,0.15);
+    white-space: nowrap;
+}
+.badge.tnf { background: rgba(139,92,246,0.45); }
+.badge.mnf { background: rgba(255,107,53,0.45); }
+.badge.sat { background: rgba(56,189,248,0.4); }
+.badge.intl { background: linear-gradient(90deg, var(--playoff-glow), #FF8C42); }
+.badge.div { background: rgba(255,215,0,0.25); color: var(--gold); }
+
+.matchup { display: flex; justify-content: space-between; align-items: center; padding: 15px; gap: 6px; }
+.team { text-align: center; flex: 1; min-width: 0; }
+.team a { color: inherit; text-decoration: none; }
+.team a:hover .team-name { color: var(--gold); }
+.team a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+.team-name { font-family: 'Russo One', sans-serif; font-size: 1.15rem; margin-bottom: 3px; transition: color 0.2s; }
+.team-record { font-size: 0.8rem; color: rgba(255,255,255,0.7); }
+.vs-container { display: flex; flex-direction: column; align-items: center; padding: 0 10px; }
+.vs { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--gold); }
+.venue { font-size: 0.68rem; color: rgba(255,255,255,0.6); margin-top: 2px; text-align: center; }
+
+.score-display {
+    display: flex; justify-content: center; align-items: center; gap: 12px;
+    padding: 10px; background: rgba(0,0,0,0.3);
+}
+.score { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; min-width: 45px; text-align: center; }
+.score.winner { color: var(--gold); }
+.score-dash { font-size: 1.3rem; color: rgba(255,255,255,0.5); }
+.final-badge {
+    background: var(--success); padding: 2px 8px; border-radius: 8px;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 1px;
+}
+
+.take {
+    padding: 12px 15px;
+    background: rgba(0,48,143,0.3);
+    border-top: 1px solid rgba(255,215,0,0.2);
+    margin-top: auto;
+}
+.take-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem; color: var(--gold); letter-spacing: 1px;
+    display: block; margin-bottom: 4px;
+}
+.take-text { font-size: 0.86rem; line-height: 1.55; color: rgba(255,255,255,0.92); }
+
+.byes {
+    margin-top: 24px; padding: 14px 18px;
+    background: rgba(0,0,0,0.22);
+    border: 1px dashed rgba(255,215,0,0.4);
+    border-radius: 12px; font-size: 0.88rem;
+}
+.byes .label {
+    font-family: 'Oswald', sans-serif; color: var(--gold);
+    letter-spacing: 1px; text-transform: uppercase; font-size: 0.75rem;
+    display: block; margin-bottom: 4px;
+}
+
+/* ---------- playoffs ---------- */
+.two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 22px; }
+.panel {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,215,0,0.3);
+    border-radius: 15px; padding: 22px;
+}
+.panel h3 {
+    font-family: 'Russo One', sans-serif; font-size: 1.15rem;
+    margin-bottom: 14px; padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255,215,0,0.4);
+}
+.seed {
+    display: grid; grid-template-columns: 28px 1fr auto;
+    align-items: center; gap: 10px; padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.seed:last-child { border-bottom: none; }
+.seed-number { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; color: var(--gold); }
+.seed .nm { font-family: 'Oswald', sans-serif; font-size: 0.95rem; }
+.seed .role { display: block; font-size: 0.7rem; color: rgba(255,255,255,0.6); letter-spacing: 1px; }
+.seed .rec { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; }
+.cut {
+    margin: 10px 0 2px; padding-top: 8px;
+    border-top: 2px dashed rgba(255,215,0,0.6);
+    font-family: 'Oswald', sans-serif; font-size: 0.7rem;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+}
+
+/* ---------- standings ---------- */
+.div-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.div-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 15px; padding: 18px;
+}
+.div-card h4 {
+    font-family: 'Oswald', sans-serif; font-size: 0.95rem;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,215,0,0.25);
+}
+.trow {
+    display: grid; grid-template-columns: 1fr auto auto;
+    gap: 12px; align-items: center; padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.trow:last-child { border-bottom: none; }
+.trow a { color: var(--white); text-decoration: none; font-size: 0.92rem; }
+.trow a:hover { color: var(--gold); }
+.trow a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 3px; }
+.trow .rec { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; }
+.trow .pd { font-size: 0.75rem; color: rgba(255,255,255,0.6); min-width: 42px; text-align: right; }
+
+/* ---------- footer ---------- */
+.footer {
+    text-align: center; padding: 35px 20px 20px; margin-top: 50px;
+    border-top: 3px solid var(--gold);
+    font-size: 0.85rem; color: rgba(255,255,255,0.75);
+}
+.footer a { color: var(--gold); }
+.footer .sig { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--gold); letter-spacing: 3px; }
+
+@media (max-width: 720px) {
+    .container { padding: 12px; }
+    .header { padding: 28px 15px; }
+    .title { font-size: 2.1rem; }
+    .subtitle { font-size: 1.2rem; letter-spacing: 3px; }
+    .star-icon { font-size: 34px; }
+    .games-grid { grid-template-columns: 1fr; }
+    .team-name { font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+@media print {
+    body { background: #fff; color: #000; }
+    .nav, .week-tabs { display: none; }
+    .game-card, .panel, .div-card, .stat-card { border: 1px solid #999; background: #fff; color: #000; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+    <header class="header">
+        <div class="logo-badge">
+            <span class="star-icon" aria-hidden="true">&#9733;</span>
+            <h1 class="title">BIG SARGE NFL TRACKER</h1>
+        </div>
+        <p class="subtitle">2026 SEASON &bull; ALL 18 WEEKS</p>
+        <div class="rank-badge">272 GAMES &bull; SEP 9, 2026 &ndash; JAN 10, 2027</div>
+    </header>
+
+    <nav class="nav">
+        <a href="#dolphinsWeekly" id="miamiNav" hidden>Dolphins Weekly</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#playoffs">Playoff Picture</a>
+        <a href="#standings">Standings</a>
+    </nav>
+
+    <div class="stats-bar" id="statsBar"></div>
+
+    <section class="miami" id="dolphinsWeekly" hidden></section>
+
+    <section class="section" id="schedule">
+        <div class="section-header">
+            <h2>THE SCHEDULE</h2>
+            <span class="section-badge">ALL 18 WEEKS</span>
+        </div>
+        <p class="section-note">
+            Every game of the 2026 regular season. Kickoff times are Eastern and flex from Week 5 on,
+            so late-season Sunday windows can still move. Weeks with games in the books carry a green dot.
+        </p>
+        <div class="week-tabs" id="weekTabs" role="tablist" aria-label="Select week"></div>
+        <div id="weekPanel" role="tabpanel"></div>
+    </section>
+
+    <section class="section" id="playoffs">
+        <div class="section-header">
+            <h2>PLAYOFF PICTURE</h2>
+            <span class="section-badge">LIVE SEEDING</span>
+        </div>
+        <p class="section-note">
+            Four division leaders, then the next three by record. This is a straight win-percentage
+            sort broken by division record and point differential &mdash; the NFL's real head-to-head
+            and common-games tiebreakers are not applied, so close seeds can flip. Entertainment only.
+        </p>
+        <div class="two-col" id="playoffPanels"></div>
+    </section>
+
+    <section class="section" id="standings">
+        <div class="section-header">
+            <h2>STANDINGS</h2>
+            <span class="section-badge">ALL 32 TEAMS</span>
+        </div>
+        <p class="section-note">
+            Records computed from played games. Team names link to their NFL.com page.
+        </p>
+        <div id="standingsWrap"></div>
+    </section>
+
+    <footer class="footer">
+        <p class="sig">&#9733; BIG SARGE &#9733;</p>
+        <p>Schedule and results from <a href="https://github.com/nflverse/nfldata" target="_blank" rel="noopener noreferrer">nflverse</a> &bull; updated __UPDATED__</p>
+        <p>Team names and logos are property of the National Football League.</p>
+    </footer>
+</div>
+
+<script id="nflData" type="application/json">/*__DATA__*/null</script>
+<script>
+(function () {
+    'use strict';
+
+    var DATA = JSON.parse(document.getElementById('nflData').textContent);
+    var GAMES = DATA.games, TEAMS = DATA.teams, TAKES = DATA.commentary || {};
+    var DIVS = ['East', 'North', 'South', 'West'];
+    var LABEL = { tnf: 'Thursday Night', mnf: 'Monday Night', sat: 'Saturday', intl: 'International' };
+
+    function el(tag, cls, text) {
+        var n = document.createElement(tag);
+        if (cls) n.className = cls;
+        if (text != null) n.textContent = text;
+        return n;
+    }
+    function link(team) {
+        var a = document.createElement('a');
+        a.href = TEAMS[team].u;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        return a;
+    }
+
+    /* records from played games */
+    var R = {};
+    Object.keys(TEAMS).forEach(function (t) { R[t] = { w: 0, l: 0, t: 0, pf: 0, pa: 0, dw: 0, dl: 0, dt: 0 }; });
+    GAMES.forEach(function (g) {
+        if (g.hs == null || g.as == null) return;
+        var h = R[g.home], a = R[g.away];
+        h.pf += g.hs; h.pa += g.as; a.pf += g.as; a.pa += g.hs;
+        if (g.hs > g.as) { h.w++; a.l++; if (g.div) { h.dw++; a.dl++; } }
+        else if (g.as > g.hs) { a.w++; h.l++; if (g.div) { a.dw++; h.dl++; } }
+        else { h.t++; a.t++; if (g.div) { h.dt++; a.dt++; } }
+    });
+    function rec(t) { var r = R[t]; return r.t ? r.w + '-' + r.l + '-' + r.t : r.w + '-' + r.l; }
+    function pct(r) { var n = r.w + r.l + r.t; return n ? (r.w + r.t * 0.5) / n : 0; }
+    function dpct(r) { var n = r.dw + r.dl + r.dt; return n ? (r.dw + r.dt * 0.5) / n : 0; }
+    function diff(t) { return R[t].pf - R[t].pa; }
+    function rank(a, b) {
+        return (pct(R[b]) - pct(R[a])) || (dpct(R[b]) - dpct(R[a])) ||
+               (diff(b) - diff(a)) || TEAMS[a].n.localeCompare(TEAMS[b].n);
+    }
+    function fmtDate(iso) {
+        var p = iso.split('-');
+        return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])).toLocaleDateString('en-US',
+            { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+    }
+
+    /* dolphins weekly */
+    (function () {
+        var m = DATA.miami;
+        var box = document.getElementById('dolphinsWeekly');
+        if (!m || !m.body || !m.body.length) { return; }
+        box.hidden = false;
+        var nav = document.getElementById('miamiNav'); if (nav) nav.hidden = false;
+        box.appendChild(el('div', 'kicker', 'Dolphins Weekly \u2014 ' + (m.dateRange || '')));
+        var h = el('h2');
+        h.appendChild(document.createTextNode('\uD83D\uDC2C Miami Dolphins'));
+        if (m.headline) h.appendChild(el('span', 'score-line', m.headline));
+        if (m.record) h.appendChild(el('span', 'rec-pill', m.record));
+        box.appendChild(h);
+        m.body.forEach(function (para) { if (para && para.trim()) box.appendChild(el('p', null, para)); });
+        if (m.next) {
+            var n = el('div', 'next');
+            n.appendChild(el('b', null, 'Next up: '));
+            n.appendChild(document.createTextNode(m.next));
+            box.appendChild(n);
+        }
+    })();
+
+    /* stats bar */
+    (function () {
+        var bar = document.getElementById('statsBar');
+        var next = GAMES.filter(function (g) { return g.hs == null; })[0];
+        [['Season', '2026', '18 weeks &bull; 272 games'],
+         ['Current Week', 'WEEK ' + DATA.currentWeek, DATA.ranges[DATA.currentWeek]],
+         ['Games Played', DATA.played + ' / ' + GAMES.length,
+          Math.round(DATA.played / GAMES.length * 100) + '% of the season'],
+         ['Next Kickoff', next ? next.day.toUpperCase() : 'DONE',
+          next ? next.away + ' at ' + next.home + (next.tbd ? '' : ' &bull; ' + next.time + ' ET')
+               : 'Regular season complete']
+        ].forEach(function (s) {
+            var c = el('div', 'stat-card');
+            c.appendChild(el('div', 'stat-label', s[0]));
+            c.appendChild(el('div', 'stat-value', s[1]));
+            var sub = el('div', 'stat-sub'); sub.innerHTML = s[2];
+            c.appendChild(sub);
+            bar.appendChild(c);
+        });
+    })();
+
+    /* one game card */
+    function card(g) {
+        var done = g.hs != null && g.as != null;
+        var c = el('div', 'game-card' + (g.kind === 'intl' ? ' intl' : ''));
+
+        var info = el('div', 'game-info');
+        info.appendChild(el('div', 'game-time' + (g.tbd ? ' tbd' : ''),
+                            g.tbd ? 'TIME TBD' : g.time + ' ET'));
+        var badges = el('div', 'badges');
+        if (g.kind) badges.appendChild(el('span', 'badge ' + g.kind, LABEL[g.kind]));
+        if (g.div) badges.appendChild(el('span', 'badge div', 'DIVISION'));
+        info.appendChild(badges);
+        c.appendChild(info);
+
+        var m = el('div', 'matchup');
+        [g.away, g.home].forEach(function (t, i) {
+            if (i === 1) {
+                var vc = el('div', 'vs-container');
+                vc.appendChild(el('div', 'vs', 'AT'));
+                if (g.at) vc.appendChild(el('div', 'venue', g.at));
+                m.appendChild(vc);
+            }
+            var box = el('div', 'team');
+            var a = link(t);
+            a.appendChild(el('div', 'team-name', TEAMS[t].short));
+            box.appendChild(a);
+            box.appendChild(el('div', 'team-record', rec(t)));
+            m.appendChild(box);
+        });
+        c.appendChild(m);
+
+        if (done) {
+            var sd = el('div', 'score-display');
+            sd.appendChild(el('span', 'score' + (g.as > g.hs ? ' winner' : ''), String(g.as)));
+            sd.appendChild(el('span', 'score-dash', '–'));
+            sd.appendChild(el('span', 'score' + (g.hs > g.as ? ' winner' : ''), String(g.hs)));
+            sd.appendChild(el('span', 'final-badge', 'FINAL'));
+            c.appendChild(sd);
+        }
+
+        if (TAKES[g.id]) {
+            var take = el('div', 'take');
+            take.appendChild(el('span', 'take-label', "BIG SARGE'S TAKE"));
+            take.appendChild(el('div', 'take-text', TAKES[g.id]));
+            c.appendChild(take);
+        }
+        return c;
+    }
+
+    function renderWeek(wk) {
+        var panel = document.getElementById('weekPanel');
+        panel.textContent = '';
+
+        var head = el('div', 'week-head');
+        head.appendChild(el('h3', null, 'WEEK ' + wk));
+        head.appendChild(el('span', 'dates', DATA.ranges[wk]));
+        panel.appendChild(head);
+
+        if (DATA.notes[wk]) panel.appendChild(el('div', 'week-note', DATA.notes[wk]));
+
+        var wg = GAMES.filter(function (g) { return g.wk === wk; });
+        var days = [];
+        wg.forEach(function (g) { if (days.indexOf(g.date) === -1) days.push(g.date); });
+
+        days.forEach(function (d) {
+            var dg = wg.filter(function (g) { return g.date === d; });
+            panel.appendChild(el('div', 'day-label', dg[0].day + ' — ' + fmtDate(d)));
+            var grid = el('div', 'games-grid');
+            dg.forEach(function (g) { grid.appendChild(card(g)); });
+            panel.appendChild(grid);
+        });
+
+        if (DATA.byes[wk]) {
+            var b = el('div', 'byes');
+            b.appendChild(el('span', 'label', 'On Bye'));
+            b.appendChild(document.createTextNode(
+                DATA.byes[wk].map(function (t) { return TEAMS[t].n; }).join(', ')));
+            panel.appendChild(b);
+        }
+    }
+
+    /* week tabs */
+    (function () {
+        var wrap = document.getElementById('weekTabs'), btns = [];
+        function select(wk) {
+            btns.forEach(function (b, i) {
+                var on = i + 1 === wk;
+                b.setAttribute('aria-selected', on ? 'true' : 'false');
+                b.tabIndex = on ? 0 : -1;
+            });
+            document.getElementById('weekPanel').setAttribute('aria-labelledby', 'wk-' + wk);
+            renderWeek(wk);
+            if (history.replaceState) history.replaceState(null, '', '#week-' + wk);
+        }
+        for (var i = 1; i <= 18; i++) {
+            (function (w) {
+                var b = el('button', 'week-tab');
+                b.type = 'button';
+                b.id = 'wk-' + w;
+                b.setAttribute('role', 'tab');
+                b.appendChild(document.createTextNode('WK ' + w));
+                if (GAMES.some(function (g) { return g.wk === w && g.hs != null; })) {
+                    b.appendChild(el('span', 'dot'));
+                }
+                b.addEventListener('click', function () { select(w); });
+                b.addEventListener('keydown', function (e) {
+                    var n = e.key === 'ArrowRight' ? w + 1 : e.key === 'ArrowLeft' ? w - 1 : 0;
+                    if (!n || n < 1 || n > 18) return;
+                    e.preventDefault();
+                    select(n);
+                    btns[n - 1].focus();
+                });
+                wrap.appendChild(b);
+                btns.push(b);
+            })(i);
+        }
+        var start = DATA.currentWeek;
+        var m = /^#week-(\d+)$/.exec(location.hash);
+        if (m && +m[1] >= 1 && +m[1] <= 18) start = +m[1];
+        select(start);
+    })();
+
+    /* playoff picture */
+    (function () {
+        var wrap = document.getElementById('playoffPanels');
+        ['AFC', 'NFC'].forEach(function (conf) {
+            var p = el('div', 'panel');
+            p.appendChild(el('h3', null, conf + ' SEEDING'));
+            var leaders = DIVS.map(function (d) {
+                return Object.keys(TEAMS).filter(function (t) {
+                    return TEAMS[t].c === conf && TEAMS[t].d === d;
+                }).sort(rank)[0];
+            }).sort(rank);
+            var wc = Object.keys(TEAMS).filter(function (t) {
+                return TEAMS[t].c === conf && leaders.indexOf(t) === -1;
+            }).sort(rank).slice(0, 3);
+
+            leaders.concat(wc).forEach(function (t, i) {
+                if (i === 4) p.appendChild(el('div', 'cut', 'Wild Cards'));
+                var row = el('div', 'seed');
+                row.appendChild(el('span', 'seed-number', String(i + 1)));
+                var nm = el('span', 'nm');
+                nm.appendChild(document.createTextNode(TEAMS[t].n));
+                nm.appendChild(el('span', 'role',
+                    i < 4 ? TEAMS[t].c + ' ' + TEAMS[t].d + ' LEADER' : 'WILD CARD'));
+                row.appendChild(nm);
+                row.appendChild(el('span', 'rec', rec(t)));
+                p.appendChild(row);
+            });
+            wrap.appendChild(p);
+        });
+    })();
+
+    /* standings */
+    (function () {
+        var wrap = document.getElementById('standingsWrap');
+        ['AFC', 'NFC'].forEach(function (conf) {
+            var h = el('div', 'day-label', conf);
+            wrap.appendChild(h);
+            var grid = el('div', 'div-grid');
+            DIVS.forEach(function (d) {
+                var c = el('div', 'div-card');
+                c.appendChild(el('h4', null, conf + ' ' + d));
+                Object.keys(TEAMS).filter(function (t) {
+                    return TEAMS[t].c === conf && TEAMS[t].d === d;
+                }).sort(rank).forEach(function (t) {
+                    var row = el('div', 'trow');
+                    var a = link(t);
+                    a.textContent = TEAMS[t].n;
+                    row.appendChild(a);
+                    row.appendChild(el('span', 'rec', rec(t)));
+                    var dv = diff(t);
+                    row.appendChild(el('span', 'pd', (dv > 0 ? '+' : '') + dv));
+                    c.appendChild(row);
+                });
+                grid.appendChild(c);
+            });
+            wrap.appendChild(grid);
+        });
+    })();
+})();
+</script>
+</body>
+</html>
