@@ -15,18 +15,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-    /* Tactical dark: charcoal/olive base, amber-gold accent, safety orange sparingly */
-    --air-force-dark: #12160F;   /* darkest base (near-black olive) */
-    --air-force-blue: #232A1B;   /* mid base (gunmetal olive) */
-    --air-force-light: #4B5320;  /* olive drab accent */
-    --gold: #E8B923;             /* amber-gold */
-    --gold-dark: #A87F16;
-    --white: #ECEDE3;            /* bone */
-    --success: #6FA22B;          /* field green (win) */
-    --danger: #C0392B;           /* muted red (loss) */
-    --playoff-glow: #E4572E;     /* safety orange */
+    /* Olive & tan: olive-drab base, coyote-tan accents, gold for key highlights */
+    --air-force-dark: #20261A;   /* dark olive base */
+    --air-force-blue: #39472B;   /* olive drab mid */
+    --air-force-light: #6E7D3E;  /* light olive accent */
+    --gold: #CBB27A;             /* coyote tan / khaki (primary accent) */
+    --gold-dark: #9C7F4E;        /* darker tan */
+    --white: #ECE6D6;            /* bone */
+    --success: #7A9A3A;          /* field green (win) */
+    --danger: #B24A3A;           /* brick red (loss) */
+    --playoff-glow: #C97A3A;     /* muted orange */
     --olive: #4B5320;
-    --olive-light: #6B7A3A;
+    --olive-light: #6E7D3E;
+    --tan: #CBB27A;
+    --tan-dark: #9C7F4E;
+    --hot: #E8A11C;              /* muzzle/afterburner gold */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,7 +40,7 @@
 html {
     scroll-behavior: smooth;
     background: var(--air-force-dark);
-    background-image: linear-gradient(135deg, var(--air-force-dark) 0%, var(--air-force-blue) 55%, #2E3720 100%);
+    background-image: linear-gradient(135deg, #171B12 0%, var(--air-force-dark) 45%, var(--air-force-blue) 100%);
     background-attachment: fixed;
     background-repeat: no-repeat;
     min-height: 100%;
@@ -91,6 +94,18 @@ body {
     font-weight: 600;
     border-radius: 5px;
     margin-top: 15px;
+}
+
+.header-art {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 20px; max-width: 760px; margin: 22px auto 0;
+    padding: 0 10px;
+}
+.header-art .art { height: 96px; width: auto; flex: 0 0 auto; }
+.header-art .art-jet { transform: translateY(-6px); }
+@media (max-width: 720px) {
+    .header-art { max-width: 100%; gap: 8px; margin-top: 16px; }
+    .header-art .art { height: 60px; }
 }
 
 /* ---------- nav ---------- */
@@ -479,6 +494,86 @@ body {
         </div>
         <p class="subtitle">2026 SEASON &bull; ALL 18 WEEKS</p>
         <div class="rank-badge">272 GAMES &bull; SEP 9, 2026 &ndash; JAN 10, 2027</div>
+
+        <div class="header-art" aria-hidden="true">
+            <!-- M1-style battle tank, firing, with smoke -->
+            <svg class="art art-tank" viewBox="0 0 260 150" role="img">
+                <defs>
+                    <radialGradient id="flash" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#FFF3C4"/>
+                        <stop offset="45%" stop-color="var(--hot)"/>
+                        <stop offset="100%" stop-color="#C9662A" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+                <!-- smoke plume rising off the muzzle -->
+                <g fill="#7d7f74">
+                    <circle cx="243" cy="34" r="7" opacity="0.55"/>
+                    <circle cx="250" cy="22" r="10" opacity="0.42"/>
+                    <circle cx="240" cy="13" r="13" opacity="0.30"/>
+                    <circle cx="252" cy="4" r="16" opacity="0.18"/>
+                </g>
+                <!-- ground shadow -->
+                <ellipse cx="120" cy="132" rx="112" ry="9" fill="#000" opacity="0.28"/>
+                <!-- track base -->
+                <rect x="14" y="96" width="196" height="30" rx="15" fill="#2b301d"/>
+                <g fill="#4a5230">
+                    <circle cx="34" cy="111" r="12"/><circle cx="62" cy="111" r="12"/>
+                    <circle cx="90" cy="111" r="12"/><circle cx="118" cy="111" r="12"/>
+                    <circle cx="146" cy="111" r="12"/><circle cx="174" cy="111" r="12"/>
+                    <circle cx="196" cy="107" r="9"/><circle cx="20" cy="107" r="9"/>
+                </g>
+                <g fill="#20240f"><circle cx="34" cy="111" r="4"/><circle cx="62" cy="111" r="4"/>
+                    <circle cx="90" cy="111" r="4"/><circle cx="118" cy="111" r="4"/>
+                    <circle cx="146" cy="111" r="4"/><circle cx="174" cy="111" r="4"/></g>
+                <!-- hull -->
+                <path d="M18 96 L214 96 L214 82 L150 82 L138 68 L60 68 L48 82 L18 82 Z" fill="var(--olive)"/>
+                <path d="M18 96 L214 96 L214 90 L18 90 Z" fill="#3a411f"/>
+                <!-- turret -->
+                <path d="M74 68 Q78 46 100 46 L150 46 Q168 46 172 60 L172 68 Z" fill="var(--olive-light)"/>
+                <rect x="86" y="40" width="26" height="8" rx="3" fill="#4a5230"/>
+                <!-- main gun, aimed up-right, firing -->
+                <rect x="168" y="52" width="70" height="7" rx="2" transform="rotate(-9 168 55)" fill="#3a411f"/>
+                <rect x="232" y="40" width="9" height="10" rx="2" transform="rotate(-9 232 45)" fill="#2b301d"/>
+                <!-- muzzle flash -->
+                <circle cx="241" cy="41" r="15" fill="url(#flash)"/>
+                <path d="M241 41 L250 30 L244 42 L256 40 L245 45 L251 54 L241 46 L235 55 L238 44 L228 47 Z" fill="var(--hot)" opacity="0.9"/>
+            </svg>
+
+            <!-- F-15 climbing, afterburners lit -->
+            <svg class="art art-jet" viewBox="0 0 300 150" role="img">
+                <defs>
+                    <linearGradient id="ab" x1="1" y1="0.5" x2="0" y2="0.5">
+                        <stop offset="0%" stop-color="#FFF3C4"/>
+                        <stop offset="35%" stop-color="var(--hot)"/>
+                        <stop offset="80%" stop-color="#D2551F"/>
+                        <stop offset="100%" stop-color="#D2551F" stop-opacity="0"/>
+                    </linearGradient>
+                </defs>
+                <!-- twin afterburner plumes out the tail -->
+                <path d="M60 82 L2 90 L30 86 L4 96 L36 92 Z" fill="url(#ab)"/>
+                <path d="M60 90 L6 104 L32 96 L10 108 L38 96 Z" fill="url(#ab)"/>
+                <path d="M58 86 L20 93 L40 89 Z" fill="#FFF3C4" opacity="0.95"/>
+                <!-- engine nozzles -->
+                <rect x="52" y="80" width="12" height="14" rx="2" fill="#20240f"/>
+                <!-- twin vertical tails -->
+                <path d="M98 76 L84 40 L106 72 Z" fill="#5c6733"/>
+                <path d="M114 74 L102 38 L124 70 Z" fill="#6e7d3e"/>
+                <!-- horizontal stabilator -->
+                <path d="M100 88 L60 96 L104 82 Z" fill="#3a411f"/>
+                <!-- swept wing under belly -->
+                <path d="M188 72 L120 112 L156 78 L208 64 Z" fill="var(--olive)"/>
+                <!-- fuselage: blunt tail (left) to pointed nose (upper right) -->
+                <path d="M281 53 L188 63 L96 79 L58 84 L58 92 L100 91 L192 75 L276 61 Z" fill="var(--olive-light)"/>
+                <!-- lower shading -->
+                <path d="M58 92 L100 91 L192 75 L276 61 L272 65 L190 79 L98 87 L58 88 Z" fill="#586a30"/>
+                <!-- nose cone -->
+                <path d="M281 53 L293 55 L278 61 Z" fill="#3a411f"/>
+                <!-- bubble canopy -->
+                <path d="M250 57 Q243 48 231 53 L226 62 L250 60 Z" fill="#a9c2cf" opacity="0.9"/>
+                <!-- intake under fuselage -->
+                <path d="M176 78 L150 96 L176 84 L198 72 Z" fill="#2b301d"/>
+            </svg>
+        </div>
     </header>
 
     <nav class="nav">
