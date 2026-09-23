@@ -15,15 +15,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-    --air-force-blue: #00308F;
-    --air-force-dark: #001F5C;
-    --air-force-light: #4169E1;
-    --gold: #FFD700;
-    --gold-dark: #DAA520;
-    --white: #FFFFFF;
-    --success: #10B981;
-    --danger: #EF4444;
-    --playoff-glow: #FF6B35;
+    /* Tactical dark: charcoal/olive base, amber-gold accent, safety orange sparingly */
+    --air-force-dark: #12160F;   /* darkest base (near-black olive) */
+    --air-force-blue: #232A1B;   /* mid base (gunmetal olive) */
+    --air-force-light: #4B5320;  /* olive drab accent */
+    --gold: #E8B923;             /* amber-gold */
+    --gold-dark: #A87F16;
+    --white: #ECEDE3;            /* bone */
+    --success: #6FA22B;          /* field green (win) */
+    --danger: #C0392B;           /* muted red (loss) */
+    --playoff-glow: #E4572E;     /* safety orange */
+    --olive: #4B5320;
+    --olive-light: #6B7A3A;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,7 +37,7 @@
 html {
     scroll-behavior: smooth;
     background: var(--air-force-dark);
-    background-image: linear-gradient(135deg, var(--air-force-dark) 0%, var(--air-force-blue) 50%, #1a365d 100%);
+    background-image: linear-gradient(135deg, var(--air-force-dark) 0%, var(--air-force-blue) 55%, #2E3720 100%);
     background-attachment: fixed;
     background-repeat: no-repeat;
     min-height: 100%;
@@ -95,9 +98,9 @@ body {
     position: sticky; top: 0; z-index: 30;
     display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
     padding: 12px 15px;
-    background: rgba(0,31,92,0.92);
+    background: rgba(18,22,15,0.93);
     backdrop-filter: blur(10px);
-    border-bottom: 2px solid rgba(255,215,0,0.4);
+    border-bottom: 2px solid rgba(232,185,35,0.4);
     margin-bottom: 30px;
 }
 .nav a {
@@ -120,13 +123,13 @@ body {
 .stat-card {
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,215,0,0.3);
+    border: 1px solid rgba(232,185,35,0.3);
     border-radius: 15px;
     padding: 20px;
     text-align: center;
     transition: all 0.3s ease;
 }
-.stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,215,0,0.2); }
+.stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(232,185,35,0.2); }
 .stat-label { font-family: 'Oswald', sans-serif; font-size: 0.8rem; color: var(--gold); letter-spacing: 2px; }
 .stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--white); line-height: 1.2; }
 .stat-sub { font-size: 0.75rem; color: rgba(255,255,255,0.7); }
@@ -190,18 +193,18 @@ body {
     letter-spacing: 1px;
     padding: 7px 14px; border-radius: 20px; cursor: pointer;
     background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,215,0,0.3);
+    border: 1px solid rgba(232,185,35,0.3);
     color: var(--white);
     transition: all 0.25s ease;
 }
-.week-tab:hover { background: rgba(255,215,0,0.25); transform: translateY(-2px); }
+.week-tab:hover { background: rgba(232,185,35,0.25); transform: translateY(-2px); }
 .week-tab:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 .week-tab[aria-selected="true"] {
     background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
     color: var(--air-force-dark);
     font-weight: 700;
     border-color: var(--gold);
-    box-shadow: 0 5px 18px rgba(255,215,0,0.3);
+    box-shadow: 0 5px 18px rgba(232,185,35,0.3);
 }
 .week-tab .dot {
     display: inline-block; width: 6px; height: 6px; border-radius: 50%;
@@ -214,8 +217,8 @@ body {
 .week-head .dates { font-family: 'Oswald', sans-serif; color: var(--gold); letter-spacing: 1px; }
 
 .week-note {
-    background: rgba(255,215,0,0.12);
-    border: 1px solid rgba(255,215,0,0.4);
+    background: rgba(232,185,35,0.12);
+    border: 1px solid rgba(232,185,35,0.4);
     border-left: 4px solid var(--gold);
     border-radius: 12px;
     padding: 14px 18px; margin-bottom: 22px;
@@ -229,8 +232,70 @@ body {
     color: var(--gold);
     margin: 26px 0 14px;
     padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255,215,0,0.25);
+    border-bottom: 1px solid rgba(232,185,35,0.25);
 }
+
+/* ---------- ATS scoreboard ---------- */
+.scoreboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    background: rgba(75,83,32,0.18);
+    border: 1px solid rgba(232,185,35,0.35);
+    border-radius: 15px;
+    padding: 18px 20px;
+    margin-bottom: 30px;
+}
+.sb-cell { text-align: center; }
+.sb-cell .who { font-family: 'Oswald', sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+.sb-cell .line { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 1px; }
+.sb-cell .sub { font-size: 0.72rem; color: rgba(236,237,227,0.65); }
+.sb-cell .pct { color: var(--olive-light); font-weight: 700; }
+
+/* ---------- picks on a game card ---------- */
+.line-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    padding: 8px 15px; background: rgba(0,0,0,0.28);
+    font-family: 'Oswald', sans-serif; font-size: 0.78rem; letter-spacing: 1px;
+}
+.line-row .lbl { color: rgba(236,237,227,0.55); text-transform: uppercase; }
+.line-row .val { color: var(--gold); font-weight: 600; }
+
+.sarge-pick {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    padding: 9px 15px; background: rgba(75,83,32,0.28);
+    border-top: 1px solid rgba(232,185,35,0.18);
+    font-size: 0.82rem;
+}
+.sarge-pick .tag {
+    font-family: 'Oswald', sans-serif; font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 1px; color: var(--air-force-dark);
+    background: var(--gold); padding: 2px 8px; border-radius: 10px;
+}
+.sarge-pick .side { font-weight: 700; }
+.sarge-pick .res { margin-left: auto; font-family: 'Oswald', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; padding: 2px 9px; border-radius: 10px; }
+.res.win { background: var(--success); color: #0b1206; }
+.res.loss { background: var(--danger); color: #fff; }
+.res.push { background: rgba(236,237,227,0.25); color: var(--white); }
+
+.your-pick { padding: 10px 15px; border-top: 1px solid rgba(255,255,255,0.08); }
+.your-pick .yp-label { font-family: 'Oswald', sans-serif; font-size: 0.68rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(236,237,227,0.6); margin-bottom: 7px; }
+.yp-buttons { display: flex; gap: 8px; }
+.yp-btn {
+    flex: 1; font: inherit; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+    padding: 8px 6px; border-radius: 8px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.18); color: var(--white);
+    transition: all 0.15s ease;
+}
+.yp-btn:hover:not(:disabled) { background: rgba(232,185,35,0.2); border-color: var(--gold); }
+.yp-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.yp-btn[aria-pressed="true"] { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: var(--air-force-dark); border-color: var(--gold); }
+.yp-btn:disabled { cursor: default; opacity: 0.9; }
+.yp-btn .spr { display: block; font-size: 0.68rem; opacity: 0.8; font-weight: 500; }
+.yp-btn.correct { border-color: var(--success); box-shadow: inset 0 0 0 1px var(--success); }
+.yp-btn.wrong { border-color: var(--danger); }
+.yp-result { margin-top: 6px; font-size: 0.72rem; font-family: 'Oswald', sans-serif; letter-spacing: 1px; }
 
 /* ---------- game cards ---------- */
 .games-grid {
@@ -269,7 +334,7 @@ body {
 .badge.mnf { background: rgba(255,107,53,0.45); }
 .badge.sat { background: rgba(56,189,248,0.4); }
 .badge.intl { background: linear-gradient(90deg, var(--playoff-glow), #FF8C42); }
-.badge.div { background: rgba(255,215,0,0.25); color: var(--gold); }
+.badge.div { background: rgba(232,185,35,0.25); color: var(--gold); }
 
 .matchup { display: flex; justify-content: space-between; align-items: center; padding: 15px; gap: 6px; }
 .team { text-align: center; flex: 1; min-width: 0; }
@@ -296,8 +361,8 @@ body {
 
 .take {
     padding: 12px 15px;
-    background: rgba(0,48,143,0.3);
-    border-top: 1px solid rgba(255,215,0,0.2);
+    background: rgba(75,83,32,0.28);
+    border-top: 1px solid rgba(232,185,35,0.2);
     margin-top: auto;
 }
 .take-label {
@@ -310,7 +375,7 @@ body {
 .byes {
     margin-top: 24px; padding: 14px 18px;
     background: rgba(0,0,0,0.22);
-    border: 1px dashed rgba(255,215,0,0.4);
+    border: 1px dashed rgba(232,185,35,0.4);
     border-radius: 12px; font-size: 0.88rem;
 }
 .byes .label {
@@ -324,13 +389,13 @@ body {
 .panel {
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,215,0,0.3);
+    border: 1px solid rgba(232,185,35,0.3);
     border-radius: 15px; padding: 22px;
 }
 .panel h3 {
     font-family: 'Russo One', sans-serif; font-size: 1.15rem;
     margin-bottom: 14px; padding-bottom: 10px;
-    border-bottom: 2px solid rgba(255,215,0,0.4);
+    border-bottom: 2px solid rgba(232,185,35,0.4);
 }
 .seed {
     display: grid; grid-template-columns: 28px 1fr auto;
@@ -344,7 +409,7 @@ body {
 .seed .rec { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; }
 .cut {
     margin: 10px 0 2px; padding-top: 8px;
-    border-top: 2px dashed rgba(255,215,0,0.6);
+    border-top: 2px dashed rgba(232,185,35,0.6);
     font-family: 'Oswald', sans-serif; font-size: 0.7rem;
     letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
 }
@@ -360,7 +425,7 @@ body {
     font-family: 'Oswald', sans-serif; font-size: 0.95rem;
     letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
     margin-bottom: 12px; padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255,215,0,0.25);
+    border-bottom: 1px solid rgba(232,185,35,0.25);
 }
 .trow {
     display: grid; grid-template-columns: 1fr auto auto;
@@ -424,6 +489,8 @@ body {
     </nav>
 
     <div class="stats-bar" id="statsBar"></div>
+
+    <div class="scoreboard" id="scoreboard" aria-label="Against-the-spread scoreboard"></div>
 
     <section class="miami" id="dolphinsWeekly" hidden></section>
 
@@ -520,6 +587,71 @@ body {
             { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
     }
 
+    /* ----- against-the-spread helpers ----- */
+    var VP_KEY = 'bsn_atspicks_' + DATA.season;
+    var VP = {};
+    try { VP = JSON.parse(localStorage.getItem(VP_KEY) || '{}') || {}; } catch (e) { VP = {}; }
+    function saveVP() { try { localStorage.setItem(VP_KEY, JSON.stringify(VP)); } catch (e) {} }
+
+    function fmtLine(x) { return (x > 0 ? '+' : '') + x; }        // 3 -> "+3", -3.5 -> "-3.5"
+    function hasLine(g) { return typeof g.sp === 'number'; }
+    function lineFor(g, team) { return team === g.home ? -g.sp : g.sp; } // team's own number
+    function favCode(g) { return g.sp < 0 ? g.away : (g.sp > 0 ? g.home : null); }
+    function isFinal(g) { return g.hs != null && g.as != null; }
+
+    // which side covered on a finished game: returns team code, or 'push', or null
+    function coveredCode(g) {
+        if (!isFinal(g) || !hasLine(g)) return null;
+        var cv = (g.hs - g.as) - g.sp;
+        if (cv > 0.0001) return g.home;
+        if (cv < -0.0001) return g.away;
+        return 'push';
+    }
+    // result of a pick (team code) on game g: 'win' | 'loss' | 'push' | null (not gradable yet)
+    function pickResult(g, teamCode) {
+        if (!teamCode) return null;
+        var cc = coveredCode(g);
+        if (cc === null) return null;
+        if (cc === 'push') return 'push';
+        return cc === teamCode ? 'win' : 'loss';
+    }
+    function tallyRecord(getPick) {
+        var w = 0, l = 0, p = 0;
+        GAMES.forEach(function (g) {
+            var r = pickResult(g, getPick(g));
+            if (r === 'win') w++; else if (r === 'loss') l++; else if (r === 'push') p++;
+        });
+        return { w: w, l: l, p: p };
+    }
+    function recText(r) { return r.p ? (r.w + '-' + r.l + '-' + r.p) : (r.w + '-' + r.l); }
+    function recPct(r) { var n = r.w + r.l; return n ? Math.round(r.w / n * 100) + '%' : '\u2014'; }
+
+    function updateScoreboard() {
+        var sb = document.getElementById('scoreboard');
+        if (!sb) return;
+        var sarge = tallyRecord(function (g) { return g.pk; });
+        var you = tallyRecord(function (g) { return VP[g.id]; });
+        var madeYou = Object.keys(VP).length;
+        var cells = [
+            { who: '\uD83C\uDF96 Big Sarge', line: recText(sarge), sub: 'against the spread', pct: recPct(sarge) },
+            { who: 'You', line: recText(you), sub: madeYou ? (madeYou === 1 ? '1 pick made' : madeYou + ' picks made') : 'tap a pick below', pct: recPct(you) }
+        ];
+        // head-to-head lead on games both graded
+        var lead = sarge.w - sarge.l - (you.w - you.l);
+        var h2h = lead > 0 ? 'Sarge +' + lead : (lead < 0 ? 'You +' + (-lead) : 'Even');
+        cells.push({ who: 'Head to Head', line: h2h, sub: 'net ATS units', pct: '' });
+        sb.textContent = '';
+        cells.forEach(function (c) {
+            var d = el('div', 'sb-cell');
+            d.appendChild(el('div', 'who', c.who));
+            d.appendChild(el('div', 'line', c.line));
+            var sub = el('div', 'sub'); sub.textContent = c.sub;
+            if (c.pct) { sub.appendChild(document.createTextNode(' \u00b7 ')); sub.appendChild(el('span', 'pct', c.pct)); }
+            d.appendChild(sub);
+            sb.appendChild(d);
+        });
+    }
+
     /* dolphins weekly */
     (function () {
         var m = DATA.miami;
@@ -601,6 +733,75 @@ body {
             sd.appendChild(el('span', 'score' + (g.hs > g.as ? ' winner' : ''), String(g.hs)));
             sd.appendChild(el('span', 'final-badge', 'FINAL'));
             c.appendChild(sd);
+        }
+
+        if (hasLine(g)) {
+            // line row
+            var lr = el('div', 'line-row');
+            lr.appendChild(el('span', 'lbl', 'Vegas line'));
+            var fav = favCode(g);
+            lr.appendChild(el('span', 'val', g.sp === 0 ? "Pick'em"
+                : TEAMS[fav].short + ' ' + fmtLine(lineFor(g, fav))));
+            c.appendChild(lr);
+
+            // sarge pick
+            if (g.pk) {
+                var spk = el('div', 'sarge-pick');
+                spk.appendChild(el('span', 'tag', 'SARGE ATS'));
+                spk.appendChild(el('span', 'side',
+                    TEAMS[g.pk].short + ' ' + fmtLine(lineFor(g, g.pk))));
+                var sr = pickResult(g, g.pk);
+                if (sr) spk.appendChild(el('span', 'res ' + sr,
+                    sr === 'win' ? 'COVERED' : sr === 'loss' ? 'MISSED' : 'PUSH'));
+                c.appendChild(spk);
+            }
+
+            // your pick
+            (function () {
+                var yp = el('div', 'your-pick');
+                yp.appendChild(el('div', 'yp-label', 'Your pick'));
+                var row = el('div', 'yp-buttons');
+                var done = isFinal(g);
+                [g.away, g.home].forEach(function (tc) {
+                    var btn = el('button', 'yp-btn');
+                    btn.type = 'button';
+                    var top = document.createElement('span');
+                    top.textContent = TEAMS[tc].short;
+                    btn.appendChild(top);
+                    btn.appendChild(el('span', 'spr', fmtLine(lineFor(g, tc))));
+                    var chosen = VP[g.id] === tc;
+                    btn.setAttribute('aria-pressed', chosen ? 'true' : 'false');
+                    if (done) {
+                        btn.disabled = true;
+                        if (chosen) {
+                            var r = pickResult(g, tc);
+                            if (r === 'win') btn.classList.add('correct');
+                            else if (r === 'loss') btn.classList.add('wrong');
+                        }
+                    } else {
+                        btn.addEventListener('click', function () {
+                            VP[g.id] = tc; saveVP();
+                            Array.prototype.forEach.call(row.children, function (b, i) {
+                                b.setAttribute('aria-pressed',
+                                    (i === 0 ? g.away : g.home) === tc ? 'true' : 'false');
+                            });
+                            updateScoreboard();
+                        });
+                    }
+                    row.appendChild(btn);
+                });
+                yp.appendChild(row);
+                if (done && VP[g.id]) {
+                    var r = pickResult(g, VP[g.id]);
+                    var msg = r === 'win' ? 'You covered \u2713' : r === 'loss' ? 'You missed \u2717' : r === 'push' ? 'Push' : '';
+                    if (msg) {
+                        var ry = el('div', 'yp-result', msg);
+                        ry.style.color = r === 'win' ? 'var(--success)' : r === 'loss' ? 'var(--danger)' : 'var(--white)';
+                        yp.appendChild(ry);
+                    }
+                }
+                c.appendChild(yp);
+            })();
         }
 
         if (TAKES[g.id]) {
@@ -743,6 +944,8 @@ body {
             wrap.appendChild(grid);
         });
     })();
+
+    updateScoreboard();
 })();
 </script>
 </body>

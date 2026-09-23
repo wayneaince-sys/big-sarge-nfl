@@ -69,6 +69,12 @@ for r in csv.DictReader(SRC.open()):
          'wk': wk, 'date': r['gameday'], 'day': r['weekday'],
          'time': fmt_time(r['gametime']), 'away': away, 'home': home,
          'div': r['div_game'] == '1'}
+    sp = r.get('spread_line', '')
+    if sp not in ('', 'NA'):
+        try:
+            g['sp'] = float(sp)
+        except ValueError:
+            pass
     if r['away_score'] and r['home_score']:
         g['as'], g['hs'] = int(r['away_score']), int(r['home_score'])
     if neutral:
@@ -98,6 +104,16 @@ for wk in sorted(weeks):
     ranges[wk] = ('%s %d' % (a.strftime('%b'), a.day) if a == b else
                   ('%s %d–%d' % (a.strftime('%b'), a.day, b.day) if a.month == b.month
                    else '%s %d – %s %d' % (a.strftime('%b'), a.day, b.strftime('%b'), b.day)))
+
+picks = {}
+PICKS = pathlib.Path(sys.argv[5]) if len(sys.argv) > 5 else OUT.parent / 'picks.json'
+if PICKS.exists():
+    picks = {k: v for k, v in json.loads(PICKS.read_text()).items()
+             if not k.startswith('_') and v}
+
+for g in games:
+    if g['id'] in picks:
+        g['pk'] = picks[g['id']]
 
 miami = {}
 MIAMI = pathlib.Path(sys.argv[4]) if len(sys.argv) > 4 else OUT.parent / 'miami_weekly.json'
