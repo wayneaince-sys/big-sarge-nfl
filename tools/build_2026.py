@@ -147,7 +147,12 @@ data = {'season': SEASON, 'games': games, 'byes': byes, 'ranges': ranges,
                          'NFL sets days and kickoff times only after Week 17. Times show TBD until '
                          'then, and expect a Saturday, January 9 split.')}}
 
+CREDIT_FILE = OUT.parent / 'header_credit.txt'
+header_credit = CREDIT_FILE.read_text().strip() if CREDIT_FILE.exists() else ''
+credit_html = ('<div class="header-credit">' + header_credit + '</div>') if header_credit else ''
+
 TPL = pathlib.Path(__file__).with_name('template.html').read_text()
+TPL = TPL.replace('<!--__HEADER_CREDIT__-->', credit_html)
 OUT.write_text(TPL.replace('/*__DATA__*/null',
                            json.dumps(data, separators=(',', ':')))
                   .replace('__UPDATED__', datetime.date.today().strftime('%B %d, %Y').replace(' 0', ' ')))
