@@ -180,6 +180,8 @@ body {
     font-size: 0.88rem;
 }
 .miami .next b { color: #2fd4de; font-family: 'Oswald', sans-serif; letter-spacing: 1px; }
+.miami .miami-src { margin-top: 8px; font-size: 0.72rem; color: rgba(236,237,227,0.55); }
+.miami .miami-src a { color: #2fd4de; }
 
 /* ---------- section headers ---------- */
 .section { scroll-margin-top: 70px; }
@@ -540,38 +542,43 @@ body {
             </svg>
 
             <!-- F-15 climbing, afterburners lit -->
-            <svg class="art art-jet" viewBox="0 0 300 150" role="img">
+            <svg class="art art-jet" viewBox="0 0 300 140" role="img">
                 <defs>
                     <linearGradient id="ab" x1="1" y1="0.5" x2="0" y2="0.5">
-                        <stop offset="0%" stop-color="#FFF3C4"/>
-                        <stop offset="35%" stop-color="var(--hot)"/>
-                        <stop offset="80%" stop-color="#D2551F"/>
-                        <stop offset="100%" stop-color="#D2551F" stop-opacity="0"/>
+                        <stop offset="0%" stop-color="#FFF6D0"/>
+                        <stop offset="30%" stop-color="var(--hot)"/>
+                        <stop offset="75%" stop-color="#CF5320"/>
+                        <stop offset="100%" stop-color="#CF5320" stop-opacity="0"/>
                     </linearGradient>
                 </defs>
-                <!-- twin afterburner plumes out the tail -->
-                <path d="M60 82 L2 90 L30 86 L4 96 L36 92 Z" fill="url(#ab)"/>
-                <path d="M60 90 L6 104 L32 96 L10 108 L38 96 Z" fill="url(#ab)"/>
-                <path d="M58 86 L20 93 L40 89 Z" fill="#FFF3C4" opacity="0.95"/>
+                <!-- twin afterburner plumes -->
+                <path d="M58 83 L4 90 L30 86 L8 95 L42 90 Z" fill="url(#ab)"/>
+                <path d="M58 91 L8 100 L32 94 L14 104 L44 95 Z" fill="url(#ab)"/>
+                <path d="M56 85 L22 90 L40 88 Z" fill="#FFF6D0" opacity="0.95"/>
+                <path d="M56 91 L26 96 L42 92 Z" fill="#FFF6D0" opacity="0.9"/>
                 <!-- engine nozzles -->
-                <rect x="52" y="80" width="12" height="14" rx="2" fill="#20240f"/>
-                <!-- twin vertical tails -->
-                <path d="M98 76 L84 40 L106 72 Z" fill="#5c6733"/>
-                <path d="M114 74 L102 38 L124 70 Z" fill="#6e7d3e"/>
-                <!-- horizontal stabilator -->
-                <path d="M100 88 L60 96 L104 82 Z" fill="#3a411f"/>
-                <!-- swept wing under belly -->
-                <path d="M188 72 L120 112 L156 78 L208 64 Z" fill="var(--olive)"/>
-                <!-- fuselage: blunt tail (left) to pointed nose (upper right) -->
-                <path d="M281 53 L188 63 L96 79 L58 84 L58 92 L100 91 L192 75 L276 61 Z" fill="var(--olive-light)"/>
-                <!-- lower shading -->
-                <path d="M58 92 L100 91 L192 75 L276 61 L272 65 L190 79 L98 87 L58 88 Z" fill="#586a30"/>
-                <!-- nose cone -->
-                <path d="M281 53 L293 55 L278 61 Z" fill="#3a411f"/>
+                <rect x="50" y="82" width="12" height="12" rx="1.5" fill="#20240f"/>
+                <!-- twin canted vertical tails -->
+                <path d="M74 74 L60 34 L82 70 Z" fill="#586a30"/>
+                <path d="M90 72 L78 32 L100 68 Z" fill="#6e7d3e"/>
+                <!-- rear horizontal stabilizer -->
+                <path d="M86 86 L52 92 L92 80 Z" fill="#3a411f"/>
+                <!-- large swept wing -->
+                <path d="M188 70 L104 114 L146 78 L214 60 Z" fill="var(--olive)"/>
+                <path d="M188 70 L146 78 L214 60 Z" fill="#586a30"/>
+                <!-- fuselage: sharp dart, blunt tail (left) to pointed nose (upper right) -->
+                <path d="M288 58 L246 55 L150 67 L66 83 L52 87 L52 93 L70 89 L150 75 L250 61 Z" fill="var(--olive-light)"/>
+                <!-- belly shading -->
+                <path d="M52 93 L70 89 L150 75 L250 61 L288 58 L284 61 L248 64 L150 78 L70 91 L52 93 Z" fill="#4a5a28"/>
+                <!-- panel line -->
+                <path d="M70 85 L246 59" stroke="#3a411f" stroke-width="1.2" opacity="0.6"/>
+                <!-- sharp nose radome -->
+                <path d="M288 58 L299 59 L281 63 Z" fill="#2b301d"/>
                 <!-- bubble canopy -->
-                <path d="M250 57 Q243 48 231 53 L226 62 L250 60 Z" fill="#a9c2cf" opacity="0.9"/>
-                <!-- intake under fuselage -->
-                <path d="M176 78 L150 96 L176 84 L198 72 Z" fill="#2b301d"/>
+                <path d="M252 58 L244 49 Q236 45 227 50 L222 59 Z" fill="#a9c2cf" opacity="0.9"/>
+                <path d="M245 51 L238 49 L235 55 L246 55 Z" fill="#cfe0e8" opacity="0.85"/>
+                <!-- boxy intake under cockpit -->
+                <path d="M220 66 L192 69 L190 80 L216 78 Z" fill="#20240f"/>
             </svg>
         </div>
     </header>
@@ -766,6 +773,16 @@ body {
             n.appendChild(el('b', null, 'Next up: '));
             n.appendChild(document.createTextNode(m.next));
             box.appendChild(n);
+        }
+        if (m.source && m.source.text) {
+            var src = el('div', 'miami-src');
+            if (m.source.url) {
+                var la = document.createElement('a');
+                la.href = m.source.url; la.target = '_blank'; la.rel = 'noopener noreferrer';
+                la.textContent = m.source.text;
+                src.appendChild(la);
+            } else { src.textContent = m.source.text; }
+            box.appendChild(src);
         }
     })();
 

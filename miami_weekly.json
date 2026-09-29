@@ -1,14 +1,15 @@
 {
-  "_README": "Big Sarge's weekly Miami Dolphins update. Edit the fields below, then rebuild: python3 tools/build_2026.py games.csv index.html. Leave the file out (or empty 'body') and no Dolphins Weekly section renders.",
-  "week": "Week 2",
-  "dateRange": "Sept 18–20, 2026",
-  "headline": "49ers 35, Dolphins 13",
-  "record": "0-2",
+  "_README": "Big Sarge's weekly Miami Dolphins update. Edit fields below, then rebuild: python3 tools/build_2026.py games.csv index.html. Leave body empty and no section renders.",
+  "week": "Week 3",
+  "dateRange": "Sept 28, 2026",
+  "headline": "Chiefs 24, Dolphins 10",
+  "record": "0-3",
   "body": [
-    "Miami hung tough into halftime down 14-6, then the roof caved in. A missed field goal and a botched punt snap handed San Francisco the field, and a defense that couldn't get off the grass did the rest. Brock Purdy went 20 of 22 for 287 yards and three total scores while the Niners found the end zone on their first five drives. That's not a bad quarter, that's a system failure.",
-    "The bright spots were there if you squinted. De'Von Achane ran for 74 and looked like the one guy who could move the chains. Malik Willis threw for 197 and hit Ryan Miller on a 77-yard strike for Miami's only touchdown. Rookie tackle Patrick Paul held his corner even as the line coughed up four sacks.",
-    "The real trouble is up front on defense, and it got worse with Chop Robinson out in the concussion protocol, his third in a year. You can't rush a quarterback with your best pass rusher standing on the sideline.",
-    "Now the Chiefs roll into Hard Rock on Sunday and Miami's staring at 0-2. Fix the special teams, get somebody home on the passer, or this becomes 0-3 in a hurry. No sugarcoating it."
+    "Miami hung in it. Down 17-10 into the back half of the fourth, this was a live ballgame until Mahomes found Kelce from 11 yards out and slammed the door. That's the gap between a rebuild and a contender right now: Kansas City closes, Miami doesn't.",
+    "Malik Willis played with some fight, 210 through the air and 56 on the ground, and rookie Chris Bell flashed with four grabs for 67. On defense, Jacob Rodriguez was a problem all afternoon, three tackles for loss and an interception. But the drive-killers told the real story: a fumble wiped out a promising possession, and a fourth-and-1 pick snuffed out the last honest shot at a comeback.",
+    "Worse than the scoreboard: De'Von Achane went down on Miami's 91-yard opening touchdown drive and never came back, no word yet on how bad. This offense cannot afford to lose its one game-breaker.",
+    "Three weeks, three losses. Competitive for three quarters isn't nothing, but it isn't a win either. Minnesota's next, on the road. Time to finish one."
   ],
-  "next": "Kansas City Chiefs at Miami — Sunday, Sept 27, 1:00 PM ET, Hard Rock Stadium"
+  "next": "Miami at Minnesota Vikings — Sunday, Oct 4, 4:05 PM ET",
+  "source": { "text": "Recap: miamidolphins.com", "url": "https://www.miamidolphins.com/news/game-recap-dolphins-drop-home-opener-to-chiefs-24-10" }
 }
