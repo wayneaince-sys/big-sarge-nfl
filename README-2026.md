@@ -31,6 +31,18 @@ just stay invisible.
 Takes appear on the game card under a gold **BIG SARGE'S TAKE** heading, in the same place
 the old tracker put its predictions.
 
+## Logging picks against the spread
+
+`picks.json` holds Sarge's sides. Each entry locks the spread he took:
+
+```json
+{ "2026_06_LAC_KC": { "team": "KC", "line": 8.5 } }
+```
+
+`line` follows the feed's convention: positive means the home team is favored by that many
+points. The page grades the pick on that locked number even after the market moves, while
+visitor picks still use the live line. A bare `"KC"` still works and is graded on the live line.
+
 ## Updating scores
 
 ```bash

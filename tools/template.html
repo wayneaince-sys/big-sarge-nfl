@@ -658,27 +658,32 @@ body {
     function lineFor(g, team) { return team === g.home ? -g.sp : g.sp; } // team's own number
     function favCode(g) { return g.sp < 0 ? g.away : (g.sp > 0 ? g.home : null); }
     function isFinal(g) { return g.hs != null && g.as != null; }
+    // Sarge's picks keep the line he took them at (g.psp); fall back to the live line
+    function sargeSp(g) { return typeof g.psp === 'number' ? g.psp : g.sp; }
+    function sargeLineFor(g, team) { var sp = sargeSp(g); return team === g.home ? -sp : sp; }
 
     // which side covered on a finished game: returns team code, or 'push', or null
-    function coveredCode(g) {
-        if (!isFinal(g) || !hasLine(g)) return null;
-        var cv = (g.hs - g.as) - g.sp;
+    // sp: optional locked line (home-favored positive); defaults to the live line
+    function coveredCode(g, sp) {
+        if (sp == null) sp = g.sp;
+        if (!isFinal(g) || typeof sp !== 'number') return null;
+        var cv = (g.hs - g.as) - sp;
         if (cv > 0.0001) return g.home;
         if (cv < -0.0001) return g.away;
         return 'push';
     }
     // result of a pick (team code) on game g: 'win' | 'loss' | 'push' | null (not gradable yet)
-    function pickResult(g, teamCode) {
+    function pickResult(g, teamCode, sp) {
         if (!teamCode) return null;
-        var cc = coveredCode(g);
+        var cc = coveredCode(g, sp);
         if (cc === null) return null;
         if (cc === 'push') return 'push';
         return cc === teamCode ? 'win' : 'loss';
     }
-    function tallyRecord(getPick) {
+    function tallyRecord(getPick, locked) {
         var w = 0, l = 0, p = 0;
         GAMES.forEach(function (g) {
-            var r = pickResult(g, getPick(g));
+            var r = pickResult(g, getPick(g), locked ? sargeSp(g) : undefined);
             if (r === 'win') w++; else if (r === 'loss') l++; else if (r === 'push') p++;
         });
         return { w: w, l: l, p: p };
@@ -689,7 +694,7 @@ body {
     function updateScoreboard() {
         var sb = document.getElementById('scoreboard');
         if (!sb) return;
-        var sarge = tallyRecord(function (g) { return g.pk; });
+        var sarge = tallyRecord(function (g) { return g.pk; }, true);
         var you = tallyRecord(function (g) { return VP[g.id]; });
         var madeYou = Object.keys(VP).length;
         var cells = [
@@ -830,8 +835,8 @@ body {
                 var spk = el('div', 'sarge-pick');
                 spk.appendChild(el('span', 'tag', 'SARGE ATS'));
                 spk.appendChild(el('span', 'side',
-                    TEAMS[g.pk].short + ' ' + fmtLine(lineFor(g, g.pk))));
-                var sr = pickResult(g, g.pk);
+                    TEAMS[g.pk].short + ' ' + fmtLine(sargeLineFor(g, g.pk))));
+                var sr = pickResult(g, g.pk, sargeSp(g));
                 if (sr) spk.appendChild(el('span', 'res ' + sr,
                     sr === 'win' ? 'COVERED' : sr === 'loss' ? 'MISSED' : 'PUSH'));
                 c.appendChild(spk);

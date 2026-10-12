@@ -111,9 +111,18 @@ if PICKS.exists():
     picks = {k: v for k, v in json.loads(PICKS.read_text()).items()
              if not k.startswith('_') and v}
 
+# A pick is either "KC" (graded on the live line) or {"team": "KC", "line": 8.5},
+# which locks the spread Sarge took it at. "line" uses the feed's convention:
+# positive = home team favored by that many points.
 for g in games:
     if g['id'] in picks:
-        g['pk'] = picks[g['id']]
+        v = picks[g['id']]
+        if isinstance(v, dict):
+            g['pk'] = v['team']
+            if isinstance(v.get('line'), (int, float)):
+                g['psp'] = float(v['line'])
+        else:
+            g['pk'] = v
 
 miami = {}
 MIAMI = pathlib.Path(sys.argv[4]) if len(sys.argv) > 4 else OUT.parent / 'miami_weekly.json'
