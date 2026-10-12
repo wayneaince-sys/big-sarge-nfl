@@ -31,5 +31,19 @@
   "2026_04_LAC_SEA": "LAC",
   "2026_04_DEN_SF": "SF",
   "2026_04_DET_CAR": "DET",
-  "2026_04_ATL_NO": "ATL"
+  "2026_04_ATL_NO": "ATL",
+  "2026_06_SEA_DEN": "SEA",
+  "2026_06_HOU_JAX": "JAX",
+  "2026_06_CHI_ATL": "CHI",
+  "2026_06_BAL_CLE": "BAL",
+  "2026_06_TEN_IND": "IND",
+  "2026_06_NYJ_NE": "NE",
+  "2026_06_NO_NYG": "NYG",
+  "2026_06_CAR_PHI": "PHI",
+  "2026_06_PIT_TB": "TB",
+  "2026_06_ARI_LAR": "LAR",
+  "2026_06_LAC_KC": "KC",
+  "2026_06_BUF_LV": "BUF",
+  "2026_06_DAL_GB": "DAL",
+  "2026_06_WAS_SF": "SF"
 }
