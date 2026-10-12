@@ -119,7 +119,10 @@ miami = {}
 MIAMI = pathlib.Path(sys.argv[4]) if len(sys.argv) > 4 else OUT.parent / 'miami_weekly.json'
 if MIAMI.exists():
     mj = json.loads(MIAMI.read_text())
-    if mj.get('body') and any(p.strip() for p in mj['body']):
+    def has_body(d):
+        return isinstance(d, dict) and any(
+            (p.get('text', '') if isinstance(p, dict) else p).strip() for p in d.get('body') or [])
+    if has_body(mj) or has_body(mj.get('hurricanes')):
         miami = {k: v for k, v in mj.items() if not k.startswith('_')}
 
 commentary = {}

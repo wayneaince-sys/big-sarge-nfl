@@ -205,6 +205,15 @@ body {
 .miami .next b { color: #2fd4de; font-family: 'Oswald', sans-serif; letter-spacing: 1px; }
 .miami .miami-src { margin-top: 8px; font-size: 0.72rem; color: rgba(236,237,227,0.55); }
 .miami .miami-src a { color: #2fd4de; }
+.miami p b { color: #2fd4de; font-family: 'Oswald', sans-serif; letter-spacing: 0.5px; }
+/* hurricanes variant */
+.miami.canes {
+    background: linear-gradient(145deg, rgba(244,115,33,0.20) 0%, rgba(0,80,48,0.18) 100%);
+    border-color: rgba(244,115,33,0.55);
+    border-left-color: #F47321;
+}
+.miami.canes .kicker, .miami.canes .next b, .miami.canes p b, .miami.canes .miami-src a { color: #f8964f; }
+.miami.canes .next { border-top-color: rgba(244,115,33,0.4); }
 
 /* ---------- section headers ---------- */
 .section { scroll-margin-top: 70px; }
@@ -531,6 +540,7 @@ body {
 
     <nav class="nav">
         <a href="#dolphinsWeekly" id="miamiNav" hidden>Dolphins Weekly</a>
+        <a href="#canesWeekly" id="canesNav" hidden>Canes Weekly</a>
         <a href="#schedule">Schedule</a>
         <a href="#playoffs">Playoff Picture</a>
         <a href="#standings">Standings</a>
@@ -541,6 +551,8 @@ body {
     <div class="scoreboard" id="scoreboard" aria-label="Against-the-spread scoreboard"></div>
 
     <section class="miami" id="dolphinsWeekly" hidden></section>
+
+    <section class="miami canes" id="canesWeekly" hidden></section>
 
     <section class="section" id="schedule">
         <div class="section-header">
@@ -700,20 +712,29 @@ body {
         });
     }
 
-    /* dolphins weekly */
-    (function () {
-        var m = DATA.miami;
-        var box = document.getElementById('dolphinsWeekly');
-        if (!m || !m.body || !m.body.length) { return; }
+    /* dolphins weekly + canes weekly */
+    function renderWeekly(m, boxId, navId, kicker, title) {
+        var box = document.getElementById(boxId);
+        if (!m || !m.body || !m.body.length || !box) { return; }
         box.hidden = false;
-        var nav = document.getElementById('miamiNav'); if (nav) nav.hidden = false;
-        box.appendChild(el('div', 'kicker', 'Dolphins Weekly \u2014 ' + (m.dateRange || '')));
+        var nav = document.getElementById(navId); if (nav) nav.hidden = false;
+        box.appendChild(el('div', 'kicker', kicker + ' — ' + (m.dateRange || '')));
         var h = el('h2');
-        h.appendChild(document.createTextNode('\uD83D\uDC2C Miami Dolphins'));
+        h.appendChild(document.createTextNode(title));
         if (m.headline) h.appendChild(el('span', 'score-line', m.headline));
         if (m.record) h.appendChild(el('span', 'rec-pill', m.record));
         box.appendChild(h);
-        m.body.forEach(function (para) { if (para && para.trim()) box.appendChild(el('p', null, para)); });
+        m.body.forEach(function (para) {
+            if (para && typeof para === 'object') {
+                if (!para.text || !String(para.text).trim()) return;
+                var p = el('p');
+                if (para.label) { p.appendChild(el('b', null, para.label + ': ')); }
+                p.appendChild(document.createTextNode(para.text));
+                box.appendChild(p);
+            } else if (para && String(para).trim()) {
+                box.appendChild(el('p', null, para));
+            }
+        });
         if (m.next) {
             var n = el('div', 'next');
             n.appendChild(el('b', null, 'Next up: '));
@@ -730,7 +751,9 @@ body {
             } else { src.textContent = m.source.text; }
             box.appendChild(src);
         }
-    })();
+    }
+    renderWeekly(DATA.miami, 'dolphinsWeekly', 'miamiNav', 'Dolphins Weekly', '🐬 Miami Dolphins');
+    renderWeekly(DATA.miami && DATA.miami.hurricanes, 'canesWeekly', 'canesNav', 'Canes Weekly', '🌀 Miami Hurricanes');
 
     /* stats bar */
     (function () {

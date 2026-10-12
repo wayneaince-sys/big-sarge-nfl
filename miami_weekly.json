@@ -1,15 +1,24 @@
 {
-  "_README": "Big Sarge's weekly Miami Dolphins update. Edit fields below, then rebuild: python3 tools/build_2026.py games.csv index.html. Leave body empty and no section renders.",
-  "week": "Week 3",
-  "dateRange": "Sept 28, 2026",
-  "headline": "Chiefs 24, Dolphins 10",
-  "record": "0-3",
+  "_README": "Big Sarge's weekly Miami update. Top level = Dolphins; 'hurricanes' = Canes card. Body items can be plain paragraphs or {label, text}. Rebuild: python3 tools/build_2026.py games.csv index.html. Leave a body empty and that card doesn't render.",
+  "week": "Week 5",
+  "dateRange": "Oct 11, 2026",
+  "headline": "Bengals 31, Dolphins 24",
+  "record": "0-5",
   "body": [
-    "Miami hung in it. Down 17-10 into the back half of the fourth, this was a live ballgame until Mahomes found Kelce from 11 yards out and slammed the door. That's the gap between a rebuild and a contender right now: Kansas City closes, Miami doesn't.",
-    "Malik Willis played with some fight, 210 through the air and 56 on the ground, and rookie Chris Bell flashed with four grabs for 67. On defense, Jacob Rodriguez was a problem all afternoon, three tackles for loss and an interception. But the drive-killers told the real story: a fumble wiped out a promising possession, and a fourth-and-1 pick snuffed out the last honest shot at a comeback.",
-    "Worse than the scoreboard: De'Von Achane went down on Miami's 91-yard opening touchdown drive and never came back, no word yet on how bad. This offense cannot afford to lose its one game-breaker.",
-    "Three weeks, three losses. Competitive for three quarters isn't nothing, but it isn't a win either. Minnesota's next, on the road. Time to finish one."
+    { "label": "Turning points", "text": "Cincinnati converted an 81-yard opening kickoff return into a touchdown. Two second-quarter Malik Willis interceptions helped create a 21–7 halftime deficit. Miami later rallied to 28–18, but Willis’ lost fumble at his own 10-yard line effectively ended the comeback." },
+    { "label": "Standouts", "text": "Ollie Gordon II rushed for 88 yards and a touchdown. Willis added 74 rushing yards, one passing score and one rushing score, while rookie Kevin Coleman Jr. caught his first NFL touchdown." },
+    { "label": "Injuries", "text": "Cornerback Julius Brents left with a stinger and did not return. De’Von Achane remains on season-ending injured reserve." },
+    { "label": "Takeaway", "text": "Miami produced season highs in total offense (331 yards), rushing (217) and points, but three quarterback turnovers and another damaging special-teams play erased that progress." }
   ],
-  "next": "Miami at Minnesota Vikings — Sunday, Oct 4, 4:05 PM ET",
-  "source": { "text": "Recap: miamidolphins.com", "url": "https://www.miamidolphins.com/news/game-recap-dolphins-drop-home-opener-to-chiefs-24-10" }
+  "next": "Bye on October 18; at the New York Jets on Sunday, October 25, at 1:00 p.m. ET on CBS.",
+  "hurricanes": {
+    "dateRange": "Oct 10, 2026",
+    "headline": "Bye week",
+    "record": "5-0",
+    "body": [
+      { "label": "Roster/injury news", "text": "Coach Mario Cristobal said defensive end Marquise Lightfoot and starting cornerback Xavier Lucas are fully recovered. Linebacker Ezekiel Marcelin Jr. and cornerback Damari Brown are also healthy. Starting right guard Max Buchanan remains out, with Cristobal hopeful he can return later this season." },
+      { "label": "Takeaway", "text": "The week off was especially valuable for a battered defense. Regaining Lightfoot and Lucas strengthens Miami’s pass rush and secondary ahead of its rivalry game, although Buchanan’s absence creates a significant offensive-line adjustment." }
+    ],
+    "next": "Florida State at Miami on Saturday, October 17, at 7:00 p.m. ET on ESPN."
+  }
 }
