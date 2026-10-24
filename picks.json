@@ -183,5 +183,57 @@
   "2026_06_WAS_SF": {
     "team": "SF",
     "line": 7.5
+  },
+  "2026_07_PIT_NO": {
+    "team": "PIT",
+    "line": -3.0
+  },
+  "2026_07_SF_ATL": {
+    "team": "SF",
+    "line": -2.5
+  },
+  "2026_07_CIN_BAL": {
+    "team": "BAL",
+    "line": -1.5
+  },
+  "2026_07_TB_CAR": {
+    "team": "TB",
+    "line": 3.0
+  },
+  "2026_07_NYG_HOU": {
+    "team": "NYG",
+    "line": 10.5
+  },
+  "2026_07_IND_MIN": {
+    "team": "IND",
+    "line": 6.5
+  },
+  "2026_07_MIA_NYJ": {
+    "team": "MIA",
+    "line": 4.5
+  },
+  "2026_07_CLE_TEN": {
+    "team": "CLE",
+    "line": -2.5
+  },
+  "2026_07_DEN_ARI": {
+    "team": "DEN",
+    "line": -4.5
+  },
+  "2026_07_GB_DET": {
+    "team": "DET",
+    "line": 3.0
+  },
+  "2026_07_LAR_LV": {
+    "team": "LAR",
+    "line": -3.0
+  },
+  "2026_07_KC_SEA": {
+    "team": "KC",
+    "line": 3.0
+  },
+  "2026_07_DAL_PHI": {
+    "team": "PHI",
+    "line": -4.5
   }
 }
