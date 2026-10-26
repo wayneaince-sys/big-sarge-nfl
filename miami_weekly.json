@@ -1,24 +1,27 @@
 {
   "_README": "Big Sarge's weekly Miami update. Top level = Dolphins; 'hurricanes' = Canes card. Body items can be plain paragraphs or {label, text}. Rebuild: python3 tools/build_2026.py games.csv index.html. Leave a body empty and that card doesn't render.",
-  "week": "Week 5",
-  "dateRange": "Oct 11, 2026",
-  "headline": "Bengals 31, Dolphins 24",
-  "record": "0-5",
+  "week": "Week 7",
+  "dateRange": "Oct 25, 2026",
+  "headline": "Dolphins 28, Jets 25",
+  "record": "1-5",
   "body": [
-    { "label": "Turning points", "text": "Cincinnati converted an 81-yard opening kickoff return into a touchdown. Two second-quarter Malik Willis interceptions helped create a 21–7 halftime deficit. Miami later rallied to 28–18, but Willis’ lost fumble at his own 10-yard line effectively ended the comeback." },
-    { "label": "Standouts", "text": "Ollie Gordon II rushed for 88 yards and a touchdown. Willis added 74 rushing yards, one passing score and one rushing score, while rookie Kevin Coleman Jr. caught his first NFL touchdown." },
-    { "label": "Injuries", "text": "Cornerback Julius Brents left with a stinger and did not return. De’Von Achane remains on season-ending injured reserve." },
-    { "label": "Takeaway", "text": "Miami produced season highs in total offense (331 yards), rushing (217) and points, but three quarterback turnovers and another damaging special-teams play erased that progress." }
+    { "label": "Turning points", "text": "Miami scored touchdowns on its first two drives and took its first lead of the season on Malik Willis’ 7-yard pass to rookie Caleb Douglas. Willis scrambled in from 2 yards with 6 seconds left in the half to cap a 91-yard drive for a 21–7 lead. The Jets reached the Miami 1 in the fourth quarter but settled for a field goal, and Willis answered with a short toss that Douglas took 63 yards for a 28–17 lead with 4:55 left." },
+    { "label": "The finish", "text": "Geno Smith hit Mason Taylor for a touchdown and a two-point conversion to cut it to 28–25 with 3:24 left. Facing fourth-and-1 at the Jets 49 near the two-minute mark, Jeff Hafley kept the offense on the field and Willis pushed forward for 2 yards to seal it." },
+    { "label": "Standouts", "text": "Willis went 14 of 21 for 208 yards and two touchdowns with 37 rushing yards and a score. Ollie Gordon II ran 25 times for 103 yards and a touchdown. Douglas, back from a three-game ankle absence, scored his first two NFL touchdowns. Greg Dulcich led the team with five catches for 86 yards." },
+    { "label": "Injuries", "text": "Safety Dante Trader Jr. hurt his left shoulder in the third quarter. Cornerback Julius Brents left with a stinger in the second half and returned in the fourth." },
+    { "label": "Takeaway", "text": "Zero turnovers and Miami’s highest point total of the season delivered Hafley’s first NFL win and avoided the franchise’s first 0–6 start since 2019. The offense completed only three passes after halftime, so the second-half stall is the next thing to fix." }
   ],
-  "next": "Bye on October 18; at the New York Jets on Sunday, October 25, at 1:00 p.m. ET on CBS.",
+  "next": "New England Patriots at Miami on Sunday, November 1, at 4:25 p.m. ET.",
   "hurricanes": {
-    "dateRange": "Oct 10, 2026",
-    "headline": "Bye week",
-    "record": "5-0",
+    "dateRange": "Oct 24, 2026",
+    "headline": "No. 1 Miami 52, Pittsburgh 23",
+    "record": "7-0",
     "body": [
-      { "label": "Roster/injury news", "text": "Coach Mario Cristobal said defensive end Marquise Lightfoot and starting cornerback Xavier Lucas are fully recovered. Linebacker Ezekiel Marcelin Jr. and cornerback Damari Brown are also healthy. Starting right guard Max Buchanan remains out, with Cristobal hopeful he can return later this season." },
-      { "label": "Takeaway", "text": "The week off was especially valuable for a battered defense. Regaining Lightfoot and Lucas strengthens Miami’s pass rush and secondary ahead of its rivalry game, although Buchanan’s absence creates a significant offensive-line adjustment." }
+      { "label": "Last week", "text": "Miami survived Florida State 43–35 in double overtime on October 17. Malachi Toney caught the go-ahead touchdown and threw the two-point conversion, and Bryce Fitzgerald’s interception ended it. Miami rose to No. 1 in the AP poll for the first time in 24 years." },
+      { "label": "Turning points", "text": "Pittsburgh punted on each of its first four drives without a first down as Miami built a 17–0 lead. The Canes scored twice in the final two minutes of the half, with a fumble recovery in between, to lead 31–7. Miami recovered an onside kick to open the third quarter and scored again." },
+      { "label": "Standouts", "text": "Darian Mensah and Toney carried the offense again, with Toney scoring on 19- and 53-yard catches. Mark Fletcher Jr.’s third-quarter touchdown run, the 33rd of his career, moved him into second on Miami’s all-time list. The defense held Pitt to 69 rushing yards." },
+      { "label": "Takeaway", "text": "Wearing 2001 throwbacks with that title team in the stands, Miami never trailed and stayed one of three unbeaten FBS teams. Pass coverage gave up five plays of 25-plus yards, including Blue Hicks’ 149 receiving yards." }
     ],
-    "next": "Florida State at Miami on Saturday, October 17, at 7:00 p.m. ET on ESPN."
+    "next": "At North Carolina on Saturday, October 31, at 7:30 p.m. ET."
   }
 }
