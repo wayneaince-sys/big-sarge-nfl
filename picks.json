@@ -291,5 +291,65 @@
   "2026_08_CHI_SEA": {
     "team": "SEA",
     "line": 3.5
+  },
+  "2026_09_JAX_BAL": {
+    "team": "BAL",
+    "line": -8.5
+  },
+  "2026_09_CIN_ATL": {
+    "team": "CIN",
+    "line": -3.0
+  },
+  "2026_09_DEN_CAR": {
+    "team": "DEN",
+    "line": -3.0
+  },
+  "2026_09_DAL_IND": {
+    "team": "DAL",
+    "line": -6.0
+  },
+  "2026_09_NYJ_KC": {
+    "team": "NYJ",
+    "line": 9.5
+  },
+  "2026_09_DET_MIA": {
+    "team": "MIA",
+    "line": -7.0
+  },
+  "2026_09_CLE_NO": {
+    "team": "NO",
+    "line": 2.5
+  },
+  "2026_09_NYG_PHI": {
+    "team": "PHI",
+    "line": -3.5
+  },
+  "2026_09_LAR_WAS": {
+    "team": "LAR",
+    "line": -5.5
+  },
+  "2026_09_HOU_LAC": {
+    "team": "LAC",
+    "line": -4.5
+  },
+  "2026_09_LV_SF": {
+    "team": "LV",
+    "line": 10.0
+  },
+  "2026_09_GB_NE": {
+    "team": "NE",
+    "line": 3.0
+  },
+  "2026_09_ARI_SEA": {
+    "team": "ARI",
+    "line": 11.5
+  },
+  "2026_09_TB_CHI": {
+    "team": "CHI",
+    "line": 6.0
+  },
+  "2026_09_BUF_MIN": {
+    "team": "BUF",
+    "line": -3.5
   }
 }
