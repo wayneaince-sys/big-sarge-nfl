@@ -1,37 +1,50 @@
 {
   "_README": "Big Sarge's weekly Miami update. Top level = Dolphins; 'hurricanes' = Canes card. Body items can be plain paragraphs or {label, text}. Rebuild: python3 tools/build_2026.py games.csv index.html. Leave a body empty and that card doesn't render.",
-  "week": "Week 8",
-  "dateRange": "Nov 1, 2026",
-  "headline": "Patriots 24, Dolphins 19",
-  "record": "1-6",
+  "week": "Week 9",
+  "dateRange": "Nov 8, 2026",
+  "headline": "Lions 19, Dolphins 9",
+  "record": "1-7",
   "body": [
-    "The win over the Jets didn't start a run. New England came into Hard Rock and left with a 24-19 decision, and Miami is back in the loss column at 1-6. Five points means it was there to be had, but close stopped paying rent in Miami a long time ago.",
-    "Give them this: as a touchdown-plus home underdog, the Dolphins didn't get run out of their own building. They hung around, made the Patriots earn every yard, and kept it a one-score game to the finish. That's the floor. The ceiling still hasn't shown up on a Sunday.",
-    "One-and-six is one-and-six, and the schedule doesn't get any kinder. A hot Detroit team rolls into town next, and that is exactly the kind of test that tells you whether the Jets win was a turning point or a mirage."
+    {
+      "label": "Turning points",
+      "text": "Miami\u2019s defense held Detroit\u2019s top-ranked offense without a first-half touchdown, but the Dolphins missed a 38-yard field goal before halftime and opened the third quarter with a turnover. Detroit finally broke through on Jahmyr Gibbs\u2019 fourth-down touchdown, taking a 16\u20136 lead."
+    },
+    {
+      "label": "Standouts",
+      "text": "Rookie Chris Johnson intercepted Jared Goff, Jordyn Brooks made 12 tackles, and Josh Uche, Zeek Biggers and Jacob Rodriguez each recorded a sack. Caleb Douglas led Miami with six catches for 70 yards."
+    },
+    {
+      "label": "Injury/roster news",
+      "text": "Malik Willis said his lingering groin injury felt tight; he finished with only seven rushing yards. Tight end Will Kacmarek sustained a quadriceps injury but walked off unassisted."
+    },
+    {
+      "label": "Takeaway",
+      "text": "The defense gave Miami every opportunity, limiting Detroit to 271 yards. The offense squandered it by going 0-for-3 in the red zone, committing 11 penalties and producing just 228 yards. That imbalance is now Miami\u2019s defining problem."
+    }
   ],
-  "next": "Detroit Lions at Miami \u2014 Sunday, Nov 8, 1:00 PM ET",
+  "next": "At Indianapolis Colts \u2014 Sunday, Nov 15, 1:00 PM ET on CBS",
   "hurricanes": {
-    "dateRange": "Oct 24, 2026",
-    "headline": "No. 1 Miami 52, Pittsburgh 23",
-    "record": "7-0",
+    "dateRange": "Nov 7, 2026",
+    "headline": "No. 4 Notre Dame 31, No. 1 Miami 24",
+    "record": "8-1",
     "body": [
       {
-        "label": "Last week",
-        "text": "Miami survived Florida State 43\u201335 in double overtime on October 17. Malachi Toney caught the go-ahead touchdown and threw the two-point conversion, and Bryce Fitzgerald\u2019s interception ended it. Miami rose to No. 1 in the AP poll for the first time in 24 years."
-      },
-      {
         "label": "Turning points",
-        "text": "Pittsburgh punted on each of its first four drives without a first down as Miami built a 17\u20130 lead. The Canes scored twice in the final two minutes of the half, with a fumble recovery in between, to lead 31\u20137. Miami recovered an onside kick to open the third quarter and scored again."
+        "text": "Miami fell behind 24\u20133 before Darian Mensah led a determined second-half comeback. The decisive sequence came after the Hurricanes pulled within 24\u201317: Luke Talich intercepted Mensah, and Notre Dame converted the turnover into a touchdown. Miami\u2019s final serious drive ended when Talich broke up a potential game-tying fourth-down touchdown to Elija Lofton."
       },
       {
         "label": "Standouts",
-        "text": "Darian Mensah and Toney carried the offense again, with Toney scoring on 19- and 53-yard catches. Mark Fletcher Jr.\u2019s third-quarter touchdown run, the 33rd of his career, moved him into second on Miami\u2019s all-time list. The defense held Pitt to 69 rushing yards."
+        "text": "Mensah completed 24 of 43 passes for 276 yards and three touchdowns, with one interception. Cooper Barkate caught 10 passes for 92 yards and two scores; Lofton added seven receptions for 113 yards and a touchdown."
+      },
+      {
+        "label": "Injury/roster news",
+        "text": "Star receiver Malachi Toney missed the game with an ankle injury requiring surgery, a major loss for Miami\u2019s passing attack. Starting guard Max Buchanan and cornerback O.J. Frederique also remained unavailable. The official postgame recap identified no significant new injury."
       },
       {
         "label": "Takeaway",
-        "text": "Wearing 2001 throwbacks with that title team in the stands, Miami never trailed and stayed one of three unbeaten FBS teams. Pass coverage gave up five plays of 25-plus yards, including Blue Hicks\u2019 149 receiving yards."
+        "text": "Miami\u2019s 21\u201314 second-half response showed real resilience, but the slow start, goal-line failure and poorly timed interception proved too costly. The loss damages the Hurricanes\u2019 playoff margin, though their ACC objectives remain intact."
       }
     ],
-    "next": "At North Carolina on Saturday, October 31, at 7:30 p.m. ET."
+    "next": "Duke at Miami on Saturday, November 14, at noon ET on ABC."
   }
 }
