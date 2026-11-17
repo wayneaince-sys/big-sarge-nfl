@@ -407,5 +407,57 @@
   "2026_10_LAC_BAL": {
     "team": "BAL",
     "line": -5.5
+  },
+  "2026_11_IND_HOU": {
+    "team": "IND",
+    "line": 12.5
+  },
+  "2026_11_MIA_BUF": {
+    "team": "MIA",
+    "line": 16.5
+  },
+  "2026_11_BAL_CAR": {
+    "team": "BAL",
+    "line": 2.5
+  },
+  "2026_11_NO_CHI": {
+    "team": "CHI",
+    "line": 11.5
+  },
+  "2026_11_TEN_DAL": {
+    "team": "DAL",
+    "line": 8.5
+  },
+  "2026_11_TB_DET": {
+    "team": "DET",
+    "line": 6.5
+  },
+  "2026_11_ARI_KC": {
+    "team": "ARI",
+    "line": 16.5
+  },
+  "2026_11_JAX_NYG": {
+    "team": "JAX",
+    "line": -6.0
+  },
+  "2026_11_NYJ_LAC": {
+    "team": "LAC",
+    "line": 3.0
+  },
+  "2026_11_LV_DEN": {
+    "team": "DEN",
+    "line": 10.0
+  },
+  "2026_11_PIT_PHI": {
+    "team": "PIT",
+    "line": -4.5
+  },
+  "2026_11_MIN_SF": {
+    "team": "SF",
+    "line": 3.0
+  },
+  "2026_11_CIN_WAS": {
+    "team": "CIN",
+    "line": -6.5
   }
 }
