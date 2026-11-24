@@ -1,24 +1,24 @@
 {
   "_README": "Big Sarge's weekly Miami update. Top level = Dolphins; 'hurricanes' = Canes card. Body items can be plain paragraphs or {label, text}. Rebuild: python3 tools/build_2026.py games.csv index.html. Leave a body empty and that card doesn't render.",
-  "week": "Week 10",
-  "dateRange": "Nov 15, 2026",
-  "headline": "Colts 24, Dolphins 22",
-  "record": "1-8",
+  "week": "Week 11",
+  "dateRange": "Nov 22, 2026",
+  "headline": "Bills 26, Dolphins 9",
+  "record": "1-9",
   "body": [
     {
       "label": "The result",
-      "text": "Miami went into Indianapolis and lost by two, 24–22. The Dolphins had it close into the fourth quarter and still walked out with nothing — their eighth loss of the year."
+      "text": "Miami went up to Buffalo and got buried, 26–9. No fourth-quarter drama this time — the Bills controlled it and the Dolphins never threatened. Loss number nine."
     },
     {
       "label": "Where it stands",
-      "text": "At 1–8, the math is what it is. Half a season gone and one tally in the win column. This group keeps finding new ways to come up a possession short."
+      "text": "1–9. The bye for competence came early this year and never ended. On the road against a real team, the gap showed up in full."
     },
     {
       "label": "Big Sarge's take",
-      "text": "Two points on the road. I’ve watched this team lose ugly and I’ve watched it lose close, and close is the one that eats at you — because it means the talent is there and the finish isn’t. You don’t get credit for almost in this league. Fix the fourth quarter or keep losing it."
+      "text": "Nine points in a road game you had to steal and didn’t. There’s no spin left — when you get beat by 17 by a contender, you are what the record says. Play the young guys, find out who’s worth keeping, and start building toward a season that isn’t already over in November."
     }
   ],
-  "next": "At Buffalo Bills — Sunday, Nov 22, 1:00 PM ET",
+  "next": "New York Jets at Miami — Sunday, Nov 29, 1:00 PM ET",
   "hurricanes": {
     "dateRange": "Nov 14, 2026",
     "headline": "No. 7 Miami 36, Duke 25",
