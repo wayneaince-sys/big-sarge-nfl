@@ -6,41 +6,45 @@
   "record": "1-9",
   "body": [
     {
-      "label": "The result",
-      "text": "Miami went up to Buffalo and got buried, 26–9. No fourth-quarter drama this time — the Bills controlled it and the Dolphins never threatened. Loss number nine."
+      "label": "Turning points",
+      "text": "Buffalo built a 20–3 lead before Miami’s defense forced back-to-back interceptions late in the first half — but the offense turned those takeaways into just three points. Miami closed to 20–9 after halftime, then Buffalo stuffed Kyle McCord on fourth-and-2 to end the comeback."
     },
     {
-      "label": "Where it stands",
-      "text": "1–9. The bye for competence came early this year and never ended. On the road against a real team, the gap showed up in full."
+      "label": "Standouts",
+      "text": "Rookie Jacob Rodriguez had 13 tackles and an interception. Zayne Anderson added 11 tackles, a pick and a sack. Ollie Gordon II averaged 6.3 yards a carry for 69 yards."
+    },
+    {
+      "label": "Injury/roster news",
+      "text": "Chris Bell briefly left with a chest injury but returned. Punter Bradley Pinion and receiver Jared Wayne were out, and Malik Willis remains on injured reserve with a groin/core injury."
     },
     {
       "label": "Big Sarge's take",
-      "text": "Nine points in a road game you had to steal and didn’t. There’s no spin left — when you get beat by 17 by a contender, you are what the record says. Play the young guys, find out who’s worth keeping, and start building toward a season that isn’t already over in November."
+      "text": "Two picks off Josh Allen, three sacks, and the defense gave you every chance — and the offense answered with 185 yards and zero touchdowns. You can’t keep asking that defense to win games the offense refuses to show up for. The gap between the two units is the whole story of this season now."
     }
   ],
-  "next": "New York Jets at Miami — Sunday, Nov 29, 1:00 PM ET",
+  "next": "New York Jets at Miami — Sunday, Nov 29, 1:00 PM ET on CBS",
   "hurricanes": {
-    "dateRange": "Nov 14, 2026",
-    "headline": "No. 7 Miami 36, Duke 25",
-    "record": "9-1",
+    "dateRange": "Nov 21, 2026",
+    "headline": "No. 7 Miami 28, Virginia Tech 20",
+    "record": "10-1",
     "body": [
       {
         "label": "Turning points",
-        "text": "With Miami clinging to a 22–17 lead, freshman Javian Mallory capped a 79-yard drive with a touchdown. Xavier Lucas then picked off Walker Eget, and Mallory put it away with a 39-yard scoring run."
+        "text": "Miami fell behind 14–0 after an early Darian Mensah interception. Jake Weinberg’s school-record 59-yard field goal cut the halftime deficit to three, then Mark Fletcher Jr. capped a 17-play, 90-yard drive for Miami’s first lead and added an 11-yard insurance touchdown."
       },
       {
         "label": "Standouts",
-        "text": "Mallory went for 150 yards from scrimmage and three touchdowns. Darian Mensah threw for 382 yards and Cooper Barkate hauled in eight catches for 134. Mark Fletcher Jr.’s 36th career rushing touchdown set a new Miami record."
+        "text": "Fletcher ran for three touchdowns. Mensah shook off two interceptions to throw for 241 yards, and Cooper Barkate caught seven for 72. Weinberg’s 59-yarder broke Miami’s previous record of 57."
       },
       {
         "label": "Injury news",
-        "text": "Fletcher left with a lower-body injury but is expected back against Virginia Tech, as is safety Zechariah Poyser. Malachi Toney remains out after ankle surgery — ahead of schedule, but likely unavailable until a possible ACC Championship appearance."
+        "text": "Fletcher showed no lingering effects from the lower-body issue that limited him against Duke. Malachi Toney remained out after ankle surgery; no significant new injury was reported."
       },
       {
         "label": "Big Sarge's take",
-        "text": "Five hundred and thirty-two yards, 7–0 in the league, and one win from an ACC title berth — that’s a season most programs would kill for. But another scoreless first quarter, 10 penalties, and two red-zone trips that netted field goals instead of six? Talent’s carrying them. Discipline had better catch up before it costs them the one that matters."
+        "text": "Ten and one, 8–0 in the league, and a spot in the ACC Championship Game — first one since 2017. That’s a program back where it belongs. But spot elite teams 14–0 in the playoff and you won’t climb out. Start faster, protect the ball, and this team can play with anybody. Keep digging holes and January gets short."
       }
     ],
-    "next": "Virginia Tech at Miami — Saturday, Nov 21, 7:00 PM ET on ESPN (College GameDay in town)."
+    "next": "Boston College at Miami — Saturday, Nov 28, noon ET on ESPN; then Wake Forest for the ACC Championship on Dec 5."
   }
 }
